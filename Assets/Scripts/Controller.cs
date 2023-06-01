@@ -7,6 +7,7 @@ using System;
 [RequireComponent(typeof(CharacterAttribute))]
 public class Controller : MonoBehaviour
 {
+    protected Transform _transform;
     //2D刚体
     protected Rigidbody2D _rigidbody2D;
     //角色属性
@@ -53,11 +54,24 @@ public class Controller : MonoBehaviour
     protected void move(Direction direction)
     {
         float moveSpeed = _characterAttribute.getMoveSpeed();
+        if (direction.x < 0)
+        {
+            Vector3 rotation = _transform.eulerAngles;
+            rotation.y = -180;
+            _transform.eulerAngles = rotation;
+        }
+        if (direction.x > 0)
+        {
+            Vector3 rotation = _transform.eulerAngles;
+            rotation.y = 0;
+            _transform.eulerAngles = rotation;
+        }
         _rigidbody2D.AddForce(new Vector2(direction.x, direction.y), ForceMode2D.Impulse);
     }
 
     protected void Awake()
     {
+        _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
     }
