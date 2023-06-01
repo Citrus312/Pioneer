@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CharacterAttribute))]
 public class Controller : MonoBehaviour
 {
-    //角色对象
-    public GameObject character;
+    //2D刚体
+    protected Rigidbody2D _rigidbody2D;
+    //角色属性
+    protected CharacterAttribute _characterAttribute;
 
     //方向
     protected struct Direction
@@ -48,9 +52,13 @@ public class Controller : MonoBehaviour
 
     protected void move(Direction direction)
     {
-        float moveSpeed = character.GetComponent<Attribute>().getMoveSpeed();
-        Vector3 position = character.transform.position;
-        position += new Vector3(direction.x * moveSpeed, direction.y * moveSpeed, 0);
-        character.transform.position = position;
+        float moveSpeed = _characterAttribute.getMoveSpeed();
+        _rigidbody2D.AddForce(new Vector2(direction.x, direction.y), ForceMode2D.Impulse);
+    }
+
+    protected void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _characterAttribute = GetComponent<CharacterAttribute>();
     }
 }
