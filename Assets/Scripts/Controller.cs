@@ -13,6 +13,9 @@ public class Controller : MonoBehaviour
     //角色属性
     protected CharacterAttribute _characterAttribute;
 
+    //动画
+    public Animator animator;
+
     //方向
     protected struct Direction
     {
@@ -53,6 +56,7 @@ public class Controller : MonoBehaviour
 
     protected void move(Direction direction)
     {
+        animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
         float moveSpeed = _characterAttribute.getMoveSpeed();
         if (direction.x < 0)
         {
