@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : Controller
 {
+    
     //获取移动方向
     protected void getMoveDirection()
     {

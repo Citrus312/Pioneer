@@ -8,6 +8,9 @@ public class Controller : MonoBehaviour
     //角色对象
     public GameObject character;
 
+    //动画
+    public Animator animator;
+
     //方向
     protected struct Direction
     {
@@ -48,6 +51,9 @@ public class Controller : MonoBehaviour
 
     protected void move(Direction direction)
     {
+        //动画设置
+        animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
+
         float moveSpeed = character.GetComponent<Attribute>().getMoveSpeed();
         Vector3 position = character.transform.position;
         position += new Vector3(direction.x * moveSpeed, direction.y * moveSpeed, 0);
