@@ -16,6 +16,13 @@ public class Controller : MonoBehaviour
     //动画
     public Animator _animator;
 
+    protected void Awake()
+    {
+        _transform = GetComponent<Transform>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _characterAttribute = GetComponent<CharacterAttribute>();
+    }
+
     //方向
     protected struct Direction
     {
@@ -58,6 +65,7 @@ public class Controller : MonoBehaviour
     {
         _animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
         float moveSpeed = _characterAttribute.getMoveSpeed();
+        //角色转向
         if (direction.x < 0)
         {
             Vector3 rotation = _transform.eulerAngles;
@@ -70,13 +78,7 @@ public class Controller : MonoBehaviour
             rotation.y = 0;
             _transform.eulerAngles = rotation;
         }
+        //角色移动
         _rigidbody2D.AddForce(new Vector2(direction.x, direction.y), ForceMode2D.Impulse);
-    }
-
-    protected void Awake()
-    {
-        _transform = GetComponent<Transform>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _characterAttribute = GetComponent<CharacterAttribute>();
     }
 }
