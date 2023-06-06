@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class AIController : Controller
 {
     //TODO: 后期修改成向场景询问玩家位置
