@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     protected WeaponAttribute _weaponAttribute;
     //武器的transform
     protected Transform _transform;
+
+    protected Damager _damager;
     //枪口
     [SerializeField] protected Transform _firePoint;
     //子弹的预制体
