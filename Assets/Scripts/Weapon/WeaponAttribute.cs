@@ -8,7 +8,7 @@ public class WeaponAttribute : MonoBehaviour
     public enum WeaponType { Melee, Ranged }
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
     //武器的所有者的属性
-    private CharacterAttribute ownerAttr;
+    [SerializeField] private CharacterAttribute ownerAttr;
     //武器基础攻击范围
     private float rawAttackRange = 20f;
     //对应类型伤害的转换比例
@@ -20,7 +20,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器基础暴击概率
     private float rawCriticalRate = 0.02f;
     //武器的类型
-    private WeaponType weaponType = WeaponType.Melee; 
+    private WeaponType weaponType = WeaponType.Melee;
 
 
     public void setOwnerAttr(CharacterAttribute input)
@@ -95,7 +95,7 @@ public class WeaponAttribute : MonoBehaviour
                 temp = ownerAttr.getMeleeDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
                 break;
             case WeaponType.Ranged:
-                temp = ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification()); 
+                temp = ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
                 break;
             default:
                 Debug.Log("weapon type error");

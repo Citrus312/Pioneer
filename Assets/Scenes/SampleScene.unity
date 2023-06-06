@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 211837991}
   - component: {fileID: 211837990}
   - component: {fileID: 211837989}
+  - component: {fileID: 211837992}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &211837991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -439,6 +441,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &211837992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211837987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &242888046
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +465,7 @@ GameObject:
   - component: {fileID: 242888050}
   - component: {fileID: 242888049}
   - component: {fileID: 242888048}
+  - component: {fileID: 242888051}
   m_Layer: 0
   m_Name: Weapon3
   m_TagString: Untagged
@@ -500,6 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &242888050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -552,6 +568,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &242888051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242888046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +910,7 @@ GameObject:
   - component: {fileID: 761111782}
   - component: {fileID: 761111781}
   - component: {fileID: 761111780}
+  - component: {fileID: 761111783}
   m_Layer: 0
   m_Name: Weapon4
   m_TagString: Untagged
@@ -931,6 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &761111782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -983,6 +1013,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &761111783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761111778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832414594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1279,7 @@ GameObject:
   - component: {fileID: 1294738620}
   - component: {fileID: 1294738619}
   - component: {fileID: 1294738618}
+  - component: {fileID: 1294738621}
   m_Layer: 0
   m_Name: Weapon5
   m_TagString: Untagged
@@ -1286,6 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &1294738620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1338,6 +1382,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1294738621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294738616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1917823064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1437,7 @@ GameObject:
   - component: {fileID: 2108865916}
   - component: {fileID: 2108865915}
   - component: {fileID: 2108865914}
+  - component: {fileID: 2108865917}
   m_Layer: 0
   m_Name: Weapon1
   m_TagString: Untagged
@@ -1430,6 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &2108865916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1482,6 +1540,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2108865917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108865912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119965370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,6 +1564,7 @@ GameObject:
   - component: {fileID: 2119965374}
   - component: {fileID: 2119965373}
   - component: {fileID: 2119965372}
+  - component: {fileID: 2119965375}
   m_Layer: 0
   m_Name: Weapon2
   m_TagString: Untagged
@@ -1543,6 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerAttr: {fileID: 901994714}
 --- !u!212 &2119965374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1595,3 +1667,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2119965375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119965370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
