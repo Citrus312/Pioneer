@@ -21,6 +21,11 @@ public class Controller : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
+
+        //设置rigidbody2D的参数
+        _rigidbody2D.drag = 100;
+        _rigidbody2D.gravityScale = 0;
+        _rigidbody2D.freezeRotation = true;
     }
 
     //方向

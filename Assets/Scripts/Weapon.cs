@@ -11,11 +11,16 @@ public class Weapon : MonoBehaviour
     protected Transform _transform;
     //枪口
     [SerializeField] protected Transform _firePoint;
+    //子弹的预制体
+    [SerializeField] protected GameObject _bulletPrefab;
+    //下次射击的时间
+    protected float _nextShootTime;
 
     protected void Awake()
     {
         _weaponAttribute = GetComponent<WeaponAttribute>();
         _transform = GetComponent<Transform>();
+        _nextShootTime = Time.time;
     }
 
     //获取射击的方向
@@ -52,6 +57,14 @@ public class Weapon : MonoBehaviour
         return shootDirection;
     }
 
+    //向射击方向发射一颗子弹
+    protected void shoot(Vector2 shootDirection)
+    {
+        //实例化一颗子弹
+        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -62,5 +75,14 @@ public class Weapon : MonoBehaviour
         float angle = Vector2.SignedAngle(_firePoint.position - _transform.position, shootDirection);
         //旋转武器
         transform.Rotate(new Vector3(0, 0, angle), Space.World);
+
+        //如果找到了射击方向则射击
+        if (Time.time > _nextShootTime && shootDirection != new Vector2(0, 0))
+        {
+            shoot(shootDirection);
+            //更新下次射击时间
+            //TODO 更改考虑武器射击间隔
+            _nextShootTime = Time.time + 1;
+        }
     }
 }
