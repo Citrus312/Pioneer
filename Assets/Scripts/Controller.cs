@@ -21,6 +21,7 @@ public class Controller : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
+        _animator = GetComponent<Animator>();
 
         //设置rigidbody2D的参数
         _rigidbody2D.drag = 100;
