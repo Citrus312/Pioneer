@@ -64,6 +64,7 @@ public class Weapon : MonoBehaviour
     {
         //实例化一颗子弹
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        bullet.GetComponent<Bullet>()._weapon = gameObject;
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 

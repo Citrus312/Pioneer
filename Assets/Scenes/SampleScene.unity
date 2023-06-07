@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 71095844}
   - component: {fileID: 71095843}
   - component: {fileID: 71095849}
+  - component: {fileID: 71095850}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -326,6 +327,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.32, y: 0.38}
   m_Direction: 0
+--- !u!114 &71095850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71095842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &211837987
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +352,7 @@ GameObject:
   - component: {fileID: 211837990}
   - component: {fileID: 211837989}
   - component: {fileID: 211837992}
+  - component: {fileID: 211837993}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -453,6 +467,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &211837993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211837987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &242888046
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +492,7 @@ GameObject:
   - component: {fileID: 242888049}
   - component: {fileID: 242888048}
   - component: {fileID: 242888051}
+  - component: {fileID: 242888052}
   m_Layer: 0
   m_Name: Weapon3
   m_TagString: Untagged
@@ -569,6 +596,18 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &242888051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242888046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &242888052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -741,6 +780,7 @@ GameObject:
   - component: {fileID: 634735038}
   - component: {fileID: 634735037}
   - component: {fileID: 634735044}
+  - component: {fileID: 634735045}
   m_Layer: 0
   m_Name: Monster (1)
   m_TagString: Untagged
@@ -898,6 +938,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 634735038}
   _player: {fileID: 634735036}
+--- !u!114 &634735045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634735036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761111778
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +963,7 @@ GameObject:
   - component: {fileID: 761111781}
   - component: {fileID: 761111780}
   - component: {fileID: 761111783}
+  - component: {fileID: 761111784}
   m_Layer: 0
   m_Name: Weapon4
   m_TagString: Untagged
@@ -1014,6 +1067,18 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &761111783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761111778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &761111784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1280,6 +1345,7 @@ GameObject:
   - component: {fileID: 1294738619}
   - component: {fileID: 1294738618}
   - component: {fileID: 1294738621}
+  - component: {fileID: 1294738622}
   m_Layer: 0
   m_Name: Weapon5
   m_TagString: Untagged
@@ -1394,6 +1460,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1294738622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294738616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1917823064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1516,7 @@ GameObject:
   - component: {fileID: 2108865915}
   - component: {fileID: 2108865914}
   - component: {fileID: 2108865917}
+  - component: {fileID: 2108865918}
   m_Layer: 0
   m_Name: Weapon1
   m_TagString: Untagged
@@ -1552,6 +1631,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2108865918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108865912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119965370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1656,7 @@ GameObject:
   - component: {fileID: 2119965373}
   - component: {fileID: 2119965372}
   - component: {fileID: 2119965375}
+  - component: {fileID: 2119965376}
   m_Layer: 0
   m_Name: Weapon2
   m_TagString: Untagged
@@ -1668,6 +1760,18 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2119965375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119965370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2119965376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
