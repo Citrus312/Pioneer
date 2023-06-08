@@ -7,7 +7,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //发射出该子弹的武器
-    Weapon _weapon;
+    public GameObject _weapon;
     //子弹能够贯穿的次数
     protected int pierce = 1;
 
@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour
         if (collider2D.tag != "Enemy")
             return;
         //TODO 添加碰撞怪物后对怪物造成伤害的功能
+        //对怪物造成伤害
+        _weapon.GetComponent<Damager>().Damage(collider2D);
 
         //贯穿次数-1
         pierce--;

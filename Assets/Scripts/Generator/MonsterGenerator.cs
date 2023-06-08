@@ -2,17 +2,91 @@ using UnityEngine;
 
 public class MonsterGenerator : Generator
 {
-    void Start()
+    // å•ä¾‹
+    private static MonsterGenerator instance;
+
+    // è¦ç”Ÿæˆçš„æ€ªç‰©
+    public GameObject _monsterPrefab;
+    public GameObject _player;
+    private SpriteRenderer _redCross;// æ€ªç‰©ç”Ÿæˆå‰çš„ä¿¡å·å›¾ç‰‡
+
+    // åœ¨è§’è‰²å‘¨å›´ç”Ÿæˆæ€ªç‰©çš„èŒƒå›´å¤§å°
+    public float _distance;
+    //ç”Ÿæˆæ€ªç‰©çš„æ—¶é—´é—´éš”
+    private float _interval;
+
+    // ä¿¡å·é—ªçƒæ¬¡æ•°
+    private int _flashCnt;
+
+    public override void Start()
     {
-        positionOffset = new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f)); // Ëæ»úÉú³ÉÎ»ÖÃÆ«ÒÆÁ¿
-        transform.position += (Vector3)positionOffset; // ½«Î»ÖÃÆ«ÒÆÁ¿¼Óµ½Éú³ÉÆ÷µÄÎ»ÖÃÉÏ
-        base.Start(); // µ÷ÓÃ¸¸ÀàµÄStart·½·¨³õÊ¼»¯¼ÆÊ±Æ÷
+        base.Start();
+
+        _redCross = GetComponent<SpriteRenderer>(); // å¿…é¡»æŒ‚ä¸€ä¸ª(å¾…è§£å†³)
+        _distance = 5.0f;
+        _interval = 5.0f;
+        InvokeRepeating("BeginGenerate", 1.0f, _interval);
     }
 
-    protected override void GenerateItem() // override¸¸ÀàµÄGenerateItem·½·¨
+    public static MonsterGenerator getInstance()
     {
-        GameObject newObject = Instantiate(_prefabToInstantiate, transform.position, Quaternion.identity);
-        generationCount++;
+        if (instance == null)
+        {
+            instance = new MonsterGenerator();
+        }
+        return instance;
+    }
 
+    protected void BeginGenerate()
+    {
+        ShowRedCross();
+
+    }
+
+    // çº¢å‰æ˜¾ç°
+    protected void ShowRedCross()
+    {
+        _redCross.transform.position = GetSpawnLocation();
+        _redCross.enabled = true;
+
+        _flashCnt = 2;
+        RedCrossFlash();
+        Invoke("GenerateMonster", 2.5f);
+    }
+
+    // çº¢å‰é—ªçƒ
+    protected void RedCrossFlash()
+    {
+        _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 1.0f);
+        Invoke("RedCrossFade", 0.5f);
+    }
+
+    // çº¢å‰é€æ˜
+    protected void RedCrossFade()
+    {
+        _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 0.1f);
+        if (_flashCnt > 0)
+        {
+            Invoke("RedCrossFlash", 0.5f);
+            _flashCnt--;
+        }
+        else
+        {
+            // çº¢å‰æ¶ˆå¤±
+            _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 0.0f);
+            _redCross.enabled = false;
+        }
+    }
+
+    protected void GenerateMonster() // å¾…è¡¥å……
+    {
+        GenerateObject(_monsterPrefab, _redCross.transform.position, 1);
+    }
+
+    // éšæœºè·å–æ€ªç‰©ç”Ÿæˆä½ç½®
+    protected Vector3 GetSpawnLocation()
+    {
+        Vector3 pos = _player.transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
+        return pos;
     }
 }
