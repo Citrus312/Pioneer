@@ -10,7 +10,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器的所有者的属性
     [SerializeField] private CharacterAttribute ownerAttr;
     //武器基础攻击范围
-    private float rawAttackRange = 20f;
+    [SerializeField] private float rawAttackRange = 20f;
     //对应类型伤害的转换比例
     private float convertRatio = 0.8f;
     //暴击伤害的倍率

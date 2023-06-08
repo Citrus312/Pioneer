@@ -28,7 +28,6 @@ public class Bullet : MonoBehaviour
         //如果碰撞的不为怪物则直接返回
         if (collider2D.tag != "Enemy")
             return;
-        //TODO 添加碰撞怪物后对怪物造成伤害的功能
         //对怪物造成伤害
         _weapon.GetComponent<Damager>().Damage(collider2D);
 
