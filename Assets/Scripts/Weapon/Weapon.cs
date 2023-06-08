@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     protected WeaponAttribute _weaponAttribute;
     //武器的transform
     protected Transform _transform;
-
+    //武器的伤害源
     protected Damager _damager;
     //枪口
     [SerializeField] protected Transform _firePoint;
@@ -64,7 +64,6 @@ public class Weapon : MonoBehaviour
     {
         //实例化一颗子弹
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-        bullet.GetComponent<Bullet>()._weapon = gameObject;
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 
@@ -89,3 +88,4 @@ public class Weapon : MonoBehaviour
         }
     }
 }
+
