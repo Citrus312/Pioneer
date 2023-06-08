@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PropAttribute : MonoBehaviour
 {
+    //道具ID
+    private int propID;
+    //道具名称
+    private string propName;
+    //道具品质
+    private WeaponAttribute.Quality propQuality;
+    //道具图标
+    private string propIcon;
+    //道具品质背景
+    private string propBgIcon;
+    //以下是道具对于角色属性的加成或减益
     //最大生命 生命回复 生命汲取
     private float maxHealth = 0;
     private float healthRecovery = 0;
@@ -33,6 +44,31 @@ public class PropAttribute : MonoBehaviour
     //采集效率
     private float collectEfficiency = 0;
 
+
+    public void setPropID(int input)
+    {
+        propID = input;
+    }
+
+    public void setPropName(string input)
+    {
+        propName = input;
+    }
+
+    public void setPropQuality(WeaponAttribute.Quality input)
+    {
+        propQuality = input;
+    }
+
+    public void setPropIcon(string input)
+    {
+        propIcon = input;
+    }
+
+    public void setPropBgIcon(string input)
+    {
+        propBgIcon = input;
+    }
 
     public void setMaxHealth(float input)
     {
@@ -114,6 +150,31 @@ public class PropAttribute : MonoBehaviour
         collectEfficiency = input;
     }
 
+
+    public int getPropID()
+    {
+        return propID;
+    }
+
+    public string getPropName()
+    {
+        return propName;
+    }
+
+    public WeaponAttribute.Quality getPropQuality()
+    {
+        return propQuality;
+    }
+
+    public string getPropIcon()
+    {
+        return propIcon;
+    }
+
+    public string getPropBgIcon()
+    {
+        return propBgIcon;
+    }
 
     public float getMaxHealth()
     {

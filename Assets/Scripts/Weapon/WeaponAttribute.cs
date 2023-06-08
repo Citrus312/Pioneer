@@ -8,8 +8,8 @@ public class WeaponAttribute : MonoBehaviour
     public enum WeaponDamageType { Unknown = -1 ,Melee, Ranged, Ability }
     //武器分类的枚举
     public enum WeaponCategory { Unknown = -1, Gun, Ability, Heal }
-    //武器品质的枚举
-    public enum WeaponQuality { Unknown = -1, Normal, Senior, Elite, Legendary}
+    //物品品质的枚举
+    public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary}
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
     //武器所有者的属性
     private CharacterAttribute ownerAttr;
@@ -32,7 +32,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器的价格
     private float weaponPrice = 0;
     //武器的品质
-    private WeaponQuality weaponQuality = WeaponQuality.Unknown;
+    private Quality weaponQuality = Quality.Unknown;
     //武器的ID
     private int weaponID;
     //武器的名称
@@ -93,7 +93,7 @@ public class WeaponAttribute : MonoBehaviour
         weaponPrice = input;
     }
 
-    public void setWeaponQuality(WeaponQuality input)
+    public void setWeaponQuality(Quality input)
     {
         weaponQuality = input;
     }
@@ -121,7 +121,7 @@ public class WeaponAttribute : MonoBehaviour
     //用于初始化武器
     //public void setAllAttribute(CharacterAttribute ownerAttr, float rawWeaponDamage, float rawAttackRange, float convertRatio, float criticalBonus,
     //    float rawAttackSpeed, float rawCriticalRate, WeaponDamageType weaponType, List<WeaponCategory> weaponCategory, float weaponPrice,
-    //    WeaponQuality weaponQuality, int weaponID, string weaponName, string weaponIcon, string weaponBgIcon)
+    //    Quality weaponQuality, int weaponID, string weaponName, string weaponIcon, string weaponBgIcon)
     //{
     //    setOwnerAttr(ownerAttr);
     //    setRawWeaponDamage(rawWeaponDamage);
@@ -221,7 +221,7 @@ public class WeaponAttribute : MonoBehaviour
         return weaponCategory;
     }
 
-    public WeaponQuality getWeaponQuality()
+    public Quality getWeaponQuality()
     {
         return weaponQuality;
     }

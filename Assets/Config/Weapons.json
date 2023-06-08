@@ -12,7 +12,7 @@
     "rate": 0.05,
     "quality": 0,
     "icon": "AssaultRifle.png",
-    "bgIcon": "normal.png",
+    "bgIcon": "Normal.png",
     "price": 18.0
   },
   {
@@ -28,7 +28,7 @@
     "rate": 0.05,
     "quality": 1,
     "icon": "AssaultRifle.png",
-    "bgIcon": "senior.png",
+    "bgIcon": "Senior.png",
     "price": 40.0
   },
   {
@@ -44,7 +44,7 @@
     "rate": 0.05,
     "quality": 2,
     "icon": "AssaultRifle.png",
-    "bgIcon": "elite.png",
+    "bgIcon": "Elite.png",
     "price": 75.0
   },
   {
@@ -60,7 +60,7 @@
     "rate": 0.05,
     "quality": 3,
     "icon": "AssaultRifle.png",
-    "bgIcon": "legendary.png",
+    "bgIcon": "Legendary.png",
     "price": 150.0
   },
   {
@@ -76,7 +76,7 @@
     "rate": 0.15,
     "quality": 0,
     "icon": "SniperRifle.png",
-    "bgIcon": "normal.png",
+    "bgIcon": "Normal.png",
     "price": 28.0
   },
   {
@@ -92,7 +92,7 @@
     "rate": 0.15,
     "quality": 1,
     "icon": "SniperRifle.png",
-    "bgIcon": "senior.png",
+    "bgIcon": "Senior.png",
     "price": 57.0
   },
   {
@@ -108,7 +108,7 @@
     "rate": 0.15,
     "quality": 2,
     "icon": "SniperRifle.png",
-    "bgIcon": "elite.png",
+    "bgIcon": "Elite.png",
     "price": 125.0
   },
   {
@@ -124,7 +124,7 @@
     "rate": 0.15,
     "quality": 3,
     "icon": "SniperRifle.png",
-    "bgIcon": "legendary.png",
+    "bgIcon": "Legendary.png",
     "price": 247.0
   }
 ]

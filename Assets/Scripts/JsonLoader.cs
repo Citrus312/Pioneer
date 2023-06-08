@@ -45,16 +45,16 @@ public class JsonLoader : MonoBehaviour
             switch ((int)weaponConfig[i]["quality"])
             {
                 case 0:
-                    weaponPool[i].setWeaponQuality(WeaponAttribute.WeaponQuality.Normal);
+                    weaponPool[i].setWeaponQuality(WeaponAttribute.Quality.Normal);
                     break;
                 case 1:
-                    weaponPool[i].setWeaponQuality(WeaponAttribute.WeaponQuality.Senior);
+                    weaponPool[i].setWeaponQuality(WeaponAttribute.Quality.Senior);
                     break;
                 case 2:
-                    weaponPool[i].setWeaponQuality(WeaponAttribute.WeaponQuality.Elite);
+                    weaponPool[i].setWeaponQuality(WeaponAttribute.Quality.Elite);
                     break;
                 case 3:
-                    weaponPool[i].setWeaponQuality(WeaponAttribute.WeaponQuality.Legendary);
+                    weaponPool[i].setWeaponQuality(WeaponAttribute.Quality.Legendary);
                     break;
                 default:
                     Debug.Log("weapon json config " + i + ": quality type" + (int)weaponConfig[i]["quality"] + " error");
@@ -88,7 +88,45 @@ public class JsonLoader : MonoBehaviour
         JsonData propConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("GB2312")));
         for (int i = 0; i < propConfig.Count; i++)
         {
+            propPool[i].setPropID((int)propConfig[i]["ID"]);
+            propPool[i].setPropName((string)propConfig[i]["name"]);
+            propPool[i].setPropIcon((string)propConfig[i]["icon"]);
+            propPool[i].setPropBgIcon((string)propConfig[i]["bgIcon"]);
+            propPool[i].setMaxHealth((float)propConfig[i]["maxHealth"]);
+            propPool[i].setHealthRecovery((float)propConfig[i]["healthRecovery"]);
+            propPool[i].setHealthSteal((float)propConfig[i]["healthSteal"]);
+            propPool[i].setAttackAmplification((float)propConfig[i]["attackAmplification"]);
+            propPool[i].setMeleeDamage((float)propConfig[i]["meleeDamage"]);
+            propPool[i].setRangedDamage((float)propConfig[i]["rangedDamage"]);
+            propPool[i].setAbilityDamage((float)propConfig[i]["abilityDamage"]);
+            propPool[i].setAttackSpeedAmplification((float)propConfig[i]["attackSpeedAmplification"]);
+            propPool[i].setCriticalRate((float)propConfig[i]["criticalRate"]);
+            propPool[i].setEngineering((float)propConfig[i]["engineering"]);
+            propPool[i].setAttackRangedAmplification((float)propConfig[i]["attackRangeAmplification"]);
+            propPool[i].setArmorStrength((float)propConfig[i]["armorStrength"]);
+            propPool[i].setDodgeRate((float)propConfig[i]["dodgeRate"]);
+            propPool[i].setMoveSpeedAmplification((float)propConfig[i]["moveSpeedAmplification"]);
+            propPool[i].setScanAccuracy((float)propConfig[i]["scanAccuracy"]);
+            propPool[i].setCollectEfficiency((float)propConfig[i]["collectEfficiency"]);
 
+            switch ((int)propConfig[i]["quality"])
+            {
+                case 0:
+                    propPool[i].setPropQuality(WeaponAttribute.Quality.Normal);
+                    break;
+                case 1:
+                    propPool[i].setPropQuality(WeaponAttribute.Quality.Senior);
+                    break;
+                case 2:
+                    propPool[i].setPropQuality(WeaponAttribute.Quality.Elite);
+                    break;
+                case 3:
+                    propPool[i].setPropQuality(WeaponAttribute.Quality.Legendary);
+                    break;
+                default:
+                    Debug.Log("prop json config " + i + ": quality type" + (int)propConfig[i]["quality"] + " error");
+                    break;
+            }
         }
     }
 }
