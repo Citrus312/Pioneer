@@ -11,6 +11,8 @@ public class Generator : MonoBehaviour
 
     public virtual void Start()
     {
+        _cnt = 10;
+        _cntLimit = 25;
         // 读取数据等等(待填写)
     }
 
@@ -18,9 +20,10 @@ public class Generator : MonoBehaviour
     protected virtual void GenerateObject(GameObject prefabObject, Vector3 pos, int num)
     {
         // 若数量未超过限制
-        if(_cnt <= _cntLimit)
+        if (_cnt <= _cntLimit)
         {
-            if(num > 1){
+            if (num > 1)
+            {
                 // 多个生成
                 pos = new Vector3(pos.x + Random.Range(-1 * _posOffset, _posOffset), pos.y + Random.Range(-1 * _posOffset, _posOffset), pos.z);
                 GenerateObject(prefabObject, pos, num - 1);

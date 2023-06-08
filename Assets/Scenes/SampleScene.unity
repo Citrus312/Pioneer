@@ -1332,59 +1332,6 @@ Transform:
   m_Father: {fileID: 2119965371}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1241542192
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1241542194}
-  - component: {fileID: 1241542193}
-  m_Layer: 0
-  m_Name: generator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1241542193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241542192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82927fe78384636428c9555f6967431b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 901994706}
-  _prefabToInstantiate: {fileID: 634735036}
-  generationInterval: 1
-  generationCountLimit: 5
-  positionOffset: {x: 0, y: 0}
-  generationCount: 0
-  _indicatorPrefab: {fileID: 0}
-  flickerInterval: 1
-  flickerCount: 3
---- !u!4 &1241542194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241542192}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.94, y: -2.88, z: -0.39669693}
-  m_LocalScale: {x: 0.0823, y: 0.0571, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294738616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _posOffset: 1
-  _monsterPrefab: {fileID: 1350220864868869805, guid: 76466e9cf6457b2478bbc2f56bf21374, type: 3}
+  _monsterPrefab: {fileID: 6604415155764692710, guid: 93cff62ca9c3d0642ae94b58952ac5b5, type: 3}
   _player: {fileID: 901994706}
   _distance: 10
 --- !u!4 &1994523039
@@ -1599,7 +1546,7 @@ Transform:
   m_GameObject: {fileID: 1994523037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.55, y: -1.51, z: 0.058968063}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1646,7 +1593,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abe5968f09b367643b40a0422f708056, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6105d69684b1c645ae2e3650202dac3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

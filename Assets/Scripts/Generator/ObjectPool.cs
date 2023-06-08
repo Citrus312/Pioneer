@@ -59,7 +59,7 @@ public class ObjectPool : MonoBehaviour
         // 池子中的物体数目不超过最大容量
         if (objectPool.Count <= maxCount)
         {
-        	// 该对象没有在队列中
+            // 该对象没有在队列中
             if (!objectPool.Contains(obj))
             {
                 // 将对象入队
