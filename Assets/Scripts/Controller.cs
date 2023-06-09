@@ -74,15 +74,19 @@ public class Controller : MonoBehaviour
         //角色转向
         if (direction.x < 0)
         {
-            Vector3 rotation = _transform.eulerAngles;
-            rotation.y = -180;
-            _transform.eulerAngles = rotation;
+            // Vector3 rotation = _transform.eulerAngles;
+            // rotation.y = -180;
+            // _transform.eulerAngles = rotation;
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.flipX = true;
         }
         if (direction.x > 0)
         {
-            Vector3 rotation = _transform.eulerAngles;
-            rotation.y = 0;
-            _transform.eulerAngles = rotation;
+            // Vector3 rotation = _transform.eulerAngles;
+            // rotation.y = 0;
+            // _transform.eulerAngles = rotation;
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.flipX = false;
         }
         //角色移动
         _rigidbody2D.AddForce(new Vector2(direction.x, direction.y), ForceMode2D.Impulse);
