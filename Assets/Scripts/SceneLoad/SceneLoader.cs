@@ -23,7 +23,7 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="SceneName">场景名称</param>
     /// <param name="transition">转场方式</param>
-    public void LoadScene(string SceneName, Transition transition = null){
+    public void loadScene(string SceneName, Transition transition = null){
         // 如果现在不能转换场景直接返回
         if(!LoadAble) return;
 
@@ -32,7 +32,7 @@ public class SceneLoader : MonoBehaviour
             _currentTransition = transition;
 
         // 开始转换场景
-        StartCoroutine(LoadLevel(SceneName));
+        StartCoroutine(loadLevel(SceneName));
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="levelName">场景名称</param>
     /// <returns></returns>
-    private IEnumerator LoadLevel(string levelName){
+    private IEnumerator loadLevel(string levelName){
         // 异步加载场景
         AsyncOperation loading = SceneManager.LoadSceneAsync(levelName);
 
@@ -51,7 +51,7 @@ public class SceneLoader : MonoBehaviour
         LoadAble = false;
         
         // 开始过场
-        _currentTransition.StartTrans();
+        _currentTransition.startTrans();
 
         // 等待一帧
         // 理由再下面有解释，但其实这里本来不需要，因为检查动画前还夹着一个检查加载的过程。基本不会在一帧内就加载完
@@ -63,7 +63,7 @@ public class SceneLoader : MonoBehaviour
             yield return null;
 
         // 等待动画播放完成
-        while(!_currentTransition.IsAnimationDone())
+        while(!_currentTransition.isAnimationDone())
             yield return null;
 
         // 允许场景加载完成
@@ -74,7 +74,7 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         
         // 结束过场
-        _currentTransition.EndTrans();
+        _currentTransition.endTrans();
 
         // 等待一帧
         // 因为我发现如果在开始动画后不等待一帧的话，第二个动画其实还没开始播放，
@@ -82,7 +82,7 @@ public class SceneLoader : MonoBehaviour
         yield return null;
 
         // 等待动画播放完成
-        while(!_currentTransition.IsAnimationDone())
+        while(!_currentTransition.isAnimationDone())
             yield return null;
 
         // 可以继续转换场景

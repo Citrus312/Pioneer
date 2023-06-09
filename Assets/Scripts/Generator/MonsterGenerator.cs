@@ -3,7 +3,7 @@ using UnityEngine;
 public class MonsterGenerator : Generator
 {
     // 单例
-    private static MonsterGenerator instance;
+    private static MonsterGenerator _instance;
     
     // 要生成的怪物
     public GameObject _monsterPrefab;
@@ -30,39 +30,44 @@ public class MonsterGenerator : Generator
 
     public static MonsterGenerator getInstance()
     {
-        if(instance == null)
+        if(_instance == null)
         {
-            instance = new MonsterGenerator();
+            _instance = new MonsterGenerator();
         }
-        return instance;
+        return _instance;
     }
 
-    protected void BeginGenerate()
+    protected void readFile()
     {
-        ShowRedCross();
+        //
+    }
+
+    protected void beginGenerate()
+    {
+        showRedCross();
         
     }
 
     // 红叉显现
-    protected void ShowRedCross()
+    protected void showRedCross()
     {
-        _redCross.transform.position = GetSpawnLocation();
+        _redCross.transform.position = getSpawnLocation();
         _redCross.enabled = true;
 
         _flashCnt = 2;
-        RedCrossFlash();
+        redCrossFlash();
         Invoke("GenerateMonster", 2.5f);
     }
 
     // 红叉闪烁
-    protected void RedCrossFlash()
+    protected void redCrossFlash()
     {
         _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 1.0f);
         Invoke("RedCrossFade", 0.5f);
     }
 
     // 红叉透明
-    protected void RedCrossFade()
+    protected void redCrossFade()
     {
         _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.1f);
         if(_flashCnt > 0){
@@ -77,13 +82,13 @@ public class MonsterGenerator : Generator
         }
     }
 
-    protected void GenerateMonster() // 待补充
+    protected void generateMonster() // 待补充
     {
-        GenerateObject(_monsterPrefab, _redCross.transform.position, 1);
+        generateObject(_monsterPrefab, _redCross.transform.position, 1);
     }
 
     // 随机获取怪物生成位置
-    protected Vector3 GetSpawnLocation()
+    protected Vector3 getSpawnLocation()
     {
         Vector3 pos = _player.transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
         return pos;
