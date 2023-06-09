@@ -9,7 +9,11 @@ public class JsonLoader : MonoBehaviour
 {
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
-
+    public void Start()
+    {
+        //LoadAndDecodePropConfig();
+        LoadAndDecodeWeaponConfig();
+    }
     public static void LoadAndDecodeWeaponConfig()
     {
         JsonData weaponConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("GB2312")));
