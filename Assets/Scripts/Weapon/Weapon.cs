@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WeaponAttribute))]
+[RequireComponent(typeof(Damager))]
 public class Weapon : MonoBehaviour
 {
     //武器属性
@@ -22,6 +23,7 @@ public class Weapon : MonoBehaviour
     protected void Awake()
     {
         _weaponAttribute = GetComponent<WeaponAttribute>();
+        _damager = GetComponent<Damager>();
         _nextAttackTime = Time.time;
     }
 

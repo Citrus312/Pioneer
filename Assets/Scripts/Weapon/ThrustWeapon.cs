@@ -5,16 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrustWeapon : Weapon
+public class ThrustWeapon : MeleeWeapon
 {
-    //判断是否正在攻击
-    protected bool isAttacking = false;
-
     //攻击协程
     IEnumerator attack(Vector2 attackDirection)
     {
         //设置正在攻击
-        isAttacking = true;
+        _isAttacking = true;
 
         // //当前武器尖端距离
         // float nowRange = Vector2.Distance(_attachPoint.position, _endPoint.position);
@@ -63,7 +60,7 @@ public class ThrustWeapon : Weapon
         }
 
         //设置不在攻击
-        isAttacking = false;
+        _isAttacking = false;
     }
 
     // Update is called once per frame
@@ -73,7 +70,7 @@ public class ThrustWeapon : Weapon
         Vector2 attackDirection = getAttackDirection();
 
         //如果找到了攻击方向且不处于攻击动作中
-        if (attackDirection != new Vector2(0, 0) && !isAttacking)
+        if (attackDirection != new Vector2(0, 0) && !_isAttacking)
         {
             //旋转武器
             Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
