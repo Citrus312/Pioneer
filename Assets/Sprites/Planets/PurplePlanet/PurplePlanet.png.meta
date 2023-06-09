@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -8537,12 +8537,12 @@ TextureImporter:
       PurplePlanet_262: -1147514470
       PurplePlanet_292: 656165446
       PurplePlanet_52: -1659428042
-      PurplePlanet_247: 410773431
-      PurplePlanet_114: -85051656
-      PurplePlanet_132: 406214990
-      PurplePlanet_207: 262861107
-      PurplePlanet_306: 1221413452
       PurplePlanet_359: 2055085412
+      PurplePlanet_306: 1221413452
+      PurplePlanet_247: 410773431
+      PurplePlanet_132: 406214990
+      PurplePlanet_114: -85051656
+      PurplePlanet_363: -130836045
       PurplePlanet_2: -973711438
       PurplePlanet_16: -1169311481
       PurplePlanet_111: 2040379745
@@ -8553,17 +8553,17 @@ TextureImporter:
       PurplePlanet_204: 1676173115
       PurplePlanet_178: -449770358
       PurplePlanet_223: 1694885839
-      PurplePlanet_363: -130836045
+      PurplePlanet_377: 1541196567
       PurplePlanet_212: 1020130173
       PurplePlanet_300: -166699718
       PurplePlanet_307: 1824787985
       PurplePlanet_78: -482949621
       PurplePlanet_127: -596216968
+      PurplePlanet_207: 262861107
       PurplePlanet_337: 229873117
       PurplePlanet_154: 1297545645
       PurplePlanet_214: -1960703194
       PurplePlanet_49: 1301113738
-      PurplePlanet_377: 1541196567
       PurplePlanet_278: -1479491754
       PurplePlanet_9: 1706337803
       PurplePlanet_57: -639861917
@@ -8652,13 +8652,13 @@ TextureImporter:
       PurplePlanet_324: 670119914
       PurplePlanet_164: -1008305152
       PurplePlanet_116: -245019227
-      PurplePlanet_323: 1087786849
       PurplePlanet_352: -401341415
       PurplePlanet_95: -570949056
       PurplePlanet_83: -202523104
+      PurplePlanet_323: 1087786849
       PurplePlanet_168: -827520722
-      PurplePlanet_243: -71432122
       PurplePlanet_342: -453196762
+      PurplePlanet_243: -71432122
       PurplePlanet_102: -1101740023
       PurplePlanet_8: 1356497136
       PurplePlanet_229: 1167915383
@@ -8731,13 +8731,13 @@ TextureImporter:
       PurplePlanet_12: 1809249798
       PurplePlanet_269: 468512790
       PurplePlanet_33: -1275304412
-      PurplePlanet_250: 926837287
       PurplePlanet_175: -572968272
+      PurplePlanet_250: 926837287
       PurplePlanet_373: 1305919114
+      PurplePlanet_396: 640935724
       PurplePlanet_208: -848062391
       PurplePlanet_150: 1999948547
       PurplePlanet_309: 1720450847
-      PurplePlanet_396: 640935724
       PurplePlanet_371: 1894733421
       PurplePlanet_99: 467703247
       PurplePlanet_98: 961811894
