@@ -1631,6 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94319191e21030d4ea0477491638235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneManager: {fileID: 1765262360}
   _monsterPrefab: {fileID: 6604415155764692710, guid: 93cff62ca9c3d0642ae94b58952ac5b5, type: 3}
   _player: {fileID: 901994706}
   _distance: 10

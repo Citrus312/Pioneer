@@ -6,6 +6,7 @@ public class MonsterGenerator : Generator
     private static MonsterGenerator instance;
 
     // 要生成的怪物
+    public SceneManagement _sceneManager;
     public GameObject _monsterPrefab;
     public GameObject _player;
     private SpriteRenderer _redCross;// 怪物生成前的信号图片
@@ -46,7 +47,8 @@ public class MonsterGenerator : Generator
     // 红叉显现
     protected void ShowRedCross()
     {
-        _redCross.transform.position = GetSpawnLocation();
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        _redCross.transform.position = _sceneManager.getGeneratorPos();
         _redCross.enabled = true;
 
         _flashCnt = 2;
