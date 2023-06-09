@@ -47,7 +47,6 @@ public class MonsterGenerator : Generator
     // 红叉显现
     protected void ShowRedCross()
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         _redCross.transform.position = _sceneManager.getGeneratorPos();
         _redCross.enabled = true;
 
