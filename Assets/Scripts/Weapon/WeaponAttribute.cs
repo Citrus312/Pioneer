@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class WeaponAttribute : MonoBehaviour
 {
+    [SerializeField]
     //武器伤害类型的枚举
-    public enum WeaponDamageType { Unknown = -1 ,Melee, Ranged, Ability }
+    public enum WeaponDamageType { Unknown = -1, Melee, Ranged, Ability }
     //武器分类的枚举
     public enum WeaponCategory { Unknown = -1, Gun, Ability, Heal }
     //物品品质的枚举
-    public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary}
+    public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
+    public GameObject player;
     //武器所有者的属性
     private CharacterAttribute ownerAttr;
     //武器基础伤害
@@ -42,6 +44,10 @@ public class WeaponAttribute : MonoBehaviour
     //武器的品质背景
     private string weaponBgIcon;
 
+    private void Start()
+    {
+        ownerAttr = player.GetComponent<CharacterAttribute>();
+    }
 
     public void setOwnerAttr(CharacterAttribute input)
     {
@@ -170,7 +176,7 @@ public class WeaponAttribute : MonoBehaviour
                 temp = rawWeaponDamage + ownerAttr.getMeleeDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
                 break;
             case WeaponDamageType.Ranged:
-                temp = rawWeaponDamage + ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification()); 
+                temp = rawWeaponDamage + ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
                 break;
             case WeaponDamageType.Ability:
                 temp = rawWeaponDamage + ownerAttr.getAbilityDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
