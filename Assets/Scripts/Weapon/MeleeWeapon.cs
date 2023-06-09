@@ -5,10 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(PolygonCollider2D))]
 public class MeleeWeapon : Weapon
 {
-    BoxCollider2D _boxCollider2D;
+    PolygonCollider2D _polygonCollider2D;
     //判断是否正在攻击
     protected bool _isAttacking = false;
 
@@ -24,8 +24,8 @@ public class MeleeWeapon : Weapon
         /*
             MeleeWeapon类的Awake
         */
-        _boxCollider2D = GetComponent<BoxCollider2D>();
-        _boxCollider2D.isTrigger = true;
+        _polygonCollider2D = GetComponent<PolygonCollider2D>();
+        _polygonCollider2D.isTrigger = true;
     }
 
     protected void OnTriggerEnter2D(Collider2D collider2D)
