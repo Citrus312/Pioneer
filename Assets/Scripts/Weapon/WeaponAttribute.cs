@@ -12,7 +12,7 @@ public class WeaponAttribute : MonoBehaviour
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary}
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
     //武器所有者的属性
-    private CharacterAttribute ownerAttr;
+    private CharacterAttribute ownerAttr = new();
     //武器基础伤害
     private float rawWeaponDamage = 0;
     //武器基础攻击范围
@@ -234,6 +234,11 @@ public class WeaponAttribute : MonoBehaviour
     public string getWeaponName()
     {
         return weaponName;
+    }
+
+    public float getConvertRatio()
+    {
+        return convertRatio;
     }
 
     public string getWeaponIcon()
