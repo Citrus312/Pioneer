@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] GameObject _hitVFX;
     //发射出该子弹的武器
     public GameObject _weapon;
     //子弹能够贯穿的次数
@@ -36,6 +37,7 @@ public class Bullet : MonoBehaviour
         pierce--;
         if (pierce == 0)
         {
+            Instantiate(_hitVFX, transform.position, Quaternion.identity);
             //销毁子弹
             Destroy(gameObject);
         }

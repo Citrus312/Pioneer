@@ -4,37 +4,37 @@ using UnityEngine;
 
 public class CharacterAttribute : MonoBehaviour
 {
-    // 对象池专用id
-    private int poolIdx = -1;
-    //��ɫ�Ļ�������
+    //对象池id
+    private int poolIdx = 0;
+    //角色的基础移速
     private float rawMoveSpeed = 0.1f;
-    //������� �����ظ� ������ȡ
+    //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
     private float healthSteal = 0;
-    //��������
+    //攻击增幅
     private float attackAmplification = 0;
-    //��ս�˺� Զ���˺� �����˺�
+    //近战伤害 远程伤害 属性伤害
     private float meleeDamage = 0;
     private float rangedDamage = 0;
     private float abilityDamage = 0;
-    //�����ٶȼӳ�
+    //攻击速度加成
     private float attackSpeedAmplification = 0;
-    //������
+    //暴击率
     private float criticalRate = 0;
-    //���̻�е
+    //工程机械
     private float engineering = 0;
-    //������Χ�ӳ�
+    //攻击范围加成
     private float attackRangeAmplification = 0;
-    //����ǿ��
+    //机甲强度
     private float armorStrength = 0;
-    //���ܸ���
+    //闪避概率
     private float dodgeRate = 0;
-    //���ټӳ�
+    //移速加成
     private float moveSpeedAmplification = 0;
-    //ɨ�辫��(���ӵ�����ʺ��̵���������Ʒ��)
+    //扫描精度(增加掉落概率和商店与升级的品质)
     private float scanAccuracy = 0;
-    //�ɼ�Ч��
+    //采集效率
     private float collectEfficiency = 0;
 
     public void setPoolIdx(int input)
@@ -42,7 +42,7 @@ public class CharacterAttribute : MonoBehaviour
         poolIdx = input;
     }
 
-    //�������Ե�set����
+    //所有属性的set方法
     public void setRawMoveSpeed(float input)
     {
         rawMoveSpeed = input;
@@ -128,9 +128,9 @@ public class CharacterAttribute : MonoBehaviour
         collectEfficiency = input;
     }
 
-    //���ڳ�ʼ����ɫ
+    //用于初始化角色
     public void setAllAttribute(float rawMoveSpeed, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication, float meleeDamage,
-        float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate, float engieering, float attackRangeAmplification, 
+        float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate, float engieering, float attackRangeAmplification,
         float armorStrength, float dodgeRate, float moveSpeedAmplification, float scanAccuracy, float collectEfficiency)
     {
         setRawMoveSpeed(rawMoveSpeed);
@@ -152,18 +152,19 @@ public class CharacterAttribute : MonoBehaviour
         setCollectEfficiency(collectEfficiency);
     }
 
+    // 获取对象池id
     public int getPoolIdx()
     {
         return poolIdx;
     }
-    
-    //��ȡ�������Լӳɵ�����
+
+    //获取经过属性加成的移速
     public float getMoveSpeed()
     {
         return rawMoveSpeed * (1 + moveSpeedAmplification);
     }
 
-    //��ȡ��������
+    //获取基础移速
     public float getRawMoveSpeed()
     {
         return rawMoveSpeed;
