@@ -69,9 +69,6 @@ public class SweepWeapon : MeleeWeapon
         //武器开始挥砍的eulerAngle和结束挥砍的eulerAngle
         Vector3 startEulerAngle = _attachPoint.eulerAngles + new Vector3(0, 0, startAngle);
         Vector3 endEulerAngle = startEulerAngle + new Vector3(0, 0, sweepAngle);
-        Debug.Log("attachPoint.EulerAngle: " + _attachPoint.eulerAngles);
-        Debug.Log("startEulerAngle: " + startEulerAngle);
-        Debug.Log("endEulerAngle: " + endEulerAngle);
 
         /*
             固定0.1s为挥砍时间，使用开始角和目标角做插值来显示
