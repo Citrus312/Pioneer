@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class CharacterAttribute : MonoBehaviour
 {
-    //½ÇÉ«µÄ»ù´¡ÒÆËÙ
+    //è§’è‰²çš„åŸºç¡€ç§»é€Ÿ
     private float rawMoveSpeed = 0.1f;
-    //×î´óÉúÃü ÉúÃü»Ø¸´ ÉúÃü¼³È¡
+    //æœ€å¤§ç”Ÿå‘½ ç”Ÿå‘½å›å¤ ç”Ÿå‘½æ±²å–
     private float maxHealth = 10;
     private float healthRecovery = 0;
     private float healthSteal = 0;
-    //¹¥»÷Ôö·ù
+    //æ”»å‡»å¢å¹…
     private float attackAmplification = 0;
-    //½üÕ½ÉËº¦ Ô¶³ÌÉËº¦ ÊôĞÔÉËº¦
+    //è¿‘æˆ˜ä¼¤å®³ è¿œç¨‹ä¼¤å®³ å±æ€§ä¼¤å®³
     private float meleeDamage = 0;
     private float rangedDamage = 0;
     private float abilityDamage = 0;
-    //¹¥»÷ËÙ¶È¼Ó³É
+    //æ”»å‡»é€Ÿåº¦åŠ æˆ
     private float attackSpeedAmplification = 0;
-    //±©»÷ÂÊ
+    //æš´å‡»ç‡
     private float criticalRate = 0;
-    //¹¤³Ì»úĞµ
+    //å·¥ç¨‹æœºæ¢°
     private float engineering = 0;
-    //¹¥»÷·¶Î§¼Ó³É
+    //æ”»å‡»èŒƒå›´åŠ æˆ
     private float attackRangeAmplification = 0;
-    //»ú¼×Ç¿¶È
+    //æœºç”²å¼ºåº¦
     private float armorStrength = 0;
-    //ÉÁ±Ü¸ÅÂÊ
+    //é—ªé¿æ¦‚ç‡
     private float dodgeRate = 0;
-    //ÒÆËÙ¼Ó³É
+    //ç§»é€ŸåŠ æˆ
     private float moveSpeedAmplification = 0;
-    //É¨Ãè¾«¶È(Ôö¼ÓµôÂä¸ÅÂÊºÍÉÌµêÓëÉı¼¶µÄÆ·ÖÊ)
+    //æ‰«æç²¾åº¦(å¢åŠ æ‰è½æ¦‚ç‡å’Œå•†åº—ä¸å‡çº§çš„å“è´¨)
     private float scanAccuracy = 0;
-    //²É¼¯Ğ§ÂÊ
+    //é‡‡é›†æ•ˆç‡
     private float collectEfficiency = 0;
 
 
-    //ËùÓĞÊôĞÔµÄset·½·¨
+    //æ‰€æœ‰å±æ€§çš„setæ–¹æ³•
     public void setRawMoveSpeed(float input)
     {
         rawMoveSpeed = input;
@@ -122,9 +122,9 @@ public class CharacterAttribute : MonoBehaviour
         collectEfficiency = input;
     }
 
-    //ÓÃÓÚ³õÊ¼»¯½ÇÉ«
+    //ç”¨äºåˆå§‹åŒ–è§’è‰²
     public void setAllAttribute(float rawMoveSpeed, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication, float meleeDamage,
-        float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate, float engieering, float attackRangeAmplification, 
+        float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate, float engieering, float attackRangeAmplification,
         float armorStrength, float dodgeRate, float moveSpeedAmplification, float scanAccuracy, float collectEfficiency)
     {
         setRawMoveSpeed(rawMoveSpeed);
@@ -146,14 +146,14 @@ public class CharacterAttribute : MonoBehaviour
         setCollectEfficiency(collectEfficiency);
     }
 
-    
-    //»ñÈ¡¾­¹ıÊôĞÔ¼Ó³ÉµÄÒÆËÙ
+
+    //è·å–ç»è¿‡å±æ€§åŠ æˆçš„ç§»é€Ÿ
     public float getMoveSpeed()
     {
         return rawMoveSpeed * (1 + moveSpeedAmplification);
     }
 
-    //»ñÈ¡»ù´¡ÒÆËÙ
+    //è·å–åŸºç¡€ç§»é€Ÿ
     public float getRawMoveSpeed()
     {
         return rawMoveSpeed;

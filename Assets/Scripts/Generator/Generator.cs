@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
@@ -7,12 +7,13 @@ public class Generator : MonoBehaviour
     protected int _cnt; // 当前数量
 
     // 多个生成时的偏移
-    public float _posOffset = 1.0f;
+    protected float _posOffset;
 
     public virtual void Start()
     {
-        _cnt = 10;
         _cntLimit = 25;
+        _cnt = 0;
+        _posOffset = 1.0f;
         // 读取数据等等(待填写)
     }
 

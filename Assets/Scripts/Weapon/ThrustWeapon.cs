@@ -13,28 +13,6 @@ public class ThrustWeapon : MeleeWeapon
         //设置正在攻击
         _isAttacking = true;
 
-        // //当前武器尖端距离
-        // float nowRange = Vector2.Distance(_attachPoint.position, _endPoint.position);
-
-        // //刺出武器
-        // while (nowRange < _weaponAttribute.getAttackRange())
-        // {
-        //     //计算出新的距离
-        //     nowRange += attackSpeed * Time.deltaTime;
-        //     //将武器刺出
-        //     GetComponent<Transform>().Translate(attackDirection * attackSpeed * Time.deltaTime, Space.World);
-
-        //     yield return null;
-        // }
-
-        // //收回武器
-        // while (Vector2.Distance(_attachPoint.position, _grip.position) > 0.01f)
-        // {
-        //     GetComponent<Transform>().Translate((_attachPoint.position - _grip.position).normalized * attackSpeed * Time.deltaTime, Space.World);
-
-        //     yield return null;
-        // }
-
         /*
             固定0.5s为出刀时间，使用开始位置和目标位置做插值来显示
             开始位置和目标位置要转换到_attachPoint的相对坐标
