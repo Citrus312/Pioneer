@@ -6,9 +6,8 @@ public class MonsterGenerator : Generator
     private static MonsterGenerator instance;
 
     // 要生成的怪物
-    public SceneManagement _sceneManager;
+    public SceneManagement _sceneManage;
     public GameObject _monsterPrefab;
-    public GameObject _player;
     private SpriteRenderer _redCross;// 怪物生成前的信号图片
 
     // 在角色周围生成怪物的范围大小
@@ -47,7 +46,7 @@ public class MonsterGenerator : Generator
     // 红叉显现
     protected void ShowRedCross()
     {
-        _redCross.transform.position = _sceneManager.getGeneratorPos();
+        _redCross.transform.position = _sceneManage.getGeneratorPos();
         _redCross.enabled = true;
 
         _flashCnt = 2;
@@ -87,7 +86,7 @@ public class MonsterGenerator : Generator
     // 随机获取怪物生成位置
     protected Vector3 GetSpawnLocation()
     {
-        Vector3 pos = _player.transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
+        Vector3 pos = _sceneManage.getPlayer().transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
         return pos;
     }
 }

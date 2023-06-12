@@ -9,15 +9,22 @@ public class SceneManagement : MonoBehaviour
     public GameObject _player;
     private float sceneLength;
     private float sceneWidth;
+    public float _distance = 10;
 
-    private void Start()
+    private void Awake()
     {
         sceneLength = 10f;
         sceneWidth = 10f;
     }
     private void Update()
     {
-        setSceneSize(10f, 10f);
+        setSceneSize(20f, 20f);
+    }
+
+    public GameObject getPlayer()
+    {
+        _player = GameObject.Find("Player");
+        return _player;
     }
     public static SceneManagement getSceneManager()
     {
@@ -28,16 +35,10 @@ public class SceneManagement : MonoBehaviour
         return _sceneManager;
     }
 
-    public GameObject getPlayer()
-    {
-        return _player;
-    }
-
     public void setSceneSize(float length, float width)
     {
         sceneWidth = width;
         sceneLength = length;
-        print(sceneLength + " " + sceneWidth);
         EdgeCollider2D edge = GetComponent<EdgeCollider2D>();
         Vector2[] pointsArray = { new Vector2(length/2,width/2), new Vector2(length / 2, -width / 2),
                                   new Vector2(-length / 2, -width / 2), new Vector2(-length / 2, width / 2),
@@ -75,13 +76,13 @@ public class SceneManagement : MonoBehaviour
     //利用正态分布得到生成器位置
     public Vector3 getGeneratorPos()
     {
-        float ux = _player.transform.position.x;
-        float uy = _player.transform.position.y;
-        float dx = Mathf.Sqrt(sceneLength / 2);
-        float dy = Mathf.Sqrt(sceneWidth / 2);
+        float dx = Mathf.Sqrt(sceneLength);
+        float dy = Mathf.Sqrt(sceneWidth);
         Vector3 generatorPos;
         do
         {
+            float ux = _player.transform.position.x + Random.Range(-1 * _distance, _distance);
+            float uy = _player.transform.position.y + Random.Range(-1 * _distance, _distance);
             generatorPos = new Vector3(Rand(ux, dx), Rand(uy, dy), _player.transform.position.z);
         }
         while (!isInScene(generatorPos));
