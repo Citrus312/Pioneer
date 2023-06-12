@@ -14,13 +14,14 @@ public class Controller : MonoBehaviour
     protected CharacterAttribute _characterAttribute;
 
     //动画
-    public Animator animator;
+    public Animator _animator;
 
     protected void Awake()
     {
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
+        _animator = GetComponent<Animator>();
 
         //设置rigidbody2D的参数
         _rigidbody2D.drag = 100;
@@ -68,8 +69,7 @@ public class Controller : MonoBehaviour
 
     protected void move(Direction direction)
     {
-        animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
-        //获取移动速度
+        _animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
         float moveSpeed = _characterAttribute.getMoveSpeed();
         //角色转向
         if (direction.x < 0)
