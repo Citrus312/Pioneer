@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -8554,18 +8554,18 @@ TextureImporter:
       LavaPlanet_121: 1832220938
       LavaPlanet_282: -1344385311
       LavaPlanet_206: -991978753
-      LavaPlanet_43: 226075916
       LavaPlanet_94: -136848172
-      LavaPlanet_264: -521283244
       LavaPlanet_156: 1346465001
+      LavaPlanet_264: -521283244
+      LavaPlanet_187: 340147081
       LavaPlanet_50: -22104934
       LavaPlanet_293: -754776938
-      LavaPlanet_187: 340147081
-      LavaPlanet_99: -1295104948
+      LavaPlanet_43: 226075916
       LavaPlanet_398: 1429743966
+      LavaPlanet_99: -1295104948
       LavaPlanet_5: -45081014
-      LavaPlanet_90: 1240436043
       LavaPlanet_288: -1157937831
+      LavaPlanet_90: 1240436043
       LavaPlanet_129: -963643680
       LavaPlanet_295: -1258782004
       LavaPlanet_151: 907294791
@@ -8632,9 +8632,9 @@ TextureImporter:
       LavaPlanet_361: -798301468
       LavaPlanet_84: 928764390
       LavaPlanet_7: 582125919
-      LavaPlanet_55: 383149053
       LavaPlanet_177: 2110726524
       LavaPlanet_324: -1855471199
+      LavaPlanet_55: 383149053
       LavaPlanet_46: -389383144
       LavaPlanet_91: 1750678501
       LavaPlanet_92: -1551716429
@@ -8662,10 +8662,10 @@ TextureImporter:
       LavaPlanet_251: 1306288116
       LavaPlanet_367: -978976455
       LavaPlanet_23: -1569244058
-      LavaPlanet_231: 2130948985
       LavaPlanet_258: 1080827441
-      LavaPlanet_392: 942626279
+      LavaPlanet_231: 2130948985
       LavaPlanet_267: 1779381914
+      LavaPlanet_392: 942626279
       LavaPlanet_240: 897523902
       LavaPlanet_297: 1205326790
       LavaPlanet_119: -1573766358
@@ -8721,8 +8721,8 @@ TextureImporter:
       LavaPlanet_131: 1379051299
       LavaPlanet_173: -599844975
       LavaPlanet_286: -951396521
-      LavaPlanet_276: -537317599
       LavaPlanet_350: -611855056
+      LavaPlanet_276: -537317599
       LavaPlanet_344: 1953963400
       LavaPlanet_365: -686028002
       LavaPlanet_192: 1882740728
@@ -8785,13 +8785,13 @@ TextureImporter:
       LavaPlanet_93: -1140171971
       LavaPlanet_320: 111506519
       LavaPlanet_17: -543207094
-      LavaPlanet_294: -1688360242
       LavaPlanet_333: -865732996
       LavaPlanet_339: 1835053554
       LavaPlanet_311: -293816131
-      LavaPlanet_382: 1392341762
+      LavaPlanet_294: -1688360242
       LavaPlanet_358: 1940185136
       LavaPlanet_353: 139301804
+      LavaPlanet_382: 1392341762
       LavaPlanet_132: -1200590140
       LavaPlanet_241: 251050694
       LavaPlanet_104: 1164089150

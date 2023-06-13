@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterAttribute : MonoBehaviour
 {
+    //对象池id
+    private int poolIdx = 0;
     //角色的基础移速
     private float rawMoveSpeed = 0.1f;
     //最大生命 生命回复 生命汲取
@@ -35,6 +37,10 @@ public class CharacterAttribute : MonoBehaviour
     //采集效率
     private float collectEfficiency = 0;
 
+    public void setPoolIdx(int input)
+    {
+        poolIdx = input;
+    }
 
     //所有属性的set方法
     public void setRawMoveSpeed(float input)
@@ -146,6 +152,11 @@ public class CharacterAttribute : MonoBehaviour
         setCollectEfficiency(collectEfficiency);
     }
 
+    // 获取对象池id
+    public int getPoolIdx()
+    {
+        return poolIdx;
+    }
 
     //获取经过属性加成的移速
     public float getMoveSpeed()

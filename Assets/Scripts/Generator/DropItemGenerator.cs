@@ -26,13 +26,13 @@ public class DropItemGenerator : Generator
         return instance;
     }
 
-    protected void DropItem(Vector3 pos)
+    protected void dropItem(Vector3 pos)
     {
         int count = Random.Range(_minGenerateCnt, _maxGenerateCnt);
-        GenerateObject(_droppedItem, pos, count);
+        generateObject(_droppedItem, pos, count);
     }
 
-    protected void UpdateScore(int newScore)
+    protected void updateScore(int newScore)
     {
         _score = newScore;
     }

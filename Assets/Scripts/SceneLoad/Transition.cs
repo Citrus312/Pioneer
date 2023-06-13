@@ -13,14 +13,14 @@ public class Transition : MonoBehaviour
     /// <summary>
     /// 播放转场前的动画
     /// </summary>
-    public void StartTrans(){
+    public void startTrans(){
         _animator.SetTrigger("Start");
     }
 
     /// <summary>
     /// 播放转场后的动画
     /// </summary>
-    public void EndTrans(){
+    public void endTrans(){
         _animator.SetTrigger("End");
     }
 
@@ -28,7 +28,7 @@ public class Transition : MonoBehaviour
     /// 当前动画是否播放完成
     /// </summary>
     /// <returns></returns>
-    public bool IsAnimationDone(){
+    public bool isAnimationDone(){
         if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             return true;
         else 

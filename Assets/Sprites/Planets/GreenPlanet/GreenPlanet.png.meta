@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -8551,12 +8551,12 @@ TextureImporter:
       GreenPlanet_49: -1676831198
       GreenPlanet_282: -473131555
       GreenPlanet_253: -49199711
+      GreenPlanet_241: 1744251442
       GreenPlanet_206: 249012965
       GreenPlanet_144: 604700173
       GreenPlanet_119: 237393771
-      GreenPlanet_201: -94262453
       GreenPlanet_332: -2012754289
-      GreenPlanet_241: 1744251442
+      GreenPlanet_201: -94262453
       GreenPlanet_109: 2117400679
       GreenPlanet_264: -386346063
       GreenPlanet_170: 1894281931
@@ -8577,23 +8577,23 @@ TextureImporter:
       GreenPlanet_73: -456335533
       GreenPlanet_247: 393816767
       GreenPlanet_33: -234393244
-      GreenPlanet_294: 1022777682
       GreenPlanet_371: 788546502
+      GreenPlanet_294: 1022777682
       GreenPlanet_231: -316164591
       GreenPlanet_283: 1435402076
       GreenPlanet_325: 1278967420
       GreenPlanet_11: 901308910
       GreenPlanet_104: 1737344817
-      GreenPlanet_112: 721218823
+      GreenPlanet_165: 351618860
       GreenPlanet_163: -274661922
       GreenPlanet_146: -1298042196
       GreenPlanet_47: -822605330
-      GreenPlanet_165: 351618860
       GreenPlanet_208: 1811891277
       GreenPlanet_2: -288494626
       GreenPlanet_187: -745840676
-      GreenPlanet_291: -837025355
+      GreenPlanet_112: 721218823
       GreenPlanet_17: -1141127346
+      GreenPlanet_291: -837025355
       GreenPlanet_387: 1660310595
       GreenPlanet_105: -1794749782
       GreenPlanet_309: 432082497
@@ -8742,9 +8742,9 @@ TextureImporter:
       GreenPlanet_295: -252401933
       GreenPlanet_316: 88588624
       GreenPlanet_145: 1441042574
+      GreenPlanet_326: 154246452
       GreenPlanet_210: 734447291
       GreenPlanet_20: -1696892438
-      GreenPlanet_326: 154246452
       GreenPlanet_129: 1788174744
       GreenPlanet_379: 1571399714
       GreenPlanet_25: 1095561776
@@ -8789,24 +8789,24 @@ TextureImporter:
       GreenPlanet_68: -1403612326
       GreenPlanet_389: -2135780435
       GreenPlanet_161: 1165010070
+      GreenPlanet_358: -1803170772
       GreenPlanet_219: 549394030
       GreenPlanet_246: 1493376755
-      GreenPlanet_358: -1803170772
       GreenPlanet_194: -1057605065
       GreenPlanet_376: -1717395171
       GreenPlanet_314: 1253448352
       GreenPlanet_196: -1929986511
       GreenPlanet_278: 2030058085
-      GreenPlanet_40: 2058576019
+      GreenPlanet_350: 603581143
       GreenPlanet_392: 1475913880
       GreenPlanet_13: 1046106011
-      GreenPlanet_57: -1977254684
+      GreenPlanet_40: 2058576019
       GreenPlanet_257: 1100573816
       GreenPlanet_113: 215421787
       GreenPlanet_186: 206704275
       GreenPlanet_347: -793112257
       GreenPlanet_15: 1227131401
-      GreenPlanet_350: 603581143
+      GreenPlanet_57: -1977254684
       GreenPlanet_51: -1987842750
       GreenPlanet_209: 600918124
       GreenPlanet_81: -133610570
