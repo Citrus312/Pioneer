@@ -45,13 +45,13 @@ public class ThrustWeapon : MeleeWeapon
     void Update()
     {
         //获取攻击方向
-        Vector2 attackDirection = getAttackDirection();
+        Vector2 attackDirection = getAttackDirection("Enemy");
 
         //如果找到了攻击方向且不处于攻击动作中
         if (attackDirection != new Vector2(0, 0) && !_isAttacking)
         {
             //旋转武器
-            Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
             //武器需要旋转的角度
             float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
             //旋转武器

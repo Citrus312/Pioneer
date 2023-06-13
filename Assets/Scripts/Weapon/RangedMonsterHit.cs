@@ -1,21 +1,38 @@
 /*
-    远程武器
+    怪物的远程攻击
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedWeapon : Weapon
+public class RangedMonsterHit : Weapon
 {
+    //TODO 后期改成向场景询问玩家位置
+    public GameObject _player;
     //子弹的预制体
     [SerializeField] protected GameObject _bulletPrefab;
+
+    protected new void Awake()
+    {
+        /*
+            Weapon类的Awake
+        */
+        _weaponAttribute = GetComponent<WeaponAttribute>();
+        _damager = GetComponent<Damager>();
+        _nextAttackTime = Time.time;
+
+        /*
+            RangedMonsterHit类的Awake
+        */
+        _attachPoint = transform;
+    }
 
     //向射击方向发射一颗子弹
     protected void shoot(Vector2 shootDirection)
     {
         //实例化一颗子弹
-        GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
-        bullet.GetComponent<Bullet>()._weapon = gameObject;
+        GameObject bullet = Instantiate(_bulletPrefab, _attachPoint.position, _attachPoint.rotation);
+        bullet.GetComponent<MonsterBullet>()._weapon = gameObject;
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 
@@ -23,16 +40,12 @@ public class RangedWeapon : Weapon
     void Update()
     {
         //射击方向
-        Vector2 attackDirection = getAttackDirection("Enemy");
+        Vector2 attackDirection = getAttackDirection("Player");
 
         //找到射击方向
         if (attackDirection != new Vector2(0, 0))
         {
-            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
-            //武器需要旋转的角度
-            float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
-            //旋转武器
-            _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Player") * 100, Color.red);
 
             //如果当前时间大于攻击冷却时间则攻击
             if (Time.time > _nextAttackTime)

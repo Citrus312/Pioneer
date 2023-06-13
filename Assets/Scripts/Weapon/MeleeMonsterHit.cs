@@ -1,3 +1,6 @@
+/*
+    怪物碰撞到玩家对玩家造成伤害
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,10 +1,13 @@
+/*
+    怪物发射的子弹
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class MonsterBullet : MonoBehaviour
 {
     [SerializeField] GameObject _hitVFX;
     //发射出该子弹的武器
@@ -22,13 +25,13 @@ public class Bullet : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0;
         rigidbody2D.freezeRotation = true;
-        rigidbody2D.mass = 0.05f;
+        rigidbody2D.mass = 0.5f;
     }
 
     protected void OnTriggerEnter2D(Collider2D collider2D)
     {
-        //如果碰撞的不为怪物则直接返回
-        if (collider2D.tag != "Enemy")
+        //如果碰撞的不为玩家则直接返回
+        if (collider2D.tag != "Player")
             return;
         //对怪物造成伤害
         _weapon.GetComponent<Damager>().Damage(collider2D);

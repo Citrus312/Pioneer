@@ -98,7 +98,7 @@ public class SweepWeapon : MeleeWeapon
         if (attackTarget != null && !_isAttacking)
         {
             //旋转武器
-            Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
             //武器需要旋转的角度
             float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackTarget.position - _attachPoint.position);
             //旋转武器
