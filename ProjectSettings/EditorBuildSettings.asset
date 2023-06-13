@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/OpeningAnimation.unity
+    guid: dad2eb065dc2eb447aa176ac19578993
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 66b62048f0a04014d9f43371ee35cde4
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: ed70c4485c5443446bead09e59b56d9b
   - enabled: 1
-    path: Assets/Scenes/OpeningAnimation.unity
-    guid: dad2eb065dc2eb447aa176ac19578993
+    path: Assets/Scenes/BattleScene.unity
+    guid: f8c9f94f2467d6446a05ab6d835b3c32
   m_configObjects: {}
