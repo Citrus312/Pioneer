@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(MeleeMonsterHit))]
 public class AIController : Controller
 {
     //TODO: 后期修改成向场景询问玩家位置
@@ -11,19 +12,23 @@ public class AIController : Controller
 
     protected new void Awake()
     {
-        //碰撞体
-        CapsuleCollider2D _capsuleCollider2D;
-
+        /*
+            Controller类的Awake
+        */
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        _animator = GetComponent<Animator>();
 
         //设置rigidbody2D的参数
         _rigidbody2D.drag = 100;
         _rigidbody2D.gravityScale = 0;
         _rigidbody2D.freezeRotation = true;
 
+        /*
+            AIController类的Awake
+        */
         //设置碰撞体大小和位置
         _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
         _capsuleCollider2D.offset = new Vector2(0, -0.05f);

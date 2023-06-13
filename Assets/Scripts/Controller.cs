@@ -5,6 +5,8 @@ using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CharacterAttribute))]
+[RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Controller : MonoBehaviour
 {
     protected Transform _transform;
@@ -12,6 +14,8 @@ public class Controller : MonoBehaviour
     protected Rigidbody2D _rigidbody2D;
     //角色属性
     protected CharacterAttribute _characterAttribute;
+    //碰撞体
+    protected CapsuleCollider2D _capsuleCollider2D;
 
     //动画
     public Animator _animator;
@@ -21,6 +25,7 @@ public class Controller : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterAttribute = GetComponent<CharacterAttribute>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         _animator = GetComponent<Animator>();
 
         //设置rigidbody2D的参数

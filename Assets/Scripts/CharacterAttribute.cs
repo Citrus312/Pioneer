@@ -249,4 +249,10 @@ public class CharacterAttribute : MonoBehaviour
     {
         return collectEfficiency;
     }
+
+    //TODO 角色的无敌时间
+    public float getInvulnerabilityTime()
+    {
+        return 0.05f;
+    }
 }
