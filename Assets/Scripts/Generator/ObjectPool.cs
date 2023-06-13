@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     // 单例
-    private static ObjectPool _poolInstance;
+    public static ObjectPool _poolInstance;
     // 内存区（队列）
     protected Queue<GameObject>[] _objectPool;
 
@@ -13,7 +13,7 @@ public class ObjectPool : MonoBehaviour
 
     public static ObjectPool getInstance()
     {
-        if(_poolInstance == null)
+        if (_poolInstance == null)
         {
             _poolInstance = new ObjectPool();
         }
@@ -25,9 +25,9 @@ public class ObjectPool : MonoBehaviour
         _objectPool = new Queue<GameObject>[_objectList.Length];
     }
     // 从池子中取出物体
-    protected GameObject get(int idx)
+    public GameObject get(int idx)
     {
-        if(idx < 0 || idx >= _objectList.Length) return null;
+        if (idx < 0 || idx >= _objectList.Length) return null;
 
         GameObject tmp;
         // 如果池子内有物体，从池子取出一个物体
@@ -45,10 +45,10 @@ public class ObjectPool : MonoBehaviour
         return tmp;
     }
     // 将物体回收进池子
-    protected void remove(GameObject obj)
+    public void remove(GameObject obj)
     {
         int idx = obj.GetComponent<CharacterAttribute>().getPoolIdx();
-        if(idx < 0 || idx >= _objectList.Length) return;
+        if (idx < 0 || idx >= _objectList.Length) return;
 
         // 该对象没有在队列中
         if (!_objectPool[idx].Contains(obj))
