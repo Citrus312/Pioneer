@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropAttribute : MonoBehaviour
+public class PropAttribute
 {
     //µÀ¾ßID
     private int propID;
