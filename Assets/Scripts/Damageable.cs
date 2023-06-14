@@ -12,13 +12,14 @@ public class Damageable : MonoBehaviour
 
     protected void Awake()
     {
-        onDeath.AddListener(destroy);
+        onDeath.AddListener(die);
         //该赋值仅作测试用
         currentHealth = 20;
     }
 
-    private void destroy()
+    private void die()
     {
+        //ObjectPool.getInstance().remove(,gameObject);
         Destroy(gameObject);
     }
 

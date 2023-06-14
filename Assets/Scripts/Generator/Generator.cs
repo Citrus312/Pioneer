@@ -18,18 +18,21 @@ public class Generator : MonoBehaviour
     }
 
     // 生成object
-    protected virtual void generateObject(GameObject prefabObject, Vector3 pos, int num)
+    protected virtual void generateObject(string prefabPath, Vector3 pos, int num)
     {
         // 若数量未超过限制
-        if (_cnt <= _cntLimit)
+        if(_cnt <= _cntLimit)
         {
-            if (num > 1)
-            {
+            if(num > 1){
                 // 多个生成
                 pos = new Vector3(pos.x + Random.Range(-1 * _posOffset, _posOffset), pos.y + Random.Range(-1 * _posOffset, _posOffset), pos.z);
-                generateObject(prefabObject, pos, num - 1);
+                generateObject(prefabPath, pos, num - 1);
             }
-            GameObject newObject = Instantiate(prefabObject, pos, Quaternion.identity);
+            // 从对象池获取
+            GameObject newObject = ObjectPool.getInstance().get(prefabPath);
+            
+            newObject.transform.position = pos;
+            newObject.SetActive(true);
             _cnt++;
         }
     }
