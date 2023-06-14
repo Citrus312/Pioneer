@@ -5,14 +5,15 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader
+public class JsonLoader : MonoBehaviour
 {
-    public static List<WeaponAttribute> weaponPool = new();
+    public static List<WeaponAttribute> weaponPool = new(); 
     public static List<PropAttribute> propPool = new();
     public void Start()
     {
         //LoadAndDecodePropConfig();
-        LoadAndDecodeWeaponConfig();
+        //LoadAndDecodeWeaponConfig();
+        //Debug.Log(weaponPool.Count);
     }
     public static void LoadAndDecodeWeaponConfig()
     {
