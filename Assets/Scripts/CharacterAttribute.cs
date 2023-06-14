@@ -7,7 +7,7 @@ public class CharacterAttribute : MonoBehaviour
     //对象池id
     private int poolIdx = 0;
     //角色的基础移速
-    private float rawMoveSpeed = 0.1f;
+    private float rawMoveSpeed = 2.0f;
     //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
@@ -253,6 +253,6 @@ public class CharacterAttribute : MonoBehaviour
     //TODO 角色的无敌时间
     public float getInvulnerabilityTime()
     {
-        return 0.05f;
+        return 0.5f;
     }
 }

@@ -38,13 +38,13 @@ public class AIController : Controller
     }
 
     //计算怪物移动方向
-    protected Direction getMoveDirection()
+    protected Vector2 getMoveDirection()
     {
         //TODO: 后期修改成向场景询问玩家位置
         Vector3 playerPos = _player.transform.position;
 
         Vector3 aiPos = _transform.position;
-        Direction moveDirection = new Direction((playerPos - aiPos).x, (playerPos - aiPos).y);
+        Vector2 moveDirection = new Vector2((playerPos - aiPos).x, (playerPos - aiPos).y).normalized;
         return moveDirection;
     }
 

@@ -58,6 +58,6 @@ public class PlayerController : Controller
     void Update()
     {
         //根据键盘输入进行移动
-        move(new Direction(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized);
     }
 }
