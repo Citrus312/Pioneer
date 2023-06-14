@@ -14,7 +14,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器所有者的属性
     private CharacterAttribute ownerAttr;
     //武器基础伤害
-    private float rawWeaponDamage = 0;
+    private float rawWeaponDamage = 5.0f;
     //武器基础攻击范围
     private float rawAttackRange = 20f;
     //对应类型伤害的转换比例

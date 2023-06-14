@@ -6,7 +6,7 @@ public class MonsterGenerator : Generator
     private static MonsterGenerator _instance;
     
     // 要生成的怪物
-    public GameObject _monsterPrefab;
+    public string _monsterPrefabPath;
     public GameObject _player;
     private SpriteRenderer _redCross;// 怪物生成前的信号图片
 
@@ -25,7 +25,7 @@ public class MonsterGenerator : Generator
         _redCross = GetComponent<SpriteRenderer>(); // 必须挂一个(待解决)
         _distance = 5.0f;
         _interval = 5.0f;
-        InvokeRepeating("BeginGenerate", 1.0f, _interval);
+        InvokeRepeating("beginGenerate", 1.0f, _interval);
     }
 
     public static MonsterGenerator getInstance()
@@ -56,14 +56,14 @@ public class MonsterGenerator : Generator
 
         _flashCnt = 2;
         redCrossFlash();
-        Invoke("GenerateMonster", 2.5f);
+        Invoke("generateMonster", 2.5f);
     }
 
     // 红叉闪烁
     protected void redCrossFlash()
     {
         _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 1.0f);
-        Invoke("RedCrossFade", 0.5f);
+        Invoke("redCrossFade", 0.5f);
     }
 
     // 红叉透明
@@ -71,7 +71,7 @@ public class MonsterGenerator : Generator
     {
         _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.1f);
         if(_flashCnt > 0){
-            Invoke("RedCrossFlash", 0.5f);
+            Invoke("redCrossFlash", 0.5f);
             _flashCnt--;
         }
         else
@@ -84,7 +84,7 @@ public class MonsterGenerator : Generator
 
     protected void generateMonster() // 待补充
     {
-        generateObject(_monsterPrefab, _redCross.transform.position, 1);
+        generateObject(_monsterPrefabPath, _redCross.transform.position, 1);
     }
 
     // 随机获取怪物生成位置

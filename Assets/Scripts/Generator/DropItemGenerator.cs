@@ -8,7 +8,7 @@ public class DropItemGenerator : Generator
     private static DropItemGenerator instance;
 
     // 掉落的item
-    private GameObject _droppedItem;
+    private string _droppedItemPath;
 
     //一次生成掉落物的数量
     private int _minGenerateCnt = 1;
@@ -29,7 +29,7 @@ public class DropItemGenerator : Generator
     protected void dropItem(Vector3 pos)
     {
         int count = Random.Range(_minGenerateCnt, _maxGenerateCnt);
-        generateObject(_droppedItem, pos, count);
+        generateObject(_droppedItemPath, pos, count);
     }
 
     protected void updateScore(int newScore)
