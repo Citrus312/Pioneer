@@ -147,8 +147,8 @@ public class textController : MonoBehaviour
             // 创建Sprite并附加到Image组件上
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
-            RectTransform size = child.GetComponent<RectTransform>();
-            size.sizeDelta = new Vector2(50, 50);
+            //RectTransform size = child.GetComponent<RectTransform>();
+            //size.sizeDelta = new Vector2(50, 50);
 
             //Debug.Log("成功加载图片: ");
         }
@@ -272,7 +272,8 @@ public class textController : MonoBehaviour
         GameObject weapon = new GameObject("weapon");
         weapon.transform.SetParent(weaponBag.transform);
         weapon.AddComponent<Image>();
-
+        RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+        rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         string assetPath = "Assets/Sprites/Weapon/" + WeaponPropList[selectedCardId[cardID]].getWeaponIcon();
         loadImage(assetPath, weapon.transform);
 
