@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAttribute : MonoBehaviour
+public class CharacterAttribute
 {
     //对象池id
     private int poolIdx = 0;
     //角色的基础移速
     private float rawMoveSpeed = 0.1f;
+    //角色受击后的无敌时间
+    private float immuneTime = 0.2f;
     //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
@@ -46,6 +48,11 @@ public class CharacterAttribute : MonoBehaviour
     public void setRawMoveSpeed(float input)
     {
         rawMoveSpeed = input;
+    }
+
+    public void setImmuneTime(float input)
+    {
+        immuneTime = input;
     }
 
     public void setMaxHealth(float input)
@@ -168,6 +175,11 @@ public class CharacterAttribute : MonoBehaviour
     public float getRawMoveSpeed()
     {
         return rawMoveSpeed;
+    }
+
+    public float getImmuneTime()
+    {
+        return immuneTime;
     }
 
     public float getMaxHealth()

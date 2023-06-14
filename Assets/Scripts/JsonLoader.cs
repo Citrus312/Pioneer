@@ -93,6 +93,15 @@ public class JsonLoader
                     case "heal":
                         tempCategory.Add(WeaponAttribute.WeaponCategory.Heal);
                         break;
+                    case "wand":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Wand);
+                        break;
+                    case "machete":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Machete);
+                        break;
+                    case "polearms":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
+                        break;
                     default:
                         Debug.Log("weapon json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
                         break;
