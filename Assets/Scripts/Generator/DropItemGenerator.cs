@@ -4,16 +4,36 @@ using UnityEngine;
 
 public class DropItemGenerator : Generator
 {
-    public int minCountPerGeneration; // Ã¿´ÎÉú³ÉµÄ×îĞ¡ÊıÁ¿
-    public int maxCountPerGeneration; // Ã¿´ÎÉú³ÉµÄ×î´óÊıÁ¿
+    // å•ä¾‹
+    private static DropItemGenerator instance;
 
-    protected override void GenerateItem() // override¸¸ÀàµÄGenerateItem·½·¨
+    // æ‰è½çš„item
+    private GameObject _droppedItem;
+
+    //ä¸€æ¬¡ç”Ÿæˆæ‰è½ç‰©çš„æ•°é‡
+    private int _minGenerateCnt = 1;
+    private int _maxGenerateCnt = 3;
+
+    // itemçš„åˆ†æ•°ï¼Œéšå…³å¡å˜åŒ–
+    public int _score = 1;
+
+    public static DropItemGenerator getInstance()
     {
-        int count = Random.Range(minCountPerGeneration, maxCountPerGeneration + 1); // Ëæ»úÉú³ÉÎïÌåÊıÁ¿
-        for (int i = 0; i < count; i++)
+        if(instance == null)
         {
-            GameObject newObject = Instantiate(_prefabToInstantiate, transform.position, Quaternion.identity);
-            generationCount++;
+            instance = new DropItemGenerator();
         }
+        return instance;
+    }
+
+    protected void DropItem(Vector3 pos)
+    {
+        int count = Random.Range(_minGenerateCnt, _maxGenerateCnt);
+        GenerateObject(_droppedItem, pos, count);
+    }
+
+    protected void UpdateScore(int newScore)
+    {
+        _score = newScore;
     }
 }

@@ -2,43 +2,34 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public GameObject _player;
-    public GameObject _prefabToInstantiate; // ĞèÒªÉú³ÉµÄÎïÌåµÄÔ¤ÖÆÌå
-    public float generationInterval; // Éú³ÉµÄÊ±¼ä¼ä¸ô
-    public int generationCountLimit; // Éú³ÉµÄ×ÜÊıÏŞÖÆ£¬0±íÊ¾ÎŞÏŞÖÆ
-    public Vector2 positionOffset; // Éú³ÉÆ÷µÄÎ»ÖÃÆ«ÒÆÁ¿
+    protected int _cntLimit; // æœ€å¤§æ•°é‡
 
-    private float generationTimer; // ¼ÆÊ±Æ÷£¬ÓÃÓÚÀÛ¼ÓÉÏ´ÎÉú³ÉÎïÌåµÄÊ±¼ä
-    public int generationCount; // ÒÑÉú³ÉµÄÎïÌåµÄÊıÁ¿
+    protected int _cnt; // å½“å‰æ•°é‡
 
-    public void Start()
+    // å¤šä¸ªç”Ÿæˆæ—¶çš„åç§»
+    public float _posOffset = 1.0f;
+
+    public virtual void Start()
     {
-        transform.position += (Vector3)positionOffset; // ½«Î»ÖÃÆ«ÒÆÁ¿¼Óµ½Éú³ÉÆ÷µÄÎ»ÖÃÉÏ
-        generationTimer = generationInterval; // ³õÊ¼»¯¼ÆÊ±Æ÷Îª³õÊ¼Ê±¼ä¼ä¸ô£¬ÒÔ±ãÔÚ¿ªÊ¼Ê±Á¢¼´Éú³ÉÒ»¸öÎïÌå
+        _cnt = 10;
+        _cntLimit = 25;
+        // è¯»å–æ•°æ®ç­‰ç­‰(å¾…å¡«å†™)
     }
 
-    void Update()
+    // ç”Ÿæˆobject
+    protected virtual void GenerateObject(GameObject prefabObject, Vector3 pos, int num)
     {
-        transform.position = _player.transform.position;//Ã¿´Î¸üĞÂ½«Éú³ÉÆ÷Î»ÖÃÉèÎªÍæ¼ÒÎ»ÖÃ
-        positionOffset = new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-        transform.position += (Vector3)positionOffset; // ½«Î»ÖÃÆ«ÒÆÁ¿¼Óµ½Éú³ÉÆ÷µÄÎ»ÖÃÉÏ
-        if (generationCountLimit > 0 && generationCount >= generationCountLimit) // Éú³ÉµÄÊıÁ¿´ïµ½ÁËÏŞÖÆ
+        // è‹¥æ•°é‡æœªè¶…è¿‡é™åˆ¶
+        if (_cnt <= _cntLimit)
         {
-            return;
+            if (num > 1)
+            {
+                // å¤šä¸ªç”Ÿæˆ
+                pos = new Vector3(pos.x + Random.Range(-1 * _posOffset, _posOffset), pos.y + Random.Range(-1 * _posOffset, _posOffset), pos.z);
+                GenerateObject(prefabObject, pos, num - 1);
+            }
+            GameObject newObject = Instantiate(prefabObject, pos, Quaternion.identity);
+            _cnt++;
         }
-
-        generationTimer += Time.deltaTime; // ¼ÆÊ±Æ÷ÖğÖ¡ÀÛ¼Ó
-
-        if (generationTimer >= generationInterval) // ¼ÆÊ±Æ÷³¬¹ıÊ±¼ä¼ä¸ô£¬ĞèÒªÉú³ÉĞÂµÄÎïÌå
-        {
-            GenerateItem(); // Éú³ÉÎïÌåµÄ¾ßÌå²Ù×÷
-            generationTimer = 0f; // ÖØÖÃ¼ÆÊ±Æ÷£¬ÒÔ±ã¿ªÊ¼ÏÂÒ»ÂÖ¼ÆÊ±
-        }
-    }
-
-    protected virtual void GenerateItem() // Éú³ÉÎïÌåµÄĞé·½·¨£¬×ÓÀà¿ÉÒÔoverride
-    {
-        GameObject newObject = Instantiate(_prefabToInstantiate, transform.position, Quaternion.identity);
-        generationCount++;
     }
 }
