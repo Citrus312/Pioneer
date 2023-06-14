@@ -251,6 +251,11 @@ public class WeaponAttribute
         return weaponIcon;
     }
 
+    public float getConvertRatio()
+    {
+        return convertRatio;
+    }
+
     public string getWeaponBgIcon()
     {
         return weaponBgIcon;

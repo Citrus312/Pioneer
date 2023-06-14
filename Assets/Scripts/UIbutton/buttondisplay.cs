@@ -21,6 +21,7 @@ public class buttondisplay : MonoBehaviour,IPointerEnterHandler, IPointerExitHan
         image.color = normalColor;
         
     }
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.color = highLightColor;
