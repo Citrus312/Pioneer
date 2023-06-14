@@ -36,13 +36,12 @@ public class ButtonPause : MonoBehaviour
         isPaused = !isPaused;
         ingameMenu.SetActive(false);
         Time.timeScale = 1f;
-        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaa");
     }
 
     public void OnRestart()//点击“Restart”时执行此方法
     {
         //Loading Scene0
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
 
