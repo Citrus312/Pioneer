@@ -4,7 +4,7 @@ public class MonsterGenerator : Generator
 {
     // 单例
     private static MonsterGenerator _instance;
-    
+
     // 要生成的怪物
     public string _monsterPrefabPath;
     public GameObject _player;
@@ -21,7 +21,7 @@ public class MonsterGenerator : Generator
     public override void Start()
     {
         base.Start();
-        
+
         _redCross = GetComponent<SpriteRenderer>(); // 必须挂一个(待解决)
         _distance = 5.0f;
         _interval = 5.0f;
@@ -30,7 +30,7 @@ public class MonsterGenerator : Generator
 
     public static MonsterGenerator getInstance()
     {
-        if(_instance == null)
+        if (_instance == null)
         {
             _instance = new MonsterGenerator();
         }
@@ -45,7 +45,7 @@ public class MonsterGenerator : Generator
     protected void beginGenerate()
     {
         showRedCross();
-        
+
     }
 
     // 红叉显现
@@ -69,22 +69,27 @@ public class MonsterGenerator : Generator
     // 红叉透明
     protected void redCrossFade()
     {
-        _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.1f);
-        if(_flashCnt > 0){
+        _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 0.1f);
+        if (_flashCnt > 0)
+        {
             Invoke("redCrossFlash", 0.5f);
             _flashCnt--;
         }
         else
         {
             // 红叉消失
-            _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.0f);
+            _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 0.0f);
             _redCross.enabled = false;
         }
     }
 
     protected void generateMonster() // 待补充
     {
-        generateObject(_monsterPrefabPath, _redCross.transform.position, 1);
+        GameObject monster = generateObject(_monsterPrefabPath, _redCross.transform.position, 1);
+        if (monster != null)
+        {
+            monster.GetComponent<AIController>()._player = _player;
+        }
     }
 
     // 随机获取怪物生成位置

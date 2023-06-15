@@ -9,14 +9,14 @@ public class Damager : MonoBehaviour
     protected CharacterAttribute _ownerAttr;
     protected Weapon _weapon;
     //伤害显示预制体
-    protected GameObject _damageTextPrefab;
+    protected string _damageTextPrefab;
 
     void Awake()
     {
         _weapon = GetComponentInParent<Weapon>();
         _weaponAttr = _weapon.GetComponent<WeaponAttribute>();
         _ownerAttr = _weapon.GetComponentInParent<CharacterAttribute>();
-        _damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/DamageText.prefab");
+        _damageTextPrefab = DamageText.getDamageTextPath();
     }
 
     public void Damage(Collider2D targetColl)
@@ -53,7 +53,10 @@ public class Damager : MonoBehaviour
         damage = damage > 1 ? damage : 1;
 
         //显示伤害
-        DamageText damageText = Instantiate(_damageTextPrefab, target.transform.position, Quaternion.identity).GetComponent<DamageText>();
+        //DamageText damageText = Instantiate(_damageTextPrefab, target.transform.position, Quaternion.identity).GetComponent<DamageText>();
+        GameObject damageTextObj = ObjectPool.getInstance().get(_damageTextPrefab);
+        damageTextObj.transform.position = target.transform.position;
+        DamageText damageText = damageTextObj.GetComponent<DamageText>();
         if (target.tag == "Player")
         {
             damageText.setup(DamageText.TextType.PlayerHurt, (int)damage);

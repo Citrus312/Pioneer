@@ -8,14 +8,36 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
     //子弹的预制体
-    [SerializeField] protected GameObject _bulletPrefab;
+    // [SerializeField] protected GameObject _bulletPrefab;
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+
+    protected new void Awake()
+    {
+        /*
+            Weapon的Awake
+        */
+        _weaponAttribute = GetComponent<WeaponAttribute>();
+        _damager = GetComponent<Damager>();
+        _nextAttackTime = Time.time;
+
+        /*
+            RangedWeapon的Awake
+        */
+        _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    }
 
     //向射击方向发射一颗子弹
     protected void shoot(Vector2 shootDirection)
     {
         //实例化一颗子弹
-        GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
-        bullet.GetComponent<Bullet>()._weapon = gameObject;
+        // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
+        GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
+        bullet.transform.position = _attachPoint.position;
+        bullet.transform.rotation = _attachPoint.rotation;
+
+        // bullet.GetComponent<Bullet>()._weapon = gameObject;
+        // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
+        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy");
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 

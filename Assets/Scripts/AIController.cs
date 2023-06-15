@@ -10,6 +10,30 @@ public class AIController : Controller
     //玩家位置
     public GameObject _player;
 
+    //击退时间
+    [SerializeField] protected float beatBackTime = 0.1f;
+    //击退速度
+    [SerializeField] protected float beatBackTimeSpeed = 5.0f;
+
+    //击中怪物，怪物开始击退
+    public void OnHit(Vector2 direction)
+    {
+        StartCoroutine(beatBack(direction));
+    }
+
+    //怪物被击退
+    public IEnumerator beatBack(Vector2 direction)
+    {
+        //计时器
+        float timer = 0;
+        while (timer < beatBackTime)
+        {
+            timer += Time.deltaTime;
+            transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * beatBackTimeSpeed;
+            yield return null;
+        }
+    }
+
     protected new void Awake()
     {
         /*
@@ -35,6 +59,10 @@ public class AIController : Controller
 
         //设置enemy标签
         gameObject.tag = "Enemy";
+
+        //设置击退参数
+        beatBackTime = 0.05f;
+        beatBackTimeSpeed = 30.0f;
     }
 
     //计算怪物移动方向
@@ -51,6 +79,6 @@ public class AIController : Controller
     // Update is called once per frame
     void Update()
     {
-        // move(getMoveDirection());
+        move(getMoveDirection());
     }
 }

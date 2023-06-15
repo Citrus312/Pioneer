@@ -71,7 +71,7 @@ public class SweepWeapon : MeleeWeapon
         Vector3 endEulerAngle = startEulerAngle + new Vector3(0, 0, sweepAngle);
 
         /*
-            固定0.1s为挥砍时间，使用开始角和目标角做插值来显示
+            固定0.2s为挥砍时间，使用开始角和目标角做插值来显示
         */
         float dur = 0.0f, time = 0.2f;
         while (dur < time)
@@ -108,6 +108,7 @@ public class SweepWeapon : MeleeWeapon
             if (Time.time > _nextAttackTime)
             {
                 //开始攻击
+                _attackDirection = (attackTarget.position - _attachPoint.position).normalized;
                 StartCoroutine(attack(attackTarget));
                 //更新下次攻击事件
                 _nextAttackTime = Time.time + _weaponAttribute.getAttackSpeed();

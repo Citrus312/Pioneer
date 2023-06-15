@@ -5,6 +5,15 @@ using TMPro;
 
 public class DamageText : MonoBehaviour
 {
+    //DamageText预制体路径
+    private static string _damageTextPrefab = "Assets/Prefab/DamageText.prefab";
+
+    //获取预制体路径
+    public static string getDamageTextPath()
+    {
+        return _damageTextPrefab;
+    }
+
     private TextMeshPro _textMeshPro;
     private Color _textColor;
 
@@ -22,6 +31,8 @@ public class DamageText : MonoBehaviour
     //设置文本类型
     public void setup(TextType textType, int damage)
     {
+        //刷新显示时间
+        _showTimer = _showTime;
         //显示的文本
         string text = damage.ToString();
         switch (textType)
@@ -49,7 +60,6 @@ public class DamageText : MonoBehaviour
     {
         _textMeshPro = GetComponent<TextMeshPro>();
         _textColor = _textMeshPro.color;
-        _showTimer = _showTime;
     }
 
     // Update is called once per frame
@@ -64,7 +74,7 @@ public class DamageText : MonoBehaviour
             //如果alpha值小于0则销毁对象
             if (_textColor.a < 0)
             {
-                Destroy(gameObject);
+                ObjectPool.getInstance().remove(_damageTextPrefab, gameObject);
             }
         }
     }
