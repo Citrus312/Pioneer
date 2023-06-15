@@ -116,10 +116,23 @@ public class textController : MonoBehaviour
             + "<color=yellow>暴击</color>:  " + WeaponPropList[id].getCriticalBonus() + "(" + WeaponPropList[id].getCriticalRate() * 100 + "%)\n"
             + "<color=yellow>攻速</color>:  " + WeaponPropList[id].getAttackSpeed() + "S\n";
 
-
-        //武器图片
         string assetPath1 = "Assets/Sprites/Weapon/" + WeaponPropList[id].getWeaponBgIcon();
-        string assetPath2 = "Assets/Sprites/Weapon/" + WeaponPropList[id].getWeaponIcon();
+        string assetPath2 = "";
+        //武器图片
+        if (WeaponPropList[id].getWeaponDamageType()==WeaponAttribute.WeaponDamageType.Melee)
+        {
+            assetPath2 = "Assets/Sprites/Weapon/" +"Melee Weapon/"+ WeaponPropList[id].getWeaponIcon();
+        }
+        else if(WeaponPropList[id].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
+        {
+            assetPath2 = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[id].getWeaponIcon();
+        }
+        else 
+        {
+            assetPath2 = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[id].getWeaponIcon();
+        }
+        
+        //string assetPath2 = "Assets/Sprites/Weapon/" + WeaponPropList[id].getWeaponIcon();
         loadImage(assetPath1, child2);
         loadImage(assetPath2, child2_);
 
