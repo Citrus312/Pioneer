@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAttribute : MonoBehaviour
+public class WeaponAttribute
 {
     //武器伤害类型的枚举
     public enum WeaponDamageType { Unknown = -1, Melee, Ranged, Ability }
     //武器分类的枚举
-    public enum WeaponCategory { Unknown = -1, Gun, Ability, Heal }
+    //未知 枪械 属性 治疗 法杖 刀具 长柄
+    public enum WeaponCategory { Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
     //物品品质的枚举
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
@@ -238,6 +239,11 @@ public class WeaponAttribute : MonoBehaviour
     public string getWeaponName()
     {
         return weaponName;
+    }
+
+    public float getConvertRatio()
+    {
+        return convertRatio;
     }
 
     public string getWeaponIcon()

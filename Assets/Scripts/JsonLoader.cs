@@ -5,27 +5,29 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader : MonoBehaviour
+public class JsonLoader
 {
-    public static List<WeaponAttribute> weaponPool = new(); 
+    //武器属性池 道具属性池
+    public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
-    public void Start()
-    {
-        //LoadAndDecodePropConfig();
-        //LoadAndDecodeWeaponConfig();
-        //Debug.Log(weaponPool.Count);
-    }
+
+    //加载并解析武器数据
     public static void LoadAndDecodeWeaponConfig()
     {
+        //json文件中读取到的所有数据
         JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("GB2312")));
+        //存储从json获取的武器分类临时变量
         List<WeaponAttribute.WeaponCategory> tempCategory = new();
+        //从json文件中获取的一个武器的数据
         JsonData weaponConfig;
         JsonData weaponCategory;
         double temp;
         for (int i = 0; i < weaponsConfig.Count; i++)
         {
+            //添加进池中的武器属性临时变量
             WeaponAttribute addAttr = new();
             weaponConfig = weaponsConfig[i];
+            //由于LitJson不支持float类型的强转，故此处先强转为double存入临时变量再将临时变量强转为float使用
             temp = (double)weaponConfig["damage"];
             addAttr.setRawWeaponDamage((float)temp);
             temp = (double)weaponConfig["bonus"];
@@ -91,16 +93,27 @@ public class JsonLoader : MonoBehaviour
                     case "heal":
                         tempCategory.Add(WeaponAttribute.WeaponCategory.Heal);
                         break;
+                    case "wand":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Wand);
+                        break;
+                    case "machete":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Machete);
+                        break;
+                    case "polearms":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
+                        break;
                     default:
                         Debug.Log("weapon json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
                         break;
                 }
             }
             addAttr.setWeaponCategory(tempCategory);
+            //将存储在临时变量中的武器属性存入武器属性池
             weaponPool.Add(addAttr);
         }
     }
 
+    //加载并解析道具属性
     public static void LoadAndDecodePropConfig()
     {
         JsonData propsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("GB2312")));
