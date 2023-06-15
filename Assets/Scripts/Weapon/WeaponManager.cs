@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         addWeapon(_initWeapons[0]);
-        //addWeapon(_initWeapons[1]);
+        addWeapon(_initWeapons[1]);
         // addWeapon(_initWeapons[2]);
         // addWeapon(_initWeapons[3]);
         // addWeapon(_initWeapons[4]);
