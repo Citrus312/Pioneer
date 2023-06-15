@@ -188,7 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option
+  m_text: "\u7EE7\u7EED"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bb3c4c104c4c04390935666af4f5aa, type: 2}
   m_sharedMaterial: {fileID: -9782729717252083, guid: 97bb3c4c104c4c04390935666af4f5aa, type: 2}
