@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAttribute
+public class WeaponAttribute : MonoBehaviour
 {
     //武器伤害类型的枚举
     public enum WeaponDamageType { Unknown = -1, Melee, Ranged, Ability }
@@ -249,11 +249,6 @@ public class WeaponAttribute
     public string getWeaponIcon()
     {
         return weaponIcon;
-    }
-
-    public float getConvertRatio()
-    {
-        return convertRatio;
     }
 
     public string getWeaponBgIcon()
