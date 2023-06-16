@@ -5,12 +5,14 @@ using UnityEngine;
 public enum WindowType
 {
     TipsWindow,
-    MainPageWindow
+    MainPageWindow,
+    gameProcessWindow
 }
 
 public enum SceneType
 {
     None,
     Battle,
-    MainPage
+    MainPage,
+    gameProcess
 }
