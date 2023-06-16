@@ -6,8 +6,8 @@ public class MainPageController : PersistentSingleton<MainPageController>
 {
     private void Start()
     {
-        UIRoot.Init();
-        MainPageWindow w =  new();
+        //UIRoot.Init();
+        MainPageWindow w = new();
         w.Open();
     }
 }

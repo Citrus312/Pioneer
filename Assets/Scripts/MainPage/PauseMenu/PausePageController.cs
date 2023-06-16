@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausePageController : PersistentSingleton<PausePageController>
 {
@@ -18,8 +19,9 @@ public class PausePageController : PersistentSingleton<PausePageController>
 
     private void Update()
     {
+        //if (getCurrentScene() != "MainPage")
+        //{
         if (Input.GetKeyUp(KeyCode.Escape))
-            //isPaused = !isPaused;
             if (pausePageWindow.getTransform().gameObject.activeSelf)
             {
                 pausePageWindow.Close();
@@ -28,6 +30,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
             {
                 pausePageWindow.Open();
             }
+        //}
     }
 
     private string getAttribute(GameObject _player)
@@ -35,5 +38,11 @@ public class PausePageController : PersistentSingleton<PausePageController>
         string content = "Health : " + _player.GetComponent<CharacterAttribute>().getMaxHealth() +
                              "\nSpeed : " + _player.GetComponent<CharacterAttribute>().getMoveSpeed();
         return content;
+    }
+
+    private string getCurrentScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        return currentSceneName;
     }
 }

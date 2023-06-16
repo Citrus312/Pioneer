@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class PausePageWindow : BaseWindow
 {
-    //³õÊ¼»¯ÔİÍ£½çÃæµÄ²ÎÊı
+    //åˆå§‹åŒ–æš‚åœç•Œé¢çš„å‚æ•°
     public PausePageWindow()
     {
         resName = "UI/PauseWindow";
@@ -21,9 +21,9 @@ public class PausePageWindow : BaseWindow
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹
         FillTextContent(inputText);
 
     }
@@ -56,11 +56,9 @@ public class PausePageWindow : BaseWindow
         base.RegisterUIEvent();
         foreach (Button btn in btnList)
         {
-            Debug.Log(btn.name);
             switch (btn.name)
             {
                 case "ButtonContinue":
-                    Debug.Log("aaaaaaaaaaaaaaa");
                     btn.onClick.AddListener(() => { OnContinueBtn(btn); });
                     break;
                 case "ButtonRestart":
@@ -79,7 +77,7 @@ public class PausePageWindow : BaseWindow
         }
     }
 
-    protected virtual void FillTextContent(string inputText)
+    protected override void FillTextContent(string inputText)
     {
         foreach (Text txt in textList)
         {
@@ -104,7 +102,7 @@ public class PausePageWindow : BaseWindow
 
     private void OnSettingBtn(Button btn)
     {
-        Debug.Log("µã»÷ÁË ÉèÖÃ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† è®¾ç½® æŒ‰é’®");
     }
 
     private void OnExitBtn(Button btn)
