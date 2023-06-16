@@ -8,8 +8,10 @@ public class MainPageController : PersistentSingleton<MainPageController>
     {
         UIRoot.Init();
         MainPageWindow.Instance.Open();
-        JsonLoader.LoadAndDecodeLocalData();
-        //JsonLoader.localData["isFirstPlaying"] = false;
-        //JsonLoader.UpdateLocalData();
+        //JsonLoader.LoadAndDecodeGameData();
+        //List<int> list = JsonLoader.gameData["propList"];
+        //list.Add(5);
+        //JsonLoader.gameData["propList"] = list;
+        //JsonLoader.UpdateGameData();
     }
 }

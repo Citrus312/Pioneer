@@ -11,19 +11,48 @@ public class JsonLoader : MonoBehaviour
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
     //
-    public static Dictionary<string, dynamic> localData = new();
+    public static Dictionary<string, dynamic> gameData = new();
 
     //
-    public static void LoadAndDecodeLocalData()
+    public static void LoadAndDecodeGameData()
     {
+        List<int> tempList = new();
         JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/LocalData.json", Encoding.GetEncoding("GB2312")));
-        localData.Add("isFirstPlaying", (bool)data["isFirstPlaying"]);
+        gameData.Add("isFirstPlaying", (bool)data["isFirstPlaying"]);
+        gameData.Add("playerID", (int)data["playerID"]);
+        gameData.Add("wave", (int)data["wave"]);
+        gameData.Add("level", (int)data["level"]);
+        gameData.Add("money", (int)data["money"]);
+        gameData.Add("playerLevel", (int)data["playerLevel"]);
+        gameData.Add("exp", (int)data["exp"]);
+        JsonData temp = data["propList"];
+        for (int i = 0; i < temp.Count; i++)
+        {
+            tempList.Add((int)temp[i]);
+        }
+        gameData.Add("propList", tempList);
+        tempList.Clear();
+        temp.Clear();
+        temp = data["propCount"];
+        for (int i = 0; i < temp.Count; i++)
+        {
+            tempList.Add((int)temp[i]);
+        }
+        gameData.Add("propCount", tempList);
+        tempList.Clear();
+        temp.Clear();
+        temp = data["weaponList"];
+        for (int i = 0; i < temp.Count; i++)
+        {
+            tempList.Add((int)temp[i]);
+        }
+        gameData.Add("weaponList", tempList);
     }
 
     //
-    public static void UpdateLocalData()
+    public static void UpdateGameData()
     {
-        File.WriteAllText(Application.dataPath + "/Config/LocalData.json", JsonMapper.ToJson(localData));
+        File.WriteAllText(Application.dataPath + "/Config/GameData.json", JsonMapper.ToJson(gameData));
     }
 
     //加载并解析武器数据

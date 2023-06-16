@@ -2,14 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAttribute
+public class CharacterAttribute : MonoBehaviour
 {
-    //对象池id
-    private int poolIdx = 0;
+    //角色或怪物的种类ID
+    private int id = 0;
     //角色的基础移速
     private float rawMoveSpeed = 0.1f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
+    //角色的当前生命值
+    private float currentHealth = 10f;
+    //角色的当前经验值
+    private float currentExp = 0;
+    //角色的当前等级
+    private int currentPlayerLevel = 0;
+    //角色在最低难度从0级升到1级需要的经验值
+    private float basicUpgradeExp = 15f;
+    //怪物在最低难度每经过一波袭击后增加的最大生命值
+    private float healthIncPerWave = 0;
+    //怪物在最低难度每经过一波袭击后增加的伤害值
+    private float damageIncPerWave = 0;
+    //击败怪物后掉落的货币数量
+    private float lootCount = 1;
+    //击败怪物后掉落消耗品的概率
+    private float dropRate = 0.5f;
+    //击败怪物后掉落箱子的概率
+    private float crateRate = 0.1f;
+    //怪物允许被生成的最早波次
+    private int firstGenWave = 1;
     //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
@@ -39,12 +59,12 @@ public class CharacterAttribute
     //采集效率
     private float collectEfficiency = 0;
 
-    public void setPoolIdx(int input)
+    //所有属性的set方法
+    public void setID(int input)
     {
-        poolIdx = input;
+        id = input;
     }
 
-    //所有属性的set方法
     public void setRawMoveSpeed(float input)
     {
         rawMoveSpeed = input;
@@ -53,6 +73,56 @@ public class CharacterAttribute
     public void setImmuneTime(float input)
     {
         immuneTime = input;
+    }
+
+    public void setCurrentHealth(float input)
+    {
+        currentHealth = input;
+    }
+
+    public void setCurrentExp(float input)
+    {
+        currentExp = input;
+    }
+
+    public void setCurrentPlayerLevel(int input)
+    {
+        currentPlayerLevel = input;
+    }
+
+    public void setBasicUpgradeExp(float input)
+    {
+        basicUpgradeExp = input;
+    }
+
+    public void setHealthIncPerWave(float input)
+    {
+        healthIncPerWave = input;
+    }
+
+    public void setDamageIncPerWave(float input)
+    {
+        damageIncPerWave = input;
+    }
+
+    public void setLootCount(float input)
+    {
+        lootCount = input;
+    }
+
+    public void setDropRate(float input)
+    {
+        dropRate = input;
+    }
+
+    public void setCrateRate(float input)
+    {
+        crateRate = input;
+    }
+
+    public void setFirstGenWave(int input)
+    {
+        firstGenWave = input;
     }
 
     public void setMaxHealth(float input)
@@ -136,11 +206,18 @@ public class CharacterAttribute
     }
 
     //用于初始化角色
-    public void setAllAttribute(float rawMoveSpeed, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication, float meleeDamage,
-        float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate, float engieering, float attackRangeAmplification,
-        float armorStrength, float dodgeRate, float moveSpeedAmplification, float scanAccuracy, float collectEfficiency)
+    public void setAllPlayerAttribute(int id, float rawMoveSpeed, float currentHealth, float currentExp, int currentPlayerLevel,
+        float basicUpgradeExp, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication, 
+        float meleeDamage, float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate,
+        float engieering, float attackRangeAmplification, float armorStrength, float dodgeRate, float moveSpeedAmplification,
+        float scanAccuracy, float collectEfficiency)
     {
+        setID(id);
         setRawMoveSpeed(rawMoveSpeed);
+        setCurrentHealth(currentHealth);
+        setCurrentExp(currentExp);
+        setCurrentPlayerLevel(currentPlayerLevel);
+        setBasicUpgradeExp(basicUpgradeExp);
         setMaxHealth(maxHealth);
         setHealthRecovery(healthRecovery);
         setHealthSteal(healthSteal);
@@ -159,10 +236,22 @@ public class CharacterAttribute
         setCollectEfficiency(collectEfficiency);
     }
 
-    // 获取对象池id
-    public int getPoolIdx()
+    //用于初始化怪物
+    public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
+        float meleeDamage,float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
+        float crateRate, int firstGenWave)
     {
-        return poolIdx;
+        setID(id);
+        setMaxHealth(maxHealth);
+        setHealthIncPerWave(healthIncPerWave);
+        setRawMoveSpeed(speed);
+        setMeleeDamage(meleeDamage);
+        setRangedDamage(rangedDamage);
+        setDamageIncPerWave(damageIncPerWave);
+        setLootCount(lootCount);
+        setDropRate(dropRate);
+        setCrateRate(crateRate);
+        setFirstGenWave(firstGenWave);
     }
 
     //获取经过属性加成的移速
@@ -177,9 +266,64 @@ public class CharacterAttribute
         return rawMoveSpeed;
     }
 
+    public int getID()
+    {
+        return id;
+    }
+
     public float getImmuneTime()
     {
         return immuneTime;
+    }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public float getCurrentExp()
+    {
+        return currentExp;
+    }
+
+    public int getCurrentPlayerLevel()
+    {
+        return currentPlayerLevel;
+    }
+
+    public float getBasicUpgradeExp()
+    {
+        return basicUpgradeExp;
+    }
+
+    public float getHealthIncPerWave()
+    {
+        return healthIncPerWave;
+    }
+
+    public float getDamageIncPerWave()
+    {
+        return damageIncPerWave;
+    }
+
+    public float getLootCount()
+    {
+        return lootCount;
+    }
+
+    public float getDropRate()
+    {
+        return dropRate;
+    }
+
+    public float getCrateRate()
+    {
+        return crateRate;
+    }
+
+    public float getFirstGenWave()
+    {
+        return firstGenWave;
     }
 
     public float getMaxHealth()
