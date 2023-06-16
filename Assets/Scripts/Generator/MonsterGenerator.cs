@@ -44,6 +44,8 @@ public class MonsterGenerator : Generator
 
     protected void beginGenerate()
     {
+        // 数据设置
+        GameController.getInstance().getGameData();
         showRedCross();
         
     }

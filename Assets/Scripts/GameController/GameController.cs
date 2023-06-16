@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInitController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    private static GameInitController _instance;
+    private static GameController _instance;
 
+    private GameData _gameData;
+
+    public GameObject _playerPrefab;
     public GameObject _player;
 
     public GameObject _objectPool;
 
     public GameObject _generator;
 
-    public GameInitController getInstance()
+    public static GameController getInstance()
     {
         return _instance;
     }
 
-    public GameInitController()
+    public GameController()
     {
         _instance = this;
         // 初始化游戏全局变量
@@ -57,20 +60,56 @@ public class GameInitController : MonoBehaviour
     public void initBattleScene()
     {
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
+        
+        initPlayerPos();
+        // 生成器初始化
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
     }
 
     public bool initPlayer()
     {
         // 初始化玩家对象
-        if(_player != null)
+        if(_playerPrefab != null)
         {
-            Instantiate(_player, Vector3.zero, Quaternion.identity);
+            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            // 初始化属性
+            //_player.GetComponent<CharacterAttribute>().initAttribute(_gameData._playerID);
             return true;
         }
-        Debug.Log("Player is null!");
+        Debug.Log("PlayerPrefab is null!");
         return false;
     }
+
+    private void initPlayerPos()
+    {
+        _player.transform.position = Vector3.zero;
+    }
+
+    public void onBattleEnd()
+    {
+
+        // 把player的attribute等等属性存入GameData
+
+        // 并保存到本地文件
+        saveGameData();
+    }
+
+    private void saveGameData()
+    {
+        // 
+        
+    }
+
+    public GameObject getPlayer()
+    {
+        return _player;
+    }
+
+    public GameData getGameData()
+    {
+        return _gameData;
+    }
+
     void Start()
     {
         
