@@ -7,6 +7,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject _hitVFX;
+
     //发射出该子弹的武器
     public GameObject _weapon;
     //子弹能够贯穿的次数
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
         rigidbody2D.gravityScale = 0;
         rigidbody2D.freezeRotation = true;
         rigidbody2D.mass = 0.05f;
+
     }
 
     protected void OnTriggerEnter2D(Collider2D collider2D)

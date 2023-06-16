@@ -50,7 +50,7 @@ public class MainPageWindow : BaseWindow
             switch (btn.name)
             {
                 case "ContinueBtn":
-                    btn.onClick.AddListener(()=> { OnContinueBtn(btn); });
+                    btn.onClick.AddListener(() => { OnContinueBtn(btn); });
                     break;
                 case "StartBtn":
                     btn.onClick.AddListener(() => { OnStartBtn(btn); });

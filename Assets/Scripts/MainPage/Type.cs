@@ -6,7 +6,7 @@ public enum WindowType
 {
     TipsWindow,
     MainPageWindow,
-    gameProcessWindow
+    PauseWindow
 }
 
 public enum SceneType
@@ -14,5 +14,5 @@ public enum SceneType
     None,
     Battle,
     MainPage,
-    gameProcess
+    Pause
 }

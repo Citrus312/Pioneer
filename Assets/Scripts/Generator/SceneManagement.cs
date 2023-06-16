@@ -9,17 +9,14 @@ public class SceneManagement : MonoBehaviour
     public GameObject _player;
     private float sceneLength;
     private float sceneWidth;
-    public float _distance = 10;
+    public float _distance = 5;
 
     private void Awake()
     {
-        sceneLength = 10f;
-        sceneWidth = 10f;
+        sceneLength = 20f;
+        sceneWidth = 20f;
     }
-    private void Update()
-    {
-        setSceneSize(20f, 20f);
-    }
+
 
     public GameObject getPlayer()
     {
@@ -56,6 +53,7 @@ public class SceneManagement : MonoBehaviour
         else return false;
     }
 
+    //正态分布
     public static float Rand(float u, float d)
     {
         float u1, u2, z, x;

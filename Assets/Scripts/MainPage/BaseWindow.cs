@@ -20,7 +20,7 @@ public class BaseWindow
     //UI控件
     protected Button[] btnList;
     protected Text[] textList;
-    
+
     //初始化
     protected virtual void Awake(string inputText = "")
     {
@@ -32,7 +32,7 @@ public class BaseWindow
         //填充文本内容(细节由子类实现)
         FillTextContent(inputText);
     }
-   
+
     //UI事件的注册
     protected virtual void RegisterUIEvent() { }
     //文本内容填充

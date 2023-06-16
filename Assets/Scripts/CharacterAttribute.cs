@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAttribute
+public class CharacterAttribute : MonoBehaviour
 {
     //对象池id
     private int poolIdx = 0;
