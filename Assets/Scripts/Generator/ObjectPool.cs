@@ -1,61 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class ObjectPool : MonoBehaviour
 {
     // 单例
     private static ObjectPool _poolInstance;
     // 内存区（队列）
-    protected Queue<GameObject>[] _objectPool;
-
-    public GameObject[] _objectList;
+    protected Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
 
     public static ObjectPool getInstance()
     {
         if(_poolInstance == null)
         {
-            _poolInstance = new ObjectPool();
+            _poolInstance = ObjectFactory.CreateInstance<ObjectPool>();
         }
         return _poolInstance;
     }
 
     private void Awake()
     {
-        _objectPool = new Queue<GameObject>[_objectList.Length];
+        _poolInstance = this;
     }
-    // 从池子中取出物体
-    protected GameObject get(int idx)
-    {
-        if(idx < 0 || idx >= _objectList.Length) return null;
 
+    // 从池子中取出物体
+    public GameObject get(string prefabPath)
+    {
         GameObject tmp;
-        // 如果池子内有物体，从池子取出一个物体
-        if (_objectPool[idx].Count > 0)
+
+        //Debug.Log("get " + UnityEditor.AssetDatabase.GetAssetPath(objPrefab));
+
+        // 如果有该对象的池
+        if(_objectPool.ContainsKey(prefabPath))
         {
-            // 将对象出队
-            tmp = _objectPool[idx].Dequeue();
-            tmp.SetActive(true);
+            // 如果池子内有物体，从池子取出一个物体
+            if (_objectPool[prefabPath].Count > 0)
+            {
+                // 将对象出队
+                tmp = _objectPool[prefabPath].Dequeue();
+                tmp.SetActive(true);
+                Debug.Log("从池子拿 " + tmp);
+            }
+            // 如果池子中没有物体，直接新建一个物体
+            else
+            {
+                GameObject prefabObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+                tmp = Instantiate(prefabObject, this.transform);
+                Debug.Log("有池子，没物体 " + tmp);
+            }
         }
-        // 如果池子中没有物体，直接新建一个物体
         else
         {
-            tmp = Instantiate(_objectList[idx], this.transform);
+            // 新建一个池
+            GameObject prefabObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+            tmp = Instantiate(prefabObject, this.transform);
+            //Debug.Log("tmp " + UnityEditor.AssetDatabase.GetAssetPath(tmp));
+            Queue<GameObject> q = new Queue<GameObject>();
+            _objectPool.Add(prefabPath, q);
+            Debug.Log("新建池");
         }
+
         return tmp;
     }
     // 将物体回收进池子
-    protected void remove(GameObject obj)
+    public void remove(string prefabPath, GameObject obj)
     {
-        int idx = obj.GetComponent<CharacterAttribute>().getPoolIdx();
-        if(idx < 0 || idx >= _objectList.Length) return;
-
-        // 该对象没有在队列中
-        if (!_objectPool[idx].Contains(obj))
+        Debug.Log("path:" + prefabPath);
+        // 若存在池子
+        if(_objectPool.ContainsKey(prefabPath))
         {
-            // 将对象入队
-            _objectPool[idx].Enqueue(obj);
+            // 入队
+            _objectPool[prefabPath].Enqueue(obj);
             obj.SetActive(false);
         }
+
     }
 }
