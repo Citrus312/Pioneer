@@ -5,11 +5,26 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader
+public class JsonLoader : MonoBehaviour
 {
     //武器属性池 道具属性池
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
+    //
+    public static Dictionary<string, dynamic> localData = new();
+
+    //
+    public static void LoadAndDecodeLocalData()
+    {
+        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/LocalData.json", Encoding.GetEncoding("GB2312")));
+        localData.Add("isFirstPlaying", (bool)data["isFirstPlaying"]);
+    }
+
+    //
+    public static void UpdateLocalData()
+    {
+        File.WriteAllText(Application.dataPath + "/Config/LocalData.json", JsonMapper.ToJson(localData));
+    }
 
     //加载并解析武器数据
     public static void LoadAndDecodeWeaponConfig()

@@ -20,9 +20,9 @@ public class BaseWindow
     //UI控件
     protected Button[] btnList;
     protected Text[] textList;
-    
+
     //初始化
-    protected virtual void Awake(string inputText = "")
+    protected virtual void Awake(List<string> inputText = null)
     {
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
@@ -36,7 +36,7 @@ public class BaseWindow
     //UI事件的注册
     protected virtual void RegisterUIEvent() { }
     //文本内容填充
-    protected virtual void FillTextContent(string inputText) { }
+    protected virtual void FillTextContent(List<string> inputText) { }
     //添加监听游戏事件
     protected virtual void OnAddListener() { }
     //移除游戏事件
@@ -69,7 +69,7 @@ public class BaseWindow
         return true;
     }
     //开启窗体
-    public void Open(string inputText = "")
+    public void Open(List<string> inputText = null)
     {
         //开启窗体前的窗体初始化
         if (transform == null)

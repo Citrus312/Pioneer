@@ -7,7 +7,9 @@ public class MainPageController : PersistentSingleton<MainPageController>
     private void Start()
     {
         UIRoot.Init();
-        MainPageWindow w =  new();
-        w.Open();
+        MainPageWindow.Instance.Open();
+        JsonLoader.LoadAndDecodeLocalData();
+        //JsonLoader.localData["isFirstPlaying"] = false;
+        //JsonLoader.UpdateLocalData();
     }
 }

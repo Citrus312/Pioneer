@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIRoot
+public class UIRoot : PersistentSingleton<UIRoot>
 {
     //UIRoot±æ…Ì
     static Transform transform;
@@ -23,6 +23,7 @@ public class UIRoot
         {
             GameObject obj = Resources.Load<GameObject>("UI/UIRoot");
             transform = GameObject.Instantiate<GameObject>(obj).transform;
+            DontDestroyOnLoad(transform);
         }
         if (recyclePool == null)
         {

@@ -5,7 +5,8 @@ using UnityEngine;
 public enum WindowType
 {
     TipsWindow,
-    MainPageWindow
+    MainPageWindow,
+    SettingWindow
 }
 
 public enum SceneType

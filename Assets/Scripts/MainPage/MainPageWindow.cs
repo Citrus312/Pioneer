@@ -6,8 +6,10 @@ using UnityEditor;
 
 public class MainPageWindow : BaseWindow
 {
+    private static MainPageWindow instance;
+
     //初始化主页窗体的参数
-    public MainPageWindow()
+    private MainPageWindow()
     {
         resName = "UI/MainPageWindow";
         isResident = true;
@@ -16,7 +18,19 @@ public class MainPageWindow : BaseWindow
         sceneType = SceneType.MainPage;
     }
 
-    protected override void Awake(string inputText = "")
+    public static MainPageWindow Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
+
+    protected override void Awake(List<string> inputText = null)
     {
         base.Awake();
     }
@@ -50,34 +64,34 @@ public class MainPageWindow : BaseWindow
             switch (btn.name)
             {
                 case "ContinueBtn":
-                    btn.onClick.AddListener(()=> { OnContinueBtn(btn); });
+                    btn.onClick.AddListener(()=> { OnContinueBtn(); });
                     break;
                 case "StartBtn":
-                    btn.onClick.AddListener(() => { OnStartBtn(btn); });
+                    btn.onClick.AddListener(() => { OnStartBtn(); });
                     break;
                 case "SettingBtn":
-                    btn.onClick.AddListener(() => { OnSettingBtn(btn); });
+                    btn.onClick.AddListener(() => { OnSettingBtn(); });
                     break;
                 case "TalentBtn":
-                    btn.onClick.AddListener(() => { OnTalentBtn(btn); });
+                    btn.onClick.AddListener(() => { OnTalentBtn(); });
                     break;
                 case "ExitBtn":
-                    btn.onClick.AddListener(() => { OnExitBtn(btn); });
+                    btn.onClick.AddListener(() => { OnExitBtn(); });
                     break;
                 case "ModBtn":
-                    btn.onClick.AddListener(() => { OnModBtn(btn); });
+                    btn.onClick.AddListener(() => { OnModBtn(); });
                     break;
                 case "MoreProductBtn":
-                    btn.onClick.AddListener(() => { OnMoreProductBtn(btn); });
+                    btn.onClick.AddListener(() => { OnMoreProductBtn(); });
                     break;
                 case "NewMsgBtn":
-                    btn.onClick.AddListener(() => { OnNewMsgBtn(btn); });
+                    btn.onClick.AddListener(() => { OnNewMsgBtn(); });
                     break;
                 case "CommunityBtn":
-                    btn.onClick.AddListener(() => { OnCommunityBtn(btn); });
+                    btn.onClick.AddListener(() => { OnCommunityBtn(); });
                     break;
                 case "NameListBtn":
-                    btn.onClick.AddListener(() => { OnNameListBtn(btn); });
+                    btn.onClick.AddListener(() => { OnNameListBtn(); });
                     break;
                 default:
                     Debug.LogError("An unexpected button exists!");
@@ -91,32 +105,41 @@ public class MainPageWindow : BaseWindow
         base.Update(deltaTime);
     }
 
-    protected override void FillTextContent(string inputText)
+    protected override void FillTextContent(List<string> inputText)
     {
         base.FillTextContent(inputText);
     }
 
-    private void OnContinueBtn(Button btn)
+    private void OnContinueBtn()
     {
         Debug.Log("点击了 继续 按钮");
     }
 
-    private void OnStartBtn(Button btn)
+    private void OnStartBtn()
     {
         Debug.Log("点击了 开始 按钮");
+        //if (JsonLoader.localData["isFirstPlaying"])
+        //{
+        //    //SceneLoader._instance.
+        //}
+        //else
+        //{
+
+        //}
     }
 
-    private void OnSettingBtn(Button btn)
+    private void OnSettingBtn()
     {
         Debug.Log("点击了 设置 按钮");
+        SettingWindow.Instance.Open();
     }
 
-    private void OnTalentBtn(Button btn)
+    private void OnTalentBtn()
     {
         Debug.Log("点击了 天赋 按钮");
     }
 
-    private void OnExitBtn(Button btn)
+    private void OnExitBtn()
     {
         Debug.Log("点击了 退出 按钮");
 #if UNITY_EDITOR
@@ -128,38 +151,48 @@ public class MainPageWindow : BaseWindow
 #endif
     }
 
-    private void OnModBtn(Button btn)
+    private void OnModBtn()
     {
         Debug.Log("点击了 Mod 按钮");
-        TipsWindow window = new TipsWindow();
-        window.Open("此游戏不会有任何Mod :)");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("此游戏不会有任何Mod :)");
+        window.Open(text);
     }
 
-    private void OnMoreProductBtn(Button btn)
+    private void OnMoreProductBtn()
     {
         Debug.Log("点击了 更多作品 按钮");
-        TipsWindow window = new TipsWindow();
-        window.Open("更多作品? 不可能！绝对不可能！！");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("更多作品? 不可能！绝对不可能！！");
+        window.Open(text);
     }
 
-    private void OnNewMsgBtn(Button btn)
+    private void OnNewMsgBtn()
     {
         Debug.Log("点击了 新消息 按钮");
-        TipsWindow window = new TipsWindow();
-        window.Open("这里空空如也，请回吧 :)");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("这里空空如也，请回吧 :)");
+        window.Open(text);
     }
 
-    private void OnCommunityBtn(Button btn)
+    private void OnCommunityBtn()
     {
         Debug.Log("点击了 社区 按钮");
-        TipsWindow window = new TipsWindow();
-        window.Open("社区? 那是什么?");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("社区? 那是什么?");
+        window.Open(text);
     }
 
-    private void OnNameListBtn(Button btn)
+    private void OnNameListBtn()
     {
         Debug.Log("点击了 制作人名单 按钮");
-        TipsWindow window = new TipsWindow();
-        window.Open("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
+        window.Open(text);
     }
 }
