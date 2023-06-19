@@ -20,9 +20,11 @@ public class BaseWindow
     //UI控件
     protected Button[] btnList;
     protected Text[] textList;
+    //文本
+    public List<string> inputText = new();
 
     //初始化
-    protected virtual void Awake(List<string> inputText = null)
+    protected virtual void AwakeWindow()
     {
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
@@ -30,13 +32,13 @@ public class BaseWindow
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
         //填充文本内容(细节由子类实现)
-        FillTextContent(inputText);
+        FillTextContent();
     }
 
     //UI事件的注册
     protected virtual void RegisterUIEvent() { }
     //文本内容填充
-    protected virtual void FillTextContent(List<string> inputText) { }
+    protected virtual void FillTextContent() { }
     //添加监听游戏事件
     protected virtual void OnAddListener() { }
     //移除游戏事件
@@ -46,10 +48,10 @@ public class BaseWindow
     //每次关闭
     protected virtual void OnDisable() { }
     //每帧更新
-    protected virtual void Update(float deltaTime) { }
+    protected virtual void Update() { }
     //窗体的创建
     public bool Create()
-    {
+    {      
         //UI资源为空，则无法创建
         if (string.IsNullOrEmpty(resName)) return false;
         //窗体引用为空，则创建实例
@@ -69,14 +71,14 @@ public class BaseWindow
         return true;
     }
     //开启窗体
-    public void Open(List<string> inputText = null)
+    public void Open()
     {
         //开启窗体前的窗体初始化
         if (transform == null)
         {
             if (Create())
             {
-                Awake(inputText);
+                AwakeWindow();
             }
         }
         if (!transform.gameObject.activeSelf)
@@ -121,6 +123,7 @@ public class BaseWindow
         //将窗体设为不可见
         isVisible = false;
     }
+
     //以下是获取各种窗体属性的方法
     public SceneType getSceneType()
     {

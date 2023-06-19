@@ -6,6 +6,8 @@ public class Transition : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
+    public bool _isEnd = false;
+
     private void Awake() {
         _animator = GetComponent<Animator>();
     }

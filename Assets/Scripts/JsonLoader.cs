@@ -10,49 +10,45 @@ public class JsonLoader : MonoBehaviour
     //武器属性池 道具属性池
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
-    //
-    public static Dictionary<string, dynamic> gameData = new();
 
-    //
+    //加载并解析游戏数据
     public static void LoadAndDecodeGameData()
     {
-        List<int> tempList = new();
-        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/LocalData.json", Encoding.GetEncoding("GB2312")));
-        gameData.Add("isFirstPlaying", (bool)data["isFirstPlaying"]);
-        gameData.Add("playerID", (int)data["playerID"]);
-        gameData.Add("wave", (int)data["wave"]);
-        gameData.Add("level", (int)data["level"]);
-        gameData.Add("money", (int)data["money"]);
-        gameData.Add("playerLevel", (int)data["playerLevel"]);
-        gameData.Add("exp", (int)data["exp"]);
-        JsonData temp = data["propList"];
-        for (int i = 0; i < temp.Count; i++)
+        //获取游戏内全局的游戏数据对象
+        GameData gameData = GameController.getInstance().getGameData();
+        //从json文件中读取的数据
+        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/GameData.json", Encoding.GetEncoding("GB2312")));
+        //对游戏数据对象的成员依次赋值
+        gameData._isFirstPlaying = (bool)data["isFirstPlaying"];
+        gameData._playerID = (int)data["playerID"];
+        gameData._wave = (int)data["wave"];
+        gameData._level = (int)data["level"];
+        gameData._money = (int)data["money"];
+        gameData._playerLevel = (int)data["playerLevel"];
+        gameData._exp = (int)data["exp"];
+        gameData._difficulty = (int)data["difficulty"];
+        gameData._scene = (string)data["scene"];
+        JsonData temp1 = data["propList"];
+        for (int i = 0; i < temp1.Count; i++)
         {
-            tempList.Add((int)temp[i]);
+            gameData._propList.Add((int)temp1[i]);
         }
-        gameData.Add("propList", tempList);
-        tempList.Clear();
-        temp.Clear();
-        temp = data["propCount"];
-        for (int i = 0; i < temp.Count; i++)
+        JsonData temp2 = data["propCount"];
+        for (int i = 0; i < temp2.Count; i++)
         {
-            tempList.Add((int)temp[i]);
+            gameData._propCount.Add((int)temp2[i]);
         }
-        gameData.Add("propCount", tempList);
-        tempList.Clear();
-        temp.Clear();
-        temp = data["weaponList"];
-        for (int i = 0; i < temp.Count; i++)
+        JsonData temp3 = data["weaponList"];
+        for (int i = 0; i < temp3.Count; i++)
         {
-            tempList.Add((int)temp[i]);
+            gameData._weaponList.Add((int)temp3[i]);
         }
-        gameData.Add("weaponList", tempList);
     }
 
-    //
+    //保存当前的游戏数据
     public static void UpdateGameData()
     {
-        File.WriteAllText(Application.dataPath + "/Config/GameData.json", JsonMapper.ToJson(gameData));
+        File.WriteAllText(Application.dataPath + "/Config/GameData.json", JsonMapper.ToJson(GameController.getInstance().getGameData().Data2Dict()));
     }
 
     //加载并解析武器数据
