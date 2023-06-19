@@ -6,10 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(MeleeMonsterHit))]
 public class AIController : Controller
 {
-    //TODO: 后期修改成向场景询问玩家位置
-    //玩家位置
-    public GameObject _player;
-
     //击退时间
     [SerializeField] protected float beatBackTime = 0.1f;
     //击退速度
@@ -68,8 +64,8 @@ public class AIController : Controller
     //计算怪物移动方向
     protected Vector2 getMoveDirection()
     {
-        //TODO: 后期修改成向场景询问玩家位置
-        Vector3 playerPos = _player.transform.position;
+        //向场景询问玩家位置
+        Vector3 playerPos = GameController.getInstance().getPlayer().transform.position;
 
         Vector3 aiPos = _transform.position;
         Vector2 moveDirection = new Vector2((playerPos - aiPos).x, (playerPos - aiPos).y).normalized;

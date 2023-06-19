@@ -7,7 +7,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色或怪物的种类ID
     private int id = 0;
     //角色的基础移速
-    private float rawMoveSpeed = 0.1f;
+    private float rawMoveSpeed = 1.0f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
     //角色的当前生命值
@@ -207,7 +207,7 @@ public class CharacterAttribute : MonoBehaviour
 
     //用于初始化角色
     public void setAllPlayerAttribute(int id, float rawMoveSpeed, float currentHealth, float currentExp, int currentPlayerLevel,
-        float basicUpgradeExp, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication, 
+        float basicUpgradeExp, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication,
         float meleeDamage, float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate,
         float engieering, float attackRangeAmplification, float armorStrength, float dodgeRate, float moveSpeedAmplification,
         float scanAccuracy, float collectEfficiency)
@@ -238,7 +238,7 @@ public class CharacterAttribute : MonoBehaviour
 
     //用于初始化怪物
     public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
-        float meleeDamage,float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
+        float meleeDamage, float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
         float crateRate, int firstGenWave)
     {
         setID(id);

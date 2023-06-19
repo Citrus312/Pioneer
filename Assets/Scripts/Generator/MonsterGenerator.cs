@@ -88,10 +88,6 @@ public class MonsterGenerator : Generator
     protected void generateMonster() // 待补充
     {
         GameObject monster = generateObject(_monsterPrefabPath, _redCross.transform.position, 1);
-        if (monster != null)
-        {
-            monster.GetComponent<AIController>()._player = _player;
-        }
     }
 
     // 随机获取怪物生成位置

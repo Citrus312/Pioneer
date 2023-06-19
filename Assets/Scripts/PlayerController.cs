@@ -13,7 +13,7 @@ public class PlayerController : Controller
         //如果无敌时间已过则允许伤害并重置无敌时间
         if (Time.time > _invulnerabilityTime)
         {
-            _invulnerabilityTime = Time.time + _characterAttribute.getInvulnerabilityTime();
+            _invulnerabilityTime = Time.time + _characterAttribute.getImmuneTime();
             return true;
         }
         //否则拒绝伤害
