@@ -19,7 +19,7 @@ public class PausePageWindow : BaseWindow
         sceneType = SceneType.Pause;
     }
 
-    protected override void Awake(string inputText = "")
+    protected override void Awake(List<string> inputText = null)
     {
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
@@ -100,14 +100,66 @@ public class PausePageWindow : BaseWindow
         //}
     }
 
-    protected override void FillTextContent(string inputText)
+    protected override void FillTextContent(List<string> inputText)
     {
         foreach (Text txt in textList)
         {
-            if (txt.name == "AttributeText")
+            switch (txt.name)
             {
-                txt.text = inputText;
-                break;
+                case "MaxHealth":
+                    txt.text = inputText[0];
+                    break;
+                case "CurrentPlayerLevel":
+                    txt.text = inputText[1];
+                    break;
+                case "HealthRecovery":
+                    txt.text = inputText[2];
+                    break;
+                case "HealthSteal":
+                    txt.text = inputText[3];
+                    break;
+                case "AttackAmplification":
+                    txt.text = inputText[4];
+                    break;
+                case "MeleeDamage":
+                    txt.text = inputText[5];
+                    break;
+                case "RangedDamage":
+                    txt.text = inputText[6];
+                    break;
+                case "AbilityDamage":
+                    txt.text = inputText[7];
+                    break;
+                case "AttackSpeedAmplification":
+                    txt.text = inputText[8];
+                    break;
+                case "CriticalRate":
+                    txt.text = inputText[9];
+                    break;
+                case "Engineering":
+                    txt.text = inputText[10];
+                    break;
+                case "AttackRangeAmplification":
+                    txt.text = inputText[11];
+                    break;
+                case "ArmorStrength":
+                    txt.text = inputText[12];
+                    break;
+                case "DodgeRate":
+                    txt.text = inputText[13];
+                    break;
+                case "MoveSpeedAmplification":
+                    txt.text = inputText[14];
+                    break;
+                case "ScanAccuracy":
+                    txt.text = inputText[15];
+                    break;
+                case "CollectEfficiency":
+                    txt.text = inputText[16];
+                    break;
+                default:
+                    Debug.LogError("An unexpected txt exists!");
+                    break;
             }
         }
     }

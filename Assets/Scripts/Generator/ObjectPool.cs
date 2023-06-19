@@ -47,7 +47,7 @@ public class ObjectPool : MonoBehaviour
     // 将物体回收进池子
     public void remove(GameObject obj)
     {
-        int idx = obj.GetComponent<CharacterAttribute>().getPoolIdx();
+        //int idx = obj.GetComponent<CharacterAttribute>().getPoolIdx();
         if (idx < 0 || idx >= _objectList.Length) return;
 
         // 该对象没有在队列中
