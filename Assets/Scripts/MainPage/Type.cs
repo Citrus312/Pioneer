@@ -6,7 +6,7 @@ public enum WindowType
 {
     TipsWindow,
     MainPageWindow,
-    PauseWindow
+    SettingWindow
 }
 
 public enum SceneType

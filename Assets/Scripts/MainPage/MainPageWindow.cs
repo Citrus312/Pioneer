@@ -6,8 +6,10 @@ using UnityEditor;
 
 public class MainPageWindow : BaseWindow
 {
-    //³õÊ¼»¯Ö÷Ò³´°ÌåµÄ²ÎÊý
-    public MainPageWindow()
+    private static MainPageWindow instance;
+
+    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
+    private MainPageWindow()
     {
         resName = "UI/MainPageWindow";
         isResident = true;
@@ -16,7 +18,19 @@ public class MainPageWindow : BaseWindow
         sceneType = SceneType.MainPage;
     }
 
-    protected override void Awake(string inputText = "")
+    public static MainPageWindow Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
+
+    protected override void Awake(List<string> inputText = null)
     {
         base.Awake();
     }
@@ -44,40 +58,40 @@ public class MainPageWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-        //¸øUIÖÐµÄ°´Å¥°ó¶¨µã»÷ÊÂ¼þ
+        //ï¿½ï¿½UIï¿½ÐµÄ°ï¿½Å¥ï¿½ó¶¨µï¿½ï¿½ï¿½Â¼ï¿½
         foreach (Button btn in btnList)
         {
             switch (btn.name)
             {
                 case "ContinueBtn":
-                    btn.onClick.AddListener(() => { OnContinueBtn(btn); });
+                    btn.onClick.AddListener(()=> { OnContinueBtn(); });
                     break;
                 case "StartBtn":
-                    btn.onClick.AddListener(() => { OnStartBtn(btn); });
+                    btn.onClick.AddListener(() => { OnStartBtn(); });
                     break;
                 case "SettingBtn":
-                    btn.onClick.AddListener(() => { OnSettingBtn(btn); });
+                    btn.onClick.AddListener(() => { OnSettingBtn(); });
                     break;
                 case "TalentBtn":
-                    btn.onClick.AddListener(() => { OnTalentBtn(btn); });
+                    btn.onClick.AddListener(() => { OnTalentBtn(); });
                     break;
                 case "ExitBtn":
-                    btn.onClick.AddListener(() => { OnExitBtn(btn); });
+                    btn.onClick.AddListener(() => { OnExitBtn(); });
                     break;
                 case "ModBtn":
-                    btn.onClick.AddListener(() => { OnModBtn(btn); });
+                    btn.onClick.AddListener(() => { OnModBtn(); });
                     break;
                 case "MoreProductBtn":
-                    btn.onClick.AddListener(() => { OnMoreProductBtn(btn); });
+                    btn.onClick.AddListener(() => { OnMoreProductBtn(); });
                     break;
                 case "NewMsgBtn":
-                    btn.onClick.AddListener(() => { OnNewMsgBtn(btn); });
+                    btn.onClick.AddListener(() => { OnNewMsgBtn(); });
                     break;
                 case "CommunityBtn":
-                    btn.onClick.AddListener(() => { OnCommunityBtn(btn); });
+                    btn.onClick.AddListener(() => { OnCommunityBtn(); });
                     break;
                 case "NameListBtn":
-                    btn.onClick.AddListener(() => { OnNameListBtn(btn); });
+                    btn.onClick.AddListener(() => { OnNameListBtn(); });
                     break;
                 default:
                     Debug.LogError("An unexpected button exists!");
@@ -91,75 +105,94 @@ public class MainPageWindow : BaseWindow
         base.Update(deltaTime);
     }
 
-    protected override void FillTextContent(string inputText)
+    protected override void FillTextContent(List<string> inputText)
     {
         base.FillTextContent(inputText);
     }
 
-    private void OnContinueBtn(Button btn)
+    private void OnContinueBtn()
     {
-        Debug.Log("µã»÷ÁË ¼ÌÐø °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
     }
 
-    private void OnStartBtn(Button btn)
+    private void OnStartBtn()
     {
-        Debug.Log("µã»÷ÁË ¿ªÊ¼ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¼ ï¿½ï¿½Å¥");
+        //if (JsonLoader.localData["isFirstPlaying"])
+        //{
+        //    //SceneLoader._instance.
+        //}
+        //else
+        //{
+
+        //}
     }
 
-    private void OnSettingBtn(Button btn)
+    private void OnSettingBtn()
     {
-        Debug.Log("µã»÷ÁË ÉèÖÃ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
+        SettingWindow.Instance.Open();
     }
 
-    private void OnTalentBtn(Button btn)
+    private void OnTalentBtn()
     {
-        Debug.Log("µã»÷ÁË Ìì¸³ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸³ ï¿½ï¿½Å¥");
     }
 
-    private void OnExitBtn(Button btn)
+    private void OnExitBtn()
     {
-        Debug.Log("µã»÷ÁË ÍË³ö °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë³ï¿½ ï¿½ï¿½Å¥");
         //#if UNITY_EDITOR
-        //        //unity±à¼­Æ÷ÖÐµ÷ÊÔÊ¹ÓÃ
+        //        //unityï¿½à¼­ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
         //        EditorApplication.isPlaying = false;
         //#else
-        //        //µ¼³öÓÎÏ·ºóÊ¹ÓÃ
+        //        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ê¹ï¿½ï¿½
         //        Application.Quit();
         //#endif
     }
 
-    private void OnModBtn(Button btn)
+    private void OnModBtn()
     {
-        Debug.Log("µã»÷ÁË Mod °´Å¥");
-        TipsWindow window = new TipsWindow();
-        window.Open("´ËÓÎÏ·²»»áÓÐÈÎºÎMod :)");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ Mod ï¿½ï¿½Å¥");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½Mod :)");
+        window.Open(text);
     }
 
-    private void OnMoreProductBtn(Button btn)
+    private void OnMoreProductBtn()
     {
-        Debug.Log("µã»÷ÁË ¸ü¶à×÷Æ· °´Å¥");
-        TipsWindow window = new TipsWindow();
-        window.Open("¸ü¶à×÷Æ·? ²»¿ÉÄÜ£¡¾ø¶Ô²»¿ÉÄÜ£¡£¡");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ· ï¿½ï¿½Å¥");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·? ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½");
+        window.Open(text);
     }
 
-    private void OnNewMsgBtn(Button btn)
+    private void OnNewMsgBtn()
     {
-        Debug.Log("µã»÷ÁË ÐÂÏûÏ¢ °´Å¥");
-        TipsWindow window = new TipsWindow();
-        window.Open("ÕâÀï¿Õ¿ÕÈçÒ²£¬Çë»Ø°É :)");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¢ ï¿½ï¿½Å¥");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ø°ï¿½ :)");
+        window.Open(text);
     }
 
-    private void OnCommunityBtn(Button btn)
+    private void OnCommunityBtn()
     {
-        Debug.Log("µã»÷ÁË ÉçÇø °´Å¥");
-        TipsWindow window = new TipsWindow();
-        window.Open("ÉçÇø? ÄÇÊÇÊ²Ã´?");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½Ê²Ã´?");
+        window.Open(text);
     }
 
-    private void OnNameListBtn(Button btn)
+    private void OnNameListBtn()
     {
-        Debug.Log("µã»÷ÁË ÖÆ×÷ÈËÃûµ¥ °´Å¥");
-        TipsWindow window = new TipsWindow();
-        window.Open("Ö÷²ß»®/¼¼ÃÀ/±à³Ì/¶àÃæÊÖ: Óà¼ÎÉ­\n" + "Ö÷³ÌÐò/´óÀÐ: ÄªÑ¸\n" + "Ö÷³ÌÐò/×´¿ö°Ù³ö: ÁõÓî·Æ\n" + "ÊýÖµ²ß»®/ËØ²Ä¿àÊÖ: Ö£ÌÎ\n" + "UIÉè¼Æ/ÈÕ³£±»´ß: »Æ¿¡ÁØ");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
+        TipsWindow window = new();
+        List<string> text = new();
+        text.Add("ï¿½ï¿½ï¿½ß»ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½É­\n" + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½: ÄªÑ¸\n" + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/×´ï¿½ï¿½ï¿½Ù³ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½\n" + "ï¿½ï¿½Öµï¿½ß»ï¿½/ï¿½Ø²Ä¿ï¿½ï¿½ï¿½: Ö£ï¿½ï¿½\n" + "UIï¿½ï¿½ï¿½/ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½Æ¿ï¿½ï¿½ï¿½");
+        window.Open(text);
     }
 }

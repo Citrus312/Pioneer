@@ -14,7 +14,7 @@ public class TipsWindow : BaseWindow
         sceneType = SceneType.None;
     }
 
-    protected override void Awake(string inputText = "")
+    protected override void Awake(List<string> inputText = null)
     {
         base.Awake(inputText);
     }
@@ -44,7 +44,7 @@ public class TipsWindow : BaseWindow
         base.Update(deltaTime);
     }
 
-    protected override void FillTextContent(string inputText)
+    protected override void FillTextContent(List<string> inputText)
     {
         base.FillTextContent(inputText);
 
@@ -53,7 +53,7 @@ public class TipsWindow : BaseWindow
             switch (text.name)
             {
                 case "TipsText":
-                    text.text = inputText;
+                    text.text = inputText[0];
                     break;
                 default:
                     break;
