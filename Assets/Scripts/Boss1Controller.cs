@@ -34,6 +34,10 @@ public class Boss1Controller : AIController
 
         //设置enemy标签
         gameObject.tag = "Enemy";
+
+        //设置击退参数
+        beatBackTime = 0;
+        beatBackTimeSpeed = 0;
     }
 
     // Update is called once per frame

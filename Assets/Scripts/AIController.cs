@@ -22,7 +22,7 @@ public class AIController : Controller
     }
 
     //怪物被击退
-    public IEnumerator beatBack(Vector2 direction)
+    private IEnumerator beatBack(Vector2 direction)
     {
         //计时器
         float timer = 0;
