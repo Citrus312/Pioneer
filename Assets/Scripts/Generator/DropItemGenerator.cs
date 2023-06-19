@@ -26,7 +26,7 @@ public class DropItemGenerator : Generator
         return instance;
     }
 
-    protected void dropItem(Vector3 pos)
+    public void dropItem(Vector3 pos)
     {
         int count = Random.Range(_minGenerateCnt, _maxGenerateCnt);
         generateObject(_droppedItem, pos, count);

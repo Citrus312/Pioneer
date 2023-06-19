@@ -13,17 +13,17 @@ public class DialogueController : TextController
 
     [Header("头像")]
     public List<Sprite> _headList;
-
+ 
 
     protected override void playDialogue()
     {
-        if (_index == _textList.Count)
+        if(_index == _textList.Count)
         {
             // 当前对话结束
             endDialogue();
             return;
         }
-        if (_textFinished)
+        if(_textFinished)
         {
             changeHeadImage();
             changeName();
@@ -42,7 +42,7 @@ public class DialogueController : TextController
     void changeHeadImage()
     {
         int headIdx = base._textList[_index][0] - 'A';
-        if (headIdx >= 0 && headIdx < _headList.Count)
+        if(headIdx >= 0 && headIdx < _headList.Count)
         {
             _headImage.sprite = _headList[headIdx];
         }
