@@ -10,15 +10,14 @@ public class PausePageController : PersistentSingleton<PausePageController>
 {
     public GameObject _Player;
     public bool isPaused = false;
-    PausePageWindow pausePageWindow;
+
 
     private void Start()
     {
         UIRoot.Init();
-        pausePageWindow = new();
-        pausePageWindow.Open(getAttribute(_Player));
+        PausePageWindow.Instance.Open(getAttribute(_Player));
         setAllTriggers();
-        pausePageWindow.Close();
+        PausePageWindow.Instance.Close();
     }
 
     private void Update()
@@ -26,13 +25,13 @@ public class PausePageController : PersistentSingleton<PausePageController>
         if (getCurrentScene() != "MainPage")
         {
             if (Input.GetKeyUp(KeyCode.Escape))
-                if (pausePageWindow.getTransform().gameObject.activeSelf)
+                if (PausePageWindow.Instance.getTransform().gameObject.activeSelf)
                 {
-                    pausePageWindow.Close();
+                    PausePageWindow.Instance.Close();
                 }
                 else
                 {
-                    pausePageWindow.Open();
+                    PausePageWindow.Instance.Open();
                 }
         }
     }
@@ -135,7 +134,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
     //first,second为对应第一次，第二次所查找的Text对象
     public void setEventTrigger(string secondToFind)
     {
-        Transform first = pausePageWindow.getTransform().Find("Property");
+        Transform first = PausePageWindow.Instance.getTransform().Find("Property");
         Transform second = first.Find(secondToFind);
         second.GetComponent<EventTrigger>().triggers.Add(
                 new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
@@ -237,7 +236,6 @@ public class PausePageController : PersistentSingleton<PausePageController>
                 transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[16];
                 break;
             default:
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 break;
         }
         transform.Find("Panel").gameObject.SetActive(true);

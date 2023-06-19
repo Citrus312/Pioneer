@@ -7,10 +7,23 @@ using UnityEngine.EventSystems;
 
 public class PausePageWindow : BaseWindow
 {
+    private static PausePageWindow instance;
+
+    public static PausePageWindow Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
 
     private EventTrigger eventTrigger;
     //初始化暂停界面的参数
-    public PausePageWindow()
+    private PausePageWindow()
     {
         resName = "UI/PauseWindow";
         isResident = true;
