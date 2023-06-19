@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class DialogueController : TextController
 {
@@ -20,7 +21,6 @@ public class DialogueController : TextController
         {
             // 当前对话结束
             endDialogue();
-            
             return;
         }
         if(_textFinished)
@@ -33,8 +33,8 @@ public class DialogueController : TextController
         else
         {
             //快进
-            onEndText();
             _textLabel.text = _textList[_index];
+            onEndText();
         }
     }
 
@@ -63,7 +63,9 @@ public class DialogueController : TextController
     public override void endDialogue()
     {
         base.endDialogue();
-        SceneLoader._instance.loadScene("LevelSelect");
+        // timeline继续
+        _timeline.playableGraph.GetRootPlayable(0).SetSpeed(1);
     }
+
 
 }

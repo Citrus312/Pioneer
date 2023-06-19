@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StoryController : TextController
 {
-    public GameObject _nextLog;
 
     StoryController()
     {
@@ -23,12 +22,18 @@ public class StoryController : TextController
     public override void endDialogue()
     {
         base.endDialogue();
-        Invoke("activateNextLog", 2.0f);
         return;
     }
 
-    void activateNextLog()
+    public override void endEvent()
     {
-        _nextLog.SetActive(true);
+        base.endEvent();
+        if(_timeline != null)
+        {
+            _timeline.Play();
+        }
+        Invoke("activateNextLog", 4.0f);
     }
+
+    
 }
