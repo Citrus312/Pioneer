@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    //控制器的单例实例
     private static GameController _instance;
-
-    private GameData _gameData;
+    //当前的游戏数据
+    private GameData _gameData = new();
 
     public GameObject _playerPrefab;
     public GameObject _player;
@@ -44,11 +45,11 @@ public class GameController : MonoBehaviour
     private void loadResources()
     {
         // 加载场景资源
-        
+
         // 加载玩家资源
-        
+
         // 加载游戏配置资源
-        
+        JsonLoader.LoadAndDecodeGameData();
     }
 
     private void initScene()
@@ -112,6 +113,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        
+        loadResources();
     }
 }

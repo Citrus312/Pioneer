@@ -6,12 +6,14 @@ public enum WindowType
 {
     TipsWindow,
     MainPageWindow,
-    SettingWindow
+    SettingWindow,
+    DifficultySelectWindow
 }
 
 public enum SceneType
 {
     None,
     Battle,
-    MainPage
+    MainPage,
+    Select
 }

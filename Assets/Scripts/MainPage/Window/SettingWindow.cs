@@ -31,18 +31,18 @@ public class SettingWindow : BaseWindow
         }
     }
 
-    protected override void Awake(List<string> inputText = null)
+    protected override void AwakeWindow()
     {
         masterSld = transform.Find("MasterBar").GetComponent<Slider>();
         musicSld = transform.Find("MusicBar").GetComponent<Slider>();
         soundSld = transform.Find("SoundBar").GetComponent<Slider>();
         
-        base.Awake(inputText);
+        base.AwakeWindow();
     }
 
-    protected override void FillTextContent(List<string> inputText)
+    protected override void FillTextContent()
     {
-        base.FillTextContent(inputText);
+        base.FillTextContent();
     }
 
     protected override void OnAddListener()
@@ -95,9 +95,9 @@ public class SettingWindow : BaseWindow
         soundSld.onValueChanged.AddListener((float val) => { OnSoundSld(); });
     }
 
-    protected override void Update(float deltaTime)
+    protected override void Update()
     {
-        base.Update(deltaTime);
+        base.Update();
     }
 
     private void OnCloseBtn()

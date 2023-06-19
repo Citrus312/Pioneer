@@ -30,9 +30,9 @@ public class MainPageWindow : BaseWindow
         }
     }
 
-    protected override void Awake(List<string> inputText = null)
+    protected override void AwakeWindow()
     {
-        base.Awake();
+        base.AwakeWindow();
     }
 
     protected override void OnAddListener()
@@ -48,6 +48,22 @@ public class MainPageWindow : BaseWindow
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        foreach (Button btn in btnList)
+        {
+            if (btn.name == "ContinueBtn")
+            {
+                if (GameController.getInstance().getGameData()._weaponList.Count == 0)
+                {
+                    btn.interactable = false;
+                }
+                else
+                {
+                    btn.interactable = true;
+                }
+                
+            }
+        }
     }
 
     protected override void OnDisable()
@@ -100,14 +116,14 @@ public class MainPageWindow : BaseWindow
         }
     }
 
-    protected override void Update(float deltaTime)
+    protected override void Update()
     {
-        base.Update(deltaTime);
+        base.Update();
     }
 
-    protected override void FillTextContent(List<string> inputText)
+    protected override void FillTextContent()
     {
-        base.FillTextContent(inputText);
+        base.FillTextContent();
     }
 
     private void OnContinueBtn()
@@ -118,14 +134,17 @@ public class MainPageWindow : BaseWindow
     private void OnStartBtn()
     {
         Debug.Log("点击了 开始 按钮");
-        //if (JsonLoader.localData["isFirstPlaying"])
-        //{
-        //    //SceneLoader._instance.
-        //}
-        //else
-        //{
+        GameController.getInstance().getGameData().ResetGameData();
+        if (GameController.getInstance().getGameData()._isFirstPlaying)
+        {
+            SceneLoader._instance.loadScene("OpeningAnimation");  
+        }
+        else
+        {
+            SceneLoader._instance.loadScene("LevelSelect");
+        }
 
-        //}
+        DelayToInvoke.DelayToInvokeBySecond(()=> { Close(); }, 1.8f);
     }
 
     private void OnSettingBtn()
@@ -157,7 +176,8 @@ public class MainPageWindow : BaseWindow
         TipsWindow window = new();
         List<string> text = new();
         text.Add("此游戏不会有任何Mod :)");
-        window.Open(text);
+        window.inputText = text;
+        window.Open();
     }
 
     private void OnMoreProductBtn()
@@ -166,7 +186,8 @@ public class MainPageWindow : BaseWindow
         TipsWindow window = new();
         List<string> text = new();
         text.Add("更多作品? 不可能！绝对不可能！！");
-        window.Open(text);
+        window.inputText = text;
+        window.Open();
     }
 
     private void OnNewMsgBtn()
@@ -175,7 +196,8 @@ public class MainPageWindow : BaseWindow
         TipsWindow window = new();
         List<string> text = new();
         text.Add("这里空空如也，请回吧 :)");
-        window.Open(text);
+        window.inputText = text;
+        window.Open();
     }
 
     private void OnCommunityBtn()
@@ -184,7 +206,8 @@ public class MainPageWindow : BaseWindow
         TipsWindow window = new();
         List<string> text = new();
         text.Add("社区? 那是什么?");
-        window.Open(text);
+        window.inputText = text;
+        window.Open();
     }
 
     private void OnNameListBtn()
@@ -193,6 +216,7 @@ public class MainPageWindow : BaseWindow
         TipsWindow window = new();
         List<string> text = new();
         text.Add("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
-        window.Open(text);
+        window.inputText = text;
+        window.Open();
     }
 }

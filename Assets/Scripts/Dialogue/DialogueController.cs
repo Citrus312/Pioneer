@@ -20,6 +20,7 @@ public class DialogueController : TextController
         {
             // 当前对话结束
             endDialogue();
+            
             return;
         }
         if(_textFinished)
@@ -59,5 +60,10 @@ public class DialogueController : TextController
         _index++;
     }
 
+    public override void endDialogue()
+    {
+        base.endDialogue();
+        SceneLoader._instance.loadScene("LevelSelect");
+    }
 
 }

@@ -1,6 +1,8 @@
 {
   "isFirstPlaying": true,
   "playerID": 0,
+  "scene": "",
+  "difficulty": 0,
   "propList": [],
   "propCount": [],
   "weaponList": [],

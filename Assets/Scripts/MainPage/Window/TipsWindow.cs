@@ -14,9 +14,9 @@ public class TipsWindow : BaseWindow
         sceneType = SceneType.None;
     }
 
-    protected override void Awake(List<string> inputText = null)
+    protected override void AwakeWindow()
     {
-        base.Awake(inputText);
+        base.AwakeWindow();
     }
 
     protected override void OnAddListener()
@@ -39,14 +39,14 @@ public class TipsWindow : BaseWindow
         base.OnDisable();
     }
 
-    protected override void Update(float deltaTime)
+    protected override void Update()
     {
-        base.Update(deltaTime);
+        base.Update();
     }
 
-    protected override void FillTextContent(List<string> inputText)
+    protected override void FillTextContent()
     {
-        base.FillTextContent(inputText);
+        base.FillTextContent();
 
         foreach (Text text in textList)
         {
