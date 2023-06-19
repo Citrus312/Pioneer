@@ -19,18 +19,18 @@ public class PausePageController : PersistentSingleton<PausePageController>
 
     private void Update()
     {
-        //if (getCurrentScene() != "MainPage")
-        //{
-        if (Input.GetKeyUp(KeyCode.Escape))
-            if (pausePageWindow.getTransform().gameObject.activeSelf)
-            {
-                pausePageWindow.Close();
-            }
-            else
-            {
-                pausePageWindow.Open();
-            }
-        //}
+        if (getCurrentScene() != "MainPage")
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+                if (pausePageWindow.getTransform().gameObject.activeSelf)
+                {
+                    pausePageWindow.Close();
+                }
+                else
+                {
+                    pausePageWindow.Open();
+                }
+        }
     }
 
     private string getAttribute(GameObject _player)
@@ -44,5 +44,11 @@ public class PausePageController : PersistentSingleton<PausePageController>
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         return currentSceneName;
+    }
+    public void OnPiont()
+    {
+        Transform property = pausePageWindow.getTransform().Find("Property");
+        Transform tip = property.Find("panel");
+        tip.gameObject.SetActive(true);
     }
 }

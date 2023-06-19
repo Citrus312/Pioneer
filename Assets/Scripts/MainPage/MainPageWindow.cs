@@ -119,13 +119,13 @@ public class MainPageWindow : BaseWindow
     private void OnExitBtn(Button btn)
     {
         Debug.Log("点击了 退出 按钮");
-#if UNITY_EDITOR
-        //unity编辑器中调试使用
-        EditorApplication.isPlaying = false;
-#else
-        //导出游戏后使用
-        Application.Quit();
-#endif
+        //#if UNITY_EDITOR
+        //        //unity编辑器中调试使用
+        //        EditorApplication.isPlaying = false;
+        //#else
+        //        //导出游戏后使用
+        //        Application.Quit();
+        //#endif
     }
 
     private void OnModBtn(Button btn)
