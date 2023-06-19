@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class Damager : MonoBehaviour
 {
+    //���������� ���������ߵ����� ��������
     protected WeaponAttribute _weaponAttr;
     protected CharacterAttribute _ownerAttr;
     protected Weapon _weapon;
@@ -30,7 +31,7 @@ public class Damager : MonoBehaviour
         float criticalBonus = _weaponAttr.getCriticalBonus();
         float criticalRate = _weaponAttr.getCriticalRate();
         float armorStrength = targetAttr.getArmorStrength();
-
+        //�����ܻ�������˺�����
         float damageRedution;
         if (armorStrength >= 0)
         {
@@ -40,7 +41,7 @@ public class Damager : MonoBehaviour
         {
             damageRedution = armorStrength * 0.02f;
         }
-
+        //���㹥�����Ƿ񴥷�����
         float crit = Random.Range(0f, 1f);
         if (crit < criticalRate)
         {
@@ -50,6 +51,7 @@ public class Damager : MonoBehaviour
         {
             damage = weaponDamage * (1 - damageRedution);
         }
+        //����˺��ж�
         damage = damage > 1 ? damage : 1;
 
         //显示伤害
@@ -75,6 +77,7 @@ public class Damager : MonoBehaviour
             }
         }
 
+        //Ӧ�ü�������˺�
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
