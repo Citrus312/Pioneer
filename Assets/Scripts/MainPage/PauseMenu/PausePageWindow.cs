@@ -78,26 +78,7 @@ public class PausePageWindow : BaseWindow
                     break;
             }
         }
-        //foreach (Text text in textList)
-        //{
-        //    switch (text.name)
-        //    {
-        //        case "HealthText":
-        //            // 获取 UI Text 对象上的 Event Trigger 组件
-        //            EventTrigger eventTrigger = text.GetComponent<EventTrigger>();
 
-        //            // 创建一个 Entry 并将其事件设置为 “PointerEnter”
-        //            EventTrigger.Entry entry = new EventTrigger.Entry();
-        //            entry.eventID = EventTriggerType.PointerEnter;
-
-        //            // 添加一个回调函数到 Entry 中
-        //            entry.callback.AddListener((data) => { OnHealthText(); });
-
-        //            // 将 Entry 添加到 Event Trigger 的事件列表中
-        //            eventTrigger.triggers.Add(entry);
-        //            break;
-        //    }
-        //}
     }
 
     protected override void FillTextContent(List<string> inputText)
@@ -106,10 +87,10 @@ public class PausePageWindow : BaseWindow
         {
             switch (txt.name)
             {
-                case "MaxHealth":
+                case "CurrentPlayerLevel":
                     txt.text = inputText[0];
                     break;
-                case "CurrentPlayerLevel":
+                case "MaxHealth":
                     txt.text = inputText[1];
                     break;
                 case "HealthRecovery":
@@ -158,7 +139,7 @@ public class PausePageWindow : BaseWindow
                     txt.text = inputText[16];
                     break;
                 default:
-                    Debug.LogError("An unexpected txt exists!");
+                    Debug.Log("An unexpected txt exists!");
                     break;
             }
         }
@@ -177,7 +158,7 @@ public class PausePageWindow : BaseWindow
 
     private void OnSettingBtn(Button btn)
     {
-        Debug.Log("点击了 设置 按钮");
+        SettingWindow.Instance.Open();
     }
 
     private void OnExitBtn(Button btn)
@@ -185,10 +166,4 @@ public class PausePageWindow : BaseWindow
         Close(true);
         SceneLoader._instance.loadScene("MainPage");
     }
-
-    public void OnHealthText()
-    {
-
-    }
-
 }

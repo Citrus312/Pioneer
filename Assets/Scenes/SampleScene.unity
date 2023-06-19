@@ -1320,7 +1320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86aced947fb59ce409604497f09b89f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectList: []
 --- !u!4 &939023683
 Transform:
   m_ObjectHideFlags: 0
@@ -1790,7 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94319191e21030d4ea0477491638235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterPrefab: {fileID: 113607264010915762, guid: b07a9d56b8b1a7d4499d0e747bc64b6b, type: 3}
+  _monsterPrefab: {fileID: 0}
   _player: {fileID: 141885342}
   _sceneManage: {fileID: 681597059}
   _distance: 2
