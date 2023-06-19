@@ -40,7 +40,7 @@ public class PausePageWindow : BaseWindow
         //注册UI事件
         RegisterUIEvent();
         //填充文本内容
-        FillTextContent(inputText);
+        FillTextContent();
 
     }
 
@@ -94,7 +94,7 @@ public class PausePageWindow : BaseWindow
 
     }
 
-    protected override void FillTextContent(List<string> inputText)
+    protected override void FillTextContent()
     {
         foreach (Text txt in textList)
         {

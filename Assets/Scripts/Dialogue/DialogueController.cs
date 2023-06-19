@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class DialogueController : TextController
 {
@@ -12,18 +13,17 @@ public class DialogueController : TextController
 
     [Header("头像")]
     public List<Sprite> _headList;
- 
+
 
     protected override void playDialogue()
     {
-        if(_index == _textList.Count)
+        if (_index == _textList.Count)
         {
             // 当前对话结束
             endDialogue();
-            
             return;
         }
-        if(_textFinished)
+        if (_textFinished)
         {
             changeHeadImage();
             changeName();
@@ -33,8 +33,8 @@ public class DialogueController : TextController
         else
         {
             //快进
-            onEndText();
             _textLabel.text = _textList[_index];
+            onEndText();
         }
     }
 
@@ -42,7 +42,7 @@ public class DialogueController : TextController
     void changeHeadImage()
     {
         int headIdx = base._textList[_index][0] - 'A';
-        if(headIdx >= 0 && headIdx < _headList.Count)
+        if (headIdx >= 0 && headIdx < _headList.Count)
         {
             _headImage.sprite = _headList[headIdx];
         }
@@ -63,7 +63,9 @@ public class DialogueController : TextController
     public override void endDialogue()
     {
         base.endDialogue();
-        SceneLoader._instance.loadScene("LevelSelect");
+        // timeline继续
+        _timeline.playableGraph.GetRootPlayable(0).SetSpeed(1);
     }
+
 
 }

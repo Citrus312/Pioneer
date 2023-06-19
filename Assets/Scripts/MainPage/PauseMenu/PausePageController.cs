@@ -15,7 +15,8 @@ public class PausePageController : PersistentSingleton<PausePageController>
     private void Start()
     {
         UIRoot.Init();
-        PausePageWindow.Instance.Open(getAttribute(_Player));
+        PausePageWindow.Instance.inputText = getAttribute(_Player);
+        PausePageWindow.Instance.Open();
         setAllTriggers();
         PausePageWindow.Instance.Close();
     }

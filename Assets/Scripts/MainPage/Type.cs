@@ -7,7 +7,7 @@ public enum WindowType
     TipsWindow,
     MainPageWindow,
     SettingWindow,
-    PauseWindow
+    PauseWindow,
     DifficultySelectWindow
 }
 
@@ -16,6 +16,6 @@ public enum SceneType
     None,
     Battle,
     MainPage,
-    Pause
+    Pause,
     Select
 }
