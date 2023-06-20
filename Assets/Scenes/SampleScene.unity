@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &71095843
 Animator:
   serializedVersion: 4
@@ -354,7 +354,6 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  _player: {fileID: 0}
   _bulletPrefab: Assets/Prefab/Bullet/bullet.prefab
   _cd: 3
   _statusChangeTime: 45

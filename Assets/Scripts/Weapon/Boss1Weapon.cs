@@ -58,6 +58,8 @@ public class Boss1Weapon : RangedMonsterHit
             _bullet[i].transform.SetParent(_rotateCenter);
             //设置子弹初始位置
             _bullet[i].transform.localPosition = new Vector3(0, 0, 0);
+            //设置子弹参数
+            _bullet[i].GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player", _pierce);
         }
 
         while (true)
@@ -140,9 +142,10 @@ public class Boss1Weapon : RangedMonsterHit
         /*
             Boss1Weapon的Awake
         */
-        _status = 1;
+        _status = 0;
         _cdTimer = 0;
         _statusTimer = 0;
+        _pierce = -1;
     }
 
     void Start()

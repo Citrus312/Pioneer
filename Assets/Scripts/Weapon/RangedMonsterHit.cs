@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class RangedMonsterHit : Weapon
 {
-    //TODO 后期改成向场景询问玩家位置
-    public GameObject _player;
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
     [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    //子弹的贯穿次数
+    protected int _pierce;
 
     protected new void Awake()
     {
@@ -27,6 +27,7 @@ public class RangedMonsterHit : Weapon
         */
         _attachPoint = transform;
         _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _pierce = 1;
     }
 
     //向射击方向发射一颗子弹
@@ -38,7 +39,7 @@ public class RangedMonsterHit : Weapon
         bullet.transform.position = _attachPoint.position;
         bullet.transform.rotation = _attachPoint.rotation;
 
-        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player");
+        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player", _pierce);
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 

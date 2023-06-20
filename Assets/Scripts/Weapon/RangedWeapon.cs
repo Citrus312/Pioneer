@@ -10,6 +10,8 @@ public class RangedWeapon : Weapon
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
     [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    //子弹的贯穿次数
+    protected int _pierce;
 
     protected new void Awake()
     {
@@ -24,6 +26,7 @@ public class RangedWeapon : Weapon
             RangedWeapon的Awake
         */
         _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _pierce = 1;
     }
 
     //向射击方向发射一颗子弹
@@ -37,7 +40,7 @@ public class RangedWeapon : Weapon
 
         // bullet.GetComponent<Bullet>()._weapon = gameObject;
         // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
-        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy");
+        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy", _pierce);
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 
