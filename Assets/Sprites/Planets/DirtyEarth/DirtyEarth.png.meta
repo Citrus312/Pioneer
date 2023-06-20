@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -8545,13 +8545,13 @@ TextureImporter:
       DirtyEarth_268: -1065920589
       DirtyEarth_19: -1528327702
       DirtyEarth_20: 1609529295
-      DirtyEarth_45: -2023330501
       DirtyEarth_276: -403957780
+      DirtyEarth_45: -2023330501
       DirtyEarth_160: -815033053
-      DirtyEarth_179: 789222995
       DirtyEarth_211: 1539783142
       DirtyEarth_162: 1426886394
       DirtyEarth_283: -1544390220
+      DirtyEarth_179: 789222995
       DirtyEarth_398: 1077824298
       DirtyEarth_360: 1224585567
       DirtyEarth_364: -323296604
@@ -8597,9 +8597,9 @@ TextureImporter:
       DirtyEarth_144: -2114389856
       DirtyEarth_231: -1971387702
       DirtyEarth_17: 22498260
-      DirtyEarth_127: -415418600
-      DirtyEarth_182: 1449825602
       DirtyEarth_388: 113565164
+      DirtyEarth_182: 1449825602
+      DirtyEarth_127: -415418600
       DirtyEarth_123: -2132495722
       DirtyEarth_167: 448667670
       DirtyEarth_218: 685449559
@@ -8615,11 +8615,11 @@ TextureImporter:
       DirtyEarth_225: 806404948
       DirtyEarth_159: 6786327
       DirtyEarth_138: -257936622
+      DirtyEarth_284: 548644714
       DirtyEarth_153: 365907088
       DirtyEarth_170: -413485575
       DirtyEarth_274: -1901385730
       DirtyEarth_81: 581296982
-      DirtyEarth_284: 548644714
       DirtyEarth_202: 1169957929
       DirtyEarth_292: -668626975
       DirtyEarth_58: 1263443300
@@ -8667,10 +8667,10 @@ TextureImporter:
       DirtyEarth_318: -1361810753
       DirtyEarth_64: -1863952277
       DirtyEarth_169: 2012125099
-      DirtyEarth_195: 1531051922
-      DirtyEarth_22: -2024335352
-      DirtyEarth_275: 1488939407
       DirtyEarth_355: 1765246161
+      DirtyEarth_22: -2024335352
+      DirtyEarth_195: 1531051922
+      DirtyEarth_275: 1488939407
       DirtyEarth_92: -1910557875
       DirtyEarth_363: -777121512
       DirtyEarth_168: -298290150
@@ -8708,11 +8708,11 @@ TextureImporter:
       DirtyEarth_62: 33725253
       DirtyEarth_40: -857447408
       DirtyEarth_3: -1123372807
+      DirtyEarth_370: -1120448098
       DirtyEarth_234: -1343757683
       DirtyEarth_226: 1332323617
       DirtyEarth_264: -268556343
       DirtyEarth_67: -1833908900
-      DirtyEarth_370: -1120448098
       DirtyEarth_206: 1509694157
       DirtyEarth_330: -1365396992
       DirtyEarth_297: -816879293

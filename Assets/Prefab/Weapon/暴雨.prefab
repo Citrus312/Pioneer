@@ -101,8 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerAttr: {fileID: 0}
-  rawAttackRange: 3
 --- !u!114 &7346063530793255479
 MonoBehaviour:
   m_ObjectHideFlags: 0

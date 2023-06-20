@@ -13,11 +13,6 @@ public class DialogueController : TextController
 
     [Header("头像")]
     public List<Sprite> _headList;
- 
-    protected override void OnEnable() {
-        base.OnEnable();
-        _timeline.playableGraph.GetRootPlayable(0).SetSpeed(0);
-    }
 
     protected override void playDialogue()
     {
@@ -68,7 +63,9 @@ public class DialogueController : TextController
     {
         base.endDialogue();
         // timeline继续
-        _timeline.playableGraph.GetRootPlayable(0).SetSpeed(1);
+        _timeline.Stop();
+        _timeline.initialTime = 6.47;
+        _timeline.Play();
     }
 
 
