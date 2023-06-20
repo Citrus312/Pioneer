@@ -1,0 +1,15 @@
+[
+  {
+    "ID":,
+    "maxHealth":,
+    "healthIncPerWave":,
+    "speed":,
+    "meleeDamage":,
+    "rangedDamage":,
+    "damageIncPerWave":,
+    "lootCount":,
+    "dropRate":,
+    "crateRate":,
+    "firstGenWave":
+  }
+]
