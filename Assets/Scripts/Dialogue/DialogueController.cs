@@ -14,6 +14,10 @@ public class DialogueController : TextController
     [Header("头像")]
     public List<Sprite> _headList;
  
+    protected override void OnEnable() {
+        base.OnEnable();
+        _timeline.playableGraph.GetRootPlayable(0).SetSpeed(0);
+    }
 
     protected override void playDialogue()
     {
