@@ -8,7 +8,7 @@ public class MainPageWindow : BaseWindow
 {
     private static MainPageWindow instance;
 
-    //³õÊ¼»¯Ö÷Ò³´°ÌåµÄ²ÎÊý
+    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
     private MainPageWindow()
     {
         resName = "UI/MainPageWindow";
@@ -74,7 +74,7 @@ public class MainPageWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-        //¸øUIÖÐµÄ°´Å¥°ó¶¨µã»÷ÊÂ¼þ
+        //ï¿½ï¿½UIï¿½ÐµÄ°ï¿½Å¥ï¿½ó¶¨µï¿½ï¿½ï¿½Â¼ï¿½
         foreach (Button btn in btnList)
         {
             switch (btn.name)
@@ -128,12 +128,12 @@ public class MainPageWindow : BaseWindow
 
     private void OnContinueBtn()
     {
-        Debug.Log("µã»÷ÁË ¼ÌÐø °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
     }
 
     private void OnStartBtn()
     {
-        Debug.Log("µã»÷ÁË ¿ªÊ¼ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¼ ï¿½ï¿½Å¥");
         GameController.getInstance().getGameData().ResetGameData();
         if (GameController.getInstance().getGameData()._isFirstPlaying)
         {
@@ -149,73 +149,73 @@ public class MainPageWindow : BaseWindow
 
     private void OnSettingBtn()
     {
-        Debug.Log("µã»÷ÁË ÉèÖÃ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
         SettingWindow.Instance.Open();
     }
 
     private void OnTalentBtn()
     {
-        Debug.Log("µã»÷ÁË Ìì¸³ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸³ ï¿½ï¿½Å¥");
     }
 
     private void OnExitBtn()
     {
-        Debug.Log("µã»÷ÁË ÍË³ö °´Å¥");
-#if UNITY_EDITOR
-        //unity±à¼­Æ÷ÖÐµ÷ÊÔÊ¹ÓÃ
-        EditorApplication.isPlaying = false;
-#else
-        //µ¼³öÓÎÏ·ºóÊ¹ÓÃ
-        Application.Quit();
-#endif
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë³ï¿½ ï¿½ï¿½Å¥");
+        //#if UNITY_EDITOR
+        //        //unityï¿½à¼­ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+        //        EditorApplication.isPlaying = false;
+        //#else
+        //        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ê¹ï¿½ï¿½
+        //        Application.Quit();
+        //#endif
     }
 
     private void OnModBtn()
     {
-        Debug.Log("µã»÷ÁË Mod °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ Mod ï¿½ï¿½Å¥");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("´ËÓÎÏ·²»»áÓÐÈÎºÎMod :)");
+        text.Add("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½Mod :)");
         window.inputText = text;
         window.Open();
     }
 
     private void OnMoreProductBtn()
     {
-        Debug.Log("µã»÷ÁË ¸ü¶à×÷Æ· °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ· ï¿½ï¿½Å¥");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("¸ü¶à×÷Æ·? ²»¿ÉÄÜ£¡¾ø¶Ô²»¿ÉÄÜ£¡£¡");
+        text.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·? ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½");
         window.inputText = text;
         window.Open();
     }
 
     private void OnNewMsgBtn()
     {
-        Debug.Log("µã»÷ÁË ÐÂÏûÏ¢ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¢ ï¿½ï¿½Å¥");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("ÕâÀï¿Õ¿ÕÈçÒ²£¬Çë»Ø°É :)");
+        text.Add("ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ø°ï¿½ :)");
         window.inputText = text;
         window.Open();
     }
 
     private void OnCommunityBtn()
     {
-        Debug.Log("µã»÷ÁË ÉçÇø °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("ÉçÇø? ÄÇÊÇÊ²Ã´?");
+        text.Add("ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½Ê²Ã´?");
         window.inputText = text;
         window.Open();
     }
 
     private void OnNameListBtn()
     {
-        Debug.Log("µã»÷ÁË ÖÆ×÷ÈËÃûµ¥ °´Å¥");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("Ö÷²ß»®/¼¼ÃÀ/±à³Ì/¶àÃæÊÖ: Óà¼ÎÉ­\n" + "Ö÷³ÌÐò/´óÀÐ: ÄªÑ¸\n" + "Ö÷³ÌÐò/×´¿ö°Ù³ö: ÁõÓî·Æ\n" + "ÊýÖµ²ß»®/ËØ²Ä¿àÊÖ: Ö£ÌÎ\n" + "UIÉè¼Æ/ÈÕ³£±»´ß: »Æ¿¡ÁØ");
+        text.Add("ï¿½ï¿½ï¿½ß»ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½É­\n" + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½: ÄªÑ¸\n" + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/×´ï¿½ï¿½ï¿½Ù³ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½\n" + "ï¿½ï¿½Öµï¿½ß»ï¿½/ï¿½Ø²Ä¿ï¿½ï¿½ï¿½: Ö£ï¿½ï¿½\n" + "UIï¿½ï¿½ï¿½/ï¿½Õ³ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½Æ¿ï¿½ï¿½ï¿½");
         window.inputText = text;
         window.Open();
     }

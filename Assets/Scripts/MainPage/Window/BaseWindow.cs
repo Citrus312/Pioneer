@@ -34,7 +34,7 @@ public class BaseWindow
         //填充文本内容(细节由子类实现)
         FillTextContent();
     }
-   
+
     //UI事件的注册
     protected virtual void RegisterUIEvent() { }
     //文本内容填充

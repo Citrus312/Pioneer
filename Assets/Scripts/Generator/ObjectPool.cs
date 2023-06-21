@@ -6,13 +6,13 @@ using UnityEditor;
 public class ObjectPool : MonoBehaviour
 {
     // 单例
-    private static ObjectPool _poolInstance;
+    public static ObjectPool _poolInstance;
     // 内存区（队列）
     protected Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
 
     public static ObjectPool getInstance()
     {
-        if(_poolInstance == null)
+        if (_poolInstance == null)
         {
             _poolInstance = ObjectFactory.CreateInstance<ObjectPool>();
         }
