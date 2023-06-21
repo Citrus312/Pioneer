@@ -7,18 +7,19 @@ using System.Text;
 
 public class JsonLoader : MonoBehaviour
 {
-    //ÎäÆ÷ÊôĞÔ³Ø µÀ¾ßÊôĞÔ³Ø
+    //æ­¦å™¨å±æ€§æ±  é“å…·å±æ€§æ±  è§’è‰²å±æ€§æ± 
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
+    public static List<CharacterAttribute> rolePool = new();
 
-    //¼ÓÔØ²¢½âÎöÓÎÏ·Êı¾İ
+    //åŠ è½½å¹¶è§£ææ¸¸æˆæ•°æ®
     public static void LoadAndDecodeGameData()
     {
-        //»ñÈ¡ÓÎÏ·ÄÚÈ«¾ÖµÄÓÎÏ·Êı¾İ¶ÔÏó
+        //è·å–æ¸¸æˆå†…å…¨å±€çš„æ¸¸æˆæ•°æ®å¯¹è±¡
         GameData gameData = GameController.getInstance().getGameData();
-        //´ÓjsonÎÄ¼şÖĞ¶ÁÈ¡µÄÊı¾İ
-        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/GameData.json", Encoding.GetEncoding("GB2312")));
-        //¶ÔÓÎÏ·Êı¾İ¶ÔÏóµÄ³ÉÔ±ÒÀ´Î¸³Öµ
+        //ä»jsonæ–‡ä»¶ä¸­è¯»å–çš„æ•°æ®
+        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/GameData.json", Encoding.GetEncoding("utf-8")));
+        //å¯¹æ¸¸æˆæ•°æ®å¯¹è±¡çš„æˆå‘˜ä¾æ¬¡èµ‹å€¼
         gameData._isFirstPlaying = (bool)data["isFirstPlaying"];
         gameData._playerID = (int)data["playerID"];
         gameData._wave = (int)data["wave"];
@@ -45,29 +46,29 @@ public class JsonLoader : MonoBehaviour
         }
     }
 
-    //±£´æµ±Ç°µÄÓÎÏ·Êı¾İ
+    //ä¿å­˜å½“å‰çš„æ¸¸æˆæ•°æ®
     public static void UpdateGameData()
     {
         File.WriteAllText(Application.dataPath + "/Config/GameData.json", JsonMapper.ToJson(GameController.getInstance().getGameData().Data2Dict()));
     }
 
-    //¼ÓÔØ²¢½âÎöÎäÆ÷Êı¾İ
+    //åŠ è½½å¹¶è§£ææ­¦å™¨æ•°æ®
     public static void LoadAndDecodeWeaponConfig()
     {
-        //jsonÎÄ¼şÖĞ¶ÁÈ¡µ½µÄËùÓĞÊı¾İ
-        JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("GB2312")));
-        //´æ´¢´Ójson»ñÈ¡µÄÎäÆ÷·ÖÀàÁÙÊ±±äÁ¿
+        //jsonæ–‡ä»¶ä¸­è¯»å–åˆ°çš„æ‰€æœ‰æ•°æ®
+        JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("utf-8")));
+        //å­˜å‚¨ä»jsonè·å–çš„æ­¦å™¨åˆ†ç±»ä¸´æ—¶å˜é‡
         List<WeaponAttribute.WeaponCategory> tempCategory = new();
-        //´ÓjsonÎÄ¼şÖĞ»ñÈ¡µÄÒ»¸öÎäÆ÷µÄÊı¾İ
+        //ä»jsonæ–‡ä»¶ä¸­è·å–çš„ä¸€ä¸ªæ­¦å™¨çš„æ•°æ®
         JsonData weaponConfig;
         JsonData weaponCategory;
         double temp;
         for (int i = 0; i < weaponsConfig.Count; i++)
         {
-            //Ìí¼Ó½ø³ØÖĞµÄÎäÆ÷ÊôĞÔÁÙÊ±±äÁ¿
+            //æ·»åŠ è¿›æ± ä¸­çš„æ­¦å™¨å±æ€§ä¸´æ—¶å˜é‡
             WeaponAttribute addAttr = new();
             weaponConfig = weaponsConfig[i];
-            //ÓÉÓÚLitJson²»Ö§³ÖfloatÀàĞÍµÄÇ¿×ª£¬¹Ê´Ë´¦ÏÈÇ¿×ªÎªdouble´æÈëÁÙÊ±±äÁ¿ÔÙ½«ÁÙÊ±±äÁ¿Ç¿×ªÎªfloatÊ¹ÓÃ
+            //ç”±äºLitJsonä¸æ”¯æŒfloatç±»å‹çš„å¼ºè½¬ï¼Œæ•…æ­¤å¤„å…ˆå¼ºè½¬ä¸ºdoubleå­˜å…¥ä¸´æ—¶å˜é‡å†å°†ä¸´æ—¶å˜é‡å¼ºè½¬ä¸ºfloatä½¿ç”¨
             temp = (double)weaponConfig["damage"];
             addAttr.setRawWeaponDamage((float)temp);
             temp = (double)weaponConfig["bonus"];
@@ -86,6 +87,7 @@ public class JsonLoader : MonoBehaviour
             addAttr.setWeaponName((string)weaponConfig["name"]);
             addAttr.setWeaponIcon((string)weaponConfig["icon"]);
             addAttr.setWeaponBgIcon((string)weaponConfig["bgIcon"]);
+            addAttr.setWeaponPrefabPath((string)weaponConfig["prefabPath"]);
             switch ((string)weaponConfig["type"])
             {
                 case "melee":
@@ -148,58 +150,60 @@ public class JsonLoader : MonoBehaviour
                 }
             }
             addAttr.setWeaponCategory(tempCategory);
-            //½«´æ´¢ÔÚÁÙÊ±±äÁ¿ÖĞµÄÎäÆ÷ÊôĞÔ´æÈëÎäÆ÷ÊôĞÔ³Ø
+            //å°†å­˜å‚¨åœ¨ä¸´æ—¶å˜é‡ä¸­çš„æ­¦å™¨å±æ€§å­˜å…¥æ­¦å™¨å±æ€§æ± 
             weaponPool.Add(addAttr);
         }
     }
 
-    //¼ÓÔØ²¢½âÎöµÀ¾ßÊôĞÔ
+    //åŠ è½½å¹¶è§£æé“å…·å±æ€§
     public static void LoadAndDecodePropConfig()
     {
-        JsonData propsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("GB2312")));
+        JsonData propsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("utf-8")));
         JsonData propConfig;
         double temp;
         for (int i = 0; i < propsConfig.Count; i++)
         {
             PropAttribute addAttr = new();
             propConfig = propsConfig[i];
-            addAttr.setPropID((int)propConfig[i]["ID"]);
-            addAttr.setPropName((string)propConfig[i]["name"]);
-            addAttr.setPropIcon((string)propConfig[i]["icon"]);
-            addAttr.setPropBgIcon((string)propConfig[i]["bgIcon"]);
-            temp = (double)propConfig[i]["maxHealth"];
+            addAttr.setPropID((int)propConfig["ID"]);
+            addAttr.setPropName((string)propConfig["name"]);
+            addAttr.setPropIcon((string)propConfig["icon"]);
+            addAttr.setPropBgIcon((string)propConfig["bgIcon"]);
+            temp = (double)propConfig["price"];
+            addAttr.setPropPrice((float)temp);
+            temp = (double)propConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
-            temp = (double)propConfig[i]["healthRecovery"];
+            temp = (double)propConfig["healthRecovery"];
             addAttr.setHealthRecovery((float)temp);
-            temp = (double)propConfig[i]["healthSteal"];
+            temp = (double)propConfig["healthSteal"];
             addAttr.setHealthSteal((float)temp);
-            temp = (double)propConfig[i]["attackAmplification"];
+            temp = (double)propConfig["attackAmplification"];
             addAttr.setAttackAmplification((float)temp);
-            temp = (double)propConfig[i]["meleeDamage"];
+            temp = (double)propConfig["meleeDamage"];
             addAttr.setMeleeDamage((float)temp);
-            temp = (double)propConfig[i]["rangedDamage"];
+            temp = (double)propConfig["rangedDamage"];
             addAttr.setRangedDamage((float)temp);
-            temp = (double)propConfig[i]["abilityDamage"];
+            temp = (double)propConfig["abilityDamage"];
             addAttr.setAbilityDamage((float)temp);
-            temp = (double)propConfig[i]["attackSpeedAmplification"];
+            temp = (double)propConfig["attackSpeedAmplification"];
             addAttr.setAttackSpeedAmplification((float)temp);
-            temp = (double)propConfig[i]["criticalRate"];
+            temp = (double)propConfig["criticalRate"];
             addAttr.setCriticalRate((float)temp);
-            temp = (double)propConfig[i]["engineering"];
+            temp = (double)propConfig["engineering"];
             addAttr.setEngineering((float)temp);
-            temp = (double)propConfig[i]["attackRangeAmplification"];
+            temp = (double)propConfig["attackRangeAmplification"];
             addAttr.setAttackRangedAmplification((float)temp);
-            temp = (double)propConfig[i]["armorStrength"];
+            temp = (double)propConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
-            temp = (double)propConfig[i]["dodgeRate"];
+            temp = (double)propConfig["dodgeRate"];
             addAttr.setDodgeRate((float)temp);
-            temp = (double)propConfig[i]["moveSpeedAmplification"];
+            temp = (double)propConfig["moveSpeedAmplification"];
             addAttr.setMoveSpeedAmplification((float)temp);
-            temp = (double)propConfig[i]["scanAccuracy"];
+            temp = (double)propConfig["scanAccuracy"];
             addAttr.setScanAccuracy((float)temp);
-            temp = (double)propConfig[i]["collectEfficiency"];
+            temp = (double)propConfig["collectEfficiency"];
             addAttr.setCollectEfficiency((float)temp);
-            switch ((int)propConfig[i]["quality"])
+            switch ((int)propConfig["quality"])
             {
                 case 0:
                     addAttr.setPropQuality(WeaponAttribute.Quality.Normal);
@@ -214,10 +218,94 @@ public class JsonLoader : MonoBehaviour
                     addAttr.setPropQuality(WeaponAttribute.Quality.Legendary);
                     break;
                 default:
-                    Debug.Log("prop json config " + i + ": quality type" + (int)propConfig[i]["quality"] + " error");
+                    Debug.Log("prop json config " + i + ": quality type" + (int)propConfig["quality"] + " error");
                     break;
             }
             propPool.Add(addAttr);
+        }
+    }
+
+    //åŠ è½½å¹¶è§£æè§’è‰²å±æ€§
+    public static void LoadAndDecodeRoleConfig()
+    {
+        JsonData rolesConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Roles.json", Encoding.GetEncoding("utf-8")));
+        JsonData roleConfig;
+        JsonData weaponCategory;
+        List<WeaponAttribute.WeaponCategory> tempCategory = new();
+        double temp;
+
+        for (int i = 0; i < rolesConfig.Count; i++)
+        {
+            CharacterAttribute addAttr = new();
+            roleConfig = rolesConfig[i];
+            addAttr.setID((int)roleConfig["ID"]);
+            addAttr.setName((string)roleConfig["name"]);
+            addAttr.setIcon((string)roleConfig["icon"]);
+            temp = (double)roleConfig["maxHealth"];
+            addAttr.setMaxHealth((float)temp);
+            temp = (double)roleConfig["healthRecovery"];
+            addAttr.setHealthRecovery((float)temp);
+            temp = (double)roleConfig["healthSteal"];
+            addAttr.setHealthSteal((float)temp);
+            temp = (double)roleConfig["attackAmplification"];
+            addAttr.setAttackAmplification((float)temp);
+            temp = (double)roleConfig["meleeDamage"];
+            addAttr.setMeleeDamage((float)temp);
+            temp = (double)roleConfig["rangedDamage"];
+            addAttr.setRangedDamage((float)temp);
+            temp = (double)roleConfig["abilityDamage"];
+            addAttr.setAbilityDamage((float)temp);
+            temp = (double)roleConfig["attackSpeedAmplification"];
+            addAttr.setAttackSpeedAmplification((float)temp);
+            temp = (double)roleConfig["criticalRate"];
+            addAttr.setCriticalRate((float)temp);
+            temp = (double)roleConfig["engineering"];
+            addAttr.setEngineering((float)temp);
+            temp = (double)roleConfig["attackRangeAmplification"];
+            addAttr.setAttackRangedAmplification((float)temp);
+            temp = (double)roleConfig["armorStrength"];
+            addAttr.setArmorStrength((float)temp);
+            temp = (double)roleConfig["dodgeRate"];
+            addAttr.setDodgeRate((float)temp);
+            temp = (double)roleConfig["moveSpeedAmplification"];
+            addAttr.setMoveSpeedAmplification((float)temp);
+            temp = (double)roleConfig["scanAccuracy"];
+            addAttr.setScanAccuracy((float)temp);
+            temp = (double)roleConfig["collectEfficiency"];
+            addAttr.setCollectEfficiency((float)temp);
+            weaponCategory = roleConfig["weaponCategory"];
+            for (int j = 0; j < weaponCategory.Count; j++)
+            {
+                switch ((string)weaponCategory[j])
+                {
+                    case "all":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.All);
+                        break;
+                    case "gun":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Gun);
+                        break;
+                    case "ability":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Ability);
+                        break;
+                    case "heal":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Heal);
+                        break;
+                    case "wand":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Wand);
+                        break;
+                    case "machete":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Machete);
+                        break;
+                    case "polearms":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
+                        break;
+                    default:
+                        Debug.Log("role json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
+                        break;
+                }
+            }
+            addAttr.setWeaponCategory(tempCategory);
+            rolePool.Add(addAttr);
         }
     }
 }

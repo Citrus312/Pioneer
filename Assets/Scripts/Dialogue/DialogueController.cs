@@ -65,6 +65,7 @@ public class DialogueController : TextController
         base.endDialogue();
         // timeline继续
         _timeline.playableGraph.GetRootPlayable(0).SetSpeed(1);
+        Debug.Log("bo");
     }
 
 

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAttribute
+public class WeaponAttribute : MonoBehaviour
 {
     //武器伤害类型的枚举
     public enum WeaponDamageType { Unknown = -1, Melee, Ranged, Ability }
     //武器分类的枚举
-    //未知 枪械 属性 治疗 法杖 刀具 长柄
-    public enum WeaponCategory { Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
+    //全能 未知 枪械 属性 治疗 法杖 刀具 长柄
+    public enum WeaponCategory { All = -2, Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
     //物品品质的枚举
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
     // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
@@ -42,6 +42,8 @@ public class WeaponAttribute
     private string weaponIcon;
     //武器的品质背景
     private string weaponBgIcon;
+    //武器的预制体路径
+    private string weaponPrefabPath;
 
 
     private void Start()
@@ -121,6 +123,11 @@ public class WeaponAttribute
     public void setWeaponBgIcon(string input)
     {
         weaponBgIcon = input;
+    }
+
+    public void setWeaponPrefabPath(string input)
+    {
+        weaponPrefabPath = input;
     }
 
     //用于初始化武器
@@ -254,5 +261,10 @@ public class WeaponAttribute
     public string getWeaponBgIcon()
     {
         return weaponBgIcon;
+    }
+
+    public string getWeaponPrefabPath()
+    {
+        return weaponPrefabPath;
     }
 }

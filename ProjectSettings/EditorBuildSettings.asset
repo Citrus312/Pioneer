@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainPage.unity
     guid: 14d4e33100f63e14f81f30feeacf4e41
+  - enabled: 1
+    path: Assets/Scenes/RoleAndWeaponSelect.unity
+    guid: 7702ca3c70801184fa79ea5b54e115bf
   m_configObjects: {}

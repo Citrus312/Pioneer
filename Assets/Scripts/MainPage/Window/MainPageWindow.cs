@@ -6,9 +6,10 @@ using UnityEditor;
 
 public class MainPageWindow : BaseWindow
 {
+    //çª—ä½“çš„å•ä¾‹å®ä¾‹
     private static MainPageWindow instance;
 
-    //³õÊ¼»¯Ö÷Ò³´°ÌåµÄ²ÎÊı
+    //åˆå§‹åŒ–ä¸»é¡µçª—ä½“çš„å‚æ•°
     private MainPageWindow()
     {
         resName = "UI/MainPageWindow";
@@ -17,7 +18,7 @@ public class MainPageWindow : BaseWindow
         selfType = WindowType.MainPageWindow;
         sceneType = SceneType.MainPage;
     }
-
+    //å®ä¾‹çš„è‡ªåŠ¨å±æ€§
     public static MainPageWindow Instance
     {
         get
@@ -34,25 +35,26 @@ public class MainPageWindow : BaseWindow
     {
         base.AwakeWindow();
     }
-
     protected override void OnAddListener()
     {
         base.OnAddListener();
     }
-
     protected override void OnRemoveListener()
     {
         base.OnRemoveListener();
     }
-
+    //æ‰“å¼€çª—å£æ—¶åˆ¤æ–­â€œç»§ç»­â€æŒ‰é’®æ˜¯å¦å…è®¸ç‚¹å‡»
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        //éå†æŒ‰é’®åˆ—è¡¨å¯»æ‰¾â€œç»§ç»­â€æŒ‰é’®
         foreach (Button btn in btnList)
         {
             if (btn.name == "ContinueBtn")
             {
+                //æ‰¾åˆ°æŒ‰é’®åæ ¹æ®å½“å‰ç©å®¶çš„æ­¦å™¨åˆ—è¡¨é•¿åº¦åˆ¤æ–­å½“å‰æ˜¯å¦æœ‰å­˜æ¡£
+                //å› ä¸ºè¿›å…¥ä¸»ç•Œé¢æ—¶ä¼šåŠ è½½ä¸€æ¬¡æœ¬åœ°çš„æ¸¸æˆæ•°æ®çš„jsonæ–‡ä»¶ï¼Œè¿™ä¸ªæ–‡ä»¶ä¼šæ ¹æ®æ¸¸æˆçŠ¶æ€è‡ªåŠ¨ä¿å­˜å½“æ—¶çš„æ¸¸æˆæ•°æ®
+                //å½“æ¸¸ç©ä¸­é€”è¿”å›ä¸»ç•Œé¢æˆ–è€…å…³é—­æ¸¸æˆåï¼Œå†æ¬¡è¿›å…¥æ¸¸æˆï¼Œç‚¹å‡»â€œç»§ç»­â€æŒ‰é’®å°±èƒ½æ¢å¤ä¹‹å‰çš„æ¸¸æˆçŠ¶æ€
                 if (GameController.getInstance().getGameData()._weaponList.Count == 0)
                 {
                     btn.interactable = false;
@@ -61,26 +63,25 @@ public class MainPageWindow : BaseWindow
                 {
                     btn.interactable = true;
                 }
-                
+
             }
         }
     }
-
     protected override void OnDisable()
     {
         base.OnDisable();
     }
-
+    //ç»™æŒ‰é’®ç»‘å®šç‚¹å‡»äº‹ä»¶
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-        //¸øUIÖĞµÄ°´Å¥°ó¶¨µã»÷ÊÂ¼ş
+        //ç»™UIä¸­çš„æŒ‰é’®ç»‘å®šç‚¹å‡»äº‹ä»¶
         foreach (Button btn in btnList)
         {
             switch (btn.name)
             {
                 case "ContinueBtn":
-                    btn.onClick.AddListener(()=> { OnContinueBtn(); });
+                    btn.onClick.AddListener(() => { OnContinueBtn(); });
                     break;
                 case "StartBtn":
                     btn.onClick.AddListener(() => { OnStartBtn(); });
@@ -115,107 +116,105 @@ public class MainPageWindow : BaseWindow
             }
         }
     }
-
     protected override void Update()
     {
         base.Update();
     }
-
     protected override void FillTextContent()
     {
         base.FillTextContent();
     }
 
+    //ä»¥ä¸‹æ˜¯æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶
     private void OnContinueBtn()
     {
-        Debug.Log("µã»÷ÁË ¼ÌĞø °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† ç»§ç»­ æŒ‰é’®");
     }
-
+    //å¼€å§‹æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶
     private void OnStartBtn()
     {
-        Debug.Log("µã»÷ÁË ¿ªÊ¼ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† å¼€å§‹ æŒ‰é’®");
+        //é‡ç½®å½“å‰æ¸¸æˆæ•°æ®
         GameController.getInstance().getGameData().ResetGameData();
+        //åˆ¤æ–­æ˜¯å¦ç¬¬ä¸€æ¬¡æ¸¸ç©ï¼Œæ˜¯åˆ™æ’­æ”¾å¼€åœºåŠ¨ç”»
         if (GameController.getInstance().getGameData()._isFirstPlaying)
         {
-            SceneLoader._instance.loadScene("OpeningAnimation");  
+            SceneLoader._instance.loadScene("OpeningAnimation");
         }
         else
         {
             SceneLoader._instance.loadScene("LevelSelect");
         }
-
-        DelayToInvoke.DelayToInvokeBySecond(()=> { Close(); }, 1.8f);
+        //å»¶è¿Ÿå…³é—­ä¸»ç•Œé¢çª—å£ï¼Œä½¿è¿‡åœºåŠ¨ç”»è¡”æ¥æµç•…
+        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.8f);
     }
-
     private void OnSettingBtn()
     {
-        Debug.Log("µã»÷ÁË ÉèÖÃ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† è®¾ç½® æŒ‰é’®");
         SettingWindow.Instance.Open();
     }
-
     private void OnTalentBtn()
     {
-        Debug.Log("µã»÷ÁË Ìì¸³ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† å¤©èµ‹ æŒ‰é’®");
     }
-
     private void OnExitBtn()
     {
-        Debug.Log("µã»÷ÁË ÍË³ö °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† é€€å‡º æŒ‰é’®");
 #if UNITY_EDITOR
-        //unity±à¼­Æ÷ÖĞµ÷ÊÔÊ¹ÓÃ
+        //unityç¼–è¾‘å™¨ä¸­è°ƒè¯•ä½¿ç”¨
         EditorApplication.isPlaying = false;
 #else
-        //µ¼³öÓÎÏ·ºóÊ¹ÓÃ
+        //å¯¼å‡ºæ¸¸æˆåä½¿ç”¨
         Application.Quit();
 #endif
     }
-
+    //ä»¥ä¸‹çš„æŒ‰é’®ç‚¹å‡»äº‹ä»¶éƒ½æ˜¯æ‰“å¼€ä¸€ä¸ªæç¤ºçª—
+    //å®ç°é€»è¾‘ä¸€è‡´
     private void OnModBtn()
     {
-        Debug.Log("µã»÷ÁË Mod °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† Mod æŒ‰é’®");
+        //åˆ›å»ºä¸€ä¸ªæç¤ºçª—
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("´ËÓÎÏ·²»»áÓĞÈÎºÎMod :)");
+        text.Add("æ­¤æ¸¸æˆä¸ä¼šæœ‰ä»»ä½•Mod :)");
+        //è®¾ç½®æç¤ºçª—çš„æ–‡æœ¬
         window.inputText = text;
+        //æ‰“å¼€æç¤ºçª—
         window.Open();
     }
-
     private void OnMoreProductBtn()
     {
-        Debug.Log("µã»÷ÁË ¸ü¶à×÷Æ· °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† æ›´å¤šä½œå“ æŒ‰é’®");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("¸ü¶à×÷Æ·? ²»¿ÉÄÜ£¡¾ø¶Ô²»¿ÉÄÜ£¡£¡");
+        text.Add("æ›´å¤šä½œå“? ä¸å¯èƒ½ï¼ç»å¯¹ä¸å¯èƒ½ï¼ï¼");
         window.inputText = text;
         window.Open();
     }
-
     private void OnNewMsgBtn()
     {
-        Debug.Log("µã»÷ÁË ĞÂÏûÏ¢ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† æ–°æ¶ˆæ¯ æŒ‰é’®");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("ÕâÀï¿Õ¿ÕÈçÒ²£¬Çë»Ø°É :)");
+        text.Add("è¿™é‡Œç©ºç©ºå¦‚ä¹Ÿï¼Œè¯·å›å§ :)");
         window.inputText = text;
         window.Open();
     }
-
     private void OnCommunityBtn()
     {
-        Debug.Log("µã»÷ÁË ÉçÇø °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† ç¤¾åŒº æŒ‰é’®");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("ÉçÇø? ÄÇÊÇÊ²Ã´?");
+        text.Add("ç¤¾åŒº? é‚£æ˜¯ä»€ä¹ˆ?");
         window.inputText = text;
         window.Open();
     }
-
     private void OnNameListBtn()
     {
-        Debug.Log("µã»÷ÁË ÖÆ×÷ÈËÃûµ¥ °´Å¥");
+        Debug.Log("ç‚¹å‡»äº† åˆ¶ä½œäººåå• æŒ‰é’®");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("Ö÷²ß»®/¼¼ÃÀ/±à³Ì/¶àÃæÊÖ: Óà¼ÎÉ­\n" + "Ö÷³ÌĞò/´óÀĞ: ÄªÑ¸\n" + "Ö÷³ÌĞò/×´¿ö°Ù³ö: ÁõÓî·Æ\n" + "ÊıÖµ²ß»®/ËØ²Ä¿àÊÖ: Ö£ÌÎ\n" + "UIÉè¼Æ/ÈÕ³£±»´ß: »Æ¿¡ÁØ");
+        text.Add("ä¸»ç­–åˆ’/æŠ€ç¾/ç¼–ç¨‹/å¤šé¢æ‰‹: ä½™å˜‰æ£®\n" + "ä¸»ç¨‹åº/å¤§ä½¬: è«è¿…\n" + "ä¸»ç¨‹åº/çŠ¶å†µç™¾å‡º: åˆ˜å®‡è²\n" + "æ•°å€¼ç­–åˆ’/ç´ æè‹¦æ‰‹: éƒ‘æ¶›\n" + "UIè®¾è®¡/æ—¥å¸¸è¢«å‚¬: é»„ä¿Šéœ–");
         window.inputText = text;
         window.Open();
     }
