@@ -9,7 +9,7 @@ public class RangedMonsterHit : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
     //子弹的贯穿次数
     protected int _pierce;
 
@@ -26,7 +26,7 @@ public class RangedMonsterHit : Weapon
             RangedMonsterHit类的Awake
         */
         _attachPoint = transform;
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
         _pierce = 1;
     }
 

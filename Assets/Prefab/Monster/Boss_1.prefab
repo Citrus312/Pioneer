@@ -301,7 +301,7 @@ MonoBehaviour:
   - 3.4
   - 3.6
   _delayTime: 0.5
-  _dashTime: 0.5
+  _dashTime: 1
   _emitAngle:
   - 0
   - 45
