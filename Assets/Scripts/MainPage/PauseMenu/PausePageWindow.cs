@@ -32,7 +32,7 @@ public class PausePageWindow : BaseWindow
         sceneType = SceneType.Pause;
     }
 
-    protected override void Awake(List<string> inputText = null)
+    protected override void AwakeWindow()
     {
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);

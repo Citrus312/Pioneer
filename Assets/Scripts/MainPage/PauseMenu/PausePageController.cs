@@ -8,9 +8,7 @@ using UnityEngine.EventSystems;
 
 public class PausePageController : PersistentSingleton<PausePageController>
 {
-    public GameObject _Player;
-    public bool isPaused = false;
-
+    private GameObject _Player = GameController.getInstance().getPlayer();
 
     private void Start()
     {
