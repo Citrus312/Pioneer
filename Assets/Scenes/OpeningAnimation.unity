@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1829712248}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
         m_MethodName: endDialogue
         m_Mode: 1
@@ -1531,7 +1531,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1968053285, guid: 980841e5ec23ab240babafcccde25a48, type: 3}
+  m_Sprite: {fileID: 23818203, guid: c726b1065538f394f873793daff9ccff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054002955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f4f7b12c133ca4c83519fe8d7f2f6c, type: 3}
+  m_Script: {fileID: 11500000, guid: b61a346e88c1ebb4d8e775ba2672bdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timeline: {fileID: 1670820811}
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   _textLabel: {fileID: 615207322}
   _skipButton: {fileID: 655425557}
   _autoButton: {fileID: 0}
-  _textFile: {fileID: 4900000, guid: ab85e3e5586a0de4ea18cce9667ef3d6, type: 3}
+  _textFile: {fileID: 4900000, guid: 87661ee011599fc43bc79b72143d8f97, type: 3}
   _index: 0
   _textSpeed: 0.02
   _nextLog: {fileID: 1829712244}
@@ -2527,7 +2527,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1670820810}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 05e6da2a7caa0ef4cb34b06679cb0baf, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
   m_InitialState: 0
   m_WrapMode: 0
   m_DirectorUpdateMode: 2
@@ -2556,6 +2556,30 @@ PlayableDirector:
   - key: {fileID: -5617981628992123424, guid: 05e6da2a7caa0ef4cb34b06679cb0baf, type: 2}
     value: {fileID: 1670820814}
   - key: {fileID: 1756905041187967432, guid: 05e6da2a7caa0ef4cb34b06679cb0baf, type: 2}
+    value: {fileID: 1670820814}
+  - key: {fileID: 4490545390415542714, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 565584254}
+  - key: {fileID: 610491240395659207, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 565584254}
+  - key: {fileID: 1756905041187967432, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1670820814}
+  - key: {fileID: 362900824231106962, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1140056152}
+  - key: {fileID: -6874966166282267889, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1140056152}
+  - key: {fileID: 2666736217100808905, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1670820814}
+  - key: {fileID: -2476090229842699876, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1211231965}
+  - key: {fileID: 7571915103571179230, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1294592690}
+  - key: {fileID: -2383309852274957733, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 915129910}
+  - key: {fileID: 2189430757871710635, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1133623266}
+  - key: {fileID: 6356187975538134614, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
+    value: {fileID: 1443888395}
+  - key: {fileID: -5617981628992123424, guid: 9aeb3951ffb67654fb76d0d9192f3909, type: 2}
     value: {fileID: 1670820814}
   m_ExposedReferences:
     m_References:
@@ -2831,7 +2855,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829712244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cfda5efc041e14eb1ad53241981d9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 455a96294a9cd1c4cbc1b821008c2b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timeline: {fileID: 1670820811}
@@ -2839,9 +2863,9 @@ MonoBehaviour:
   _textLabel: {fileID: 2124123195}
   _skipButton: {fileID: 44074650}
   _autoButton: {fileID: 0}
-  _textFile: {fileID: 4900000, guid: 95f9ad325cc37c24088c13f989a1c5bf, type: 3}
+  _textFile: {fileID: 4900000, guid: 91ac8d142a9e8b945a477d635b842d9b, type: 3}
   _index: 0
-  _textSpeed: 0
+  _textSpeed: 0.05
   _nextLog: {fileID: 0}
   _name: {fileID: 1630856185}
   _headImage: {fileID: 462996548}
