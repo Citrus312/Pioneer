@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class DialogueController : TextController
 {
@@ -12,7 +13,6 @@ public class DialogueController : TextController
 
     [Header("头像")]
     public List<Sprite> _headList;
- 
 
     protected override void playDialogue()
     {
@@ -32,8 +32,8 @@ public class DialogueController : TextController
         else
         {
             //快进
-            onEndText();
             _textLabel.text = _textList[_index];
+            onEndText();
         }
     }
 
@@ -57,6 +57,15 @@ public class DialogueController : TextController
     {
         _name.text = _textList[_index];
         _index++;
+    }
+
+    public override void endDialogue()
+    {
+        base.endDialogue();
+        // timeline继续
+        _timeline.Stop();
+        _timeline.initialTime = 6.47;
+        _timeline.Play();
     }
 
 

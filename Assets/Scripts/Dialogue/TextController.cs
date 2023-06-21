@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class TextController : MonoBehaviour
 {
+    public PlayableDirector _timeline;
     public bool _textFinished;
     protected bool _isAutoPlay;
 
@@ -17,6 +19,7 @@ public class TextController : MonoBehaviour
     public TextAsset _textFile;
     public int _index;
     public float _textSpeed;
+    public GameObject _nextLog;
     protected List<string> _textList = new List<string>();
 
     protected TextController()
@@ -30,7 +33,7 @@ public class TextController : MonoBehaviour
         _index = 0;
     }
 
-    public void OnEnable() {
+    protected virtual void OnEnable() {
         _textFinished = true;
         _isAutoPlay = false;
         if(_skipButton != null)
@@ -74,6 +77,7 @@ public class TextController : MonoBehaviour
         }
     }
 
+    // 读取文本文件
     protected virtual void getTextFromFile(TextAsset file)
     {
         _textList.Clear();
@@ -87,11 +91,13 @@ public class TextController : MonoBehaviour
         }
     }
 
+    // 显示文本前
     protected virtual void beforeSetTextUI()
     {
 
     }
 
+    // 显示文本
     protected virtual IEnumerator setTextUI()
     {
         beforeSetTextUI();
@@ -108,6 +114,7 @@ public class TextController : MonoBehaviour
         if(!_textFinished) onEndText();
     }
 
+    // 结束当前这段文本
     protected virtual void onEndText()
     {
         _textFinished = true;
@@ -118,6 +125,7 @@ public class TextController : MonoBehaviour
         }
     }
 
+    // 跳过
     public virtual void endDialogue()
     {
         gameObject.SetActive(false);
@@ -130,9 +138,23 @@ public class TextController : MonoBehaviour
             _autoButton.gameObject.SetActive(false);
         }
         _index = 0;
+        endEvent();
         return;
     }
 
+    // 结束事件
+    public virtual void endEvent()
+    {
+
+    }
+
+    // 下一段文本
+    void activateNextLog()
+    {
+        _nextLog.SetActive(true);
+    }
+
+    // 自动播放
     public void onAutoPlayClick()
     {
         _isAutoPlay = !_isAutoPlay;

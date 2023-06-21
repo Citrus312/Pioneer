@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HitVFX : MonoBehaviour
 {
-    [SerializeField] bool destroyGameObject;
     [SerializeField] float lifetime = 1;
 
     WaitForSeconds waitLifetime;
@@ -22,13 +21,7 @@ public class HitVFX : MonoBehaviour
     {
         yield return waitLifetime;
 
-        if (destroyGameObject)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        Destroy(gameObject);
+
     }
 }
