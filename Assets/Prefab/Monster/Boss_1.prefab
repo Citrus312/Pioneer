@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onHitColor: {r: 0, g: 0, b: 0, a: 0}
+  _onHitTime: 0
 --- !u!114 &623707551264390406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +280,6 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  _player: {fileID: 0}
   _bulletPrefab: Assets/Prefab/Bullet/bullet.prefab
   _cd: 3
   _statusChangeTime: 45
@@ -310,3 +311,11 @@ MonoBehaviour:
   - 225
   - 270
   - 315
+  - 10
+  - 55
+  - 100
+  - 145
+  - 190
+  - 235
+  - 280
+  - 325

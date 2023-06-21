@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0;
         rigidbody2D.freezeRotation = true;
-        rigidbody2D.mass = 0.05f;
+        rigidbody2D.mass = 0.5f;
     }
 
     protected void OnTriggerEnter2D(Collider2D collider2D)

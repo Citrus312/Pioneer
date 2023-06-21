@@ -83,6 +83,7 @@ public class Boss1Weapon : RangedMonsterHit
     //冲刺技能
     private IEnumerator dash(Vector2 direction)
     {
+        GetComponent<Animator>().SetTrigger("T_dash");
         //设置正在冲刺禁用boss的普通移动
         GetComponent<Boss1Controller>()._isDashing = true;
 
@@ -117,9 +118,10 @@ public class Boss1Weapon : RangedMonsterHit
     //散射技能
     private void emit()
     {
+        GetComponent<Animator>().SetTrigger("T_shoot");
         for (int i = 0; i < _emitAngle.Length; i++)
         {
-            Vector2 shootDirection = new Vector2(Mathf.Cos(_emitAngle[i]), Mathf.Sin(_emitAngle[i]));
+            Vector2 shootDirection = new Vector2(Mathf.Cos(_emitAngle[i] * Mathf.Deg2Rad), Mathf.Sin(_emitAngle[i] * Mathf.Deg2Rad));
             shoot(shootDirection);
         }
     }
@@ -142,7 +144,7 @@ public class Boss1Weapon : RangedMonsterHit
         /*
             Boss1Weapon的Awake
         */
-        _status = 0;
+        _status = 1;
         _cdTimer = 0;
         _statusTimer = 0;
         _pierce = -1;
