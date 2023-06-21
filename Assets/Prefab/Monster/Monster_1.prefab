@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1350220864868869803}
-  _player: {fileID: 0}
   beatBackTime: 0.2
   beatBackTimeSpeed: 5
 --- !u!70 &4790823077417064592
@@ -190,6 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onHitColor: {r: 1, g: 0, b: 0, a: 1}
+  _onHitTime: 0
 --- !u!114 &1514294395052968368
 MonoBehaviour:
   m_ObjectHideFlags: 0

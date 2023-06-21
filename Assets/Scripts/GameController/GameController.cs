@@ -118,6 +118,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //test
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Boss_1.prefab", 1);
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 5);
     }
 }
