@@ -1,11 +1,11 @@
 /*
-    远程武器
+    怪物的远程攻击
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedWeapon : Weapon
+public class RangedMonsterHit : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
@@ -16,15 +16,16 @@ public class RangedWeapon : Weapon
     protected new void Awake()
     {
         /*
-            Weapon的Awake
+            Weapon类的Awake
         */
         _weaponAttribute = GetComponent<WeaponAttribute>();
         _damager = GetComponent<Damager>();
         _nextAttackTime = Time.time;
 
         /*
-            RangedWeapon的Awake
+            RangedMonsterHit类的Awake
         */
+        _attachPoint = transform;
         _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
         _pierce = 1;
     }
@@ -33,14 +34,12 @@ public class RangedWeapon : Weapon
     protected void shoot(Vector2 shootDirection)
     {
         //实例化一颗子弹
-        // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
+        // GameObject bullet = Instantiate(_bulletPrefab, _attachPoint.position, _attachPoint.rotation);
         GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
         bullet.transform.position = _attachPoint.position;
         bullet.transform.rotation = _attachPoint.rotation;
 
-        // bullet.GetComponent<Bullet>()._weapon = gameObject;
-        // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
-        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy", _pierce);
+        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player", _pierce);
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 
@@ -48,16 +47,12 @@ public class RangedWeapon : Weapon
     void Update()
     {
         //射击方向
-        Vector2 attackDirection = getAttackDirection("Enemy");
+        Vector2 attackDirection = getAttackDirection("Player");
 
         //找到射击方向
         if (attackDirection != new Vector2(0, 0))
         {
-            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
-            //武器需要旋转的角度
-            float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
-            //旋转武器
-            _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Player") * 100, Color.red);
 
             //如果当前时间大于攻击冷却时间则攻击
             if (Time.time > _nextAttackTime)
