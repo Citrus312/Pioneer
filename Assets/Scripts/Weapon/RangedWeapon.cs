@@ -9,7 +9,7 @@ public class RangedWeapon : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
     //子弹的贯穿次数
     protected int _pierce;
 
@@ -25,7 +25,7 @@ public class RangedWeapon : Weapon
         /*
             RangedWeapon的Awake
         */
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
         _pierce = 1;
     }
 
@@ -53,11 +53,13 @@ public class RangedWeapon : Weapon
         //找到射击方向
         if (attackDirection != new Vector2(0, 0))
         {
-            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
-            //武器需要旋转的角度
-            float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
             //旋转武器
-            _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
+            rotateWeapon(attackDirection);
+            // Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
+            // //武器需要旋转的角度
+            // float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
+            // //旋转武器
+            // _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
 
             //如果当前时间大于攻击冷却时间则攻击
             if (Time.time > _nextAttackTime)

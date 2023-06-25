@@ -60,4 +60,22 @@ public class Weapon : MonoBehaviour
         }
         return attackDirection.normalized;
     }
+
+    //旋转武器
+    protected void rotateWeapon(Vector2 targetDirection)
+    {
+        //如果目标方向在三四象限则翻转武器x轴
+        if (targetDirection.x < 0)
+        {
+            _attachPoint.transform.localScale = new Vector3(-Mathf.Abs(_attachPoint.transform.localScale.x), _attachPoint.transform.localScale.y, _attachPoint.transform.localScale.z);
+        }
+        else
+        {
+            _attachPoint.transform.localScale = new Vector3(Mathf.Abs(_attachPoint.transform.localScale.x), _attachPoint.transform.localScale.y, _attachPoint.transform.localScale.z);
+        }
+        //武器需要旋转的角度
+        float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, targetDirection);
+        //旋转武器
+        _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
+    }
 }
