@@ -24,6 +24,8 @@ public class CharacterAttribute : MonoBehaviour
     private int currentPlayerLevel = 0;
     //角色在最低难度从0级升到1级需要的经验值
     private float basicUpgradeExp = 15f;
+    //怪物预制体的路径
+    private string monsterPrefabPath = "";
     //怪物在最低难度每经过一波袭击后增加的最大生命值
     private float healthIncPerWave = 0;
     //怪物在最低难度每经过一波袭击后增加的伤害值
@@ -36,6 +38,12 @@ public class CharacterAttribute : MonoBehaviour
     private float crateRate = 0.1f;
     //怪物允许被生成的最早波次
     private int firstGenWave = 1;
+    //怪物的生成概率
+    private float genRate = 10f;
+    //怪物的最小生成数量
+    private float minGenCount = 1f;
+    //怪物的最大生成数量
+    private float maxGenCount = 2f;
     //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
@@ -116,6 +124,11 @@ public class CharacterAttribute : MonoBehaviour
         basicUpgradeExp = input;
     }
 
+    public void setMonsterPrefabPath(string input)
+    {
+        monsterPrefabPath = input;
+    }
+
     public void setHealthIncPerWave(float input)
     {
         healthIncPerWave = input;
@@ -144,6 +157,21 @@ public class CharacterAttribute : MonoBehaviour
     public void setFirstGenWave(int input)
     {
         firstGenWave = input;
+    }
+
+    public void setGenRate(float input)
+    {
+        genRate = input;
+    }
+
+    public void setMinGenCount(float input)
+    {
+        minGenCount = input;
+    }
+
+    public void setMaxGenCount(float input)
+    {
+        maxGenCount = input;
     }
 
     public void setMaxHealth(float input)
@@ -260,7 +288,7 @@ public class CharacterAttribute : MonoBehaviour
     //用于初始化怪物
     public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
         float meleeDamage, float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
-        float crateRate, int firstGenWave)
+        float crateRate, int firstGenWave, float genRate, float minGenCount, float maxGenCount, string prefabPath)
     {
         setID(id);
         setMaxHealth(maxHealth);
@@ -273,6 +301,10 @@ public class CharacterAttribute : MonoBehaviour
         setDropRate(dropRate);
         setCrateRate(crateRate);
         setFirstGenWave(firstGenWave);
+        setGenRate(genRate);
+        setMinGenCount(minGenCount);
+        setMaxGenCount(maxGenCount);
+        setMonsterPrefabPath(prefabPath);
     }
 
     //获取经过属性加成的移速
@@ -332,6 +364,11 @@ public class CharacterAttribute : MonoBehaviour
         return basicUpgradeExp;
     }
 
+    public string getMonsterPrefabPath()
+    {
+        return monsterPrefabPath;
+    }
+
     public float getHealthIncPerWave()
     {
         return healthIncPerWave;
@@ -360,6 +397,21 @@ public class CharacterAttribute : MonoBehaviour
     public float getFirstGenWave()
     {
         return firstGenWave;
+    }
+
+    public float getGenRate()
+    {
+        return genRate;
+    }
+
+    public float getMinGenCount()
+    {
+        return minGenCount;
+    }
+
+    public float getMaxGenCount()
+    {
+        return maxGenCount;
     }
 
     public float getMaxHealth()

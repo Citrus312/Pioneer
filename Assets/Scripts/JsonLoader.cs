@@ -11,6 +11,7 @@ public class JsonLoader : MonoBehaviour
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
     public static List<CharacterAttribute> rolePool = new();
+    public static List<CharacterAttribute> monsterPool = new();
 
     //加载并解析游戏数据
     public static void LoadAndDecodeGameData()
@@ -306,6 +307,48 @@ public class JsonLoader : MonoBehaviour
             }
             addAttr.setWeaponCategory(tempCategory);
             rolePool.Add(addAttr);
+        }
+    }
+
+    //加载并解析怪物属性
+    public static void LoadAndDecodeMonsterConfig()
+    {
+        JsonData monstersConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Monsters.json", Encoding.GetEncoding("utf-8")));
+        JsonData monsterConfig;
+        double temp;
+        for (int i = 0; i < monstersConfig.Count; i++)
+        {
+            CharacterAttribute addAttr = new();
+            monsterConfig = monstersConfig[i];
+            addAttr.setID((int)monsterConfig["ID"]);
+            addAttr.setMonsterPrefabPath((string)monsterConfig["prefabPath"]);
+            addAttr.setFirstGenWave((int)monsterConfig["firstGenWave"]);
+            temp = (double)monsterConfig["maxHealth"];
+            addAttr.setMaxHealth((float)temp);
+            temp = (double)monsterConfig["healthIncPerWave"];
+            addAttr.setHealthIncPerWave((float)temp);
+            temp = (double)monsterConfig["speed"];
+            addAttr.setRawMoveSpeed((float)temp);
+            temp = (double)monsterConfig["meleeDamage"];
+            addAttr.setMeleeDamage((float)temp);
+            temp = (double)monsterConfig["rangedDamage"];
+            addAttr.setRangedDamage((float)temp);
+            temp = (double)monsterConfig["damageIncPerWave"];
+            addAttr.setDamageIncPerWave((float)temp);
+            temp = (double)monsterConfig["lootCount"];
+            addAttr.setLootCount((float)temp);
+            temp = (double)monsterConfig["dropRate"];
+            addAttr.setDropRate((float)temp);
+            temp = (double)monsterConfig["crateRate"];
+            addAttr.setCrateRate((float)temp);
+            temp = (double)monsterConfig["genRate"];
+            addAttr.setGenRate((float)temp);
+            temp = (double)monsterConfig["minGenCount"];
+            addAttr.setMinGenCount((float)temp);
+            temp = (double)monsterConfig["maxGenCount"];
+            addAttr.setMaxGenCount((float)temp);
+
+            monsterPool.Add(addAttr);
         }
     }
 }
