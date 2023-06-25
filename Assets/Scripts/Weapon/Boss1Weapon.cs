@@ -139,7 +139,7 @@ public class Boss1Weapon : RangedMonsterHit
             RangedMonsterHit类的Awake
         */
         _attachPoint = transform;
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
+        _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
 
         /*
             Boss1Weapon的Awake

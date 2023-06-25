@@ -9,7 +9,7 @@ public class RangedWeapon : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet_red 3.prefab";
     //子弹的贯穿次数
     protected int _pierce;
 
@@ -25,7 +25,7 @@ public class RangedWeapon : Weapon
         /*
             RangedWeapon的Awake
         */
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red.prefab";
+        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red 3.prefab";
         _pierce = 1;
     }
 
@@ -36,7 +36,10 @@ public class RangedWeapon : Weapon
         // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
         GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
         bullet.transform.position = _attachPoint.position;
-        bullet.transform.rotation = _attachPoint.rotation;
+        // bullet.transform.rotation = _attachPoint.rotation;
+        Quaternion bulletRotation = new Quaternion();
+        bulletRotation.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(new Vector2(1, 0), shootDirection));
+        bullet.transform.rotation = bulletRotation;
 
         // bullet.GetComponent<Bullet>()._weapon = gameObject;
         // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
