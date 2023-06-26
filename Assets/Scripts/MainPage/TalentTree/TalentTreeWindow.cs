@@ -418,7 +418,6 @@ public class TalentTreeWindow : BaseWindow
 
     private void OnExitButton(Button button)
     {
-        SceneLoader._instance.loadScene("MainPage");
         Close(false);
     }
 

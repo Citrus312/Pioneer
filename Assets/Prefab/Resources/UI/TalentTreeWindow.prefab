@@ -10594,7 +10594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af0eda9fe653fbc4a920df2602aaeb28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 062765c7114c2fc4f864e40fa121fe43, type: 3}
   radius: 55
   segment: 100
 --- !u!1 &7919141838240724638
