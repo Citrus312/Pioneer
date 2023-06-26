@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class SettingWindow : BaseWindow
 {
     private static SettingWindow instance;
+    //三个滑动条对象
     protected Slider masterSld;
     protected Slider musicSld;
     protected Slider soundSld;
 
+    //初始化参数
     private SettingWindow()
     {
         resName = "UI/SettingWindow";
@@ -18,7 +20,6 @@ public class SettingWindow : BaseWindow
         selfType = WindowType.SettingWindow;
         sceneType = SceneType.MainPage;
     }
-
     public static SettingWindow Instance
     {
         get
@@ -33,38 +34,33 @@ public class SettingWindow : BaseWindow
 
     protected override void AwakeWindow()
     {
+        //获取场景中的滑动条
         masterSld = transform.Find("MasterBar").GetComponent<Slider>();
         musicSld = transform.Find("MusicBar").GetComponent<Slider>();
         soundSld = transform.Find("SoundBar").GetComponent<Slider>();
-        
+
         base.AwakeWindow();
     }
-
     protected override void FillTextContent()
     {
         base.FillTextContent();
     }
-
     protected override void OnAddListener()
     {
         base.OnAddListener();
     }
-
     protected override void OnDisable()
     {
         base.OnDisable();
     }
-
     protected override void OnEnable()
     {
         base.OnEnable();
     }
-
     protected override void OnRemoveListener()
     {
         base.OnRemoveListener();
     }
-
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
@@ -90,46 +86,41 @@ public class SettingWindow : BaseWindow
                     break;
             }
         }
+        //给滑动条添加值改变事件
         masterSld.onValueChanged.AddListener(val => { OnMasterSld(); });
         musicSld.onValueChanged.AddListener((float val) => { OnMusicSld(); });
         soundSld.onValueChanged.AddListener((float val) => { OnSoundSld(); });
     }
-
     protected override void Update()
     {
         base.Update();
     }
 
+    //以下是按钮点击事件
     private void OnCloseBtn()
     {
         Close();
     }
-
     private void OnMasterMuteBtn(Button btn)
     {
         AudioManager.Instance.MasterBtnOnClick(btn, masterSld);
     }
-
     private void OnMusicMuteBtn(Button btn)
     {
         AudioManager.Instance.MusicBtnOnClick(btn, musicSld);
     }
-
     private void OnSoundMuteBtn(Button btn)
     {
         AudioManager.Instance.SoundBtnOnClick(btn, soundSld);
     }
-
     private void OnMasterSld()
     {
         AudioManager.Instance.MasterSldOnClick(masterSld);
     }
-
     private void OnMusicSld()
     {
         AudioManager.Instance.MusicSldOnClick(musicSld);
     }
-
     private void OnSoundSld()
     {
         AudioManager.Instance.SoundSldOnClick(soundSld);

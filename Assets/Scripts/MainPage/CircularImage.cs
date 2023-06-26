@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace CustomUI
 {
+    //根据重写的图片基类实现圆形图片的显示，用于按钮组件时其点击事件的判定区域也是圆形
+    //将输入的sprite按照指定的半径和分割的三角片数重新组织sprite
+    //片数越大，圆边越光滑
     public class CircularImage : BaseImage
     {
         [SerializeField] public float radius = 50;

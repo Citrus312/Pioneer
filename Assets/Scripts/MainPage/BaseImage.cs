@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace CustomUI
 {
+    //重写了图片基类，专门用于圆形图片的显示
     public class BaseImage : MaskableGraphic, ISerializationCallbackReceiver, ILayoutElement, ICanvasRaycastFilter
     {
         [FormerlySerializedAs("m_Frame")]
