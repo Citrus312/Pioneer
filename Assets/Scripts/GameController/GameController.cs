@@ -8,8 +8,8 @@ public class GameController : MonoBehaviour
 
     private GameData _gameData = new GameData();
 
-    public GameObject _playerPrefab;
-    public GameObject _player;
+    public string _playerPrefab;
+    private GameObject _player;
 
     public GameObject _objectPool;
 
@@ -33,10 +33,10 @@ public class GameController : MonoBehaviour
     {
         // 加载资源
 
-        // 初始化玩家
-        initPlayer();
         // 初始化场景
         initBattleScene();
+        // 初始化玩家
+        initPlayer();
         // 设置游戏状态
 
     }
@@ -59,9 +59,8 @@ public class GameController : MonoBehaviour
 
     public void initBattleScene()
     {
+        //对象池初始化
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
-
-        initPlayerPos();
         // 生成器初始化
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
     }
@@ -71,7 +70,10 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
-            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            _player = ObjectPool.getInstance().get(_playerPrefab);
+            _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
+            initPlayerPos();
             // 初始化属性
             //_player.GetComponent<CharacterAttribute>().initAttribute(_gameData._playerID);
             return true;
@@ -110,14 +112,11 @@ public class GameController : MonoBehaviour
         return _gameData;
     }
 
-    void Awake()
-    {
-        initGame();
-    }
-
     void Start()
     {
+        initGame();
         //test
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 5);
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Boss_2.prefab", 1);
+        _player.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(4);
     }
 }

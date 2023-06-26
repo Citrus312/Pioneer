@@ -9,24 +9,16 @@ public class RangedMonsterHit : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
     //子弹的贯穿次数
     protected int _pierce;
 
-    protected new void Awake()
+    protected new virtual void Awake()
     {
-        /*
-            Weapon类的Awake
-        */
         _weaponAttribute = GetComponent<WeaponAttribute>();
         _damager = GetComponent<Damager>();
-        _nextAttackTime = Time.time;
-
-        /*
-            RangedMonsterHit类的Awake
-        */
         _attachPoint = transform;
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
         _pierce = 1;
     }
 
@@ -37,7 +29,7 @@ public class RangedMonsterHit : Weapon
         // GameObject bullet = Instantiate(_bulletPrefab, _attachPoint.position, _attachPoint.rotation);
         GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
         bullet.transform.position = _attachPoint.position;
-        bullet.transform.rotation = _attachPoint.rotation;
+        // bullet.transform.rotation = _attachPoint.rotation;
 
         bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player", _pierce);
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);

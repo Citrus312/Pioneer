@@ -23,25 +23,9 @@ public class PlayerController : Controller
         }
     }
 
-    protected new void Awake()
+    protected override void Awake()
     {
-        /*
-            Controller类的Awake
-        */
-        _transform = GetComponent<Transform>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _characterAttribute = GetComponent<CharacterAttribute>();
-        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        _animator = GetComponent<Animator>();
-
-        //设置rigidbody2D的参数
-        _rigidbody2D.drag = 100;
-        _rigidbody2D.gravityScale = 0;
-        _rigidbody2D.freezeRotation = true;
-
-        /*
-            PlayerController类的Awake
-        */
+        base.Awake();
         //设置碰撞体大小和位置
         _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
         _capsuleCollider2D.offset = new Vector2(0, -0.05f);

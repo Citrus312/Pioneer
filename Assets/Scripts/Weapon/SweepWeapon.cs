@@ -98,11 +98,12 @@ public class SweepWeapon : MeleeWeapon
         if (attackTarget != null && !_isAttacking)
         {
             //旋转武器
-            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
-            //武器需要旋转的角度
-            float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackTarget.position - _attachPoint.position);
-            //旋转武器
-            _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
+            rotateWeapon(attackTarget.position - _attachPoint.position);
+            // Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
+            // //武器需要旋转的角度
+            // float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackTarget.position - _attachPoint.position);
+            // //旋转武器
+            // _attachPoint.Rotate(new Vector3(0, 0, angle), Space.World);
 
             //如果当前时间大于下次攻击时间则开始攻击
             if (Time.time > _nextAttackTime)

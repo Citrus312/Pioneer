@@ -47,6 +47,8 @@ public class MonsterGenerator : Generator
         for (int i = 0; i < num; i++)
         {
             GameObject redCross = ObjectPool.getInstance().get(_redCrossPath);
+            //让红叉随机旋转一定角度
+            redCross.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360.0f)));
             StartCoroutine("generateMonster", redCross);
         }
     }

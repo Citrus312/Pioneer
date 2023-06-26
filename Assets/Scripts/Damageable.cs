@@ -14,6 +14,8 @@ public class Damageable : MonoBehaviour
     public Color _onHitColor;
     //闪烁的持续时间
     public float _onHitTime;
+    //预制体路径
+    public string _prefabPath;
 
     protected void Awake()
     {
@@ -39,8 +41,8 @@ public class Damageable : MonoBehaviour
 
     private void die()
     {
-        //ObjectPool.getInstance().remove(,gameObject);
-        Destroy(gameObject);
+        ObjectPool.getInstance().remove(_prefabPath, gameObject);
+        // Destroy(gameObject);
     }
 
     public void TakeDamage(float damage)
