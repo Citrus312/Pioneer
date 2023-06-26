@@ -14,10 +14,10 @@ public class ThrustWeapon : MeleeWeapon
         _isAttacking = true;
 
         /*
-            固定0.5s为出刀时间，使用开始位置和目标位置做插值来显示
+            固定0.05s为出刀时间，使用开始位置和目标位置做插值来显示
             开始位置和目标位置要转换到_attachPoint的相对坐标
         */
-        float dur = 0.0f, time = 0.1f;
+        float dur = 0.0f, time = 0.05f;
         Vector2 startPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position);
         Vector2 endPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position + (Vector3)attackDirection * (_weaponAttribute.getAttackRange() - Vector2.Distance(_attachPoint.position, GetComponent<Transform>().position)));
         while (dur < time)
@@ -45,13 +45,13 @@ public class ThrustWeapon : MeleeWeapon
     void Update()
     {
         //获取攻击方向
-        Vector2 attackDirection = getAttackDirection();
+        Vector2 attackDirection = getAttackDirection("Enemy");
 
         //如果找到了攻击方向且不处于攻击动作中
         if (attackDirection != new Vector2(0, 0) && !_isAttacking)
         {
             //旋转武器
-            Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
             //武器需要旋转的角度
             float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
             //旋转武器
@@ -61,6 +61,7 @@ public class ThrustWeapon : MeleeWeapon
             if (Time.time > _nextAttackTime)
             {
                 //开始攻击
+                _attackDirection = attackDirection;
                 StartCoroutine(attack(attackDirection));
                 //更新下次攻击事件
                 _nextAttackTime = Time.time + _weaponAttribute.getAttackSpeed();

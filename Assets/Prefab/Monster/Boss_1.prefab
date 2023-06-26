@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1506254539894893058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6639145256553927330}
+  m_Layer: 0
+  m_Name: RotateCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6639145256553927330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506254539894893058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.135, y: -0.087, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8906711177235312327}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8906711177235312325
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,9 +44,13 @@ GameObject:
   - component: {fileID: 8906711177235312323}
   - component: {fileID: 8906711177235312321}
   - component: {fileID: 8906711177235312317}
-  - component: {fileID: 8906711177235312316}
+  - component: {fileID: -6288804501094606261}
   - component: {fileID: 3123915040239440120}
   - component: {fileID: 6822440092561447955}
+  - component: {fileID: 623707551264390406}
+  - component: {fileID: 1286853561412380474}
+  - component: {fileID: 7384178506596898394}
+  - component: {fileID: 6586489317002370374}
   m_Layer: 0
   m_Name: Boss_1
   m_TagString: Untagged
@@ -31,10 +66,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8906711177235312325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9, y: 0.4, z: 0.8204551}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 1.9, y: 0.85, z: 0.8204551}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6639145256553927330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1106066740, guid: 05532ea4c90a68648810f716454027b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 906ad27146526e0498ef9704dfdb8ab0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +136,7 @@ Animator:
   m_GameObject: {fileID: 8906711177235312325}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec5d0ecf4ae24804c9dc0d2b1565ef00, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5845103a060095a43b763cb45d98ecb2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719ff943c03f834ba7d8b96a196d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8906711177235312316
+--- !u!114 &-6288804501094606261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,11 +188,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8906711177235312325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb0315c36ca1241982bb131674a52a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9230e44801902f743a12f90af35ccef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8906711177235312323}
-  _player: {fileID: 0}
+  beatBackTime: 0
+  beatBackTimeSpeed: 0
+  _isDashing: 0
 --- !u!70 &3123915040239440120
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,8 +208,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14177215, y: -0.080337465}
-  m_Size: {x: 0.38658226, y: 0.5179746}
+  m_Offset: {x: 0.0053768754, y: -0.20342617}
+  m_Size: {x: 0.28678128, y: 0.3666223}
   m_Direction: 0
 --- !u!114 &6822440092561447955
 MonoBehaviour:
@@ -185,3 +223,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onHitColor: {r: 0, g: 0, b: 0, a: 0}
+  _onHitTime: 0
+--- !u!114 &623707551264390406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906711177235312325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawAttackRange: 5
+--- !u!114 &1286853561412380474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906711177235312325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22074bcfe85340d4388e9e4ffa030965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7384178506596898394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906711177235312325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399cce1cc38204d4789a950c6a6f535e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attachPoint: {fileID: 0}
+  _grip: {fileID: 0}
+  _endPoint: {fileID: 0}
+--- !u!114 &6586489317002370374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906711177235312325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863a650c6b0d85443872e548b285bc54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attachPoint: {fileID: 0}
+  _grip: {fileID: 0}
+  _endPoint: {fileID: 0}
+  _bulletPrefab: Assets/Prefab/Bullet/bullet.prefab
+  _cd: 3
+  _statusChangeTime: 45
+  _rotateCenter: {fileID: 6639145256553927330}
+  _bulletNum: 12
+  _rotateSpeed: 50
+  _spreadSpeed: 1
+  _spreadRadius:
+  - 0.5
+  - 0.7
+  - 0.9
+  - 1.4
+  - 1.6
+  - 1.8
+  - 2.3
+  - 2.5
+  - 2.7
+  - 3.2
+  - 3.4
+  - 3.6
+  _delayTime: 0.5
+  _dashTime: 0.5
+  _emitAngle:
+  - 0
+  - 45
+  - 90
+  - 135
+  - 180
+  - 225
+  - 270
+  - 315

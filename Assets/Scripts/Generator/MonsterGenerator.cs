@@ -1,14 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterGenerator : Generator
 {
     // 单例
     private static MonsterGenerator _instance;
-    
+
     // 要生成的怪物
     public string _monsterPrefabPath;
-    public GameObject _player;
-    private SpriteRenderer _redCross;// 怪物生成前的信号图片
+
+    // 怪物生成前的信号图片路径
+    private string _redCrossPath;
 
     // 在角色周围生成怪物的范围大小
     public float _distance;
@@ -18,81 +21,63 @@ public class MonsterGenerator : Generator
     // 信号闪烁次数
     private int _flashCnt;
 
-    public override void Start()
+    public void Awake()
     {
-        base.Start();
-        
-        _redCross = GetComponent<SpriteRenderer>(); // 必须挂一个(待解决)
+        _redCrossPath = "Assets/Prefab/RedCross.prefab";
         _distance = 5.0f;
-        _interval = 5.0f;
-        InvokeRepeating("beginGenerate", 1.0f, _interval);
+        _interval = 3.0f;
+        _instance = this;
     }
 
     public static MonsterGenerator getInstance()
     {
-        if(_instance == null)
+        if (_instance == null)
         {
             _instance = new MonsterGenerator();
         }
         return _instance;
     }
 
-    protected void readFile()
+    //开始生成
+    public void beginGenerate(string monsterPrefabPath, int num)
     {
-        //
+        //设置生成的怪物预制体路径
+        _monsterPrefabPath = monsterPrefabPath;
+
+        for (int i = 0; i < num; i++)
+        {
+            GameObject redCross = ObjectPool.getInstance().get(_redCrossPath);
+            StartCoroutine("generateMonster", redCross);
+        }
     }
 
-    protected void beginGenerate()
+    // 显示红叉，闪烁后生成怪物
+    protected IEnumerator generateMonster(GameObject redCross)
     {
-        // 数据设置
-        GameController.getInstance().getGameData();
-        showRedCross();
-        
-    }
-
-    // 红叉显现
-    protected void showRedCross()
-    {
-        _redCross.transform.position = getSpawnLocation();
-        _redCross.enabled = true;
+        Vector3 pos = getSpawnLocation();
+        redCross.transform.position = pos;
 
         _flashCnt = 2;
-        redCrossFlash();
-        Invoke("generateMonster", 2.5f);
-    }
+        SpriteRenderer spriteRenderer = redCross.GetComponent<SpriteRenderer>();
 
-    // 红叉闪烁
-    protected void redCrossFlash()
-    {
-        _redCross.color = new Color(_redCross.color.r, _redCross.color.g, _redCross.color.b, 1.0f);
-        Invoke("redCrossFade", 0.5f);
-    }
-
-    // 红叉透明
-    protected void redCrossFade()
-    {
-        _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.1f);
-        if(_flashCnt > 0){
-            Invoke("redCrossFlash", 0.5f);
-            _flashCnt--;
-        }
-        else
+        for (int i = 0; i < _flashCnt; i++)
         {
-            // 红叉消失
-            _redCross.color = new Color(_redCross.color.r, _redCross.color.g,_redCross.color.b, 0.0f);
-            _redCross.enabled = false;
-        }
-    }
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1.0f);
+            yield return new WaitForSeconds(0.5f);
 
-    protected void generateMonster() // 待补充
-    {
-        generateObject(_monsterPrefabPath, _redCross.transform.position, 1);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.1f);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        ObjectPool.getInstance().remove(_redCrossPath, redCross);
+
+        generateObject(_monsterPrefabPath, pos);
     }
 
     // 随机获取怪物生成位置
     protected Vector3 getSpawnLocation()
     {
-        Vector3 pos = _player.transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
+        Vector3 pos = GameController.getInstance().getPlayer().transform.position + new Vector3(Random.Range(-1 * _distance, _distance), Random.Range(-1 * _distance, _distance), 0);
         return pos;
     }
 }

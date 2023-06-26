@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 113607264010915766}
   - component: {fileID: 113607264010915786}
   - component: {fileID: 113607264010915787}
+  - component: {fileID: 7031811629422958296}
   m_Layer: 0
   m_Name: Monster_3
   m_TagString: Untagged
@@ -155,3 +156,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 113607264010915764}
   _player: {fileID: 0}
+--- !u!70 &7031811629422958296
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113607264010915762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0

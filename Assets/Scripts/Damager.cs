@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Damager : MonoBehaviour
 {
-    //ÎäÆ÷µÄÊôÐÔ ÎäÆ÷ËùÓÐÕßµÄÊôÐÔ ÎäÆ÷±¾Éí
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected WeaponAttribute _weaponAttr;
     protected CharacterAttribute _ownerAttr;
     protected Weapon _weapon;
+    //ä¼¤å®³æ˜¾ç¤ºé¢„åˆ¶ä½“
+    protected string _damageTextPrefab;
 
-    void Start()
+    void Awake()
     {
         _weapon = GetComponentInParent<Weapon>();
         _weaponAttr = _weapon.GetComponent<WeaponAttribute>();
         _ownerAttr = _weapon.GetComponentInParent<CharacterAttribute>();
+        _damageTextPrefab = DamageText.getDamageTextPath();
     }
 
     public void Damage(Collider2D targetColl)
@@ -27,7 +31,7 @@ public class Damager : MonoBehaviour
         float criticalBonus = _weaponAttr.getCriticalBonus();
         float criticalRate = _weaponAttr.getCriticalRate();
         float armorStrength = targetAttr.getArmorStrength();
-        //¼ÆËãÊÜ»÷¶ÔÏóµÄÉËº¦¼õÃâ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ü»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½
         float damageRedution;
         if (armorStrength >= 0)
         {
@@ -37,7 +41,7 @@ public class Damager : MonoBehaviour
         {
             damageRedution = armorStrength * 0.02f;
         }
-        //¼ÆËã¹¥»÷ÕßÊÇ·ñ´¥·¢±©»÷
+        //ï¿½ï¿½ï¿½ã¹¥ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ´¥·ï¿½ï¿½ï¿½ï¿½ï¿½
         float crit = Random.Range(0f, 1f);
         if (crit < criticalRate)
         {
@@ -47,9 +51,33 @@ public class Damager : MonoBehaviour
         {
             damage = weaponDamage * (1 - damageRedution);
         }
-        //×îµÍÉËº¦ÅÐ¶Ï
+        //ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½Ð¶ï¿½
         damage = damage > 1 ? damage : 1;
-        //Ó¦ÓÃ¼ÆËã³öµÄÉËº¦
+
+        //æ˜¾ç¤ºä¼¤å®³
+        //DamageText damageText = Instantiate(_damageTextPrefab, target.transform.position, Quaternion.identity).GetComponent<DamageText>();
+        GameObject damageTextObj = ObjectPool.getInstance().get(_damageTextPrefab);
+        damageTextObj.transform.position = target.transform.position;
+        DamageText damageText = damageTextObj.GetComponent<DamageText>();
+        if (target.tag == "Player")
+        {
+            damageText.setup(DamageText.TextType.PlayerHurt, (int)damage);
+        }
+        else if (target.tag == "Enemy")
+        {
+            //æš´å‡»
+            if (crit < criticalRate)
+            {
+                damageText.setup(DamageText.TextType.CritDamage, (int)damage);
+            }
+            //ä¸æš´å‡»
+            else
+            {
+                damageText.setup(DamageText.TextType.CommonDamage, (int)damage);
+            }
+        }
+
+        //Ó¦ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
         if (damageable != null)
         {
             damageable.TakeDamage(damage);

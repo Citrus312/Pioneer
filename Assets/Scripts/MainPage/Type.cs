@@ -10,6 +10,7 @@ public enum WindowType
     SettingWindow,
     DifficultySelectWindow,
     RoleAndWeaponSelectWindow
+    PauseWindow
 }
 //窗口所在场景类型的枚举
 public enum SceneType
@@ -17,5 +18,6 @@ public enum SceneType
     None,
     Battle,
     MainPage,
+    Pause,
     Select
 }
