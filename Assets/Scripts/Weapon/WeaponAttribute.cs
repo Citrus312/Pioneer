@@ -17,7 +17,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器基础伤害
     private float rawWeaponDamage = 0;
     //武器基础攻击范围
-    private float rawAttackRange = 20f;
+    [SerializeField] private float rawAttackRange = 5.0f;
     //对应类型伤害的转换比例
     private float convertRatio = 0.8f;
     //暴击伤害的倍率
@@ -46,7 +46,8 @@ public class WeaponAttribute : MonoBehaviour
 
     private void Start()
     {
-        ownerAttr = GameObject.Find("Player").GetComponent<CharacterAttribute>();
+        // ownerAttr = GameObject.Find("Player").GetComponent<CharacterAttribute>();
+        ownerAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
     }
     public void setOwnerAttr(CharacterAttribute input)
     {

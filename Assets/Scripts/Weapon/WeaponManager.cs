@@ -11,12 +11,10 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        addWeapon(_initWeapons[0]);
-        addWeapon(_initWeapons[1]);
-        // addWeapon(_initWeapons[2]);
-        // addWeapon(_initWeapons[3]);
-        // addWeapon(_initWeapons[4]);
-        // addWeapon(_initWeapons[5]);
+        for (int i = 0; i < _initWeapons.Length; i++)
+        {
+            addWeapon(_initWeapons[i]);
+        }
     }
 
     //添加武器

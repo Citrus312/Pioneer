@@ -27,8 +27,8 @@ public class Weapon : MonoBehaviour
         _nextAttackTime = Time.time;
     }
 
-    //获取攻击的方向
-    protected Vector2 getAttackDirection()
+    //根据需要攻击的目标tag获取攻击的方向
+    protected Vector2 getAttackDirection(string tag)
     {
         //获取攻击距离
         float attackRange = _weaponAttribute.getAttackRange();
@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < hitColliders.Length; i++)
         {
             //判断碰撞物体是否为敌人
-            if (hitColliders[i].tag.Equals("Enemy"))
+            if (hitColliders[i].tag.Equals(tag))
             {
                 enemy.Add(hitColliders[i].transform);
             }

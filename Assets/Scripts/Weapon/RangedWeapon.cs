@@ -8,14 +8,39 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
     //子弹的预制体
-    [SerializeField] protected GameObject _bulletPrefab;
+    // [SerializeField] protected GameObject _bulletPrefab;
+    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+    //子弹的贯穿次数
+    protected int _pierce;
+
+    protected new void Awake()
+    {
+        /*
+            Weapon的Awake
+        */
+        _weaponAttribute = GetComponent<WeaponAttribute>();
+        _damager = GetComponent<Damager>();
+        _nextAttackTime = Time.time;
+
+        /*
+            RangedWeapon的Awake
+        */
+        _bulletPrefab = "Assets/Prefab/Bullet/bullet.prefab";
+        _pierce = 1;
+    }
 
     //向射击方向发射一颗子弹
     protected void shoot(Vector2 shootDirection)
     {
         //实例化一颗子弹
-        GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
-        bullet.GetComponent<Bullet>()._weapon = gameObject;
+        // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
+        GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
+        bullet.transform.position = _attachPoint.position;
+        bullet.transform.rotation = _attachPoint.rotation;
+
+        // bullet.GetComponent<Bullet>()._weapon = gameObject;
+        // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
+        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy", _pierce);
         bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
     }
 
@@ -23,12 +48,12 @@ public class RangedWeapon : Weapon
     void Update()
     {
         //射击方向
-        Vector2 attackDirection = getAttackDirection();
+        Vector2 attackDirection = getAttackDirection("Enemy");
 
         //找到射击方向
         if (attackDirection != new Vector2(0, 0))
         {
-            Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
             //武器需要旋转的角度
             float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackDirection);
             //旋转武器

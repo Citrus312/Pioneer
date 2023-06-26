@@ -48,3 +48,6 @@ TagManager:
   - name: Weapon
     uniqueID: 3926876125
     locked: 0
+  - name: DamageText
+    uniqueID: 2823329689
+    locked: 0

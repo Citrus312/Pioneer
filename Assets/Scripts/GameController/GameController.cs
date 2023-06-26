@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    //控制器的单例实例
     private static GameController _instance;
-    //当前的游戏数据
-    private GameData _gameData = new();
+
+    private GameData _gameData = new GameData();
 
     public GameObject _playerPrefab;
     public GameObject _player;
@@ -34,10 +33,10 @@ public class GameController : MonoBehaviour
     {
         // 加载资源
 
-        // 初始化场景
-
         // 初始化玩家
         initPlayer();
+        // 初始化场景
+        initBattleScene();
         // 设置游戏状态
 
     }
@@ -49,7 +48,7 @@ public class GameController : MonoBehaviour
         // 加载玩家资源
 
         // 加载游戏配置资源
-        JsonLoader.LoadAndDecodeGameData();
+
     }
 
     private void initScene()
@@ -111,8 +110,14 @@ public class GameController : MonoBehaviour
         return _gameData;
     }
 
+    void Awake()
+    {
+        initGame();
+    }
+
     void Start()
     {
-        loadResources();
+        //test
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 5);
     }
 }
