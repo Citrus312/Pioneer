@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class propertyWindow : BaseWindow
+public class weaponBagWindow : BaseWindow
 {
-    private static propertyWindow instance;
+    private  static weaponBagWindow instance;
+    public int buyedWeapon;
+    public List<int> ownWeaponList = new();
+    public bool addWeapon=true;//判断能否继续添加装备
+    public bool isWeapon=true;//购买的是否是武器
 
-    public propertyWindow()
+    private weaponBagWindow()
     {
         // 在这里初始化GameManager
-        resName = "UI/propertyWindow";
+        resName = "UI/weaponBagWindow";
         isResident = true;
         isVisible = false;
-        selfType = WindowType.propertyWindow;
+        selfType = WindowType.weaponBagWindow;
         sceneType = SceneType.gameProcess;
 
     }
 
-    public static propertyWindow Instance
+    public static weaponBagWindow Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new propertyWindow();
+                instance = new weaponBagWindow();
             }
             return instance;
         }
@@ -32,7 +36,7 @@ public class propertyWindow : BaseWindow
 
     protected override void Awake(string inputText = "")
     {
-       
+
 
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
@@ -67,7 +71,6 @@ public class propertyWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-
     }
     protected virtual void FillTextContent(string inputText)
     {

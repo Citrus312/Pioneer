@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class propertyWindow : BaseWindow
+public class roleStateWindow : BaseWindow
 {
-    private static propertyWindow instance;
+    private static roleStateWindow instance;
 
-    public propertyWindow()
+    public roleStateWindow()
     {
         // 在这里初始化GameManager
-        resName = "UI/propertyWindow";
+        resName = "UI/roleStateWindow";
         isResident = true;
         isVisible = false;
-        selfType = WindowType.propertyWindow;
+        selfType = WindowType.roleStateWindow;
         sceneType = SceneType.gameProcess;
 
     }
 
-    public static propertyWindow Instance
+    public static roleStateWindow Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new propertyWindow();
+                instance = new roleStateWindow();
             }
             return instance;
         }
@@ -32,7 +32,7 @@ public class propertyWindow : BaseWindow
 
     protected override void Awake(string inputText = "")
     {
-       
+
 
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
@@ -67,7 +67,6 @@ public class propertyWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-
     }
     protected virtual void FillTextContent(string inputText)
     {

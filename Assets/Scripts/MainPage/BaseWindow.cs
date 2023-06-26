@@ -146,4 +146,8 @@ public class BaseWindow
     {
         return isResident;
     }
+    public Button[] getBtnList()
+    {
+        return btnList;
+    }
 }

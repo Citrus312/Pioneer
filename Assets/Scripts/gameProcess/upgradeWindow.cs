@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class propertyWindow : BaseWindow
+public class upgradeWindow : BaseWindow
 {
-    private static propertyWindow instance;
+    private static upgradeWindow instance;
 
-    public propertyWindow()
+    public float value;//升级的属性具体数值
+    public string name;//升级的属性名字
+    private upgradeWindow()
     {
         // 在这里初始化GameManager
-        resName = "UI/propertyWindow";
+        resName = "UI/upgradeWindow";
         isResident = true;
         isVisible = false;
-        selfType = WindowType.propertyWindow;
+        selfType = WindowType.upgradeWindow;
         sceneType = SceneType.gameProcess;
 
     }
 
-    public static propertyWindow Instance
+    public static upgradeWindow Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new propertyWindow();
+                instance = new upgradeWindow();
             }
             return instance;
         }
@@ -32,7 +34,7 @@ public class propertyWindow : BaseWindow
 
     protected override void Awake(string inputText = "")
     {
-       
+
 
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
@@ -62,12 +64,13 @@ public class propertyWindow : BaseWindow
     protected override void OnDisable()
     {
         //Time.timeScale = 1f;
+        
     }
 
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-
+       
     }
     protected virtual void FillTextContent(string inputText)
     {

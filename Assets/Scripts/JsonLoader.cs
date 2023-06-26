@@ -123,43 +123,43 @@ public class JsonLoader
         {
             PropAttribute addAttr = new();
             propConfig = propsConfig[i];
-            addAttr.setPropID((int)propConfig[i]["ID"]);
-            addAttr.setPropName((string)propConfig[i]["name"]);
-            addAttr.setPropIcon((string)propConfig[i]["icon"]);
-            addAttr.setPropBgIcon((string)propConfig[i]["bgIcon"]);
-            temp = (double)propConfig[i]["maxHealth"];
+            addAttr.setPropID((int)propConfig["ID"]);
+            addAttr.setPropName((string)propConfig["name"]);
+            addAttr.setPropIcon((string)propConfig["icon"]);
+            addAttr.setPropBgIcon((string)propConfig["bgIcon"]);
+            temp = (double)propConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
-            temp = (double)propConfig[i]["healthRecovery"];
+            temp = (double)propConfig["healthRecovery"];
             addAttr.setHealthRecovery((float)temp);
-            temp = (double)propConfig[i]["healthSteal"];
+            temp = (double)propConfig["healthSteal"];
             addAttr.setHealthSteal((float)temp);
-            temp = (double)propConfig[i]["attackAmplification"];
+            temp = (double)propConfig["attackAmplification"];
             addAttr.setAttackAmplification((float)temp);
-            temp = (double)propConfig[i]["meleeDamage"];
+            temp = (double)propConfig["meleeDamage"];
             addAttr.setMeleeDamage((float)temp);
-            temp = (double)propConfig[i]["rangedDamage"];
+            temp = (double)propConfig["rangedDamage"];
             addAttr.setRangedDamage((float)temp);
-            temp = (double)propConfig[i]["abilityDamage"];
+            temp = (double)propConfig["abilityDamage"];
             addAttr.setAbilityDamage((float)temp);
-            temp = (double)propConfig[i]["attackSpeedAmplification"];
+            temp = (double)propConfig["attackSpeedAmplification"];
             addAttr.setAttackSpeedAmplification((float)temp);
-            temp = (double)propConfig[i]["criticalRate"];
+            temp = (double)propConfig["criticalRate"];
             addAttr.setCriticalRate((float)temp);
-            temp = (double)propConfig[i]["engineering"];
+            temp = (double)propConfig["engineering"];
             addAttr.setEngineering((float)temp);
-            temp = (double)propConfig[i]["attackRangeAmplification"];
+            temp = (double)propConfig["attackRangeAmplification"];
             addAttr.setAttackRangedAmplification((float)temp);
-            temp = (double)propConfig[i]["armorStrength"];
+            temp = (double)propConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
-            temp = (double)propConfig[i]["dodgeRate"];
+            temp = (double)propConfig["dodgeRate"];
             addAttr.setDodgeRate((float)temp);
-            temp = (double)propConfig[i]["moveSpeedAmplification"];
+            temp = (double)propConfig["moveSpeedAmplification"];
             addAttr.setMoveSpeedAmplification((float)temp);
-            temp = (double)propConfig[i]["scanAccuracy"];
+            temp = (double)propConfig["scanAccuracy"];
             addAttr.setScanAccuracy((float)temp);
-            temp = (double)propConfig[i]["collectEfficiency"];
+            temp = (double)propConfig["collectEfficiency"];
             addAttr.setCollectEfficiency((float)temp);
-            switch ((int)propConfig[i]["quality"])
+            switch ((int)propConfig["quality"])
             {
                 case 0:
                     addAttr.setPropQuality(WeaponAttribute.Quality.Normal);
@@ -174,7 +174,7 @@ public class JsonLoader
                     addAttr.setPropQuality(WeaponAttribute.Quality.Legendary);
                     break;
                 default:
-                    Debug.Log("prop json config " + i + ": quality type" + (int)propConfig[i]["quality"] + " error");
+                    Debug.Log("prop json config " + i + ": quality type" + (int)propConfig["quality"] + " error");
                     break;
             }
             propPool.Add(addAttr);

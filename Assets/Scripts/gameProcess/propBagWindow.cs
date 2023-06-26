@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class propertyWindow : BaseWindow
+public class propBagWindow : BaseWindow
 {
-    private static propertyWindow instance;
+    private static propBagWindow instance;
+    public int buyedProp;
+    public List<int> ownPropList = new();
 
-    public propertyWindow()
+    private propBagWindow()
     {
         // 在这里初始化GameManager
-        resName = "UI/propertyWindow";
+        resName = "UI/propBagWindow";
         isResident = true;
         isVisible = false;
-        selfType = WindowType.propertyWindow;
+        selfType = WindowType.propBagWindow;
         sceneType = SceneType.gameProcess;
 
     }
 
-    public static propertyWindow Instance
+    public static propBagWindow Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new propertyWindow();
+                instance = new propBagWindow();
             }
             return instance;
         }
@@ -32,7 +34,7 @@ public class propertyWindow : BaseWindow
 
     protected override void Awake(string inputText = "")
     {
-       
+
 
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
@@ -67,7 +69,6 @@ public class propertyWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-
     }
     protected virtual void FillTextContent(string inputText)
     {
@@ -80,6 +81,4 @@ public class propertyWindow : BaseWindow
             }
         }
     }
-
-
 }

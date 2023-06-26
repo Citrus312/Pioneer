@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class propertyWindow : BaseWindow
+public class storeWindow : BaseWindow
 {
-    private static propertyWindow instance;
+    private static storeWindow instance;
 
-    public propertyWindow()
+    public storeWindow()
     {
         // 在这里初始化GameManager
-        resName = "UI/propertyWindow";
+        resName = "UI/storeWindow";
         isResident = true;
         isVisible = false;
-        selfType = WindowType.propertyWindow;
+        selfType = WindowType.storeWindow;
         sceneType = SceneType.gameProcess;
 
     }
 
-    public static propertyWindow Instance
+    public static storeWindow Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new propertyWindow();
+                instance = new storeWindow();
             }
             return instance;
         }
@@ -32,7 +32,7 @@ public class propertyWindow : BaseWindow
 
     protected override void Awake(string inputText = "")
     {
-       
+
 
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
@@ -57,17 +57,19 @@ public class propertyWindow : BaseWindow
         //Time.timeScale = 0;
 
         RegisterUIEvent();
+        
     }
 
     protected override void OnDisable()
     {
         //Time.timeScale = 1f;
+        //store.Open();
+
     }
 
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-
     }
     protected virtual void FillTextContent(string inputText)
     {

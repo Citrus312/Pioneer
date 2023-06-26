@@ -6,7 +6,15 @@ public enum WindowType
 {
     TipsWindow,
     MainPageWindow,
-    PauseWindow
+    PauseWindow,
+    propertyWindow,
+    propBagWindow,
+    weaponBagWindow,
+    roleStateWindow,
+    countDownTimerWindow,
+    titleWindow,
+    upgradeWindow,
+    storeWindow
 }
 
 public enum SceneType
@@ -14,5 +22,6 @@ public enum SceneType
     None,
     Battle,
     MainPage,
-    Pause
+    Pause,
+    gameProcess
 }
