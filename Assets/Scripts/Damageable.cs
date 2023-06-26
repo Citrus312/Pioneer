@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Damageable : MonoBehaviour
 {
     public class DamageableEvent : UnityEvent { }
@@ -31,6 +32,9 @@ public class Damageable : MonoBehaviour
         spriteRenderer.color = _onHitColor;
         yield return new WaitForSeconds(_onHitTime);
         spriteRenderer.color = Color.white;
+
+        // 镜头震动，判断角色
+        // CameraShake._instance.startShake();
     }
 
     private void die()
