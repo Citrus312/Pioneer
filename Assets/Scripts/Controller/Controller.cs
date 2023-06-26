@@ -59,4 +59,7 @@ public class Controller : MonoBehaviour
         // _rigidbody2D.AddForce(new Vector2(direction.x, direction.y), ForceMode2D.Impulse);
         transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * moveSpeed;
     }
+
+    //销毁character时执行，在子类重写
+    public virtual void OnDie() { }
 }

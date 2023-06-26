@@ -28,6 +28,10 @@ public class Boss2Weapon : RangedMonsterHit
     public float _bulletTime;
     //弹幕子弹数量
     private int _bulletNum;
+    //弹幕位置
+    private List<GameObject> _projectiles = new List<GameObject>();
+    //弹幕列表中存放的预制体
+    private string _prefabInList;
 
     [Header("随机弹幕技能参数")]
     //状态0弹幕子弹数量
@@ -92,49 +96,63 @@ public class Boss2Weapon : RangedMonsterHit
     private IEnumerator createProjectiles(List<Vector2> projectilesPos)
     {
         //提示弹幕位置
-        List<GameObject> projectiles = new List<GameObject>();
         for (int i = 0; i < _bulletNum; i++)
         {
             GameObject hint1 = ObjectPool.getInstance().get(_hint1Path);
             hint1.transform.position = projectilesPos[i];
-            projectiles.Add(hint1);
+            _projectiles.Add(hint1);
         }
-
+        _prefabInList = _hint1Path;
         yield return new WaitForSeconds(_hint1Time);
 
         //显示提示2
         for (int i = 0; i < _bulletNum; i++)
         {
-            GameObject hint1 = projectiles[0];
+            GameObject hint1 = _projectiles[0];
             GameObject hint2 = ObjectPool.getInstance().get(_hint2Path);
             hint2.transform.position = hint1.transform.position;
-            projectiles.RemoveAt(0);
+            _projectiles.RemoveAt(0);
             ObjectPool.getInstance().remove(_hint1Path, hint1);
-            projectiles.Add(hint2);
+            _projectiles.Add(hint2);
         }
-
+        _prefabInList = _hint2Path;
         yield return new WaitForSeconds(_hint2Time);
 
         //弹幕生成
         for (int i = 0; i < _bulletNum; i++)
         {
-            GameObject hint2 = projectiles[0];
+            GameObject hint2 = _projectiles[0];
             GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
             bullet.transform.position = hint2.transform.position;
             bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Player", -1);
-            projectiles.RemoveAt(0);
+            _projectiles.RemoveAt(0);
             ObjectPool.getInstance().remove(_hint2Path, hint2);
-            projectiles.Add(bullet);
+            _projectiles.Add(bullet);
         }
-
+        _prefabInList = _bulletPrefab;
         yield return new WaitForSeconds(_bulletTime);
 
         //销毁弹幕
         for (int i = 0; i < _bulletNum; i++)
         {
-            GameObject bullet = projectiles[0];
-            projectiles.RemoveAt(0);
+            GameObject bullet = _projectiles[0];
+            _projectiles.RemoveAt(0);
             ObjectPool.getInstance().remove(_bulletPrefab, bullet);
+        }
+        _prefabInList = null;
+    }
+
+    //在销毁boss的同时销毁生成的弹幕
+    public void destroyProjectiles()
+    {
+        if (_prefabInList == null)
+            return;
+
+        while (_projectiles.Count != 0)
+        {
+            GameObject obj = _projectiles[0];
+            _projectiles.RemoveAt(0);
+            ObjectPool.getInstance().remove(_prefabInList, obj);
         }
     }
 
