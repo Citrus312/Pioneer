@@ -3,11 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class PausePageWindow : BaseWindow
 {
-    //初始化暂停界面的参数
-    public PausePageWindow()
+    private static PausePageWindow instance;
+
+    public static PausePageWindow Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
+
+    private EventTrigger eventTrigger;
+    //鍒濆鍖栨殏鍋滅晫闈㈢殑鍙傛暟
+    private PausePageWindow()
     {
         resName = "UI/PauseWindow";
         isResident = true;
@@ -21,10 +37,10 @@ public class PausePageWindow : BaseWindow
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
 
-        //注册UI事件(细节由子类实现)
+        //娉ㄥ唽UI浜嬩欢
         RegisterUIEvent();
-        //填充文本内容(细节由子类实现)
-        //FillTextContent(inputText);
+        //濉厖鏂囨湰鍐呭
+        FillTextContent();
 
     }
 
@@ -56,11 +72,9 @@ public class PausePageWindow : BaseWindow
         base.RegisterUIEvent();
         foreach (Button btn in btnList)
         {
-            Debug.Log(btn.name);
             switch (btn.name)
             {
                 case "ButtonContinue":
-                    Debug.Log("aaaaaaaaaaaaaaa");
                     btn.onClick.AddListener(() => { OnContinueBtn(btn); });
                     break;
                 case "ButtonRestart":
@@ -77,16 +91,69 @@ public class PausePageWindow : BaseWindow
                     break;
             }
         }
+
     }
 
-    protected virtual void FillTextContent(string inputText)
+    protected override void FillTextContent()
     {
         foreach (Text txt in textList)
         {
-            if (txt.name == "AttributeText")
+            switch (txt.name)
             {
-                txt.text = inputText;
-                break;
+                case "CurrentPlayerLevel":
+                    txt.text = inputText[0];
+                    break;
+                case "MaxHealth":
+                    txt.text = inputText[1];
+                    break;
+                case "HealthRecovery":
+                    txt.text = inputText[2];
+                    break;
+                case "HealthSteal":
+                    txt.text = inputText[3];
+                    break;
+                case "AttackAmplification":
+                    txt.text = inputText[4];
+                    break;
+                case "MeleeDamage":
+                    txt.text = inputText[5];
+                    break;
+                case "RangedDamage":
+                    txt.text = inputText[6];
+                    break;
+                case "AbilityDamage":
+                    txt.text = inputText[7];
+                    break;
+                case "AttackSpeedAmplification":
+                    txt.text = inputText[8];
+                    break;
+                case "CriticalRate":
+                    txt.text = inputText[9];
+                    break;
+                case "Engineering":
+                    txt.text = inputText[10];
+                    break;
+                case "AttackRangeAmplification":
+                    txt.text = inputText[11];
+                    break;
+                case "ArmorStrength":
+                    txt.text = inputText[12];
+                    break;
+                case "DodgeRate":
+                    txt.text = inputText[13];
+                    break;
+                case "MoveSpeedAmplification":
+                    txt.text = inputText[14];
+                    break;
+                case "ScanAccuracy":
+                    txt.text = inputText[15];
+                    break;
+                case "CollectEfficiency":
+                    txt.text = inputText[16];
+                    break;
+                default:
+                    Debug.Log("An unexpected txt exists!");
+                    break;
             }
         }
     }
@@ -104,13 +171,12 @@ public class PausePageWindow : BaseWindow
 
     private void OnSettingBtn(Button btn)
     {
-        Debug.Log("点击了 设置 按钮");
+        SettingWindow.Instance.Open();
     }
 
     private void OnExitBtn(Button btn)
     {
-        Close();
+        Close(true);
         SceneLoader._instance.loadScene("MainPage");
     }
-
 }

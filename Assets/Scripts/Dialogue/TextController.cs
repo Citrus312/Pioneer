@@ -33,7 +33,7 @@ public class TextController : MonoBehaviour
         _index = 0;
     }
 
-    public void OnEnable() {
+    protected virtual void OnEnable() {
         _textFinished = true;
         _isAutoPlay = false;
         if(_skipButton != null)

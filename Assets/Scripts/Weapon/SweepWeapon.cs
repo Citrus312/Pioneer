@@ -69,12 +69,9 @@ public class SweepWeapon : MeleeWeapon
         //武器开始挥砍的eulerAngle和结束挥砍的eulerAngle
         Vector3 startEulerAngle = _attachPoint.eulerAngles + new Vector3(0, 0, startAngle);
         Vector3 endEulerAngle = startEulerAngle + new Vector3(0, 0, sweepAngle);
-        Debug.Log("attachPoint.EulerAngle: " + _attachPoint.eulerAngles);
-        Debug.Log("startEulerAngle: " + startEulerAngle);
-        Debug.Log("endEulerAngle: " + endEulerAngle);
 
         /*
-            固定0.1s为挥砍时间，使用开始角和目标角做插值来显示
+            固定0.2s为挥砍时间，使用开始角和目标角做插值来显示
         */
         float dur = 0.0f, time = 0.2f;
         while (dur < time)
@@ -101,7 +98,7 @@ public class SweepWeapon : MeleeWeapon
         if (attackTarget != null && !_isAttacking)
         {
             //旋转武器
-            Debug.DrawLine(_attachPoint.position, getAttackDirection() * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, getAttackDirection("Enemy") * 100, Color.red);
             //武器需要旋转的角度
             float angle = Vector2.SignedAngle(_endPoint.position - _attachPoint.position, attackTarget.position - _attachPoint.position);
             //旋转武器
@@ -111,6 +108,7 @@ public class SweepWeapon : MeleeWeapon
             if (Time.time > _nextAttackTime)
             {
                 //开始攻击
+                _attackDirection = (attackTarget.position - _attachPoint.position).normalized;
                 StartCoroutine(attack(attackTarget));
                 //更新下次攻击事件
                 _nextAttackTime = Time.time + _weaponAttribute.getAttackSpeed();

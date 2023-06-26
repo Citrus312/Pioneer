@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    //控制器的单例实例
     private static GameController _instance;
-    //当前的游戏数据
-    private GameData _gameData = new();
+
+    private GameData _gameData = new GameData();
 
     public GameObject _playerPrefab;
     public GameObject _player;
@@ -25,21 +24,21 @@ public class GameController : MonoBehaviour
     {
         _instance = this;
         // 初始化游戏全局变量
-        
+
         // 初始化游戏配置
-        
+
     }
 
     public void initGame()
     {
         // 加载资源
-        
-        // 初始化场景
-        
+
         // 初始化玩家
         initPlayer();
+        // 初始化场景
+        initBattleScene();
         // 设置游戏状态
-        
+
     }
 
     private void loadResources()
@@ -49,19 +48,19 @@ public class GameController : MonoBehaviour
         // 加载玩家资源
 
         // 加载游戏配置资源
-        JsonLoader.LoadAndDecodeGameData();
+
     }
 
     private void initScene()
     {
         // 初始化场景对象
-        
+
     }
 
     public void initBattleScene()
     {
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
-        
+
         initPlayerPos();
         // 生成器初始化
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
@@ -70,7 +69,7 @@ public class GameController : MonoBehaviour
     public bool initPlayer()
     {
         // 初始化玩家对象
-        if(_playerPrefab != null)
+        if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
             // 初始化属性
@@ -98,7 +97,7 @@ public class GameController : MonoBehaviour
     private void saveGameData()
     {
         // 
-        
+
     }
 
     public GameObject getPlayer()
@@ -111,8 +110,14 @@ public class GameController : MonoBehaviour
         return _gameData;
     }
 
+    void Awake()
+    {
+        initGame();
+    }
+
     void Start()
     {
-        loadResources();
+        //test
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 5);
     }
 }
