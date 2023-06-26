@@ -5,29 +5,71 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader
+public class JsonLoader : MonoBehaviour
 {
-    //ÎäÆ÷ÊôĞÔ³Ø µÀ¾ßÊôĞÔ³Ø
+    //æ­¦å™¨å±æ€§æ±  é“å…·å±æ€§æ±  è§’è‰²å±æ€§æ± 
     public static List<WeaponAttribute> weaponPool = new();
     public static List<PropAttribute> propPool = new();
+    public static List<CharacterAttribute> rolePool = new();
+    public static List<CharacterAttribute> monsterPool = new();
 
-    //¼ÓÔØ²¢½âÎöÎäÆ÷Êı¾İ
+    //åŠ è½½å¹¶è§£ææ¸¸æˆæ•°æ®
+    public static void LoadAndDecodeGameData()
+    {
+        //è·å–æ¸¸æˆå†…å…¨å±€çš„æ¸¸æˆæ•°æ®å¯¹è±¡
+        GameData gameData = GameController.getInstance().getGameData();
+        //ä»jsonæ–‡ä»¶ä¸­è¯»å–çš„æ•°æ®
+        JsonData data = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/GameData.json", Encoding.GetEncoding("utf-8")));
+        //å¯¹æ¸¸æˆæ•°æ®å¯¹è±¡çš„æˆå‘˜ä¾æ¬¡èµ‹å€¼
+        gameData._isFirstPlaying = (bool)data["isFirstPlaying"];
+        gameData._playerID = (int)data["playerID"];
+        gameData._wave = (int)data["wave"];
+        gameData._level = (int)data["level"];
+        gameData._money = (int)data["money"];
+        gameData._playerLevel = (int)data["playerLevel"];
+        gameData._exp = (int)data["exp"];
+        gameData._difficulty = (int)data["difficulty"];
+        gameData._scene = (string)data["scene"];
+        JsonData temp1 = data["propList"];
+        for (int i = 0; i < temp1.Count; i++)
+        {
+            gameData._propList.Add((int)temp1[i]);
+        }
+        JsonData temp2 = data["propCount"];
+        for (int i = 0; i < temp2.Count; i++)
+        {
+            gameData._propCount.Add((int)temp2[i]);
+        }
+        JsonData temp3 = data["weaponList"];
+        for (int i = 0; i < temp3.Count; i++)
+        {
+            gameData._weaponList.Add((int)temp3[i]);
+        }
+    }
+
+    //ä¿å­˜å½“å‰çš„æ¸¸æˆæ•°æ®
+    public static void UpdateGameData()
+    {
+        File.WriteAllText(Application.dataPath + "/Config/GameData.json", JsonMapper.ToJson(GameController.getInstance().getGameData().Data2Dict()));
+    }
+
+    //åŠ è½½å¹¶è§£ææ­¦å™¨æ•°æ®
     public static void LoadAndDecodeWeaponConfig()
     {
-        //jsonÎÄ¼şÖĞ¶ÁÈ¡µ½µÄËùÓĞÊı¾İ
-        JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("GB2312")));
-        //´æ´¢´Ójson»ñÈ¡µÄÎäÆ÷·ÖÀàÁÙÊ±±äÁ¿
+        //jsonæ–‡ä»¶ä¸­è¯»å–åˆ°çš„æ‰€æœ‰æ•°æ®
+        JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("utf-8")));
+        //å­˜å‚¨ä»jsonè·å–çš„æ­¦å™¨åˆ†ç±»ä¸´æ—¶å˜é‡
         List<WeaponAttribute.WeaponCategory> tempCategory = new();
-        //´ÓjsonÎÄ¼şÖĞ»ñÈ¡µÄÒ»¸öÎäÆ÷µÄÊı¾İ
+        //ä»jsonæ–‡ä»¶ä¸­è·å–çš„ä¸€ä¸ªæ­¦å™¨çš„æ•°æ®
         JsonData weaponConfig;
         JsonData weaponCategory;
         double temp;
         for (int i = 0; i < weaponsConfig.Count; i++)
         {
-            //Ìí¼Ó½ø³ØÖĞµÄÎäÆ÷ÊôĞÔÁÙÊ±±äÁ¿
+            //æ·»åŠ è¿›æ± ä¸­çš„æ­¦å™¨å±æ€§ä¸´æ—¶å˜é‡
             WeaponAttribute addAttr = new();
             weaponConfig = weaponsConfig[i];
-            //ÓÉÓÚLitJson²»Ö§³ÖfloatÀàĞÍµÄÇ¿×ª£¬¹Ê´Ë´¦ÏÈÇ¿×ªÎªdouble´æÈëÁÙÊ±±äÁ¿ÔÙ½«ÁÙÊ±±äÁ¿Ç¿×ªÎªfloatÊ¹ÓÃ
+            //ç”±äºLitJsonä¸æ”¯æŒfloatç±»å‹çš„å¼ºè½¬ï¼Œæ•…æ­¤å¤„å…ˆå¼ºè½¬ä¸ºdoubleå­˜å…¥ä¸´æ—¶å˜é‡å†å°†ä¸´æ—¶å˜é‡å¼ºè½¬ä¸ºfloatä½¿ç”¨
             temp = (double)weaponConfig["damage"];
             addAttr.setRawWeaponDamage((float)temp);
             temp = (double)weaponConfig["bonus"];
@@ -46,6 +88,7 @@ public class JsonLoader
             addAttr.setWeaponName((string)weaponConfig["name"]);
             addAttr.setWeaponIcon((string)weaponConfig["icon"]);
             addAttr.setWeaponBgIcon((string)weaponConfig["bgIcon"]);
+            addAttr.setWeaponPrefabPath((string)weaponConfig["prefabPath"]);
             switch ((string)weaponConfig["type"])
             {
                 case "melee":
@@ -108,15 +151,15 @@ public class JsonLoader
                 }
             }
             addAttr.setWeaponCategory(tempCategory);
-            //½«´æ´¢ÔÚÁÙÊ±±äÁ¿ÖĞµÄÎäÆ÷ÊôĞÔ´æÈëÎäÆ÷ÊôĞÔ³Ø
+            //å°†å­˜å‚¨åœ¨ä¸´æ—¶å˜é‡ä¸­çš„æ­¦å™¨å±æ€§å­˜å…¥æ­¦å™¨å±æ€§æ± 
             weaponPool.Add(addAttr);
         }
     }
 
-    //¼ÓÔØ²¢½âÎöµÀ¾ßÊôĞÔ
+    //åŠ è½½å¹¶è§£æé“å…·å±æ€§
     public static void LoadAndDecodePropConfig()
     {
-        JsonData propsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("GB2312")));
+        JsonData propsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Props.json", Encoding.GetEncoding("utf-8")));
         JsonData propConfig;
         double temp;
         for (int i = 0; i < propsConfig.Count; i++)
@@ -127,6 +170,8 @@ public class JsonLoader
             addAttr.setPropName((string)propConfig["name"]);
             addAttr.setPropIcon((string)propConfig["icon"]);
             addAttr.setPropBgIcon((string)propConfig["bgIcon"]);
+            temp = (double)propConfig["price"];
+            addAttr.setPropPrice((float)temp);
             temp = (double)propConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
             temp = (double)propConfig["healthRecovery"];
@@ -178,6 +223,132 @@ public class JsonLoader
                     break;
             }
             propPool.Add(addAttr);
+        }
+    }
+
+    //åŠ è½½å¹¶è§£æè§’è‰²å±æ€§
+    public static void LoadAndDecodeRoleConfig()
+    {
+        JsonData rolesConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Roles.json", Encoding.GetEncoding("utf-8")));
+        JsonData roleConfig;
+        JsonData weaponCategory;
+        List<WeaponAttribute.WeaponCategory> tempCategory = new();
+        double temp;
+
+        for (int i = 0; i < rolesConfig.Count; i++)
+        {
+            CharacterAttribute addAttr = new();
+            roleConfig = rolesConfig[i];
+            addAttr.setID((int)roleConfig["ID"]);
+            addAttr.setName((string)roleConfig["name"]);
+            addAttr.setIcon((string)roleConfig["icon"]);
+            temp = (double)roleConfig["maxHealth"];
+            addAttr.setMaxHealth((float)temp);
+            temp = (double)roleConfig["healthRecovery"];
+            addAttr.setHealthRecovery((float)temp);
+            temp = (double)roleConfig["healthSteal"];
+            addAttr.setHealthSteal((float)temp);
+            temp = (double)roleConfig["attackAmplification"];
+            addAttr.setAttackAmplification((float)temp);
+            temp = (double)roleConfig["meleeDamage"];
+            addAttr.setMeleeDamage((float)temp);
+            temp = (double)roleConfig["rangedDamage"];
+            addAttr.setRangedDamage((float)temp);
+            temp = (double)roleConfig["abilityDamage"];
+            addAttr.setAbilityDamage((float)temp);
+            temp = (double)roleConfig["attackSpeedAmplification"];
+            addAttr.setAttackSpeedAmplification((float)temp);
+            temp = (double)roleConfig["criticalRate"];
+            addAttr.setCriticalRate((float)temp);
+            temp = (double)roleConfig["engineering"];
+            addAttr.setEngineering((float)temp);
+            temp = (double)roleConfig["attackRangeAmplification"];
+            addAttr.setAttackRangedAmplification((float)temp);
+            temp = (double)roleConfig["armorStrength"];
+            addAttr.setArmorStrength((float)temp);
+            temp = (double)roleConfig["dodgeRate"];
+            addAttr.setDodgeRate((float)temp);
+            temp = (double)roleConfig["moveSpeedAmplification"];
+            addAttr.setMoveSpeedAmplification((float)temp);
+            temp = (double)roleConfig["scanAccuracy"];
+            addAttr.setScanAccuracy((float)temp);
+            temp = (double)roleConfig["collectEfficiency"];
+            addAttr.setCollectEfficiency((float)temp);
+            weaponCategory = roleConfig["weaponCategory"];
+            for (int j = 0; j < weaponCategory.Count; j++)
+            {
+                switch ((string)weaponCategory[j])
+                {
+                    case "all":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.All);
+                        break;
+                    case "gun":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Gun);
+                        break;
+                    case "ability":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Ability);
+                        break;
+                    case "heal":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Heal);
+                        break;
+                    case "wand":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Wand);
+                        break;
+                    case "machete":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Machete);
+                        break;
+                    case "polearms":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
+                        break;
+                    default:
+                        Debug.Log("role json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
+                        break;
+                }
+            }
+            addAttr.setWeaponCategory(tempCategory);
+            rolePool.Add(addAttr);
+        }
+    }
+
+    //åŠ è½½å¹¶è§£ææ€ªç‰©å±æ€§
+    public static void LoadAndDecodeMonsterConfig()
+    {
+        JsonData monstersConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Monsters.json", Encoding.GetEncoding("utf-8")));
+        JsonData monsterConfig;
+        double temp;
+        for (int i = 0; i < monstersConfig.Count; i++)
+        {
+            CharacterAttribute addAttr = new();
+            monsterConfig = monstersConfig[i];
+            addAttr.setID((int)monsterConfig["ID"]);
+            addAttr.setMonsterPrefabPath((string)monsterConfig["prefabPath"]);
+            addAttr.setFirstGenWave((int)monsterConfig["firstGenWave"]);
+            temp = (double)monsterConfig["maxHealth"];
+            addAttr.setMaxHealth((float)temp);
+            temp = (double)monsterConfig["healthIncPerWave"];
+            addAttr.setHealthIncPerWave((float)temp);
+            temp = (double)monsterConfig["speed"];
+            addAttr.setRawMoveSpeed((float)temp);
+            temp = (double)monsterConfig["meleeDamage"];
+            addAttr.setMeleeDamage((float)temp);
+            temp = (double)monsterConfig["rangedDamage"];
+            addAttr.setRangedDamage((float)temp);
+            temp = (double)monsterConfig["damageIncPerWave"];
+            addAttr.setDamageIncPerWave((float)temp);
+            temp = (double)monsterConfig["lootCount"];
+            addAttr.setLootCount((float)temp);
+            temp = (double)monsterConfig["dropRate"];
+            addAttr.setDropRate((float)temp);
+            temp = (double)monsterConfig["crateRate"];
+            addAttr.setCrateRate((float)temp);
+            temp = (double)monsterConfig["genRate"];
+            addAttr.setGenRate((float)temp);
+            temp = (double)monsterConfig["minGenCount"];
+            addAttr.setMinGenCount((float)temp);
+            temp = (double)monsterConfig["maxGenCount"];
+            addAttr.setMaxGenCount((float)temp);
+
+            monsterPool.Add(addAttr);
         }
     }
 }

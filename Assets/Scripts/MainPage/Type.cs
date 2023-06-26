@@ -2,26 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//窗口类型的枚举
 public enum WindowType
 {
     TipsWindow,
     MainPageWindow,
-    PauseWindow,
-    propertyWindow,
-    propBagWindow,
-    weaponBagWindow,
-    roleStateWindow,
-    countDownTimerWindow,
-    titleWindow,
-    upgradeWindow,
-    storeWindow
+    SettingWindow,
+    DifficultySelectWindow,
+    RoleAndWeaponSelectWindow
 }
-
+//窗口所在场景类型的枚举
 public enum SceneType
 {
     None,
     Battle,
     MainPage,
-    Pause,
-    gameProcess
+    Select
 }

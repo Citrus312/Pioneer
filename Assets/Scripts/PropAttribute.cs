@@ -4,253 +4,223 @@ using UnityEngine;
 
 public class PropAttribute : MonoBehaviour
 {
-    //µÀ¾ßID
+    //é“å…·ID
     private int propID;
-    //µÀ¾ßÃû³Æ
+    //é“å…·åç§°
     private string propName;
-    //µÀ¾ßÆ·ÖÊ
+    //é“å…·å“è´¨
     private WeaponAttribute.Quality propQuality;
-    //µÀ¾ßÍ¼±ê
+    //é“å…·å›¾æ ‡
     private string propIcon;
-    //µÀ¾ßÆ·ÖÊ±³¾°
+    //é“å…·å“è´¨èƒŒæ™¯
     private string propBgIcon;
-    //ÒÔÏÂÊÇµÀ¾ß¶ÔÓÚ½ÇÉ«ÊôĞÔµÄ¼Ó³É»ò¼õÒæ
-    //×î´óÉúÃü ÉúÃü»Ø¸´ ÉúÃü¼³È¡
+    //é“å…·ä»·æ ¼
+    private float propPrice;
+    //ä»¥ä¸‹æ˜¯é“å…·å¯¹äºè§’è‰²å±æ€§çš„åŠ æˆæˆ–å‡ç›Š
+    //æœ€å¤§ç”Ÿå‘½ ç”Ÿå‘½å›å¤ ç”Ÿå‘½æ±²å–
     private float maxHealth = 0;
     private float healthRecovery = 0;
     private float healthSteal = 0;
-    //¹¥»÷Ôö·ù
+    //æ”»å‡»å¢å¹…
     private float attackAmplification = 0;
-    //½üÕ½ÉËº¦ Ô¶³ÌÉËº¦ ÊôĞÔÉËº¦
+    //è¿‘æˆ˜ä¼¤å®³ è¿œç¨‹ä¼¤å®³ å±æ€§ä¼¤å®³
     private float meleeDamage = 0;
     private float rangedDamage = 0;
     private float abilityDamage = 0;
-    //¹¥»÷ËÙ¶È¼Ó³É
+    //æ”»å‡»é€Ÿåº¦åŠ æˆ
     private float attackSpeedAmplification = 0;
-    //±©»÷ÂÊ
+    //æš´å‡»ç‡
     private float criticalRate = 0;
-    //¹¤³Ì»úĞµ
+    //å·¥ç¨‹æœºæ¢°
     private float engineering = 0;
-    //¹¥»÷·¶Î§¼Ó³É
+    //æ”»å‡»èŒƒå›´åŠ æˆ
     private float attackRangeAmplification = 0;
-    //»ú¼×Ç¿¶È
+    //æœºç”²å¼ºåº¦
     private float armorStrength = 0;
-    //ÉÁ±Ü¸ÅÂÊ
+    //é—ªé¿æ¦‚ç‡
     private float dodgeRate = 0;
-    //ÒÆËÙ¼Ó³É
+    //ç§»é€ŸåŠ æˆ
     private float moveSpeedAmplification = 0;
-    //É¨Ãè¾«¶È
+    //æ‰«æç²¾åº¦
     private float scanAccuracy = 0;
-    //²É¼¯Ğ§ÂÊ
+    //é‡‡é›†æ•ˆç‡
     private float collectEfficiency = 0;
 
-
+    //ä»¥ä¸‹æ˜¯å¯¹é“å…·å±æ€§çš„è®¾ç½®
     public void setPropID(int input)
     {
         propID = input;
     }
-
     public void setPropName(string input)
     {
         propName = input;
     }
-
     public void setPropQuality(WeaponAttribute.Quality input)
     {
         propQuality = input;
     }
-
     public void setPropIcon(string input)
     {
         propIcon = input;
     }
-
     public void setPropBgIcon(string input)
     {
         propBgIcon = input;
     }
-
+    public void setPropPrice(float input)
+    {
+        propPrice = input;
+    }
     public void setMaxHealth(float input)
     {
         maxHealth = input;
     }
-
     public void setHealthRecovery(float input)
     {
         healthRecovery = input;
     }
-
     public void setHealthSteal(float input)
     {
         healthSteal = input;
     }
-
     public void setAttackAmplification(float input)
     {
         attackAmplification = input;
     }
-
     public void setMeleeDamage(float input)
     {
         meleeDamage = input;
     }
-
     public void setRangedDamage(float input)
     {
         rangedDamage = input;
     }
-
     public void setAbilityDamage(float input)
     {
         abilityDamage = input;
     }
-
     public void setAttackSpeedAmplification(float input)
     {
         attackSpeedAmplification = input;
     }
-
     public void setCriticalRate(float input)
     {
         criticalRate = input;
     }
-
     public void setEngineering(float input)
     {
         engineering = input;
     }
-
     public void setAttackRangedAmplification(float input)
     {
         attackRangeAmplification = input;
     }
-
     public void setArmorStrength(float input)
     {
         armorStrength = input;
     }
-
     public void setDodgeRate(float input)
     {
         dodgeRate = input;
     }
-
     public void setMoveSpeedAmplification(float input)
     {
         moveSpeedAmplification = input;
     }
-
     public void setScanAccuracy(float input)
     {
         scanAccuracy = input;
     }
-
     public void setCollectEfficiency(float input)
     {
         collectEfficiency = input;
     }
 
-
+    //ä»¥ä¸‹æ˜¯å¯¹é“å…·å±æ€§çš„è·å–
     public int getPropID()
     {
         return propID;
     }
-
     public string getPropName()
     {
         return propName;
     }
-
     public WeaponAttribute.Quality getPropQuality()
     {
         return propQuality;
     }
-
     public string getPropIcon()
     {
         return propIcon;
     }
-
     public string getPropBgIcon()
     {
         return propBgIcon;
     }
-
+    public float getPropPrice()
+    {
+        return propPrice;
+    }
     public float getMaxHealth()
     {
         return maxHealth;
     }
-
     public float getHealthRecovery()
     {
         return healthRecovery;
     }
-
     public float getHealthSteal()
     {
         return healthSteal;
     }
-
     public float getAttackAmplification()
     {
         return attackAmplification;
     }
-
     public float getMeleeDamage()
     {
         return meleeDamage;
     }
-
     public float getRangedDamage()
     {
         return rangedDamage;
     }
-
     public float getAbilityDamage()
     {
         return abilityDamage;
     }
-
     public float getAttackSpeedAmplification()
     {
         return attackSpeedAmplification;
     }
-
     public float getCriticalRate()
     {
         return criticalRate;
     }
-
     public float getEngineering()
     {
         return engineering;
     }
-
     public float getAttackRangeAmplification()
     {
         return attackRangeAmplification;
     }
-
     public float getArmorStrength()
     {
         return armorStrength;
     }
-
     public float getDodgeRate()
     {
         return dodgeRate;
     }
-
     public float getMoveSpeedAmplification()
     {
         return moveSpeedAmplification;
     }
-
     public float getScanAccuracy()
     {
         return scanAccuracy;
     }
-
     public float getCollectEfficiency()
     {
         return collectEfficiency;

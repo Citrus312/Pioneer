@@ -17,7 +17,7 @@ public class TestScript : MonoBehaviour
             Debug.Log("f3");
         }
         if(Input.GetKeyDown(KeyCode.F4)){
-            SceneLoader._instance.loadScene("Scene D");
+            SceneLoader._instance.loadScene("OpeningAnimation");
         }
     }
 }
