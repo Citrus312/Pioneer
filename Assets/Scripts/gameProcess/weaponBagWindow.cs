@@ -34,7 +34,7 @@ public class weaponBagWindow : BaseWindow
         }
     }
 
-    protected override void Awake(string inputText = "")
+    protected override void AwakeWindow()
     {
 
 

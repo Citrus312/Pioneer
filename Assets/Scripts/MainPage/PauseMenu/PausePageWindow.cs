@@ -16,7 +16,7 @@ public class PausePageWindow : BaseWindow
         sceneType = SceneType.Pause;
     }
 
-    protected override void Awake(string inputText = "")
+    protected override void AwakeWindow()
     {
         btnList = transform.GetComponentsInChildren<Button>(true);
         textList = transform.GetComponentsInChildren<Text>(true);
@@ -24,7 +24,7 @@ public class PausePageWindow : BaseWindow
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
         //填充文本内容(细节由子类实现)
-        FillTextContent(inputText);
+        //FillTextContent(inputText);
 
     }
 

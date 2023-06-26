@@ -12,7 +12,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
     {
         UIRoot.Init();
         pausePageWindow = new();
-        pausePageWindow.Open(getAttribute(_Player));
+        pausePageWindow.Open();
         pausePageWindow.Close();
     }
 

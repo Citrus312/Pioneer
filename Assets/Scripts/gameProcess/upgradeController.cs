@@ -19,6 +19,10 @@ public class upgradeController : MonoBehaviour
 
     public void Start()
     {
+
+        selectedCardId = new List<int>(new int[4]);
+
+        cardListInit();
         //每次开启会自动刷新卡池一次
         extractCard();
         for (int i = 0; i < 4; i++)
@@ -129,16 +133,16 @@ public class upgradeController : MonoBehaviour
         switch (i)
         {
             case 0:
-                cardName = "card_a";
+                cardName = "cardA";
                 break;
             case 1:
-                cardName = "card_b";
+                cardName = "cardB";
                 break;
             case 2:
-                cardName = "card_c";
+                cardName = "cardC";
                 break;
             case 3:
-                cardName = "card_d";
+                cardName = "cardD";
                 break;
             default:
                 break;
@@ -159,6 +163,24 @@ public class upgradeController : MonoBehaviour
         TextMeshProUGUI valueText = child3.GetComponent<TextMeshProUGUI>();
         valueText.text = "+" + calculateValue(id,level);
 
+        switch (level)
+        {
+            case 0:
+                card.GetComponent<Image>().color = firstLV;
+                break;
+            case 1:
+                card.GetComponent<Image>().color = secondLV;
+                break;
+            case 2:
+                card.GetComponent<Image>().color = thirdLV;
+                break;
+            case 3:
+                card.GetComponent<Image>().color = forthLV;
+                break;
+
+            default:
+                break;
+        }
 
     }
     //计算具体数值
@@ -254,7 +276,7 @@ public class upgradeController : MonoBehaviour
     }
 
     //升级按钮点击事件
-    void OnupgradeButtonClicked(int cardId)
+    public void OnupgradeButtonClicked(int cardId)
     {
         extractCard();
         for (int i = 0; i < 4; i++)

@@ -299,7 +299,7 @@ public class textController : MonoBehaviour
 
             //购买按钮文本显示
             TextMeshProUGUI myText2 = child4_child.GetComponent<TextMeshProUGUI>();
-            myText2.text = "待定";
+            myText2.text =""+ PropPoolList[id].getPropPrice();
         }
           
 

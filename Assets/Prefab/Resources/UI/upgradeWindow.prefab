@@ -118,6 +118,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a377dccdf82a24c9e07e59a6a9bc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstLV: {r: 1, g: 1, b: 1, a: 0.5}
+  secondLV: {r: 0, g: 1, b: 0, a: 0.5}
+  thirdLV: {r: 1, g: 0.647, b: 0, a: 0.5}
+  forthLV: {r: 0.502, g: 0, b: 0.502, a: 0.5}
+  selectedCardId: 
+  probability:
+  - 0
+  - 0
+  - 0
+  - 0
+  valueList:
+  - 0
+  - 0
+  - 0
+  - 0
+  propertyIcon: []
+  propertyName: []
+  increaseValue: []
 --- !u!1 &416840284397388573
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,14 +663,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: cbe7c3e10689dcd4c9461189d35550f0, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2346275908436302561}
+        m_TargetAssemblyTypeName: upgradeController, Assembly-CSharp
+        m_MethodName: OnupgradeButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1909,14 +1927,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: cbe7c3e10689dcd4c9461189d35550f0, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2346275908436302561}
+        m_TargetAssemblyTypeName: upgradeController, Assembly-CSharp
+        m_MethodName: OnupgradeButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2043,13 +2061,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: cbe7c3e10689dcd4c9461189d35550f0, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2346275908436302561}
+        m_TargetAssemblyTypeName: upgradeController, Assembly-CSharp
+        m_MethodName: OnupgradeButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2987,14 +3005,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: cbe7c3e10689dcd4c9461189d35550f0, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2346275908436302561}
+        m_TargetAssemblyTypeName: upgradeController, Assembly-CSharp
+        m_MethodName: OnupgradeButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

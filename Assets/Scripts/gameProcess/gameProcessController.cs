@@ -13,7 +13,7 @@ public class gameProcessController : PersistentSingleton<PausePageController>
     public roleStateWindow roleStateWindow;
     public titleWindow titleWindow;
     public countDownTimerWindow countDownTimerWindow;
-    public upgradeWindow upgradeWindow;
+    //public upgradeWindow upgradeWindow;
     public storeWindow storeWindow;
     public int grade;//等级
     public int blood;//血量
@@ -35,6 +35,8 @@ public class gameProcessController : PersistentSingleton<PausePageController>
         WeaponPropList = JsonLoader.weaponPool;
         PropPoolList = JsonLoader.propPool;
 
+        player = GameController.getInstance()._player;
+        
         //初始化窗口
         origin();
 
@@ -135,7 +137,7 @@ public class gameProcessController : PersistentSingleton<PausePageController>
             Debug.Log("升级");
             Time.timeScale = 0f;
             timeText.text = "<color=white>升级</color>";
-            upgradeWindow.Open();
+            upgradeWindow.Instance.Open();
             addListenerForupgrade();
             propertyWindow.Open();
         }
@@ -159,10 +161,10 @@ public class gameProcessController : PersistentSingleton<PausePageController>
     //为升级按钮添加监听事件
     void addListenerForupgrade()
     {
-        Transform child1 = upgradeWindow.getTransform().Find("cardA");
-        Transform child2 = upgradeWindow.getTransform().Find("cardB");
-        Transform child3 = upgradeWindow.getTransform().Find("cardC");
-        Transform child4 = upgradeWindow.getTransform().Find("cardD");
+        Transform child1 = upgradeWindow.Instance.getTransform().Find("cardA");
+        Transform child2 = upgradeWindow.Instance.getTransform().Find("cardB");
+        Transform child3 = upgradeWindow.Instance.getTransform().Find("cardC");
+        Transform child4 = upgradeWindow.Instance.getTransform().Find("cardD");
 
         Transform btn1 = child1.Find("upgradeBtn");
         Transform btn2 = child2.Find("upgradeBtn");
@@ -183,7 +185,7 @@ public class gameProcessController : PersistentSingleton<PausePageController>
         grade--;
         if(grade==0)
         {
-            upgradeWindow.Close();
+            upgradeWindow.Instance.Close();
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
             storeWindow.Open();
