@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] GameObject _hitVFX;
+    [SerializeField] string _hitVFX;
     //发射出该子弹的武器
     public GameObject _weapon;
     //子弹能够贯穿的次数
@@ -34,7 +34,10 @@ public class Bullet : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0;
         rigidbody2D.freezeRotation = true;
-        rigidbody2D.mass = 0.5f;
+        // rigidbody2D.mass = 0.5f;
+
+        //设置击中特效路径
+        _hitVFX = "Assets/Prefab/Bullet/Hit VFX.prefab";
     }
 
     protected void OnTriggerEnter2D(Collider2D collider2D)
@@ -55,7 +58,12 @@ public class Bullet : MonoBehaviour
         _pierce--;
         if (_pierce == 0)
         {
-            Instantiate(_hitVFX, transform.position, Quaternion.identity);
+            //生成爆炸特效
+            // Instantiate(_hitVFX, transform.position, Quaternion.identity);
+            GameObject _VFXObject = ObjectPool.getInstance().get(_hitVFX);
+            _VFXObject.transform.position = transform.position;
+            _VFXObject.GetComponent<HitVFX>()._prefabPath = _hitVFX;
+
             //销毁子弹
             // Destroy(gameObject);
             ObjectPool.getInstance().remove(_prefab, gameObject);

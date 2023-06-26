@@ -13,18 +13,10 @@ public class RangedMonsterHit : Weapon
     //子弹的贯穿次数
     protected int _pierce;
 
-    protected new void Awake()
+    protected new virtual void Awake()
     {
-        /*
-            Weapon类的Awake
-        */
         _weaponAttribute = GetComponent<WeaponAttribute>();
         _damager = GetComponent<Damager>();
-        _nextAttackTime = Time.time;
-
-        /*
-            RangedMonsterHit类的Awake
-        */
         _attachPoint = transform;
         _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
         _pierce = 1;

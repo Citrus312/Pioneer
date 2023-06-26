@@ -126,24 +126,9 @@ public class Boss1Weapon : RangedMonsterHit
         }
     }
 
-    protected new void Awake()
+    protected override void Awake()
     {
-        /*
-            Weapon类的Awake
-        */
-        _weaponAttribute = GetComponent<WeaponAttribute>();
-        _damager = GetComponent<Damager>();
-        _nextAttackTime = Time.time;
-
-        /*
-            RangedMonsterHit类的Awake
-        */
-        _attachPoint = transform;
-        _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
-
-        /*
-            Boss1Weapon的Awake
-        */
+        base.Awake();
         _status = 0;
         _cdTimer = 0;
         _statusTimer = 0;

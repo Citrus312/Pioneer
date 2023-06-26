@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     //下次攻击的时间
     protected float _nextAttackTime;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _weaponAttribute = GetComponent<WeaponAttribute>();
         _damager = GetComponent<Damager>();

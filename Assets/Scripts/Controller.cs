@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour
     //动画
     public Animator _animator;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();

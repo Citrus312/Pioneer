@@ -13,18 +13,9 @@ public class RangedWeapon : Weapon
     //子弹的贯穿次数
     protected int _pierce;
 
-    protected new void Awake()
+    protected override void Awake()
     {
-        /*
-            Weapon的Awake
-        */
-        _weaponAttribute = GetComponent<WeaponAttribute>();
-        _damager = GetComponent<Damager>();
-        _nextAttackTime = Time.time;
-
-        /*
-            RangedWeapon的Awake
-        */
+        base.Awake();
         _bulletPrefab = "Assets/Prefab/Bullet/bullet_red 3.prefab";
         _pierce = 1;
     }
