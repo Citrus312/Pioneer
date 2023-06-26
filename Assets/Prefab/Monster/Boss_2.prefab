@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1054945853423023426}
   - component: {fileID: 8719504265131508770}
   - component: {fileID: 1187185484720973678}
-  - component: {fileID: 5776049535519645723}
+  - component: {fileID: -8115029579591778951}
   m_Layer: 0
   m_Name: Boss_2
   m_TagString: Untagged
@@ -248,7 +248,7 @@ MonoBehaviour:
   _status1Range: 3
   _projectilesRadius: 2
   _status2BulletNum: 12
---- !u!114 &5776049535519645723
+--- !u!114 &-8115029579591778951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7269592053107801277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb0315c36ca1241982bb131674a52a, type: 3}
+  m_Script: {fileID: 11500000, guid: 51e35342e9791cd4197af78552bec3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}

@@ -41,6 +41,7 @@ public class Damageable : MonoBehaviour
 
     private void die()
     {
+        GetComponent<Controller>().OnDie();
         ObjectPool.getInstance().remove(_prefabPath, gameObject);
         // Destroy(gameObject);
     }
