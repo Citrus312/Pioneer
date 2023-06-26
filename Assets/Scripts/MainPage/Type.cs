@@ -8,7 +8,8 @@ public enum WindowType
     MainPageWindow,
     SettingWindow,
     PauseWindow,
-    DifficultySelectWindow
+    DifficultySelectWindow,
+    TalentTreeWindow
 }
 
 public enum SceneType
@@ -17,5 +18,6 @@ public enum SceneType
     Battle,
     MainPage,
     Pause,
-    Select
+    Select,
+    TalentTree
 }

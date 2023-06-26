@@ -21,7 +21,6 @@ public class PausePageWindow : BaseWindow
         }
     }
 
-    private EventTrigger eventTrigger;
     //初始化暂停界面的参数
     private PausePageWindow()
     {
@@ -178,5 +177,6 @@ public class PausePageWindow : BaseWindow
     {
         Close(true);
         SceneLoader._instance.loadScene("MainPage");
+        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.8f);
     }
 }

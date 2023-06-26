@@ -61,7 +61,7 @@ public class MainPageWindow : BaseWindow
                 {
                     btn.interactable = true;
                 }
-                
+
             }
         }
     }
@@ -80,7 +80,7 @@ public class MainPageWindow : BaseWindow
             switch (btn.name)
             {
                 case "ContinueBtn":
-                    btn.onClick.AddListener(()=> { OnContinueBtn(); });
+                    btn.onClick.AddListener(() => { OnContinueBtn(); });
                     break;
                 case "StartBtn":
                     btn.onClick.AddListener(() => { OnStartBtn(); });
@@ -137,14 +137,14 @@ public class MainPageWindow : BaseWindow
         GameController.getInstance().getGameData().ResetGameData();
         if (GameController.getInstance().getGameData()._isFirstPlaying)
         {
-            SceneLoader._instance.loadScene("OpeningAnimation");  
+            SceneLoader._instance.loadScene("OpeningAnimation");
         }
         else
         {
             SceneLoader._instance.loadScene("LevelSelect");
         }
 
-        DelayToInvoke.DelayToInvokeBySecond(()=> { Close(); }, 1.8f);
+        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.8f);
     }
 
     private void OnSettingBtn()
@@ -155,19 +155,21 @@ public class MainPageWindow : BaseWindow
 
     private void OnTalentBtn()
     {
+        SceneLoader._instance.loadScene("TalentTree");
+        DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
         Debug.Log("����� �츳 ��ť");
     }
 
     private void OnExitBtn()
     {
         Debug.Log("����� �˳� ��ť");
-        //#if UNITY_EDITOR
-        //        //unity�༭���е���ʹ��
-        //        EditorApplication.isPlaying = false;
-        //#else
-        //        //������Ϸ��ʹ��
-        //        Application.Quit();
-        //#endif
+#if UNITY_EDITOR
+        //unity�༭���е���ʹ��
+        EditorApplication.isPlaying = false;
+#else
+                //������Ϸ��ʹ��
+                Application.Quit();
+#endif
     }
 
     private void OnModBtn()
@@ -175,7 +177,7 @@ public class MainPageWindow : BaseWindow
         Debug.Log("����� Mod ��ť");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("����Ϸ�������κ�Mod :)");
+        text.Add("目前没有任何Mod :)");
         window.inputText = text;
         window.Open();
     }
@@ -185,7 +187,7 @@ public class MainPageWindow : BaseWindow
         Debug.Log("����� ������Ʒ ��ť");
         TipsWindow window = new();
         List<string> text = new();
-        text.Add("������Ʒ? �����ܣ����Բ����ܣ���");
+        text.Add("没有更多作品啦！");
         window.inputText = text;
         window.Open();
     }
