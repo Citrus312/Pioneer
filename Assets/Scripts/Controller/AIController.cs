@@ -61,4 +61,12 @@ public class AIController : Controller
     {
         move(getMoveDirection());
     }
+
+    public override void OnDie()
+    {
+        // 掉落物品
+        CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
+        DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getDropRate());
+        base.OnDie();
+    }
 }

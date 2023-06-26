@@ -113,11 +113,30 @@ public class GameController : MonoBehaviour
         return _gameData;
     }
 
+    // 加钱或扣钱
+    public bool updateMoney(int num)
+    {
+        if((_gameData._money + num) >= 0){
+            _gameData._money += num;
+            return true;
+        }
+        else return false;
+    }
+
+    // 加经验
+    public void addExp(int num)
+    {
+        _gameData._exp += num;
+    }
+
     void Start()
     {
         initGame();
         //test
         MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Boss_2.prefab", 1);
         _player.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(4);
+        _player.GetComponent<CharacterAttribute>().setRangedDamage(5.0f);
+        _player.GetComponent<CharacterAttribute>().setMeleeDamage(5.0f);
+        
     }
 }

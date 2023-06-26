@@ -7,6 +7,7 @@ public class Boss2Controller : AIController
     public override void OnDie()
     {
         GetComponent<Boss2Weapon>().destroyProjectiles();
+        base.OnDie();
     }
 
     protected override void Awake()

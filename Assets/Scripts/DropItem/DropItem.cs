@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
+    protected int _val = 1;
+    protected int _exp = 1;
     protected float _minDistance = 0.2f;
     public float _speed = 5.0f;
     public string _prefabPath;
@@ -24,6 +26,7 @@ public class DropItem : MonoBehaviour
         while(d > _minDistance)
         {
             transform.Translate((_player.transform.position - transform.position) * _speed * Time.deltaTime);
+            d = Vector2.Distance(transform.position, _player.transform.position);
             yield return new WaitForSeconds(0.01f);
         }
         OnDie();
@@ -33,6 +36,8 @@ public class DropItem : MonoBehaviour
     void OnDie()
     {
         // 添加数据
+        GameController.getInstance().updateMoney(_val);
+        GameController.getInstance().addExp(_exp);
         ObjectPool.getInstance().remove(_prefabPath, gameObject);
     }
 }
