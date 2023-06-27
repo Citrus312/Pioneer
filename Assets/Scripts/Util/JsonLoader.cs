@@ -242,6 +242,8 @@ public class JsonLoader : MonoBehaviour
             addAttr.setID((int)roleConfig["ID"]);
             addAttr.setName((string)roleConfig["name"]);
             addAttr.setIcon((string)roleConfig["icon"]);
+            temp = (double)roleConfig["rawMoveSpeed"];
+            addAttr.setRawMoveSpeed((float)temp);
             temp = (double)roleConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
             temp = (double)roleConfig["healthRecovery"];

@@ -9,8 +9,9 @@ public enum WindowType
     MainPageWindow,
     SettingWindow,
     DifficultySelectWindow,
-    RoleAndWeaponSelectWindow
-    PauseWindow
+    RoleAndWeaponSelectWindow,
+    PauseWindow,
+    GameoverWindow
 }
 //窗口所在场景类型的枚举
 public enum SceneType

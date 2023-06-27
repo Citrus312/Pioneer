@@ -13,7 +13,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色允许使用的武器分类
     private List<WeaponAttribute.WeaponCategory> weaponCategory = new();
     //角色的基础移速
-    private float rawMoveSpeed = 0.1f;
+    private float rawMoveSpeed = 0.2f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
     //角色的当前生命值
@@ -283,6 +283,15 @@ public class CharacterAttribute : MonoBehaviour
         setMoveSpeedAmplification(moveSpeedAmplification);
         setScanAccuracy(scanAccuracy);
         setCollectEfficiency(collectEfficiency);
+    }
+
+    public void setAllPlayerAttribute(CharacterAttribute input)
+    {
+        setAllPlayerAttribute(input.getID(), input.getRawMoveSpeed(), input.getCurrentHealth(), input.getCurrentExp(), input.getCurrentPlayerLevel(),
+                              input.getBasicUpgradeExp(), input.getMaxHealth(), input.getHealthRecovery(), input.getHealthSteal(), input.getAttackAmplification(),
+                              input.getMeleeDamage(), input.getRangedDamage(), input.getAbilityDamage(), input.getAttackSpeedAmplification(), input.getCriticalRate(),
+                              input.getEngineering(), input.getAttackRangeAmplification(), input.getArmorStrength(), input.getDodgeRate(), input.getMoveSpeedAmplification(),
+                              input.getScanAccuracy(), input.getCollectEfficiency());
     }
 
     //用于初始化怪物

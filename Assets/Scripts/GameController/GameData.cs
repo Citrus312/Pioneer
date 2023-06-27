@@ -25,6 +25,9 @@ public class GameData
     // 拥有的武器
     public List<int> _weaponList = new();
 
+    // 进入游戏前暂存的玩家属性
+    public CharacterAttribute _attr = new();
+
     // 当前波次
     public int _wave;
 

@@ -8,7 +8,7 @@ public class UIController : PersistentSingleton<UIController>
     private void Start()
     {
         UIRoot.Init();
-        MainPageWindow.Instance.Open();
+        // MainPageWindow.Instance.Open();
         JsonLoader.LoadAndDecodeGameData();
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
@@ -17,5 +17,8 @@ public class UIController : PersistentSingleton<UIController>
         //Debug.Log(GameController.getInstance().getGameData()._scene);
         //GameController.getInstance().getGameData()._propList.Add(5);
         //JsonLoader.UpdateGameData();
+        GameController.getInstance().getGameData()._weaponList.Add(12);
+
+        GameoverWindow.Instance.Open();
     }
 }

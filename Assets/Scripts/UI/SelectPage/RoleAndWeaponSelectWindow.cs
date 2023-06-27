@@ -235,6 +235,12 @@ public class RoleAndWeaponSelectWindow : BaseWindow
         {
             //已经选择完角色的前提下点击武器按钮直接切换场景
             GameController.getInstance().getGameData()._isFirstPlaying = false;
+            int ID = GameController.getInstance().getGameData()._playerID;
+            CharacterAttribute attr = JsonLoader.rolePool[ID];
+            GameController.getInstance().getGameData()._attr.setAllPlayerAttribute(attr);
+
+            DelayToInvoke.DelayToInvokeBySecond(() => { RoleAndWeaponSelectWindow.Instance.Close(); }, 1.8f);
+            SceneLoader._instance.loadScene(GameController.getInstance().getGameData()._scene);
         }
     }
 }
