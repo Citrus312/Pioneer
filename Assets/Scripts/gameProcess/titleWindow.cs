@@ -7,7 +7,7 @@ public class titleWindow : BaseWindow
 {
     private static titleWindow instance;
 
-    public titleWindow()
+    private titleWindow()
     {
         // 在这里初始化GameManager
         resName = "UI/titleWindow";

@@ -7,7 +7,7 @@ public class countDownTimerWindow : BaseWindow
 {
     private static countDownTimerWindow instance;
 
-    public countDownTimerWindow()
+    private countDownTimerWindow()
     {
         // 在这里初始化GameManager
         resName = "UI/countDownTimerWindow";

@@ -774,12 +774,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe7c3e10689dcd4c9461189d35550f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   grade: 0
+  gradeCount: 0
   blood: 0
+  maxBlood: 0
   experience: 0
+  maxExperience: 0
   level: 1
   levelText: {fileID: 0}
+  money: 0
+  HPValue: 0
+  EXPValue: 0
+  HPMaxValue: 0
+  EXPMaxValue: 0
+  HPValueText: {fileID: 0}
+  EXPValueText: {fileID: 0}
   WeaponPropList: []
   PropPoolList: []
   currentTime: 0
@@ -809,13 +818,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 372906843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77bd4fb815366804583855007a57b467, type: 3}
+  m_Script: {fileID: 11500000, guid: b79267060a7cb5f429e025f600c41b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 0}
+  _playerPrefab: {fileID: 2582487769076849202, guid: fa2c1f7e549db1e4094aaf08a3438997, type: 3}
   _player: {fileID: 0}
-  _objectPool: {fileID: 0}
-  _generator: {fileID: 0}
+  _objectPool: {fileID: 5870974196353509982, guid: 200266e6894728e4c8060365aa3b59e7, type: 3}
+  _generator: {fileID: 4978148260696324448, guid: b26aa5a804dc87a4bbf8cedb696e1944, type: 3}
 --- !u!1 &396097168
 GameObject:
   m_ObjectHideFlags: 0

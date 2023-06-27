@@ -7,7 +7,7 @@ public class storeWindow : BaseWindow
 {
     private static storeWindow instance;
 
-    public storeWindow()
+    private storeWindow()
     {
         // 在这里初始化GameManager
         resName = "UI/storeWindow";

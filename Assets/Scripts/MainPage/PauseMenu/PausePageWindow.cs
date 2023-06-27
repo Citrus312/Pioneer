@@ -96,8 +96,10 @@ public class PausePageWindow : BaseWindow
 
     protected override void FillTextContent()
     {
+       
         foreach (Text txt in textList)
         {
+           
             switch (txt.name)
             {
                 case "CurrentPlayerLevel":
@@ -151,8 +153,7 @@ public class PausePageWindow : BaseWindow
                 case "CollectEfficiency":
                     txt.text = inputText[16];
                     break;
-                default:
-                    Debug.Log("An unexpected txt exists!");
+                default:                   
                     break;
             }
         }

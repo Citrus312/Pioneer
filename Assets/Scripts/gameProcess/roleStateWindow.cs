@@ -7,7 +7,7 @@ public class roleStateWindow : BaseWindow
 {
     private static roleStateWindow instance;
 
-    public roleStateWindow()
+    private roleStateWindow()
     {
         // 在这里初始化GameManager
         resName = "UI/roleStateWindow";

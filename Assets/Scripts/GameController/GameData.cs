@@ -26,19 +26,19 @@ public class GameData
     public List<int> _weaponList = new();
 
     // 当前波次
-    public int _wave;
+    public int _wave=1;
 
     // 当前选择的关卡
     public int _level;
 
     // 货币
-    public int _money;
+    public int _money=0;
 
     // 角色等级
-    public int _playerLevel;
+    public int _playerLevel=2;
 
     // 经验
-    public int _exp;
+    public float _exp;
 
     // 将数据转存为字典，方便JsonLoader保存数据
     public Dictionary<string, dynamic> Data2Dict()

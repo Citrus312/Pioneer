@@ -234,8 +234,8 @@ public class textController : MonoBehaviour
             //道具属性文本
             TextMeshProUGUI myText = child1.GetComponent<TextMeshProUGUI>();
             float[] value = new float[16];
-            Debug.Log(id);
-            Debug.Log(PropPoolList[id].getMaxHealth());
+            
+            
             value[0] = PropPoolList[id].getMaxHealth();
             value[1] = PropPoolList[id].getHealthRecovery();
             value[2] = PropPoolList[id].getHealthSteal();
