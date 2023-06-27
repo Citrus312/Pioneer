@@ -19,6 +19,7 @@ public enum WindowType
     titleWindow,
     countDownTimerWindow,
     PauseWindow
+
 }
 //窗口所在场景类型的枚举
 public enum SceneType

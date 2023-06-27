@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &837514855641757818
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4853405659183399130}
-  m_Layer: 0
-  m_Name: RotateCenter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4853405659183399130
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837514855641757818}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.135, y: -0.087, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7269592053107801279}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7269592053107801277
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,13 +13,13 @@ GameObject:
   - component: {fileID: 7269592053107801275}
   - component: {fileID: 7269592053107801273}
   - component: {fileID: 7269592053107801285}
-  - component: {fileID: 4017655572236224563}
   - component: {fileID: 3756663966883529344}
   - component: {fileID: 4744002119154044523}
   - component: {fileID: 1720343594666372990}
   - component: {fileID: 1054945853423023426}
   - component: {fileID: 8719504265131508770}
-  - component: {fileID: 4908871882288549694}
+  - component: {fileID: 1187185484720973678}
+  - component: {fileID: -8115029579591778951}
   m_Layer: 0
   m_Name: Boss_2
   m_TagString: Untagged
@@ -69,8 +38,7 @@ Transform:
   m_LocalPosition: {x: 1.9, y: 0.4, z: 0.8204551}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4853405659183399130}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,22 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719ff943c03f834ba7d8b96a196d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4017655572236224563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7269592053107801277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9230e44801902f743a12f90af35ccef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 7269592053107801275}
-  beatBackTime: 0
-  beatBackTimeSpeed: 0
-  _isDashing: 0
 --- !u!70 &3756663966883529344
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -225,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
+  _prefabPath: 
 --- !u!114 &1720343594666372990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +218,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
---- !u!114 &4908871882288549694
+--- !u!114 &1187185484720973678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,40 +227,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 7269592053107801277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863a650c6b0d85443872e548b285bc54, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b2dbde8c7ca48e4f92025278acff5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  _bulletPrefab: Assets/Prefab/Bullet/bullet.prefab
-  _cd: 3
-  _statusChangeTime: 45
-  _rotateCenter: {fileID: 4853405659183399130}
-  _bulletNum: 12
-  _rotateSpeed: 50
-  _spreadSpeed: 1
-  _spreadRadius:
-  - 0.5
-  - 0.7
-  - 0.9
-  - 1.4
-  - 1.6
-  - 1.8
-  - 2.3
-  - 2.5
-  - 2.7
-  - 3.2
-  - 3.4
-  - 3.6
-  _delayTime: 0.5
-  _dashTime: 0.5
-  _emitAngle:
-  - 0
-  - 45
-  - 90
-  - 135
-  - 180
-  - 225
-  - 270
-  - 315
+  _bulletPrefab: Assets/Prefab/Bullet/monster_bullet.prefab
+  _status1Time: 30
+  _status2Time: 60
+  _cd: 2
+  _hint1Path: Assets/Prefab/Hint1.prefab
+  _hint2Path: Assets/Prefab/Hint2.prefab
+  _hint1Time: 0.5
+  _hint2Time: 0.05
+  _bulletTime: 0.5
+  _status0BulletNum: 6
+  _status0Range: 2
+  _status1BulletNum: 12
+  _status1Range: 3
+  _projectilesRadius: 2
+  _status2BulletNum: 12
+--- !u!114 &-8115029579591778951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269592053107801277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e35342e9791cd4197af78552bec3b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  beatBackTime: 0
+  beatBackTimeSpeed: 0
