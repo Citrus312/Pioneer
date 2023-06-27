@@ -30,13 +30,16 @@ public class Damageable : MonoBehaviour
     //受击闪烁
     private IEnumerator OnHit()
     {
+        // 镜头震动，判断角色
+        if(gameObject.tag == "Player")
+        {
+            CameraShake._instance.startShake();
+        }
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = _onHitColor;
         yield return new WaitForSeconds(_onHitTime);
         spriteRenderer.color = Color.white;
-
-        // 镜头震动，判断角色
-        // CameraShake._instance.startShake();
     }
 
     private void die()
