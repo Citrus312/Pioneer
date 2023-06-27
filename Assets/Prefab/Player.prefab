@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2582487769076849202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.94, y: -0.9, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
@@ -136,8 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9881c9d5798244985d4c106288222a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initWeapons:
-  - {fileID: 0}
+  _initWeapons: []
 --- !u!95 &2582487769076849152
 Animator:
   serializedVersion: 4
@@ -185,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
+  _prefabPath: 
 --- !u!70 &2582487769076849153
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

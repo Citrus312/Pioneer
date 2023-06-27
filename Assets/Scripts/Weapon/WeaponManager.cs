@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    //TODO: 后期修改为通过addWeapon方法添加初始武器
-    public GameObject[] _initWeapons;
     //角色持有的武器
     ArrayList _weapons = new ArrayList();
-
-    private void Start()
-    {
-        for (int i = 0; i < _initWeapons.Length; i++)
-        {
-            addWeapon(_initWeapons[i]);
-        }
-    }
 
     //添加武器
     public void addWeapon(GameObject weapon)

@@ -30,35 +30,19 @@ public class AIController : Controller
         }
     }
 
-    protected new void Awake()
+    protected override void Awake()
     {
-        /*
-            Controller类的Awake
-        */
-        _transform = GetComponent<Transform>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _characterAttribute = GetComponent<CharacterAttribute>();
-        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        _animator = GetComponent<Animator>();
-
-        //设置rigidbody2D的参数
-        _rigidbody2D.drag = 100;
-        _rigidbody2D.gravityScale = 0;
-        _rigidbody2D.freezeRotation = true;
-
-        /*
-            AIController类的Awake
-        */
+        base.Awake();
         //设置碰撞体大小和位置
-        _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
-        _capsuleCollider2D.offset = new Vector2(0, -0.05f);
+        // _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
+        // _capsuleCollider2D.offset = new Vector2(0, -0.05f);
 
         //设置enemy标签
         gameObject.tag = "Enemy";
 
         //设置击退参数
-        beatBackTime = 0.05f;
-        beatBackTimeSpeed = 30.0f;
+        // beatBackTime = 0.05f;
+        // beatBackTimeSpeed = 30.0f;
     }
 
     //计算怪物移动方向
@@ -76,5 +60,13 @@ public class AIController : Controller
     void Update()
     {
         move(getMoveDirection());
+    }
+
+    public override void OnDie()
+    {
+        // 掉落物品
+        CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
+        DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getDropRate());
+        base.OnDie();
     }
 }

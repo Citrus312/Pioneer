@@ -5,28 +5,61 @@ using UnityEngine;
 public class DropItemGenerator : Generator
 {
     // 单例
-    private static DropItemGenerator instance;
+    private static DropItemGenerator _instance;
 
-    // 掉落的item
-    private string _droppedItemPath;
+    // 掉落的item列表
+    public string[] _droppedLootPath;
+    public string _droppedChestPath;
 
     //掉落的偏移范围
-    public float _bias;
+    public float _offset = 1.0f;
 
     public static DropItemGenerator getInstance()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = new DropItemGenerator();
+            _instance = new DropItemGenerator();
         }
-        return instance;
+        return _instance;
     }
 
-    public void dropItem(Vector3 pos, int num)
+    public void Awake()
     {
-        for (int i = 0; i < num; i++)
+        _droppedChestPath = "Assets/Prefab/DropItem/Chest_1.prefab";
+        _instance = this;
+    }
+
+    public void dropItem(Vector3 pos, int lootCount, float dropRate)
+    {
+        dropLoot(pos, lootCount);
+
+        // 是否掉落宝箱
+        float randomFloat = Random.value;
+        if(randomFloat < dropRate)
         {
-            generateObject(_droppedItemPath, new Vector3(pos.x + Random.Range(0, _bias), pos.y + Random.Range(0, _bias), 0));
+            dropChest(pos);
         }
+    }
+
+    // 掉落货币
+    void dropLoot(Vector3 pos, int num)
+    {
+        while(num > 0)
+        {
+            // 防止重叠
+            pos.x += Random.Range(-1 * _offset, _offset);
+            pos.y += Random.Range(-1 * _offset, _offset);
+
+            int randomItem = Random.Range(0, _droppedLootPath.Length - 1);
+            generateObject(_droppedLootPath[randomItem], pos);
+        
+            num--;
+        }
+    }
+
+    // 掉落宝箱
+    void dropChest(Vector3 pos)
+    {
+        generateObject(_droppedChestPath, pos);
     }
 }

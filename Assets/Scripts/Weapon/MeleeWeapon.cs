@@ -14,18 +14,9 @@ public class MeleeWeapon : Weapon
     //攻击方向
     protected Vector2 _attackDirection;
 
-    protected new void Awake()
+    protected override void Awake()
     {
-        /*
-            Weapon类的Awake
-        */
-        _weaponAttribute = GetComponent<WeaponAttribute>();
-        _damager = GetComponent<Damager>();
-        _nextAttackTime = Time.time;
-
-        /*
-            MeleeWeapon类的Awake
-        */
+        base.Awake();
         _polygonCollider2D = GetComponent<PolygonCollider2D>();
         _polygonCollider2D.isTrigger = true;
     }
