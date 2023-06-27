@@ -21,11 +21,11 @@ public class DropItem : MonoBehaviour
         GameObject _player = GameController.getInstance().getPlayer();
 
         float d = Vector2.Distance(transform.position, _player.transform.position);
-        while(d > _minDistance)
+        while (d > _minDistance)
         {
             transform.Translate((_player.transform.position - transform.position).normalized * _speed * Time.deltaTime);
             d = Vector2.Distance(transform.position, _player.transform.position);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         OnDie();
         yield return null;
