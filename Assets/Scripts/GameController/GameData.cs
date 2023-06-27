@@ -17,13 +17,13 @@ public class GameData
     public int _difficulty;
 
     // 拥有的道具种类
-    public List<int> _propList = new();
+    public List<int> _propList = new List<int>();
 
     // 拥有的每种道具对应的数量
-    public List<int> _propCount = new();
+    public List<int> _propCount = new List<int>();
 
     // 拥有的武器
-    public List<int> _weaponList = new();
+    public List<int> _weaponList = new List<int>();
 
     // 当前波次
     public int _wave;
