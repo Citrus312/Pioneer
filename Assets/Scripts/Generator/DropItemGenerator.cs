@@ -25,6 +25,7 @@ public class DropItemGenerator : Generator
 
     public void Awake()
     {
+        _droppedChestPath = "Assets/Prefab/DropItem/Chest_1.prefab";
         _instance = this;
     }
 
@@ -33,11 +34,11 @@ public class DropItemGenerator : Generator
         dropLoot(pos, lootCount);
 
         // 是否掉落宝箱
-        // float randomFloat = Random.value;
-        // if(randomFloat < dropRate)
-        // {
-        //     dropChest(pos);
-        // }
+        float randomFloat = Random.value;
+        if(randomFloat < dropRate)
+        {
+            dropChest(pos);
+        }
     }
 
     // 掉落货币
@@ -45,11 +46,13 @@ public class DropItemGenerator : Generator
     {
         while(num > 0)
         {
-            int randomItem = Random.Range(0, _droppedLootPath.Length - 1);
-            generateObject(_droppedLootPath[randomItem], pos);
             // 防止重叠
             pos.x += Random.Range(-1 * _offset, _offset);
             pos.y += Random.Range(-1 * _offset, _offset);
+
+            int randomItem = Random.Range(0, _droppedLootPath.Length - 1);
+            generateObject(_droppedLootPath[randomItem], pos);
+        
             num--;
         }
     }

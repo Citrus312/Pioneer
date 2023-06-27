@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6582048065539489837}
   - component: {fileID: 2288009462468817711}
   - component: {fileID: 5720528945249931565}
-  - component: {fileID: 5084499883064402049}
+  - component: {fileID: -4912507866816460639}
   m_Layer: 0
   m_Name: Ore_3
   m_TagString: Untagged
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &5084499883064402049
+--- !u!114 &-4912507866816460639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2554297960144685325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1167a1de3e9b3104880ca47f3cadee06, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ccb9b8d40482fc4c923938cd7ee1a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _prefabPath: Assets/Prefab/DropItem/Ore_1.prefab
+  _speed: 10
+  _prefabPath: Assets/Prefab/DropItem/Ore_3.prefab

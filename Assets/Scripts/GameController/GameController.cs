@@ -133,7 +133,7 @@ public class GameController : MonoBehaviour
     {
         initGame();
         //test
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Boss_2.prefab", 1);
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Boss_1.prefab", 1);
         _player.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(4);
         _player.GetComponent<CharacterAttribute>().setRangedDamage(5.0f);
         _player.GetComponent<CharacterAttribute>().setMeleeDamage(5.0f);
