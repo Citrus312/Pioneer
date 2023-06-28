@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7897575004811197617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.135, y: 0.121, z: 0}
+  m_LocalPosition: {x: 0.054, y: 0.084, z: 0}
   m_LocalScale: {x: 0.2759, y: 0.2759, z: 0.2759}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rawAttackRange: 5
 --- !u!114 &7897575004811197772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 7897575005910315907}
   _grip: {fileID: 7897575005174336364}
   _endPoint: {fileID: 7897575005779836534}
-  _bulletPrefab: {fileID: 6787016985104416660, guid: ec177da7ee6357d488c5975c4bb6c205, type: 3}
+  _bulletPrefab: 
 --- !u!1 &7897575005174336339
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7897575005174336339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: -0.44, z: 0}
+  m_LocalPosition: {x: -0.181, y: -0.305, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
