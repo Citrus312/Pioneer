@@ -18,7 +18,10 @@ public enum WindowType
     storeWindow,
     titleWindow,
     countDownTimerWindow,
-    PauseWindow
+    PauseWindow,
+    TalentTreeWindow
+}
+
 
 }
 //窗口所在场景类型的枚举
@@ -29,5 +32,7 @@ public enum SceneType
     MainPage,
     Select,
     gameProcess,
-    Pause
+    Pause,
+    TalentTree
+
 }
