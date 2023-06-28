@@ -59,6 +59,7 @@ public class Damageable : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        GetComponent<CharacterAttribute>().setCurrentHealth(currentHealth);
         StartCoroutine("OnHit");
         if (currentHealth <= 0)
         {
