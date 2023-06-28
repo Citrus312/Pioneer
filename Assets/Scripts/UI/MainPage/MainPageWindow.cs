@@ -145,8 +145,7 @@ public class MainPageWindow : BaseWindow
         {
             SceneLoader._instance.loadScene("LevelSelect");
         }
-        //延迟关闭主界面窗口，使过场动画衔接流畅
-        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.6f);
+        Close();
     }
     private void OnSettingBtn()
     {
@@ -217,5 +216,11 @@ public class MainPageWindow : BaseWindow
         text.Add("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
         window.inputText = text;
         window.Open();
+    }
+
+    public override void Open()
+    {
+        // 主页窗口延迟显示
+        DelayToInvoke.DelayToInvokeBySecond(()=>{base.Open();}, 1.0f);
     }
 }
