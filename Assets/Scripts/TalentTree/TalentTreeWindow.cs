@@ -420,7 +420,9 @@ public class TalentTreeWindow : BaseWindow
 
     private void OnExitButton(Button button)
     {
-        Close(false);
+        TalentTreeWindow.Instance.Close(false);
+        //SceneLoader._instance.loadScene("MainPage");
+
     }
 
     private void OnConfirmButton(Button button)
@@ -443,6 +445,9 @@ public class TalentTreeWindow : BaseWindow
         attributeFinal["scanAccuracy"] = attribute1["scanAccuracy"] + attribute2["scanAccuracy"] + attribute3["scanAccuracy"];
         attributeFinal["collectEfficiency"] = attribute1["collectEfficiency"] + attribute2["collectEfficiency"] + attribute3["collectEfficiency"];
         TalentTreeWindow.Instance.Close(false);
+        //SceneLoader._instance.loadScene("MainPage");
+        //SceneLoader._instance.loadScene("TalentTree");
+        //DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
         //foreach (KeyValuePair<string, float> kvp in attributeFinal)
         //{
         //    Debug.Log(kvp.Key + " " + kvp.Value);

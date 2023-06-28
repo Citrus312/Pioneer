@@ -8,6 +8,5 @@ public class TalentTreeController : MonoBehaviour
     {
         UIRoot.Init();
         TalentTreeWindow.Instance.Open();
-
     }
 }
