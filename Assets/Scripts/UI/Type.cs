@@ -19,7 +19,8 @@ public enum WindowType
     titleWindow,
     countDownTimerWindow,
     PauseWindow,
-    TalentTreeWindow
+    TalentTreeWindow,
+    GameoverWindow
 }
 
 

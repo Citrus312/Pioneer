@@ -1633,7 +1633,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2092362679}
   - component: {fileID: 2092362678}
-  - component: {fileID: 2092362676}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -1641,22 +1640,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2092362676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092362675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77bd4fb815366804583855007a57b467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 0}
-  _player: {fileID: 0}
-  _objectPool: {fileID: 0}
-  _generator: {fileID: 0}
 --- !u!114 &2092362678
 MonoBehaviour:
   m_ObjectHideFlags: 0

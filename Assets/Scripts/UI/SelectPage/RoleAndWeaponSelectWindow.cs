@@ -131,6 +131,8 @@ public class RoleAndWeaponSelectWindow : BaseWindow
             if (transform != null)
             {
                 obj.transform.SetParent(transform.Find("ScrollSelectArea").GetChild(0).GetChild(0));
+                Image img = obj.GetComponent<Image>();
+                img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
             }
         }
     }
@@ -187,7 +189,18 @@ public class RoleAndWeaponSelectWindow : BaseWindow
             //获取可用的武器索引列表
             List<int> weaponIndex = FetchUsableWeapon();
             //由于角色选择内容不会发生改变，故此处只解绑而非销毁
-            transform.Find("ScrollSelectArea").GetChild(0).GetChild(0).DetachChildren();
+            //将其重新挂载到场景中并透明，避免多次解绑导致物体大量复制
+            Transform scrollAreaContent = transform.Find("ScrollSelectArea").GetChild(0).GetChild(0);
+            Transform[] allChildren = scrollAreaContent.GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in allChildren)
+            {
+                if (child != scrollAreaContent)
+                {
+                    child.SetParent(GameObject.Find("Background").transform);
+                    Image img = child.GetComponent<Image>();
+                    img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
+                }
+            }
             //根据可用武器索引列表生成对应按钮
             foreach (int index in weaponIndex)
             {
@@ -230,11 +243,30 @@ public class RoleAndWeaponSelectWindow : BaseWindow
                 }
                 DisplayWeaponScrollContent();
             }, 6);
+            //给每个武器按钮绑定点击事件
+            DelayToInvoke.DelayToInvokeByFrame(() =>
+            {
+                foreach (GameObject btnObj in weaponContentList)
+                {
+                    Button weaponBtn = btnObj.GetComponent<Button>();
+                    weaponBtn.onClick.AddListener(() => { OnSelectBtn(weaponBtn); });
+                }
+            }, 6);
         }
-        else   //武器选择按钮的逻辑
+        else if (isSelectRole)  //武器选择按钮的逻辑
         {
-            //已经选择完角色的前提下点击武器按钮直接切换场景
+            //更新gameData中需要更新的数据
             GameController.getInstance().getGameData()._isFirstPlaying = false;
+            for (int i = 0; i < 6; i++)
+            {
+                GameController.getInstance().getGameData()._weaponList.Add(int.Parse(btn.name));
+            }
+            int ID = GameController.getInstance().getGameData()._playerID;
+            CharacterAttribute attr = JsonLoader.rolePool[ID];
+            GameController.getInstance().getGameData()._attr.setAllPlayerAttribute(attr);
+            //已经选择完角色的前提下点击武器按钮直接切换场景
+            SceneLoader._instance.loadScene(GameController.getInstance().getGameData()._scene);
+            DelayToInvoke.DelayToInvokeBySecond(() => { RoleAndWeaponSelectWindow.Instance.Close(); }, 0.8f);
         }
     }
 }

@@ -15,14 +15,11 @@ public class CancelSelect : MonoBehaviour
             //若未选择，则返回上一场景
             if (RoleAndWeaponSelectWindow.Instance.isSelectRole)
             {
-                if (RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponName").GetComponent<Text>().text == "")
-                {
-                    //清空武器详细信息显示区域，若已经为空则不必进行多余操作
-                    RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponName").GetComponent<Text>().text = "";
-                    RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponAttribute").GetComponent<Text>().text = "";
-                    Image weaponImg = RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponImage").GetComponent<Image>();
-                    weaponImg.color = new Color(weaponImg.color.r, weaponImg.color.g, weaponImg.color.b, 0);
-                }
+                //清空武器详细信息显示区域
+                RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponName").GetComponent<Text>().text = "";
+                RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponAttribute").GetComponent<Text>().text = "";
+                Image weaponImg = RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponImage").GetComponent<Image>();
+                weaponImg.color = new Color(weaponImg.color.r, weaponImg.color.g, weaponImg.color.b, 0);
                 //清空角色详细信息显示区域
                 RoleAndWeaponSelectWindow.Instance.roleDisplay.Find("RoleName").GetComponent<Text>().text = "";
                 RoleAndWeaponSelectWindow.Instance.roleDisplay.Find("RoleAttribute").GetComponent<Text>().text = "";
@@ -50,7 +47,7 @@ public class CancelSelect : MonoBehaviour
                 //返回上一场景
                 SceneLoader._instance.loadScene("LevelSelect");
                 //延迟关闭角色武器选择窗口，以流畅衔接过场动画
-                DelayToInvoke.DelayToInvokeBySecond(() => { RoleAndWeaponSelectWindow.Instance.Close(); }, 1.8f);
+                DelayToInvoke.DelayToInvokeBySecond(() => { RoleAndWeaponSelectWindow.Instance.Close(); }, 0.4f);
             }
         }
     }

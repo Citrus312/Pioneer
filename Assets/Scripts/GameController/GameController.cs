@@ -26,6 +26,11 @@ public class GameController : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        JsonLoader.LoadAndDecodeGameData();
+    }
+
     //初始化战斗场景
     public void initBattleScene()
     {
@@ -46,10 +51,24 @@ public class GameController : MonoBehaviour
             _player = ObjectPool.getInstance().get(_playerPrefab);
             _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
             _player.transform.position = Vector3.zero;
-            return true;
         }
-        Debug.Log("PlayerPrefab is null!");
-        return false;
+        else
+        {
+            Debug.Log("PlayerPrefab is null!");
+            return false;
+        }
+
+        //为玩家对象添加武器
+        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        {
+            int index = _gameData._weaponList[i];
+            WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
+            GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.SetParent(_player.transform, false);
+            _player.GetComponent<WeaponManager>().addWeapon(weapon);
+        }
+
+        return true;
     }
 
     public GameObject getPlayer()
