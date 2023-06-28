@@ -316,6 +316,13 @@ public class CharacterAttribute : MonoBehaviour
         setMonsterPrefabPath(prefabPath);
     }
 
+    public void setAllMonsterAttribute(CharacterAttribute input)
+    {
+        setAllMonsterAttribute(input.getID(), input.getMaxHealth(), input.getHealthIncPerWave(), input.getRawMoveSpeed(), input.getMeleeDamage(),
+                               input.getRangedDamage(), input.getDamageIncPerWave(), input.getLootCount(), input.getDropRate(), input.getCrateRate(),
+                               input.getFirstGenWave(), input.getInterval(), input.getMinGenCount(), input.getMaxGenCount(), input.getMonsterPrefabPath());
+    }
+
     //获取经过属性加成的移速
     public float getMoveSpeed()
     {
@@ -403,7 +410,7 @@ public class CharacterAttribute : MonoBehaviour
         return crateRate;
     }
 
-    public float getFirstGenWave()
+    public int getFirstGenWave()
     {
         return firstGenWave;
     }

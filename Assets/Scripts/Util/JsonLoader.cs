@@ -5,7 +5,7 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader : MonoBehaviour
+public class JsonLoader
 {
     //武器属性池 道具属性池 角色属性池
     public static List<WeaponAttribute> weaponPool = new();
