@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -819117959
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1444869280, guid: d9b35afb28c15104bac1a50dedc43b88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1350220864868869803}
+  skatingSpeedRatio: 2
   beatBackTime: 0.2
   beatBackTimeSpeed: 5
 --- !u!70 &4790823077417064592
