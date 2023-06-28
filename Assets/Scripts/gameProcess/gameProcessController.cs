@@ -125,7 +125,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
        
 
-        playerProperty = GameController.getInstance()._player.GetComponent<CharacterAttribute>();
+        playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
         blood = 15;
         experience = 0;
         money = 0;
@@ -153,12 +153,12 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         
         UIRoot.Init();
 
-        
+        GameController.getInstance().initBattleScene();
 
         roleStateWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
         titleWindow.Instance.Open();
-        _player = GameController.getInstance()._player;
+        _player = GameController.getInstance().getPlayer();
         propertyWindow.Instance.inputText = getAttribute(_player);
         propertyWindow.Instance.Open();
         setAllTriggers();

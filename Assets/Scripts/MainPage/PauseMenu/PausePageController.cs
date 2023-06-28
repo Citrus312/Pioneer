@@ -13,7 +13,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
     private void Start()
     {
         //UIRoot.Init();
-        _Player = GameController.getInstance()._player;
+        _Player = GameController.getInstance().getPlayer();
         PausePageWindow.Instance.inputText = getAttribute(_Player);
         PausePageWindow.Instance.Open();
         setAllTriggers();
