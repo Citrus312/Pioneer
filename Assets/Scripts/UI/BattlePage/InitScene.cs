@@ -10,6 +10,7 @@ public class InitScene : MonoBehaviour
         Debug.Log("weapon" + GameController.getInstance().getGameData()._weaponList.Count);
         GameController.getInstance().initBattleScene();
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
-        GameoverWindow.Instance.Open();
+        //GameoverWindow.Instance.Open();
+        GameController.getInstance().waveStart();
     }
 }

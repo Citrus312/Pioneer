@@ -7,9 +7,6 @@ public class MonsterGenerator : Generator
     // 单例
     private static MonsterGenerator _instance;
 
-    // 要生成的怪物
-    public string _monsterPrefabPath;
-
     // 怪物生成前的信号图片路径
     private string _redCrossPath;
 
@@ -39,22 +36,19 @@ public class MonsterGenerator : Generator
     }
 
     //开始生成
-    public void beginGenerate(string monsterPrefabPath, int num)
+    public void beginGenerate(string monsterPrefabPath, int num, CharacterAttribute characterAttribute)
     {
-        //设置生成的怪物预制体路径
-        _monsterPrefabPath = monsterPrefabPath;
-
         for (int i = 0; i < num; i++)
         {
             GameObject redCross = ObjectPool.getInstance().get(_redCrossPath);
             //让红叉随机旋转一定角度
             redCross.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360.0f)));
-            StartCoroutine("generateMonster", redCross);
+            StartCoroutine(generateMonster(redCross, monsterPrefabPath, characterAttribute));
         }
     }
 
     // 显示红叉，闪烁后生成怪物
-    protected IEnumerator generateMonster(GameObject redCross)
+    protected IEnumerator generateMonster(GameObject redCross, string monsterPrefabPath, CharacterAttribute characterAttribute)
     {
         Vector3 pos = getSpawnLocation();
         redCross.transform.position = pos;
@@ -73,7 +67,9 @@ public class MonsterGenerator : Generator
 
         ObjectPool.getInstance().remove(_redCrossPath, redCross);
 
-        generateObject(_monsterPrefabPath, pos);
+        GameObject monster = generateObject(monsterPrefabPath, pos);
+        //设置怪物属性
+        monster.GetComponent<CharacterAttribute>().setAllMonsterAttribute(characterAttribute);
     }
 
     // 随机获取怪物生成位置

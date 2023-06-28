@@ -23,8 +23,6 @@ public class Damageable : MonoBehaviour
         //初始化受击闪烁颜色和持续时间
         _onHitColor = new Color(255.0f / 255.0f, 100.0f / 255.0f, 100.0f / 255.0f, 255.0f / 255.0f);
         _onHitTime = 0.2f;
-        //该赋值仅作测试用
-        currentHealth = 20;
     }
 
     //受击闪烁
@@ -42,7 +40,8 @@ public class Damageable : MonoBehaviour
     private void die()
     {
         GetComponent<Controller>().OnDie();
-        ObjectPool.getInstance().remove(_prefabPath, gameObject);
+        if (_prefabPath != null)
+            ObjectPool.getInstance().remove(_prefabPath, gameObject);
         // Destroy(gameObject);
     }
 
