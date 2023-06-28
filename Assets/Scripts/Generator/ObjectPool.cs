@@ -9,6 +9,8 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool _poolInstance;
     // 内存区（队列）
     protected Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
+    //实例化的所有对象
+    protected Dictionary<string, List<GameObject>> _objectList = new Dictionary<string, List<GameObject>>();
 
     public static ObjectPool getInstance()
     {
@@ -47,6 +49,8 @@ public class ObjectPool : MonoBehaviour
             {
                 GameObject prefabObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
                 tmp = Instantiate(prefabObject, this.transform);
+                //保存进objectList中
+                _objectList[prefabPath].Add(tmp);
                 // Debug.Log("有池子，没物体 " + tmp);
             }
         }
@@ -58,6 +62,9 @@ public class ObjectPool : MonoBehaviour
             //Debug.Log("tmp " + UnityEditor.AssetDatabase.GetAssetPath(tmp));
             Queue<GameObject> q = new Queue<GameObject>();
             _objectPool.Add(prefabPath, q);
+            List<GameObject> l = new List<GameObject>();
+            l.Add(tmp);
+            _objectList.Add(prefabPath, l);
             // Debug.Log("新建池");
         }
 
@@ -74,6 +81,21 @@ public class ObjectPool : MonoBehaviour
             _objectPool[prefabPath].Enqueue(obj);
             obj.SetActive(false);
         }
+    }
 
+    //回收生成的所有物体
+    public void removeAll()
+    {
+        foreach (string prefabPath in _objectList.Keys)
+        {
+            foreach (GameObject obj in _objectList[prefabPath])
+            {
+                //如果物体是激活状态则回收物体
+                if (obj.activeSelf)
+                {
+                    remove(prefabPath, obj);
+                }
+            }
+        }
     }
 }

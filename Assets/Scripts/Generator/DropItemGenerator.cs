@@ -35,7 +35,7 @@ public class DropItemGenerator : Generator
 
         // 是否掉落宝箱
         float randomFloat = Random.value;
-        if(randomFloat < dropRate)
+        if (randomFloat < dropRate)
         {
             dropChest(pos);
         }
@@ -44,7 +44,7 @@ public class DropItemGenerator : Generator
     // 掉落货币
     void dropLoot(Vector3 pos, int num)
     {
-        while(num > 0)
+        while (num > 0)
         {
             // 防止重叠
             pos.x += Random.Range(-1 * _offset, _offset);
@@ -52,7 +52,7 @@ public class DropItemGenerator : Generator
 
             int randomItem = Random.Range(0, _droppedLootPath.Length - 1);
             generateObject(_droppedLootPath[randomItem], pos);
-        
+
             num--;
         }
     }
