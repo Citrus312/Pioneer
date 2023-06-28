@@ -33,6 +33,11 @@ public class DropItem : MonoBehaviour
 
     protected virtual void OnDie()
     {
+        removeFromPool();
+    }
+
+    void removeFromPool()
+    {
         // 移除
         ObjectPool.getInstance().remove(_prefabPath, gameObject);
     }
