@@ -5,7 +5,7 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader : MonoBehaviour
+public class JsonLoader
 {
     //武器属性池 道具属性池 角色属性池
     public static List<WeaponAttribute> weaponPool = new();
@@ -242,6 +242,8 @@ public class JsonLoader : MonoBehaviour
             addAttr.setID((int)roleConfig["ID"]);
             addAttr.setName((string)roleConfig["name"]);
             addAttr.setIcon((string)roleConfig["icon"]);
+            temp = (double)roleConfig["rawMoveSpeed"];
+            addAttr.setRawMoveSpeed((float)temp);
             temp = (double)roleConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
             temp = (double)roleConfig["healthRecovery"];
@@ -341,8 +343,8 @@ public class JsonLoader : MonoBehaviour
             addAttr.setDropRate((float)temp);
             temp = (double)monsterConfig["crateRate"];
             addAttr.setCrateRate((float)temp);
-            temp = (double)monsterConfig["genRate"];
-            addAttr.setGenRate((float)temp);
+            temp = (double)monsterConfig["interval"];
+            addAttr.setInterval((float)temp);
             temp = (double)monsterConfig["minGenCount"];
             addAttr.setMinGenCount((float)temp);
             temp = (double)monsterConfig["maxGenCount"];

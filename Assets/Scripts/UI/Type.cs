@@ -8,10 +8,10 @@ public enum WindowType
     TipsWindow,
     MainPageWindow,
     SettingWindow,
-    PauseWindow,
     DifficultySelectWindow,
-    RoleAndWeaponSelectWindow
-
+    RoleAndWeaponSelectWindow,
+    PauseWindow,
+    GameoverWindow
 }
 //窗口所在场景类型的枚举
 public enum SceneType

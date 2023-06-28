@@ -24,46 +24,22 @@ public class GameController : MonoBehaviour
     public GameController()
     {
         _instance = this;
-        // 初始化游戏全局变量
-
-        // 初始化游戏配置
-
     }
 
-    public void initGame()
+    private void Start()
     {
-        // 加载资源
-
-        // 初始化场景
-        initBattleScene();
-        // 初始化玩家
-        initPlayer();
-        // 设置游戏状态
-
+        JsonLoader.LoadAndDecodeGameData();
     }
 
-    private void loadResources()
-    {
-        // 加载场景资源
-
-        // 加载玩家资源
-
-        // 加载游戏配置资源
-
-    }
-
-    private void initScene()
-    {
-        // 初始化场景对象
-
-    }
-
+    //初始化战斗场景
     public void initBattleScene()
     {
-        //对象池初始化
+        //初始化对象池
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
-        // 生成器初始化
+        //初始化生成器
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
+        //初始化角色
+        initPlayer();
     }
 
     public bool initPlayer()
@@ -74,33 +50,25 @@ public class GameController : MonoBehaviour
             // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
             _player = ObjectPool.getInstance().get(_playerPrefab);
             _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
-            initPlayerPos();
-            // 初始化属性
-            //_player.GetComponent<CharacterAttribute>().initAttribute(_gameData._playerID);
-            return true;
+            _player.transform.position = Vector3.zero;
         }
-        Debug.Log("PlayerPrefab is null!");
-        return false;
-    }
+        else
+        {
+            Debug.Log("PlayerPrefab is null!");
+            return false;
+        }
 
-    private void initPlayerPos()
-    {
-        _player.transform.position = Vector3.zero;
-    }
+        //为玩家对象添加武器
+        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        {
+            int index = _gameData._weaponList[i];
+            WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
+            GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.SetParent(_player.transform, false);
+            _player.GetComponent<WeaponManager>().addWeapon(weapon);
+        }
 
-    public void onBattleEnd()
-    {
-
-        // 把player的attribute等等属性存入GameData
-
-        // 并保存到本地文件
-        saveGameData();
-    }
-
-    private void saveGameData()
-    {
-        // 
-
+        return true;
     }
 
     public GameObject getPlayer()
@@ -116,7 +84,8 @@ public class GameController : MonoBehaviour
     // 加钱或扣钱
     public bool updateMoney(int num)
     {
-        if((_gameData._money + num) >= 0){
+        if ((_gameData._money + num) >= 0)
+        {
             _gameData._money += num;
             return true;
         }
@@ -127,16 +96,5 @@ public class GameController : MonoBehaviour
     public void addExp(int num)
     {
         _gameData._exp += num;
-    }
-
-    void Start()
-    {
-        initGame();
-        //test
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 1);
-        _player.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(4);
-        _player.GetComponent<CharacterAttribute>().setRangedDamage(5.0f);
-        _player.GetComponent<CharacterAttribute>().setMeleeDamage(5.0f);
-        
     }
 }

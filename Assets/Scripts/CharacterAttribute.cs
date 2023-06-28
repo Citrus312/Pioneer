@@ -13,7 +13,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色允许使用的武器分类
     private List<WeaponAttribute.WeaponCategory> weaponCategory = new();
     //角色的基础移速
-    private float rawMoveSpeed = 1.0f;
+    private float rawMoveSpeed = 0.2f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
     //角色的当前生命值
@@ -38,8 +38,8 @@ public class CharacterAttribute : MonoBehaviour
     private float crateRate = 0.1f;
     //怪物允许被生成的最早波次
     private int firstGenWave = 1;
-    //怪物的生成概率
-    private float genRate = 10f;
+    //怪物的生成间隔
+    private float interval = 0.5f;
     //怪物的最小生成数量
     private float minGenCount = 1f;
     //怪物的最大生成数量
@@ -159,9 +159,9 @@ public class CharacterAttribute : MonoBehaviour
         firstGenWave = input;
     }
 
-    public void setGenRate(float input)
+    public void setInterval(float input)
     {
-        genRate = input;
+        interval = input;
     }
 
     public void setMinGenCount(float input)
@@ -285,10 +285,19 @@ public class CharacterAttribute : MonoBehaviour
         setCollectEfficiency(collectEfficiency);
     }
 
+    public void setAllPlayerAttribute(CharacterAttribute input)
+    {
+        setAllPlayerAttribute(input.getID(), input.getRawMoveSpeed(), input.getCurrentHealth(), input.getCurrentExp(), input.getCurrentPlayerLevel(),
+                              input.getBasicUpgradeExp(), input.getMaxHealth(), input.getHealthRecovery(), input.getHealthSteal(), input.getAttackAmplification(),
+                              input.getMeleeDamage(), input.getRangedDamage(), input.getAbilityDamage(), input.getAttackSpeedAmplification(), input.getCriticalRate(),
+                              input.getEngineering(), input.getAttackRangeAmplification(), input.getArmorStrength(), input.getDodgeRate(), input.getMoveSpeedAmplification(),
+                              input.getScanAccuracy(), input.getCollectEfficiency());
+    }
+
     //用于初始化怪物
     public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
         float meleeDamage, float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
-        float crateRate, int firstGenWave, float genRate, float minGenCount, float maxGenCount, string prefabPath)
+        float crateRate, int firstGenWave, float interval, float minGenCount, float maxGenCount, string prefabPath)
     {
         setID(id);
         setMaxHealth(maxHealth);
@@ -301,10 +310,17 @@ public class CharacterAttribute : MonoBehaviour
         setDropRate(dropRate);
         setCrateRate(crateRate);
         setFirstGenWave(firstGenWave);
-        setGenRate(genRate);
+        setInterval(interval);
         setMinGenCount(minGenCount);
         setMaxGenCount(maxGenCount);
         setMonsterPrefabPath(prefabPath);
+    }
+
+    public void setAllMonsterAttribute(CharacterAttribute input)
+    {
+        setAllMonsterAttribute(input.getID(), input.getMaxHealth(), input.getHealthIncPerWave(), input.getRawMoveSpeed(), input.getMeleeDamage(),
+                               input.getRangedDamage(), input.getDamageIncPerWave(), input.getLootCount(), input.getDropRate(), input.getCrateRate(),
+                               input.getFirstGenWave(), input.getInterval(), input.getMinGenCount(), input.getMaxGenCount(), input.getMonsterPrefabPath());
     }
 
     //获取经过属性加成的移速
@@ -394,14 +410,14 @@ public class CharacterAttribute : MonoBehaviour
         return crateRate;
     }
 
-    public float getFirstGenWave()
+    public int getFirstGenWave()
     {
         return firstGenWave;
     }
 
-    public float getGenRate()
+    public float getInterval()
     {
-        return genRate;
+        return interval;
     }
 
     public float getMinGenCount()

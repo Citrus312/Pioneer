@@ -146,7 +146,7 @@ public class MainPageWindow : BaseWindow
             SceneLoader._instance.loadScene("LevelSelect");
         }
         //延迟关闭主界面窗口，使过场动画衔接流畅
-        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.8f);
+        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.6f);
     }
     private void OnSettingBtn()
     {
