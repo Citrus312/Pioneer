@@ -12,6 +12,8 @@ public class UIController : PersistentSingleton<UIController>
         JsonLoader.LoadAndDecodeGameData();
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
+        JsonLoader.LoadAndDecodeMonsterConfig();
+        //Debug.Log(JsonLoader.monsterPool.Count);
         //Debug.Log(JsonLoader.propPool[0].getPropName());
         //Debug.Log(JsonLoader.weaponPool[0].getWeaponName());
         //Debug.Log(GameController.getInstance().getGameData()._scene);

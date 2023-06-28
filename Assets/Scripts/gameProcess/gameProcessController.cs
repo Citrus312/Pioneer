@@ -21,7 +21,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public float maxBlood;//最大生命值
     public float experience;//当前经验值
     public float maxExperience;//最大经验值
-    public int level=1;//关卡数
+    public int level = 1;//关卡数
     public TextMeshProUGUI levelText;//关卡显示文本
     public int money;
 
@@ -35,7 +35,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public List<WeaponAttribute> WeaponPropList;//卡池
     public List<PropAttribute> PropPoolList;
 
-    
+
 
     //倒计时需要用到的变量
     public float currentTime;
@@ -44,7 +44,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     void Start()
     {
 
-        
+
         //初始化窗口
         origin();
 
@@ -54,18 +54,18 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         //倒计时显示
         timeDisplay();
 
-       
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentTime<=10)
+        if (currentTime <= 10)
         {
             timeText.color = Color.red;
         }
-         if(currentTime==0)
+        if (currentTime == 0)
         {
             timeEnd();
         }
@@ -93,7 +93,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         blood = playerProperty.getCurrentHealth();
         experience = GameController.getInstance().getGameData()._exp;
         money = GameController.getInstance().getGameData()._money;
-        while(experience>=EXPMaxValue)
+        while (experience >= EXPMaxValue)
         {
             experience = experience - EXPMaxValue;
             GameController.getInstance().getGameData()._exp = experience;
@@ -105,14 +105,14 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         HPValue = blood;
         EXPValue = experience;
 
-        if(HPValue<=0)
+        if (HPValue <= 0)
         {
             Time.timeScale = 0f;
             //死亡界面
         }
-        HPValueText.text =""+ HPValue;
+        HPValueText.text = "" + HPValue;
         EXPValueText.text = "Lv" + grade;
-         
+
     }
 
     //数据初始化
@@ -123,7 +123,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         WeaponPropList = JsonLoader.weaponPool;
         PropPoolList = JsonLoader.propPool;
 
-       
+
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
         blood = 15;
@@ -141,16 +141,16 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         EXPMaxValue = 20;
 
         HPValueText = roleStateWindow.Instance.getTransform().Find("HPValue").GetComponent<TextMeshProUGUI>();
-        EXPValueText= roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
+        EXPValueText = roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
 
-        
+
 
     }
 
     //窗口初始化
     void origin()
     {
-        
+
         UIRoot.Init();
 
         GameController.getInstance().initBattleScene();
@@ -176,14 +176,14 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
     }
 
- 
+
 
     //倒计时计算
     void updateCountDownTimer()
     {
-        
+
         currentTime--;
-        timeText.text = "" + currentTime ;
+        timeText.text = "" + currentTime;
         if (currentTime <= 0f)
         {
             currentTime = 0;
@@ -194,7 +194,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //倒计时显示
     void timeDisplay()
     {
-        currentTime = totalTime;      
+        currentTime = totalTime;
         InvokeRepeating("updateCountDownTimer", 1f, 1f);
     }
 
@@ -207,12 +207,12 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //倒计时结束后的事件
     void timeEnd()
     {
-        
+
         Transform endText = countDownTimerWindow.Instance.getTransform().Find("endText");
         endText.gameObject.SetActive(true);
         StartCoroutine(wait());
         endText.gameObject.SetActive(false);
-        currentTime = -1;       
+        currentTime = -1;
         if (gradeCount > 0)
         {
             Debug.Log("升级");
@@ -230,8 +230,8 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             storeWindow.Instance.Open();
             addListenerForstartBtn();
             addListenerForBuy();
-            
-            
+
+
             propertyWindow.Instance.Open();
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
@@ -299,7 +299,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                 playerProperty.setEngineering(playerProperty.getEngineering() + v);
                 break;
             case "攻击范围":
-                playerProperty.setAttackRangedAmplification(playerProperty.getAttackRangeAmplification() + v);
+                playerProperty.setAttackRangeAmplification(playerProperty.getAttackRangeAmplification() + v);
                 break;
             case "机甲强度":
                 playerProperty.setArmorStrength(playerProperty.getArmorStrength() + v);
@@ -321,7 +321,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
         gradeCount--;
 
-        if(gradeCount==0)
+        if (gradeCount == 0)
         {
             upgradeWindow.Instance.Close();
             weaponBagWindow.Instance.Open();
@@ -329,8 +329,8 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             storeWindow.Instance.Open();
             addListenerForstartBtn();
             addListenerForBuy();
-            
-            
+
+
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
@@ -360,7 +360,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         //血量、经验、等级、倒计时、关卡重置
         totalTime = totalTime + 10 >= 90 ? 90 : totalTime + 10;
         timeDisplay();
-        
+
         level++;
         levelText.text = "第" + level + "关";
         GameController.getInstance().getGameData()._wave = level;
@@ -391,7 +391,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //购买按钮事件
     void buyBtnOnclick()
     {
-        if(weaponBagWindow.Instance.isWeapon)
+        if (weaponBagWindow.Instance.isWeapon)
         {
             if (weaponBagWindow.Instance.addWeapon)
             {
@@ -428,7 +428,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                 loadImage(assetPathBg, weapon.transform);
                 loadImage(assetPath, image.transform);
             }
-           
+
         }
         else
         {
@@ -484,7 +484,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //获取属性文本
     private List<string> getAttribute(GameObject _player)
     {
-        List<string> content = new List<string>();       
+        List<string> content = new List<string>();
         content.Add("目前等级: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
         content.Add("生命上限: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
         content.Add("生命回复: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
