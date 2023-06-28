@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameData
 {
     // 玩家是否首次游玩
-    public bool _isFirstPlaying = true;
+    public bool _isFirstPlaying;
 
     // 角色类型
     public int _playerID;

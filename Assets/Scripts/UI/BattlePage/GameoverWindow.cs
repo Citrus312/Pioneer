@@ -41,7 +41,7 @@ public class GameoverWindow : BaseWindow
         propDisplay = transform.Find("PropDisplay");
         transform.Find("TitleText").GetComponent<Text>().text = titleText;
 
-        CharacterAttribute roleAttr = GameController.getInstance()._player.GetComponent<CharacterAttribute>();
+        CharacterAttribute roleAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
         //Debug.Log(roleAttr.get);
         attributeText.text = $"最大生命  <color={(roleAttr.getMaxHealth() > 0 ? "green" : "red")}> {roleAttr.getMaxHealth()} </color>\n" +
                              $"生命回复  <color={(roleAttr.getHealthRecovery() > 0 ? "green" : "red")}> {roleAttr.getHealthRecovery()} </color>\n" +

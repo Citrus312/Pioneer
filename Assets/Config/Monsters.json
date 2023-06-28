@@ -12,7 +12,7 @@
     "dropRate": 0.01,
     "crateRate": 0.01,
     "firstGenWave": 1,
-    "genRate": 200.0,
+    "interval": 0.25,
     "minGenCount": 1.0,
     "maxGenCount": 5.0
   },
@@ -29,7 +29,7 @@
     "dropRate": 0.02,
     "crateRate": 0.03,
     "firstGenWave": 2,
-    "genRate": 160.0,
+    "interval": 0.4,
     "minGenCount": 4.0,
     "maxGenCount": 10.0
   },
@@ -46,7 +46,7 @@
     "dropRate": 0.03,
     "crateRate": 0.1,
     "firstGenWave": 4,
-    "genRate": 80.0,
+    "interval": 1,
     "minGenCount": 1.0,
     "maxGenCount": 4.0
   },
@@ -63,7 +63,7 @@
     "dropRate": 0.01,
     "crateRate": 0.01,
     "firstGenWave": 6,
-    "genRate": 50.0,
+    "interval": 1.5,
     "minGenCount": 1.0,
     "maxGenCount": 3.0
   }

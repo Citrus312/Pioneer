@@ -343,8 +343,8 @@ public class JsonLoader : MonoBehaviour
             addAttr.setDropRate((float)temp);
             temp = (double)monsterConfig["crateRate"];
             addAttr.setCrateRate((float)temp);
-            temp = (double)monsterConfig["genRate"];
-            addAttr.setGenRate((float)temp);
+            temp = (double)monsterConfig["interval"];
+            addAttr.setInterval((float)temp);
             temp = (double)monsterConfig["minGenCount"];
             addAttr.setMinGenCount((float)temp);
             temp = (double)monsterConfig["maxGenCount"];
