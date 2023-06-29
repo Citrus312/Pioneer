@@ -16,5 +16,6 @@ public class InitScene : MonoBehaviour
         CM.Follow = GameController.getInstance().getPlayer().transform;
         // 属性赋值
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
+        GameController.getInstance().waveStart();
     }
 }

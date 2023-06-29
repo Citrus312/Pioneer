@@ -326,7 +326,7 @@ public class CharacterAttribute : MonoBehaviour
     //获取经过属性加成的移速
     public float getMoveSpeed()
     {
-        return rawMoveSpeed * (1 + moveSpeedAmplification);
+        return rawMoveSpeed * (1 + moveSpeedAmplification * 0.01f);
     }
 
     //获取基础移速

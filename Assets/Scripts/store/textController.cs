@@ -9,7 +9,7 @@ public class textController : MonoBehaviour
     public List<WeaponAttribute> WeaponPropList;//卡池
     public List<int> selectedCardId;//被选择的卡片id暂存列表
     public List<int> lockedCardIndex;//被锁定的卡片列表
-    public List<bool> isLocked ;
+    public List<bool> isLocked;
     public Color normalColor = new(1f, 1f, 1f, 0.5f);
     public Color highLightColor = new(0f, 0f, 0f, 0.5f);
     Transform weaponBag;
@@ -22,7 +22,7 @@ public class textController : MonoBehaviour
 
         lockedCardIndex = new List<int>(new int[4]);
         selectedCardId = new List<int>(new int[4]);
-        for (int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
             lockedCardIndex[i] = -1;
             selectedCardId[i] = -1;
@@ -32,15 +32,15 @@ public class textController : MonoBehaviour
         propBag = transform.Find("propBag");
 
         //加载json文件将数据放入卡池
-        JsonLoader.LoadAndDecodeWeaponConfig();
+        // JsonLoader.LoadAndDecodeWeaponConfig();
         WeaponPropList = JsonLoader.weaponPool;
 
 
         //每回合会自动刷新卡池一次
         extractCard();
-        for(int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            drawCards(i,selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
+            drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
 
     }
@@ -49,22 +49,22 @@ public class textController : MonoBehaviour
     {
         //List<int> ids = new(4);
         int count = 0;
-        for(int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            if(lockedCardIndex[i]!=-1)
+            if (lockedCardIndex[i] != -1)
             {
                 selectedCardId[i] = lockedCardIndex[i];
                 count++;
             }
         }
-        while(count<4)
+        while (count < 4)
         {
             int randomId = Random.Range(0, WeaponPropList.Count);
-            if(!selectedCardId.Contains(randomId))
+            if (!selectedCardId.Contains(randomId))
             {
-                for(int k=0;k<4;k++)
+                for (int k = 0; k < 4; k++)
                 {
-                    if(selectedCardId[k]==-1)
+                    if (selectedCardId[k] == -1)
                     {
                         selectedCardId[k] = randomId;
                         count++;
@@ -72,17 +72,17 @@ public class textController : MonoBehaviour
                     }
                 }
             }
-            
+
         }
-       
+
     }
 
 
     //将卡片内容显示在UI上
-    public void drawCards(int i,int id)
+    public void drawCards(int i, int id)
     {
-        string cardName="card";
-        switch(i)
+        string cardName = "card";
+        switch (i)
         {
             case 0:
                 cardName = "card_a";
@@ -100,7 +100,7 @@ public class textController : MonoBehaviour
                 break;
         }
         Transform card = transform.Find(cardName);
-       
+
         //获取子物体
         Transform child1 = card.Find("propText");
         Transform child2 = card.Find("bgIcon");
@@ -137,7 +137,7 @@ public class textController : MonoBehaviour
 
 
     //加载图片资源
-    void loadImage(string assetPath,Transform child)
+    void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
 
@@ -160,7 +160,7 @@ public class textController : MonoBehaviour
 
 
     //刷新按钮点击事件
-   public void OnRefreshButtonClicked()
+    public void OnRefreshButtonClicked()
     {
         //清空卡槽列表
         for (int i = 0; i < 4; i++)
@@ -200,8 +200,8 @@ public class textController : MonoBehaviour
         {
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
-        
-        
+
+
     }
 
     //锁定按钮点击事件
@@ -235,7 +235,7 @@ public class textController : MonoBehaviour
             lockedCardIndex[cardID] = selectedCardId[cardID];
             lockIcon.gameObject.SetActive(true);
         }
-            
+
         else
         {
 

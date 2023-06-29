@@ -57,7 +57,7 @@ public class Damager : MonoBehaviour
         //显示伤害
         //DamageText damageText = Instantiate(_damageTextPrefab, target.transform.position, Quaternion.identity).GetComponent<DamageText>();
         GameObject damageTextObj = ObjectPool.getInstance().get(_damageTextPrefab);
-        damageTextObj.transform.position = target.transform.position;
+        damageTextObj.transform.position = target.transform.position + new Vector3(Random.Range(0, 0.2f), Random.Range(0, 0.2f), 0);
         DamageText damageText = damageTextObj.GetComponent<DamageText>();
         if (target.tag == "Player")
         {

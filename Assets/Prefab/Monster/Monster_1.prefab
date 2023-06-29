@@ -34,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350220864868869805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9, y: 0.4, z: 0.8204551}
+  m_LocalPosition: {x: 2.019, y: 0.383, z: 0.8204551}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -819117959
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1444869280, guid: d9b35afb28c15104bac1a50dedc43b88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1350220864868869803}
+  skatingSpeedRatio: 2
   beatBackTime: 0.2
   beatBackTimeSpeed: 5
 --- !u!70 &4790823077417064592
@@ -174,8 +175,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.004263848, y: -0.04746364}
+  m_Size: {x: 0.19299752, y: 0.2399008}
   m_Direction: 0
 --- !u!114 &4001484583878710395
 MonoBehaviour:

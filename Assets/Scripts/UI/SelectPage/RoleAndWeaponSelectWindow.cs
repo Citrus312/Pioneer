@@ -257,7 +257,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
         {
             //更新gameData中需要更新的数据
             GameController.getInstance().getGameData()._isFirstPlaying = false;
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 1; i++)
             {
                 GameController.getInstance().getGameData()._weaponList.Add(int.Parse(btn.name));
             }
