@@ -11,11 +11,12 @@ public class WeaponAttribute : MonoBehaviour
     public enum WeaponCategory { All = -2, Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
     //物品品质的枚举
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
-    // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
     //武器所有者的属性
     private CharacterAttribute ownerAttr = new();
     //武器基础伤害
     private float rawWeaponDamage = 0;
+    //武器的弹道数
+    private int bulletCount = 1;
     //武器基础攻击范围
     [SerializeField] private float rawAttackRange = 5.0f;
     //对应类型伤害的转换比例
@@ -48,12 +49,16 @@ public class WeaponAttribute : MonoBehaviour
 
     private void Start()
     {
-        // ownerAttr = GameObject.Find("Player").GetComponent<CharacterAttribute>();
         ownerAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
     }
     public void setOwnerAttr(CharacterAttribute input)
     {
         ownerAttr = input;
+    }
+
+    public void setBulletCount(int input)
+    {
+        bulletCount = input;
     }
 
     public void setRawWeaponDamage(float input)
@@ -171,6 +176,11 @@ public class WeaponAttribute : MonoBehaviour
     public float getRawWeaponDamage()
     {
         return rawWeaponDamage;
+    }
+
+    public int getBulletCount()
+    {
+        return bulletCount;
     }
 
     //获取武器经过角色属性加成后的面板攻击大小(真正的伤害还涉及暴击和敌方护甲)

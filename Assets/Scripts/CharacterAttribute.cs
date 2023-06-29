@@ -12,6 +12,8 @@ public class CharacterAttribute : MonoBehaviour
     private string icon = "";
     //角色允许使用的武器分类
     private List<WeaponAttribute.WeaponCategory> weaponCategory = new();
+    //角色自带的弹道数
+    private int bulletCount = 0;
     //角色的基础移速
     private float rawMoveSpeed = 0.2f;
     //角色受击后的无敌时间
@@ -44,6 +46,8 @@ public class CharacterAttribute : MonoBehaviour
     private float minGenCount = 1f;
     //怪物的最大生成数量
     private float maxGenCount = 2f;
+    //怪物属于的关卡
+    private string belongLevel = "";
     //最大生命 生命回复 生命汲取
     private float maxHealth = 10;
     private float healthRecovery = 0;
@@ -92,6 +96,11 @@ public class CharacterAttribute : MonoBehaviour
     public void setWeaponCategory(List<WeaponAttribute.WeaponCategory> input)
     {
         weaponCategory = input;
+    }
+
+    public void setBulletCount(int input)
+    {
+        bulletCount = input;
     }
 
     public void setRawMoveSpeed(float input)
@@ -174,6 +183,11 @@ public class CharacterAttribute : MonoBehaviour
         maxGenCount = input;
     }
 
+    public void setBelongLevel(string input)
+    {
+        belongLevel = input;
+    }
+
     public void setMaxHealth(float input)
     {
         maxHealth = input;
@@ -224,7 +238,7 @@ public class CharacterAttribute : MonoBehaviour
         engineering = input;
     }
 
-    public void setAttackRangedAmplification(float input)
+    public void setAttackRangeAmplification(float input)
     {
         attackRangeAmplification = input;
     }
@@ -259,7 +273,7 @@ public class CharacterAttribute : MonoBehaviour
         float basicUpgradeExp, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication,
         float meleeDamage, float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate,
         float engieering, float attackRangeAmplification, float armorStrength, float dodgeRate, float moveSpeedAmplification,
-        float scanAccuracy, float collectEfficiency)
+        float scanAccuracy, float collectEfficiency, int bulletCount)
     {
         setID(id);
         setRawMoveSpeed(rawMoveSpeed);
@@ -277,12 +291,13 @@ public class CharacterAttribute : MonoBehaviour
         setAttackSpeedAmplification(attackSpeedAmplification);
         setCriticalRate(criticalRate);
         setEngineering(engieering);
-        setAttackRangedAmplification(attackRangeAmplification);
+        setAttackRangeAmplification(attackRangeAmplification);
         setArmorStrength(armorStrength);
         setDodgeRate(dodgeRate);
         setMoveSpeedAmplification(moveSpeedAmplification);
         setScanAccuracy(scanAccuracy);
         setCollectEfficiency(collectEfficiency);
+        setBulletCount(bulletCount);
     }
 
     public void setAllPlayerAttribute(CharacterAttribute input)
@@ -291,13 +306,14 @@ public class CharacterAttribute : MonoBehaviour
                               input.getBasicUpgradeExp(), input.getMaxHealth(), input.getHealthRecovery(), input.getHealthSteal(), input.getAttackAmplification(),
                               input.getMeleeDamage(), input.getRangedDamage(), input.getAbilityDamage(), input.getAttackSpeedAmplification(), input.getCriticalRate(),
                               input.getEngineering(), input.getAttackRangeAmplification(), input.getArmorStrength(), input.getDodgeRate(), input.getMoveSpeedAmplification(),
-                              input.getScanAccuracy(), input.getCollectEfficiency());
+                              input.getScanAccuracy(), input.getCollectEfficiency(), input.getBulletCount());
     }
 
     //用于初始化怪物
     public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
         float meleeDamage, float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
-        float crateRate, int firstGenWave, float interval, float minGenCount, float maxGenCount, string prefabPath)
+        float crateRate, int firstGenWave, float interval, float minGenCount, float maxGenCount, string prefabPath,
+        string belongLevel, float armorStrength)
     {
         setID(id);
         setMaxHealth(maxHealth);
@@ -314,13 +330,16 @@ public class CharacterAttribute : MonoBehaviour
         setMinGenCount(minGenCount);
         setMaxGenCount(maxGenCount);
         setMonsterPrefabPath(prefabPath);
+        setBelongLevel(belongLevel);
+        setArmorStrength(armorStrength);
     }
 
     public void setAllMonsterAttribute(CharacterAttribute input)
     {
         setAllMonsterAttribute(input.getID(), input.getMaxHealth(), input.getHealthIncPerWave(), input.getRawMoveSpeed(), input.getMeleeDamage(),
                                input.getRangedDamage(), input.getDamageIncPerWave(), input.getLootCount(), input.getDropRate(), input.getCrateRate(),
-                               input.getFirstGenWave(), input.getInterval(), input.getMinGenCount(), input.getMaxGenCount(), input.getMonsterPrefabPath());
+                               input.getFirstGenWave(), input.getInterval(), input.getMinGenCount(), input.getMaxGenCount(), input.getMonsterPrefabPath(),
+                               input.getBelongLevel(), input.getArmorStrength());
     }
 
     //获取经过属性加成的移速
@@ -353,6 +372,11 @@ public class CharacterAttribute : MonoBehaviour
     public List<WeaponAttribute.WeaponCategory> getWeaponCategory()
     {
         return weaponCategory;
+    }
+
+    public int getBulletCount()
+    {
+        return bulletCount;
     }
 
     public float getImmuneTime()
@@ -428,6 +452,11 @@ public class CharacterAttribute : MonoBehaviour
     public float getMaxGenCount()
     {
         return maxGenCount;
+    }
+
+    public string getBelongLevel()
+    {
+        return belongLevel;
     }
 
     public float getMaxHealth()

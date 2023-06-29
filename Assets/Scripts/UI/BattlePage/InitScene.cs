@@ -11,5 +11,6 @@ public class InitScene : MonoBehaviour
         GameController.getInstance().initBattleScene();
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
         GameController.getInstance().waveStart();
+        GameoverWindow.Instance.Open();
     }
 }

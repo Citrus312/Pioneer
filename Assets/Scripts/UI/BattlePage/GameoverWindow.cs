@@ -42,7 +42,6 @@ public class GameoverWindow : BaseWindow
         transform.Find("TitleText").GetComponent<Text>().text = titleText;
 
         CharacterAttribute roleAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
-        //Debug.Log(roleAttr.get);
         attributeText.text = $"最大生命  <color={(roleAttr.getMaxHealth() > 0 ? "green" : "red")}> {roleAttr.getMaxHealth()} </color>\n" +
                              $"生命回复  <color={(roleAttr.getHealthRecovery() > 0 ? "green" : "red")}> {roleAttr.getHealthRecovery()} </color>\n" +
                              $"生命汲取  <color={(roleAttr.getHealthSteal() > 0 ? "green" : "red")}> {roleAttr.getHealthSteal()} </color>\n" +
@@ -60,34 +59,31 @@ public class GameoverWindow : BaseWindow
                              $"扫描精度  <color={(roleAttr.getScanAccuracy() > 0 ? "green" : "red")}> {roleAttr.getScanAccuracy()} </color>\n" +
                              $"采集效率  <color={(roleAttr.getCollectEfficiency() > 0 ? "green" : "red")}> {roleAttr.getCollectEfficiency()} </color>\n";
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < GameController.getInstance().getGameData()._weaponList.Count; i++)
         {
-            if (i > GameController.getInstance().getGameData()._weaponList.Count - 1)
+            weaponDisplay.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            string prePath = "";
+            //根据武器的攻击类型确定武器图片的路径
+            switch (JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponDamageType())
             {
-                weaponDisplay.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+                case WeaponAttribute.WeaponDamageType.Melee:
+                    prePath = "Assets/Sprites/Weapon/Melee Weapon/";
+                    break;
+                case WeaponAttribute.WeaponDamageType.Ranged:
+                    prePath = "Assets/Sprites/Weapon/Ranged Weapon/";
+                    break;
+                case WeaponAttribute.WeaponDamageType.Ability:
+                    prePath = "Assets/Sprites/Weapon/Ability Weapon/";
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                string prePath = "";
-                //根据武器的攻击类型确定武器图片的路径
-                switch (JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponDamageType())
-                {
-                    case WeaponAttribute.WeaponDamageType.Melee:
-                        prePath = "Assets/Sprites/Weapon/Melee Weapon/";
-                        break;
-                    case WeaponAttribute.WeaponDamageType.Ranged:
-                        prePath = "Assets/Sprites/Weapon/Ranged Weapon/";
-                        break;
-                    case WeaponAttribute.WeaponDamageType.Ability:
-                        prePath = "Assets/Sprites/Weapon/Ability Weapon/";
-                        break;
-                    default:
-                        break;
-                }
-                ImageLoader.LoadImage(prePath + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponIcon(), weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>());
-                ImageLoader.LoadImage("Assets/Sprites/Weapon/" + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponBgIcon(), weaponDisplay.GetChild(i).GetComponent<Image>());
-            }
+            ImageLoader.LoadImage(prePath + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponIcon(), weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>());
+            ImageLoader.LoadImage("Assets/Sprites/Weapon/" + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponBgIcon(), weaponDisplay.GetChild(i).GetComponent<Image>());
         }
+
+
     }
     protected override void FillTextContent()
     {

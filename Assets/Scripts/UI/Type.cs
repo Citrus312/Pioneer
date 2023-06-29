@@ -10,15 +10,30 @@ public enum WindowType
     SettingWindow,
     DifficultySelectWindow,
     RoleAndWeaponSelectWindow,
+    propBagWindow,
+    upgradeWindow,
+    weaponBagWindow,
+    propertyWindow,
+    roleStateWindow,
+    storeWindow,
+    titleWindow,
+    countDownTimerWindow,
     PauseWindow,
+    TalentTreeWindow,
     GameoverWindow
 }
+
+
+
 //窗口所在场景类型的枚举
 public enum SceneType
 {
     None,
     Battle,
     MainPage,
+    Select,
+    gameProcess,
     Pause,
-    Select
+    TalentTree
+
 }
