@@ -82,6 +82,9 @@ public class GameController : MonoBehaviour
     //波次开始
     public void waveStart()
     {
+        // 随机生成场景
+        // RandomScene.getInstance().randomGenerateScene();
+
         _player.SetActive(true);
         MonsterInfoCalcu.Instance.Cal();
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
@@ -145,4 +148,5 @@ public class GameController : MonoBehaviour
     {
         _gameData._exp += num;
     }
+
 }
