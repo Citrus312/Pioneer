@@ -7,5 +7,10 @@ public class Generator : MonoBehaviour
     {
         GameObject newObject = ObjectPool.getInstance().get(prefabPath);
         newObject.transform.position = pos;
+        Damageable dam = newObject.GetComponent<Damageable>();
+        if(dam != null)
+        {
+            dam._prefabPath = prefabPath;
+        }
     }
 }

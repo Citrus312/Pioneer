@@ -12,11 +12,12 @@ public class PausePageController : PersistentSingleton<PausePageController>
 
     private void Start()
     {
-        UIRoot.Init();
+        //UIRoot.Init();
         _Player = GameController.getInstance().getPlayer();
         PausePageWindow.Instance.inputText = getAttribute(_Player);
         PausePageWindow.Instance.Open();
         setAllTriggers();
+        Debug.Log(2);
         PausePageWindow.Instance.Close();
     }
 
@@ -88,50 +89,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
         setEventTrigger("CollectEfficiency");
     }
 
-    //private List<string> nameList()
-    //{
-    //    List<string> name = new List<string>();
-    //    name.Add("CurrentPlayerLevel");
-    //    name.Add("MaxHealth");
-    //    name.Add("HealthRecovery");
-    //    name.Add("HealthSteal");
-    //    name.Add("AttackAmplification");
-    //    name.Add("MeleeDamage");
-    //    name.Add("RangedDamage");
-    //    name.Add("AbilityDamage");
-    //    name.Add("AttackSpeedAmplification");
-    //    name.Add("CriticalRate");
-    //    name.Add("Engineering");
-    //    name.Add("AttackRangeAmplification");
-    //    name.Add("ArmorStrength");
-    //    name.Add("DodgeRate");
-    //    name.Add("MoveSpeedAmplification");
-    //    name.Add("ScanAccuracy");
-    //    name.Add("CollectEfficiency");
-    //    return name;
-    //}
-
-    ////创建EventTrigger中PointerEnter和PointerExit的回调函数
-    ////first,second为对应第一次，第二次所查找的Text对象
-    //public void setEventTrigger(List<string> secondToFind)
-    //{
-    //    for (int i = 0; i < secondToFind.Count; i++)
-    //    {
-    //        Transform first = pausePageWindow.getTransform().Find("Property");
-    //        Transform second = first.Find(secondToFind[i]);
-    //        int index = i; // 需要将 i 的值赋值给临时变量 index，使得下面 lambda 表达式中使用的 index 值唯一、不变并且符合作用于的变量
-    //        second.GetComponent<EventTrigger>().triggers.Add(
-    //            new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
-    //        second.GetComponent<EventTrigger>().triggers.Add(
-    //            new EventTrigger.Entry { eventID = EventTriggerType.PointerExit, callback = new EventTrigger.TriggerEvent() });
-
-    //        second.GetComponent<EventTrigger>().triggers[0].callback.AddListener((eventData) => { openPanel(second, second.name); });
-    //        second.GetComponent<EventTrigger>().triggers[1].callback.AddListener((eventData) => { closePanel(second); });
-    //    }
-    //}
-
-    //创建EventTrigger中PointerEnter和PointerExit的回调函数
-    //first,second为对应第一次，第二次所查找的Text对象
+ 
     public void setEventTrigger(string secondToFind)
     {
         Transform first = PausePageWindow.Instance.getTransform().Find("Property");
@@ -145,7 +103,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
         second.GetComponent<EventTrigger>().triggers[1].callback.AddListener((eventData) => { closePanel(second); });
     }
 
-    //打开属性文本的子窗口（具体描述属性）
+   
     public void openPanel(Transform transform, string parentName)
     {
         List<string> attributeList = getAttribute(_Player);

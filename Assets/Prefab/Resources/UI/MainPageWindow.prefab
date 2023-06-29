@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7706756078658890396}
   - component: {fileID: 7706756078658890393}
   - component: {fileID: 7706756078658890392}
+  - component: {fileID: 2590006922936554733}
   m_Layer: 5
   m_Name: MainPageWindow
   m_TagString: Untagged
@@ -84,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -150,6 +151,102 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!82 &2590006922936554733
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706756078658890399}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1144348887333114075, guid: d558a03786e6f534a8821437c6f49c97, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 84f86e6f6770c5747830e198088b9774, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &872247270041464429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,6 +346,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: CommunityBtn
@@ -367,6 +468,26 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
+    - target: {fileID: 4921717665800609366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921717665800609366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921717665800609366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7706756078658890399}
+    - target: {fileID: 4921717665800609366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: ContinueBtn
@@ -477,6 +598,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: MoreProductBtn
@@ -595,6 +720,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: StartBtn
@@ -713,6 +842,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: TalentBtn
@@ -823,6 +956,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: NewMsgBtn
@@ -941,6 +1078,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: SettingBtn
@@ -1051,6 +1192,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: ModBtn
@@ -1161,6 +1306,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 4815346917545760608, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 100
@@ -1283,6 +1432,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3928980823758016366, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
+      propertyPath: audioSourceObj
+      value: 
+      objectReference: {fileID: 7706756078658890399}
     - target: {fileID: 7630527845819009420, guid: cfd207094f0b37e4c86ed389b1cd258d, type: 3}
       propertyPath: m_Name
       value: ExitBtn

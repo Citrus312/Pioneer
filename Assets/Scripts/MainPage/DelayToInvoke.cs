@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//用于非继承MonoBehaviour类调用协程
 public class DelayToInvoke
 {
     private class TaskBehaviour : MonoBehaviour { }

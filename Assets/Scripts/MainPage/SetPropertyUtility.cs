@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CustomUI
 {
+    //圆形图片组件的工具类
     public static class SetPropertyUtility
     {
         public static bool SetColor(ref Color currentValue, Color newValue)

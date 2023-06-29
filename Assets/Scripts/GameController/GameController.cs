@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameController : MonoBehaviour
 {
     private static GameController _instance;
 
     private GameData _gameData = new GameData();
 
-    public GameObject _playerPrefab;
-    public GameObject _player;
+    public string _playerPrefab;
+    private GameObject _player;
 
     public GameObject _objectPool;
 
@@ -23,47 +24,17 @@ public class GameController : MonoBehaviour
     public GameController()
     {
         _instance = this;
-        // 初始化游戏全局变量
-
-        // 初始化游戏配置
-
     }
 
-    public void initGame()
-    {
-        // 加载资源
-
-        // 初始化玩家
-        initPlayer();
-        // 初始化场景
-        initBattleScene();
-        // 设置游戏状态
-
-    }
-
-    private void loadResources()
-    {
-        // 加载场景资源
-
-        // 加载玩家资源
-
-        // 加载游戏配置资源
-
-    }
-
-    private void initScene()
-    {
-        // 初始化场景对象
-
-    }
-
+    //初始化战斗场景
     public void initBattleScene()
     {
+        //初始化对象池
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
-
-        initPlayerPos();
-        // 生成器初始化
+        //初始化生成器
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
+        //初始化角色
+        initPlayer();
     }
 
     public bool initPlayer()
@@ -71,33 +42,14 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
-            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-            // 初始化属性
-            //_player.GetComponent<CharacterAttribute>().initAttribute(_gameData._playerID);
+            // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            _player = ObjectPool.getInstance().get(_playerPrefab);
+            _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
+            _player.transform.position = Vector3.zero;
             return true;
         }
         Debug.Log("PlayerPrefab is null!");
         return false;
-    }
-
-    private void initPlayerPos()
-    {
-        _player.transform.position = Vector3.zero;
-    }
-
-    public void onBattleEnd()
-    {
-
-        // 把player的attribute等等属性存入GameData
-
-        // 并保存到本地文件
-        saveGameData();
-    }
-
-    private void saveGameData()
-    {
-        // 
-
     }
 
     public GameObject getPlayer()
@@ -110,14 +62,20 @@ public class GameController : MonoBehaviour
         return _gameData;
     }
 
-    void Awake()
+    // 加钱或扣钱
+    public bool updateMoney(int num)
     {
-        initGame();
+        if ((_gameData._money + num) >= 0)
+        {
+            _gameData._money += num;
+            return true;
+        }
+        else return false;
     }
 
-    void Start()
+    // 加经验
+    public void addExp(int num)
     {
-        //test
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 5);
+        _gameData._exp += num;
     }
 }

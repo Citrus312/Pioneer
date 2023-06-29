@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TipsWindow : BaseWindow
 {
+    //初始化参数
     public TipsWindow()
     {
         resName = "UI/TipsWindow";
@@ -18,36 +19,30 @@ public class TipsWindow : BaseWindow
     {
         base.AwakeWindow();
     }
-
     protected override void OnAddListener()
     {
         base.OnAddListener();
     }
-
     protected override void OnRemoveListener()
     {
         base.OnRemoveListener();
     }
-
     protected override void OnEnable()
     {
         base.OnEnable();
     }
-
     protected override void OnDisable()
     {
         base.OnDisable();
     }
-
     protected override void Update()
     {
         base.Update();
     }
-
     protected override void FillTextContent()
     {
         base.FillTextContent();
-
+        //给窗体的Text组件赋值
         foreach (Text text in textList)
         {
             switch (text.name)
@@ -60,11 +55,10 @@ public class TipsWindow : BaseWindow
             }
         }
     }
-
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-        //��UI�еİ�ť�󶨵���¼�
+        //给UI中的按钮绑定点击事件
         foreach (Button btn in btnList)
         {
             switch (btn.name)
@@ -79,9 +73,10 @@ public class TipsWindow : BaseWindow
         }
     }
 
+    //以下是按钮的点击事件
     private void OnCloseBtn()
     {
-        Debug.Log("����� ��ʾ���ر� ��ť");
+        Debug.Log("点击了 提示窗关闭 按钮");
         Close();
     }
 }

@@ -67,6 +67,4 @@ public class DialogueController : TextController
         _timeline.initialTime = 6.47;
         _timeline.Play();
     }
-
-
 }

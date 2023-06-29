@@ -5,146 +5,153 @@ using UnityEngine.UI;
 
 public class BaseWindow
 {
-    //´°Ìå±¾Éí
+    //çª—ä½“æœ¬èº«
     protected Transform transform;
-    //×ÊÔ´Ãû³Æ
+    //èµ„æºåç§°
     protected string resName;
-    //ÊÇ·ñ³£×¤
+    //æ˜¯å¦å¸¸é©»
     protected bool isResident;
-    //µ±Ç°ÊÇ·ñ¿É¼û
+    //å½“å‰æ˜¯å¦å¯è§
     protected bool isVisible = false;
-    //´°ÌåÀàĞÍ
+    //çª—ä½“ç±»å‹
     protected WindowType selfType;
-    //³¡¾°ÀàĞÍ
+    //åœºæ™¯ç±»å‹
     protected SceneType sceneType;
-    //UI¿Ø¼ş
+    //UIæ§ä»¶
     protected Button[] btnList;
     protected Text[] textList;
-    //ÎÄ±¾
+    //æ–‡æœ¬
     public List<string> inputText = new();
 
-    //³õÊ¼»¯
+    //åˆå§‹åŒ–
     protected virtual void AwakeWindow()
     {
+        //å½“å‰çª—ä½“çš„æŒ‰é’®æ§ä»¶åˆ—è¡¨(åœ¨æ­¤å¤„ä¹‹åæ·»åŠ çš„æŒ‰é’®ä¸ä¼šè¿›å…¥æ­¤åˆ—è¡¨)
         btnList = transform.GetComponentsInChildren<Button>(true);
+        //å½“å‰çª—ä½“çš„æ–‡æœ¬æ§ä»¶åˆ—è¡¨
         textList = transform.GetComponentsInChildren<Text>(true);
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         FillTextContent();
     }
 
-    //UIÊÂ¼şµÄ×¢²á
+    //UIäº‹ä»¶çš„æ³¨å†Œ
     protected virtual void RegisterUIEvent() { }
-    //ÎÄ±¾ÄÚÈİÌî³ä
+    //æ–‡æœ¬å†…å®¹å¡«å……
     protected virtual void FillTextContent() { }
-    //Ìí¼Ó¼àÌıÓÎÏ·ÊÂ¼ş
+    //æ·»åŠ ç›‘å¬æ¸¸æˆäº‹ä»¶
     protected virtual void OnAddListener() { }
-    //ÒÆ³ıÓÎÏ·ÊÂ¼ş
+    //ç§»é™¤æ¸¸æˆäº‹ä»¶
     protected virtual void OnRemoveListener() { }
-    //Ã¿´Î´ò¿ª
+    //æ¯æ¬¡æ‰“å¼€
     protected virtual void OnEnable() { }
-    //Ã¿´Î¹Ø±Õ
+    //æ¯æ¬¡å…³é—­
     protected virtual void OnDisable() { }
-    //Ã¿Ö¡¸üĞÂ
+    //æ¯å¸§æ›´æ–°
     protected virtual void Update() { }
-    //´°ÌåµÄ´´½¨
+    //çª—ä½“çš„åˆ›å»º
     public bool Create()
-    {      
-        //UI×ÊÔ´Îª¿Õ£¬ÔòÎŞ·¨´´½¨
+    {
+        //UIèµ„æºä¸ºç©ºï¼Œåˆ™æ— æ³•åˆ›å»º
         if (string.IsNullOrEmpty(resName)) return false;
-        //´°ÌåÒıÓÃÎª¿Õ£¬Ôò´´½¨ÊµÀı
+        //çª—ä½“å¼•ç”¨ä¸ºç©ºï¼Œåˆ™åˆ›å»ºå®ä¾‹
         if (transform == null)
         {
+            //ç”¨é¢„åˆ¶ä»¶åå­—åŠ è½½çª—å£é¢„åˆ¶ä»¶
             GameObject obj = Resources.Load<GameObject>(resName);
             if (obj == null)
             {
-                Debug.LogError($"Î´ÕÒµ½UIÔ¤ÖÆ¼ş{selfType}");
+                Debug.LogError($"æœªæ‰¾åˆ°UIé¢„åˆ¶ä»¶{selfType}");
                 return false;
             }
+            //å®ä¾‹åŒ–åŠ è½½è¿›æ¥çš„çª—å£é¢„åˆ¶ä»¶
             transform = GameObject.Instantiate(obj).transform;
             transform.gameObject.SetActive(false);
+            //å°†å®ä¾‹åŒ–å®Œæˆçš„çª—å£æŒ‚è½½åˆ°UIRootä¸Š
             UIRoot.setParent(transform, false, selfType == WindowType.TipsWindow);
             return true;
         }
         return true;
     }
-    //¿ªÆô´°Ìå
+    //å¼€å¯çª—ä½“
     public void Open()
     {
-        //¿ªÆô´°ÌåÇ°µÄ´°Ìå³õÊ¼»¯
+        //å¼€å¯çª—ä½“å‰çš„çª—ä½“åˆå§‹åŒ–
         if (transform == null)
         {
+            //åˆ›å»ºçª—ä½“
             if (Create())
             {
+                //åˆå§‹åŒ–çª—ä½“
                 AwakeWindow();
             }
         }
+        //æ£€æµ‹å½“å‰çª—ä½“çš„æ¿€æ´»çŠ¶æ€
         if (!transform.gameObject.activeSelf)
         {
+            //è‹¥çª—ä½“æœªæ¿€æ´»åˆ™å°†çª—å£æŒ‚è½½åˆ°æ¿€æ´»åŒºï¼Œå¹¶è®©çª—å£å¯è§
             UIRoot.setParent(transform, true, selfType == WindowType.TipsWindow);
             transform.gameObject.SetActive(true);
             isVisible = true;
-            OnEnable(); //µ÷ÓÃ¼¤»î´°ÌåÊ±Ó¦Ö´ĞĞµÄÊÂ¼ş
-            OnAddListener(); //Ìí¼ÓÊÂ¼ş
+            OnEnable(); //è°ƒç”¨æ¿€æ´»çª—ä½“æ—¶åº”æ‰§è¡Œçš„äº‹ä»¶
+            OnAddListener(); //æ·»åŠ äº‹ä»¶
         }
     }
-    //¹Ø±Õ´°Ìå
+    //å…³é—­çª—ä½“
     public void Close(bool isForceClose = false)
     {
         if (transform.gameObject.activeSelf)
         {
-            OnRemoveListener(); //ÒÆ³ı¶Ô¸Ã´°ÌåµÄ¼àÌı
-            OnDisable(); //¹Ø±Õ´°ÌåÊ±Ó¦Ö´ĞĞµÄÊÂ¼ş
-            //¸ù¾İÊÇ·ñÖ´ĞĞÇ¿ÖÆ¹Ø±ÕÀ´¾ö¶¨¶Ô´°ÌåµÄ²Ù×÷
+            OnRemoveListener(); //ç§»é™¤å¯¹è¯¥çª—ä½“çš„ç›‘å¬
+            OnDisable(); //å…³é—­çª—ä½“æ—¶åº”æ‰§è¡Œçš„äº‹ä»¶
+            //æ ¹æ®æ˜¯å¦æ‰§è¡Œå¼ºåˆ¶å…³é—­æ¥å†³å®šå¯¹çª—ä½“çš„æ“ä½œ
             if (!isForceClose)
             {
-                //¹Ø±ÕÒ»¸ö³£×¤´°Ìå»á½«´°Ìå»ØÊÕ£¬¹Ø±ÕÒ»¸ö·Ç³£×¤´°ÌåÔòÖ±½ÓÏú»ÙÓÎÏ·ÎïÌå
-                //ÌáÊ¾´°Ò»¶¨²»ÊÇ³£×¤´°Ìå
+                //å…³é—­ä¸€ä¸ªå¸¸é©»çª—ä½“ä¼šå°†çª—ä½“å›æ”¶ï¼Œå…³é—­ä¸€ä¸ªéå¸¸é©»çª—ä½“åˆ™ç›´æ¥é”€æ¯æ¸¸æˆç‰©ä½“
+                //æç¤ºçª—ä¸€å®šä¸æ˜¯å¸¸é©»çª—ä½“
                 if (isResident)
                 {
+                    //å¸¸é©»çª—ä½“å…³é—­æ—¶æ›´æ”¹æ¿€æ´»çŠ¶æ€å¹¶å°†å…¶æŒ‚è½½åˆ°UIRootçš„å›æ”¶åŒºç­‰å¾…å†æ¬¡ä½¿ç”¨
                     transform.gameObject.SetActive(false);
                     UIRoot.setParent(transform, false, false);
                 }
                 else
                 {
+                    //éæç¤ºçª—çš„éå¸¸é©»çª—å£å…³é—­æ—¶ä¹Ÿæ˜¯ç›´æ¥é”€æ¯æ¸¸æˆå¯¹è±¡
                     GameObject.Destroy(transform.gameObject);
                     transform = null;
                 }
             }
             else
             {
-                //Ç¿ÖÆ¹Ø±ÕÔòÖ±½ÓÏú»Ù´°ÌåµÄÓÎÏ·ÎïÌå
+                //å¼ºåˆ¶å…³é—­åˆ™ç›´æ¥é”€æ¯çª—ä½“çš„æ¸¸æˆç‰©ä½“
                 GameObject.Destroy(transform.gameObject);
                 transform = null;
             }
         }
-        //½«´°ÌåÉèÎª²»¿É¼û
+        //å°†çª—ä½“è®¾ä¸ºä¸å¯è§
         isVisible = false;
     }
 
-    //ÒÔÏÂÊÇ»ñÈ¡¸÷ÖÖ´°ÌåÊôĞÔµÄ·½·¨
+    //ä»¥ä¸‹æ˜¯è·å–å„ç§çª—ä½“å±æ€§çš„æ–¹æ³•
     public SceneType getSceneType()
     {
         return sceneType;
     }
-
     public WindowType getWindowType()
     {
         return selfType;
     }
-
     public Transform getTransform()
     {
         return transform;
     }
-
     public bool getVisible()
     {
         return isVisible;
     }
-
     public bool getResident()
     {
         return isResident;

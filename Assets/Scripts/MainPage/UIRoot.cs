@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class UIRoot : PersistentSingleton<UIRoot>
 {
-    //UIRoot±¾Éí
+    //UIRootæœ¬èº«
     static Transform transform;
-    //´°Ìå»ØÊÕ³Ø
+    //çª—ä½“å›æ”¶æ± 
     static Transform recyclePool;
-    //Ç°Ì¨ÏÔÊ¾ÖĞ»ò¹¤×÷ÖĞµÄ´°Ìå
+    //å‰å°æ˜¾ç¤ºä¸­æˆ–å·¥ä½œä¸­çš„çª—ä½“
     static Transform workUI;
-    //ÌáÊ¾ÀàĞÍµÄ´°Ìå
+    //æç¤ºç±»å‹çš„çª—ä½“
     static Transform noticeUI;
 
-    //³õÊ¼»¯±êÇ©
+    //åˆå§‹åŒ–æ ‡ç­¾
     static bool isInit = false;
 
-    //UIRoot³õÊ¼»¯
+    //UIRootåˆå§‹åŒ–
     public static void Init()
     {
         if (transform == null)
         {
+            //è½½å…¥é¢„åˆ¶ä½“å¹¶å®ä¾‹åŒ–
             GameObject obj = Resources.Load<GameObject>("UI/UIRoot");
             transform = GameObject.Instantiate<GameObject>(obj).transform;
+            //ä¿æŒUIRootåœ¨åˆ‡æ¢åœºæ™¯æ—¶ä¸è¢«é”€æ¯
             DontDestroyOnLoad(transform);
         }
+        //è·å–ä¸‰ä¸ªåˆ†åŒº
         if (recyclePool == null)
         {
             recyclePool = transform.Find("recyclePool");
@@ -41,19 +43,19 @@ public class UIRoot : PersistentSingleton<UIRoot>
         isInit = true;
     }
 
-    //ÉèÖÃ´°ÌåµÄ¸¸¶ÔÏó
+    //è®¾ç½®çª—ä½“çš„çˆ¶å¯¹è±¡
     public static void setParent(Transform window, bool isOpen, bool isNoticeUI)
     {
-        //Ã»ÓĞ³õÊ¼»¯Ôò½øĞĞ³õÊ¼»¯
+        //æ²¡æœ‰åˆå§‹åŒ–åˆ™è¿›è¡Œåˆå§‹åŒ–
         if (!isInit)
         {
             Init();
         }
 
-        //¸ù¾İ´°ÌåµÄ¿ª¹Ø×´Ì¬¾ö¶¨´°ÌåµÄ¸¸¶ÔÏó
+        //æ ¹æ®çª—ä½“çš„å¼€å…³çŠ¶æ€å†³å®šçª—ä½“çš„çˆ¶å¯¹è±¡
         if (isOpen)
         {
-            //Èç¹û´°ÌåÊÇÒ»¸öÌáÊ¾´°£¬¸¸¶ÔÏóÉèÖÃÎªnoticeUI
+            //å¦‚æœçª—ä½“æ˜¯ä¸€ä¸ªæç¤ºçª—ï¼Œçˆ¶å¯¹è±¡è®¾ç½®ä¸ºnoticeUI
             if (isNoticeUI)
             {
                 window.SetParent(noticeUI, false);
@@ -65,7 +67,7 @@ public class UIRoot : PersistentSingleton<UIRoot>
         }
         else
         {
-            //´°Ìå¹Ø±Õ£¬´°ÌåÓ¦¸Ã±»»ØÊÕ£¬¸¸¶ÔÏóÉèÖÃÎªrecyclePool
+            //çª—ä½“å…³é—­ï¼Œçª—ä½“åº”è¯¥è¢«å›æ”¶ï¼Œçˆ¶å¯¹è±¡è®¾ç½®ä¸ºrecyclePool
             window.SetParent(recyclePool, false);
         }
     }

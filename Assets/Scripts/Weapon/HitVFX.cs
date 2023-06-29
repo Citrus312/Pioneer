@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitVFX : MonoBehaviour
 {
+    public string _prefabPath;
     [SerializeField] float lifetime = 1;
 
     WaitForSeconds waitLifetime;
@@ -21,7 +22,7 @@ public class HitVFX : MonoBehaviour
     {
         yield return waitLifetime;
 
-        Destroy(gameObject);
-
+        // Destroy(gameObject);
+        ObjectPool.getInstance().remove(_prefabPath, gameObject);
     }
 }

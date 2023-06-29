@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//用于场景间的回退上一场景
 public class BackToScene : MonoBehaviour
 {
     [SerializeField]
@@ -20,7 +21,7 @@ public class BackToScene : MonoBehaviour
             switch (sceneName)
             {
                 case "MainPage":
-                    DelayToInvoke.DelayToInvokeBySecond(()=> { MainPageWindow.Instance.Open(); }, 1.8f);
+                    DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.8f);
                     break;
                 default:
                     break;
