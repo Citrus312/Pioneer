@@ -7,6 +7,8 @@ public class GameoverWindow : BaseWindow
 {
     private static GameoverWindow instance;
     private Text attributeText;
+    private Text roleNameText;
+    private Image roleIcon;
     private Transform weaponDisplay;
     private Transform propDisplay;
     public string titleText;
@@ -37,10 +39,12 @@ public class GameoverWindow : BaseWindow
         base.AwakeWindow();
 
         attributeText = transform.Find("AttributeDisplay").GetChild(0).GetComponent<Text>();
+        roleNameText = transform.Find("AttributeDisplay").GetChild(1).GetComponent<Text>();
+        roleIcon = transform.Find("AttributeDisplay").GetChild(2).GetComponent<Image>();
         weaponDisplay = transform.Find("WeaponDisplay");
         propDisplay = transform.Find("PropDisplay");
         transform.Find("TitleText").GetComponent<Text>().text = titleText;
-
+        /*
         CharacterAttribute roleAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
         attributeText.text = $"最大生命  <color={(roleAttr.getMaxHealth() > 0 ? "green" : "red")}> {roleAttr.getMaxHealth()} </color>\n" +
                              $"生命回复  <color={(roleAttr.getHealthRecovery() > 0 ? "green" : "red")}> {roleAttr.getHealthRecovery()} </color>\n" +
@@ -59,6 +63,9 @@ public class GameoverWindow : BaseWindow
                              $"扫描精度  <color={(roleAttr.getScanAccuracy() > 0 ? "green" : "red")}> {roleAttr.getScanAccuracy()} </color>\n" +
                              $"采集效率  <color={(roleAttr.getCollectEfficiency() > 0 ? "green" : "red")}> {roleAttr.getCollectEfficiency()} </color>\n";
 
+        roleNameText.text = roleAttr.getName();
+        ImageLoader.LoadImage($"Assets/Sprites/Player/{roleAttr.getIcon()}", roleIcon);
+        */
         for (int i = 0; i < GameController.getInstance().getGameData()._weaponList.Count; i++)
         {
             weaponDisplay.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
@@ -83,6 +90,20 @@ public class GameoverWindow : BaseWindow
             ImageLoader.LoadImage("Assets/Sprites/Weapon/" + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponBgIcon(), weaponDisplay.GetChild(i).GetComponent<Image>());
         }
 
+        for (int i = 0; i < GameController.getInstance().getGameData()._propList.Count; i++)
+        {
+            PropAttribute prop = JsonLoader.propPool[GameController.getInstance().getGameData()._propList[i]];
+
+            GameObject obj = Resources.Load<GameObject>("UI/prop");
+            obj = GameObject.Instantiate(obj);
+            obj.name = $"{GameController.getInstance().getGameData()._propList[i]}";
+            obj.AddComponent<PropDetailDisplay>();
+            ImageLoader.LoadImage($"Assets/Sprites/Weapon/{prop.getPropBgIcon()}", obj.GetComponent<Image>());
+            ImageLoader.LoadImage($"Assets/Sprites/Prop/{prop.getPropIcon()}", obj.transform.GetChild(0).GetComponent<Image>());
+            obj.transform.GetChild(1).GetComponent<Text>().text = $"x{GameController.getInstance().getGameData()._propCount[i]}";
+
+            obj.transform.SetParent(propDisplay.GetChild(0).GetChild(0));
+        }
 
     }
     protected override void FillTextContent()

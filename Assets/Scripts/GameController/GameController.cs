@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
             GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
@@ -141,5 +142,40 @@ public class GameController : MonoBehaviour
     public void addExp(int num)
     {
         _gameData._exp += num;
+    }
+
+    private void AppendPropList(int val)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(val));
+        if (index == -1)
+        {
+            _gameData._propList.Add(val);
+        }
+    }
+
+    private void ModifyPropCount(int prop, int modifyCount)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(prop));
+        if (index >= _gameData._propCount.Count)
+        {
+            _gameData._propCount.Add(modifyCount);
+        }
+        else
+        {
+            if (_gameData._propCount[index] + modifyCount < 0)
+            {
+                Debug.LogError($"_propList[{index}]对应的道具数量被修改为负数");
+            }
+            else
+            {
+                _gameData._propCount[index] += modifyCount;
+            }
+        }
+    }
+
+    public void ModifyProp(int prop, int count)
+    {
+        AppendPropList(prop);
+        ModifyPropCount(prop, count);
     }
 }
