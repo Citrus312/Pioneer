@@ -9,18 +9,19 @@ public class UIController : PersistentSingleton<UIController>
     {
         UIRoot.Init();
         MainPageWindow.Instance.Open();
-        JsonLoader.LoadAndDecodeGameData();
-        JsonLoader.LoadAndDecodePropConfig();
-        JsonLoader.LoadAndDecodeWeaponConfig();
-        JsonLoader.LoadAndDecodeMonsterConfig();
-        //Debug.Log(JsonLoader.monsterPool.Count);
+        // JsonLoader.LoadAndDecodeGameData();
+        // JsonLoader.LoadAndDecodePropConfig();
+        // JsonLoader.LoadAndDecodeWeaponConfig();
         //Debug.Log(JsonLoader.propPool[0].getPropName());
         //Debug.Log(JsonLoader.weaponPool[0].getWeaponName());
         //Debug.Log(GameController.getInstance().getGameData()._scene);
-        //GameController.getInstance().getGameData()._propList.Add(5);
-        //JsonLoader.UpdateGameData();
-        //GameController.getInstance().getGameData()._weaponList.Add(12);
+        //GameController.getInstance().ModifyProp(5, 2);
+        //GameController.getInstance().ModifyProp(7, 3);
+        //GameController.getInstance().ModifyProp(3, 1);
 
+        //JsonLoader.UpdateGameData();
+        //GameController.getInstance().getGameData()._weaponList.Add(14);
+        //GameoverWindow.Instance.titleText = "胜利";
         //GameoverWindow.Instance.Open();
     }
 }

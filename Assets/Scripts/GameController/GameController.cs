@@ -33,8 +33,6 @@ public class GameController : MonoBehaviour
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeRoleConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
-        initBattleScene();
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
     }
 
     //初始化战斗场景
@@ -58,7 +56,6 @@ public class GameController : MonoBehaviour
             // _player = ObjectPool.getInstance().get(_playerPrefab);
             _player.GetComponent<Damageable>()._prefabPath = null;
             _player.transform.position = Vector3.zero;
-            _player.GetComponent<CharacterAttribute>().setRawMoveSpeed(4);
         }
         else
         {
@@ -72,6 +69,7 @@ public class GameController : MonoBehaviour
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
             GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
@@ -82,9 +80,6 @@ public class GameController : MonoBehaviour
     //波次开始
     public void waveStart()
     {
-        // 随机生成场景
-        // RandomScene.getInstance().randomGenerateScene();
-
         _player.SetActive(true);
         MonsterInfoCalcu.Instance.Cal();
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
@@ -149,4 +144,38 @@ public class GameController : MonoBehaviour
         _gameData._exp += num;
     }
 
+    private void AppendPropList(int val)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(val));
+        if (index == -1)
+        {
+            _gameData._propList.Add(val);
+        }
+    }
+
+    private void ModifyPropCount(int prop, int modifyCount)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(prop));
+        if (index >= _gameData._propCount.Count)
+        {
+            _gameData._propCount.Add(modifyCount);
+        }
+        else
+        {
+            if (_gameData._propCount[index] + modifyCount < 0)
+            {
+                Debug.LogError($"_propList[{index}]对应的道具数量被修改为负数");
+            }
+            else
+            {
+                _gameData._propCount[index] += modifyCount;
+            }
+        }
+    }
+
+    public void ModifyProp(int prop, int count)
+    {
+        AppendPropList(prop);
+        ModifyPropCount(prop, count);
+    }
 }
