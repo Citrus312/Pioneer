@@ -13,7 +13,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色允许使用的武器分类
     private List<WeaponAttribute.WeaponCategory> weaponCategory = new();
     //角色的基础移速
-    private float rawMoveSpeed = 0.2f;
+    private float rawMoveSpeed = 4.0f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
     //角色的当前生命值
