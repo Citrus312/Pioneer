@@ -15,12 +15,16 @@ public class UIController : PersistentSingleton<UIController>
         //Debug.Log(JsonLoader.propPool[0].getPropName());
         //Debug.Log(JsonLoader.weaponPool[0].getWeaponName());
         //Debug.Log(GameController.getInstance().getGameData()._scene);
+
+        //JsonLoader.UpdateGameData();
+
         //GameController.getInstance().ModifyProp(5, 2);
         //GameController.getInstance().ModifyProp(7, 3);
         //GameController.getInstance().ModifyProp(3, 1);
 
-        //JsonLoader.UpdateGameData();
+        //GameController.getInstance().getGameData()._weaponList.Add(15);
         //GameController.getInstance().getGameData()._weaponList.Add(14);
+        //GameController.getInstance().getGameData()._weaponList.Add(15);
         //GameoverWindow.Instance.titleText = "胜利";
         //GameoverWindow.Instance.Open();
     }

@@ -214,8 +214,6 @@ public class WeaponAttribute : MonoBehaviour
                 Debug.Log("weapon type error");
                 return 0;
         }
-        Debug.Log($"rawWeaponDamage: {rawWeaponDamage}");
-        Debug.Log($"weaponDamage: {temp}");
         return temp > 1 ? temp : 1;
     }
 
