@@ -15,10 +15,16 @@ public class Deceleration : ExtraEffect
     protected override IEnumerator effect()
     {
         _character = transform.parent.gameObject;
+        // 冰冻效果
+        Material m = _character.GetComponent<SpriteRenderer>().material;
+        m.SetFloat("_Progress", 0.5f);
         float rawAmp = _character.GetComponent<CharacterAttribute>().getMoveSpeedAmplification();
         _character.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(rawAmp + (-1 * _decRate));
-        _character.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(rawAmp);
+        
         yield return new WaitForSeconds(_duration);
+        // 还原
+        _character.GetComponent<CharacterAttribute>().setMoveSpeedAmplification(rawAmp);
+        m.SetFloat("_Progress", 0f);
         removeFromParent();
     }
 }

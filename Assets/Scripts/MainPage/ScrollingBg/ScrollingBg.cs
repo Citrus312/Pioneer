@@ -25,8 +25,6 @@ public class ScrollingBg : MonoBehaviour
         }
         right = transform.position.x + (sRender.bounds.extents.x - m_OrthographicCamera.orthographicSize * m_OrthographicCamera.aspect);
         left = transform.position.x - (sRender.bounds.extents.x - m_OrthographicCamera.orthographicSize * m_OrthographicCamera.aspect); 
-        Debug.Log("left:" + left + " right:" + right);
-        Debug.Log(sRender.bounds.extents.x);
         distance = sRender.bounds.extents.x;
     }
     
