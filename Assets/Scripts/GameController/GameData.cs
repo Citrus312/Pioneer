@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameData
 {
     // 玩家是否首次游玩
-    public bool _isFirstPlaying = true;
+    public bool _isFirstPlaying;
 
     // 角色类型
     public int _playerID;
@@ -17,13 +17,16 @@ public class GameData
     public int _difficulty;
 
     // 拥有的道具种类
-    public List<int> _propList = new();
+    public List<int> _propList = new List<int>();
 
     // 拥有的每种道具对应的数量
-    public List<int> _propCount = new();
+    public List<int> _propCount = new List<int>();
 
     // 拥有的武器
-    public List<int> _weaponList = new();
+    public List<int> _weaponList = new List<int>();
+
+    // 进入游戏前暂存的玩家属性
+    public CharacterAttribute _attr = new();
 
     // 当前波次
     public int _wave=1;

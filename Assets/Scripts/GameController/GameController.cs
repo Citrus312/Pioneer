@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     private GameData _gameData = new GameData();
 
-    public string _playerPrefab;
+    public GameObject _playerPrefab;
     private GameObject _player;
 
     public GameObject _objectPool;
@@ -26,6 +26,17 @@ public class GameController : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        JsonLoader.LoadAndDecodeGameData();
+        JsonLoader.LoadAndDecodeMonsterConfig();
+        JsonLoader.LoadAndDecodePropConfig();
+        JsonLoader.LoadAndDecodeRoleConfig();
+        JsonLoader.LoadAndDecodeWeaponConfig();
+        initBattleScene();
+        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
+    }
+
     //初始化战斗场景
     public void initBattleScene()
     {
@@ -35,6 +46,7 @@ public class GameController : MonoBehaviour
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
         //初始化角色
         initPlayer();
+        _gameData._wave = 1;
     }
 
     public bool initPlayer()
@@ -42,14 +54,72 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
-            // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-            _player = ObjectPool.getInstance().get(_playerPrefab);
-            _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
+            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            // _player = ObjectPool.getInstance().get(_playerPrefab);
+            _player.GetComponent<Damageable>()._prefabPath = null;
             _player.transform.position = Vector3.zero;
-            return true;
+            _player.GetComponent<CharacterAttribute>().setRawMoveSpeed(4);
         }
-        Debug.Log("PlayerPrefab is null!");
-        return false;
+        else
+        {
+            Debug.Log("PlayerPrefab is null!");
+            return false;
+        }
+
+        //为玩家对象添加武器
+        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        {
+            int index = _gameData._weaponList[i];
+            WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
+            GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.SetParent(_player.transform, false);
+            _player.GetComponent<WeaponManager>().addWeapon(weapon);
+        }
+
+        return true;
+    }
+
+    //波次开始
+    public void waveStart()
+    {
+        // 随机生成场景
+        // RandomScene.getInstance().randomGenerateScene();
+
+        _player.SetActive(true);
+        MonsterInfoCalcu.Instance.Cal();
+        for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
+        {
+            //生成的数量
+            int num = MonsterInfoCalcu.Instance.genMonsterCount[i];
+            Debug.Log(num);
+            //生成的怪物属性
+            CharacterAttribute characterAttribute = MonsterInfoCalcu.Instance.genMonsterAttr[i];
+            StartCoroutine(generateMonster(characterAttribute, num));
+        }
+    }
+
+    //波次结束
+    public void waveEnd()
+    {
+        //停止所有生成怪物的协程
+        StopAllCoroutines();
+        //回收对象池生成的所有物体
+        ObjectPool.getInstance().removeAll();
+        //将玩家对象取消激活
+        _player.SetActive(false);
+    }
+
+    //生成怪物
+    private IEnumerator generateMonster(CharacterAttribute characterAttribute, int num)
+    {
+        string monsterPrefabPath = characterAttribute.getMonsterPrefabPath();
+        //生成的间隔
+        float interval = characterAttribute.getInterval();
+        while (true)
+        {
+            yield return new WaitForSeconds(interval);
+            MonsterGenerator.getInstance().beginGenerate(monsterPrefabPath, num, characterAttribute);
+        }
     }
 
     public GameObject getPlayer()
@@ -78,4 +148,5 @@ public class GameController : MonoBehaviour
     {
         _gameData._exp += num;
     }
+
 }

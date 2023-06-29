@@ -30,6 +30,13 @@ public class AIController : Controller
         }
     }
 
+    //怪物进入冰面时进入滑行状态
+    public override void inIceSurface()
+    {
+        base.inIceSurface();
+        skatingDirection = getMoveDirection();
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -59,14 +66,25 @@ public class AIController : Controller
     // Update is called once per frame
     void Update()
     {
-        move(getMoveDirection());
+        //如果处于滑行状态则直接向滑行方向移动
+        if (isSkating)
+            move(skatingDirection);
+        else
+            move(getMoveDirection());
+    }
+
+    private void OnEnable() {
+        // 重置碰撞盒
+        GetComponent<Collider2D>().enabled = true;
     }
 
     public override void OnDie()
     {
+        // 取消碰撞盒
+        GetComponent<Collider2D>().enabled = false;
         // 掉落物品
         CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
-        DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getDropRate());
+        DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getCrateRate());
         base.OnDie();
     }
 }
