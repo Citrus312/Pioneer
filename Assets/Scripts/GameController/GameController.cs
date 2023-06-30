@@ -97,4 +97,39 @@ public class GameController : MonoBehaviour
     {
         _gameData._exp += num;
     }
+    private void AppendPropList(int val)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(val));
+        if (index == -1)
+        {
+            _gameData._propList.Add(val);
+        }
+    }
+
+    private void ModifyPropCount(int prop, int modifyCount)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(prop));
+        if (index >= _gameData._propCount.Count)
+        {
+            _gameData._propCount.Add(modifyCount);
+        }
+        else
+        {
+            if (_gameData._propCount[index] + modifyCount < 0)
+            {
+                Debug.LogError($"_propList[{index}]对应的道具数量被修改为负数");
+            }
+            else
+            {
+                _gameData._propCount[index] += modifyCount;
+            }
+        }
+    }
+
+    public void ModifyProp(int prop, int count)
+    {
+        AppendPropList(prop);
+        ModifyPropCount(prop, count);
+    }
+
 }
