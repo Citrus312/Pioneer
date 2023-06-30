@@ -29,7 +29,7 @@ public class ThrustWeapon : MeleeWeapon
 
         dur = 0.0f;
         startPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position);
-        endPos = new Vector2(0, 0);
+        endPos = _attachPoint.InverseTransformPoint(transform.position + (_attachPoint.position - _grip.position));
         while (dur < time)
         {
             dur += Time.deltaTime;

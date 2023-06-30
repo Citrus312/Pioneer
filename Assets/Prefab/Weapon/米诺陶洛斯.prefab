@@ -87,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8894814137426251922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.338, y: 0.338, z: 0}
+  m_LocalPosition: {x: 0.229, y: 0.247, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rawAttackRange: 5
 --- !u!114 &8894814137824103708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ PolygonCollider2D:
       - {x: 0.64, y: 0.375}
       - {x: 0.48113662, y: 0.5387297}
       - {x: 0.375, y: 0.64}
-      - {x: -0.065, y: 0.64}
-      - {x: -0.38, y: 0.28}
+      - {x: -0.234245, y: 0.78506696}
+      - {x: -0.6036452, y: 0.39484456}
+      - {x: -0.4003988, y: -0.08909774}
       - {x: -0.64, y: -0.64}
