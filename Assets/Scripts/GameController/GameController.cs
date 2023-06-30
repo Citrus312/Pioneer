@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
         {
             //生成的数量
             int num = MonsterInfoCalcu.Instance.genMonsterCount[i];
-            Debug.Log(num);
+            //Debug.Log(num);
             //生成的怪物属性
             CharacterAttribute characterAttribute = MonsterInfoCalcu.Instance.genMonsterAttr[i];
             StartCoroutine(generateMonster(characterAttribute, num));

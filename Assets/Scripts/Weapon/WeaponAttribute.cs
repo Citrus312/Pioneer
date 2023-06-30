@@ -176,7 +176,7 @@ public class WeaponAttribute : MonoBehaviour
     //获取武器经过角色属性加成后的攻击范围
     public float getAttackRange()
     {
-        return rawAttackRange * (1 + ownerAttr.getAttackRangeAmplification()) >= 0 ? rawAttackRange * (1 + ownerAttr.getAttackRangeAmplification()) : 0;
+        return rawAttackRange + ownerAttr.getAttackRangeAmplification() >= 0 ? rawAttackRange + ownerAttr.getAttackRangeAmplification() : 0;
     }
 
     //获取武器基础伤害
