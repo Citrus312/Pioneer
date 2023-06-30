@@ -11,11 +11,12 @@ public class WeaponAttribute : MonoBehaviour
     public enum WeaponCategory { All = -2, Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
     //物品品质的枚举
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
-    // TODO 武器的所有者的属性需要默认是玩家的属性或者是副本，用以在商店显示受玩家属性影响后的武器属性
     //武器所有者的属性
     private CharacterAttribute ownerAttr = new();
     //武器基础伤害
     private float rawWeaponDamage = 0;
+    //武器的弹道数
+    private int bulletCount = 1;
     //武器基础攻击范围
     [SerializeField] private float rawAttackRange = 5.0f;
     //对应类型伤害的转换比例
@@ -48,12 +49,16 @@ public class WeaponAttribute : MonoBehaviour
 
     private void Start()
     {
-        // ownerAttr = GameObject.Find("Player").GetComponent<CharacterAttribute>();
         ownerAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
     }
     public void setOwnerAttr(CharacterAttribute input)
     {
         ownerAttr = input;
+    }
+
+    public void setBulletCount(int input)
+    {
+        bulletCount = input;
     }
 
     public void setRawWeaponDamage(float input)
@@ -132,27 +137,34 @@ public class WeaponAttribute : MonoBehaviour
     }
 
     //用于初始化武器
-    //public void setAllAttribute(CharacterAttribute ownerAttr, float rawWeaponDamage, float rawAttackRange, float convertRatio, float criticalBonus,
-    //    float rawAttackSpeed, float rawCriticalRate, WeaponDamageType weaponType, List<WeaponCategory> weaponCategory, float weaponPrice,
-    //    Quality weaponQuality, int weaponID, string weaponName, string weaponIcon, string weaponBgIcon)
-    //{
-    //    setOwnerAttr(ownerAttr);
-    //    setRawWeaponDamage(rawWeaponDamage);
-    //    setRawAttackRange(rawAttackRange);
-    //    setConvertRatio(convertRatio);
-    //    setCriticalBonus(criticalBonus);
-    //    setRawAttackSpeed(rawAttackSpeed);
-    //    setRawCriticalRate(rawCriticalRate);
-    //    setWeaponDamageType(weaponType);
-    //    setWeaponCategory(weaponCategory);
-    //    setWeaponPrice(weaponPrice);
-    //    setWeaponQuality(weaponQuality);
-    //    setWeaponID(weaponID);
-    //    setWeaponName(weaponName);
-    //    setWeaponIcon(weaponIcon);
-    //    setWeaponBgIcon(weaponBgIcon);
-    //}
+    public void setAllAttribute(string prefabPath, int bulletCount, float rawWeaponDamage, float rawAttackRange, float convertRatio, float criticalBonus,
+                                float rawAttackSpeed, float rawCriticalRate, WeaponDamageType weaponType, List<WeaponCategory> weaponCategory, float weaponPrice,
+                                Quality weaponQuality, int weaponID, string weaponName, string weaponIcon, string weaponBgIcon)
+    {
+        setWeaponPrefabPath(prefabPath);
+        setBulletCount(bulletCount);
+        setRawWeaponDamage(rawWeaponDamage);
+        setRawAttackRange(rawAttackRange);
+        setConvertRatio(convertRatio);
+        setCriticalBonus(criticalBonus);
+        setRawAttackSpeed(rawAttackSpeed);
+        setRawCriticalRate(rawCriticalRate);
+        setWeaponDamageType(weaponType);
+        setWeaponCategory(weaponCategory);
+        setWeaponPrice(weaponPrice);
+        setWeaponQuality(weaponQuality);
+        setWeaponID(weaponID);
+        setWeaponName(weaponName);
+        setWeaponIcon(weaponIcon);
+        setWeaponBgIcon(weaponBgIcon);
+    }
 
+    public void setAllAttribute(WeaponAttribute input)
+    {
+        setAllAttribute(input.getWeaponPrefabPath(), input.getBulletCount(), input.getRawWeaponDamage(), input.getRawAttackRange(), input.getConvertRatio(),
+                        input.getCriticalBonus(), input.getRawAttackSpeed(), input.getRawCriticalRate(), input.getWeaponDamageType(), input.getWeaponCategory(),
+                        input.getWeaponPrice(), input.getWeaponQuality(), input.getWeaponID(), input.getWeaponName(), input.getWeaponIcon(), input.getWeaponBgIcon());
+    }
 
 
     //获取武器基础攻击范围
@@ -164,13 +176,23 @@ public class WeaponAttribute : MonoBehaviour
     //获取武器经过角色属性加成后的攻击范围
     public float getAttackRange()
     {
-        return rawAttackRange * (1 + ownerAttr.getAttackRangeAmplification()) >= 0 ? rawAttackRange * (1 + ownerAttr.getAttackRangeAmplification()) : 0;
+        return rawAttackRange + ownerAttr.getAttackRangeAmplification() >= 0 ? rawAttackRange + ownerAttr.getAttackRangeAmplification() : 0;
     }
 
     //获取武器基础伤害
     public float getRawWeaponDamage()
     {
         return rawWeaponDamage;
+    }
+
+    public int getBulletCount()
+    {
+        return bulletCount;
+    }
+
+    public float getRawAttackSpeed()
+    {
+        return rawAttackSpeed;
     }
 
     //获取武器经过角色属性加成后的面板攻击大小(真正的伤害还涉及暴击和敌方护甲)
@@ -180,13 +202,13 @@ public class WeaponAttribute : MonoBehaviour
         switch (weaponDamageType)
         {
             case WeaponDamageType.Melee:
-                temp = rawWeaponDamage + ownerAttr.getMeleeDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
+                temp = rawWeaponDamage + ownerAttr.getMeleeDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification() * 0.01f);
                 break;
             case WeaponDamageType.Ranged:
-                temp = rawWeaponDamage + ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
+                temp = rawWeaponDamage + ownerAttr.getRangedDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification() * 0.01f);
                 break;
             case WeaponDamageType.Ability:
-                temp = rawWeaponDamage + ownerAttr.getAbilityDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification());
+                temp = rawWeaponDamage + ownerAttr.getAbilityDamage() * convertRatio * (1 + ownerAttr.getAttackAmplification() * 0.01f);
                 break;
             default:
                 Debug.Log("weapon type error");
@@ -211,6 +233,11 @@ public class WeaponAttribute : MonoBehaviour
         }
         float attackSpeed = rawAttackSpeed / (1 + ownerAttr.getAttackSpeedAmplification() * 0.01f);
         return attackSpeed;
+    }
+
+    public float getRawCriticalRate()
+    {
+        return rawCriticalRate;
     }
 
     //获取经角色属性加成后的武器攻击暴击概率

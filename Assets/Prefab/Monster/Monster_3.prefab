@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8661217208230091102}
   - component: {fileID: 3537624101654292751}
   - component: {fileID: 6893626770321378598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Monster_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0054756403, y: -0.031484693}
+  m_Offset: {x: 0, y: -0.05}
   m_Size: {x: 0.21526885, y: 0.2580567}
   m_Direction: 0
 --- !u!114 &7759939764342781747

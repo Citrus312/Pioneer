@@ -19,7 +19,7 @@ public class ThrustWeapon : MeleeWeapon
         */
         float dur = 0.0f, time = 0.05f;
         Vector2 startPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position);
-        Vector2 endPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position + (Vector3)attackDirection * (_weaponAttribute.getAttackRange() - Vector2.Distance(_attachPoint.position, GetComponent<Transform>().position)));
+        Vector2 endPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position + (Vector3)attackDirection * (_weaponAttribute.getAttackRange() * 0.02f - Vector2.Distance(_attachPoint.position, GetComponent<Transform>().position)));
         while (dur < time)
         {
             dur += Time.deltaTime;
@@ -29,7 +29,7 @@ public class ThrustWeapon : MeleeWeapon
 
         dur = 0.0f;
         startPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position);
-        endPos = new Vector2(0, 0);
+        endPos = _attachPoint.InverseTransformPoint(transform.position + (_attachPoint.position - _grip.position));
         while (dur < time)
         {
             dur += Time.deltaTime;

@@ -154,7 +154,11 @@ public class MainPageWindow : BaseWindow
     }
     private void OnTalentBtn()
     {
+
         Debug.Log("点击了 天赋 按钮");
+        SceneLoader._instance.loadScene("TalentTree");
+        DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
+
     }
     private void OnExitBtn()
     {
