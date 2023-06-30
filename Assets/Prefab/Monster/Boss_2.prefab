@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8719504265131508770}
   - component: {fileID: 1187185484720973678}
   - component: {fileID: -8115029579591778951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -819117959
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1106066740, guid: 05532ea4c90a68648810f716454027b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -261,5 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  skatingSpeedRatio: 2
   beatBackTime: 0
   beatBackTimeSpeed: 0

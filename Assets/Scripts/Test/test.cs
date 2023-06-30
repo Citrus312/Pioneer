@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public GameObject _textMeshProPrefab;
-    public GameObject player;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(_textMeshProPrefab, player.transform.position, Quaternion.identity);
+            GetComponent<Animator>().SetBool("B_isAlive", false);
         }
     }
 }

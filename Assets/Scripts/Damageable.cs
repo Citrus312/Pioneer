@@ -28,18 +28,29 @@ public class Damageable : MonoBehaviour
     //受击闪烁
     private IEnumerator OnHit()
     {
+        // 镜头震动，判断角色
+        if(gameObject.tag == "Player")
+        {
+            CameraShake._instance.startShake();
+        }
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = _onHitColor;
         yield return new WaitForSeconds(_onHitTime);
         spriteRenderer.color = Color.white;
-
-        // 镜头震动，判断角色
-        // CameraShake._instance.startShake();
     }
 
     private void die()
     {
         GetComponent<Controller>().OnDie();
+        // 死亡动画
+        GetComponent<Animator>().SetBool("B_isAlive", false);
+        Invoke("removeFromPool", 0.5f);
+    }
+
+    void removeFromPool()
+    {
+        // 回收
         if (_prefabPath != null)
             ObjectPool.getInstance().remove(_prefabPath, gameObject);
         // Destroy(gameObject);
@@ -48,6 +59,7 @@ public class Damageable : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        GetComponent<CharacterAttribute>().setCurrentHealth(currentHealth);
         StartCoroutine("OnHit");
         if (currentHealth <= 0)
         {

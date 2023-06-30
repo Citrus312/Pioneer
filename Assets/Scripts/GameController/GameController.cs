@@ -42,6 +42,8 @@ public class GameController : MonoBehaviour
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
         //初始化生成器
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
+        //初始化障碍物
+        RandomScene.getInstance().randomGenerateScene();
         //初始化角色
         initPlayer();
         _gameData._wave = 1;

@@ -15,7 +15,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色自带的弹道数
     private int bulletCount = 0;
     //角色的基础移速
-    private float rawMoveSpeed = 0.2f;
+    private float rawMoveSpeed = 4.0f;
     //角色受击后的无敌时间
     private float immuneTime = 0.2f;
     //角色的当前生命值
