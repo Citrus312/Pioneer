@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1711192506133003178}
   - component: {fileID: 3391050687006079433}
   m_Layer: 5
-  m_Name: PropIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     m_Left: 20
     m_Right: 0
     m_Top: 20
-    m_Bottom: 10
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 20
   m_ChildForceExpandWidth: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 1199176969430351016}
   - component: {fileID: 2672712105129122696}
   m_Layer: 5
-  m_Name: PropAttrText
+  m_Name: AttrText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,10 +265,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'aaaaaaaaaaaaaaaaaaaaaa
+  m_Text: 'aaaaaa
 
     d'
 --- !u!114 &2672712105129122696
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 6110221961222033889}
   - component: {fileID: 8231633958445968238}
   m_Layer: 5
-  m_Name: PropNameText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 6057358121466306977}
   - component: {fileID: 1356743962031643860}
   m_Layer: 5
-  m_Name: PropBgIcon
+  m_Name: BgIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 9139843414210575457}
   - component: {fileID: 5835914087242530050}
   m_Layer: 5
-  m_Name: PropDetail
+  m_Name: DetailPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

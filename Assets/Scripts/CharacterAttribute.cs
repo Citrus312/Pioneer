@@ -313,7 +313,7 @@ public class CharacterAttribute : MonoBehaviour
     public void setAllMonsterAttribute(int id, float maxHealth, float healthIncPerWave, float speed,
         float meleeDamage, float rangedDamage, float damageIncPerWave, float lootCount, float dropRate,
         float crateRate, int firstGenWave, float interval, float minGenCount, float maxGenCount, string prefabPath,
-        string belongLevel, float armorStrength)
+        string belongLevel, float armorStrength, float attackRange)
     {
         setID(id);
         setMaxHealth(maxHealth);
@@ -332,6 +332,7 @@ public class CharacterAttribute : MonoBehaviour
         setMonsterPrefabPath(prefabPath);
         setBelongLevel(belongLevel);
         setArmorStrength(armorStrength);
+        setAttackRangeAmplification(attackRange);
     }
 
     public void setAllMonsterAttribute(CharacterAttribute input)
@@ -339,7 +340,7 @@ public class CharacterAttribute : MonoBehaviour
         setAllMonsterAttribute(input.getID(), input.getMaxHealth(), input.getHealthIncPerWave(), input.getRawMoveSpeed(), input.getMeleeDamage(),
                                input.getRangedDamage(), input.getDamageIncPerWave(), input.getLootCount(), input.getDropRate(), input.getCrateRate(),
                                input.getFirstGenWave(), input.getInterval(), input.getMinGenCount(), input.getMaxGenCount(), input.getMonsterPrefabPath(),
-                               input.getBelongLevel(), input.getArmorStrength());
+                               input.getBelongLevel(), input.getArmorStrength(), input.getAttackRangeAmplification());
     }
 
     //获取经过属性加成的移速

@@ -327,6 +327,8 @@ public class JsonLoader
             addAttr.setMonsterPrefabPath((string)monsterConfig["prefabPath"]);
             addAttr.setFirstGenWave((int)monsterConfig["firstGenWave"]);
             addAttr.setBelongLevel((string)monsterConfig["belongLevel"]);
+            temp = (double)monsterConfig["attackRange"];
+            addAttr.setAttackRangeAmplification((float)temp);
             temp = (double)monsterConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
             temp = (double)monsterConfig["maxHealth"];
