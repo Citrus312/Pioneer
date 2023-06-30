@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2316730352914314254}
   - component: {fileID: 4254484226867464047}
   - component: {fileID: 3178179537373443511}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Monster_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -819117959
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1338902348, guid: 69067595eac4bef4fa0529775c774bbe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6604415155764692704}
+  skatingSpeedRatio: 2
   beatBackTime: 0.1
   beatBackTimeSpeed: 5
 --- !u!70 &6954365656794794490
@@ -174,8 +175,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.008213401, y: -0.062108934}
+  m_Size: {x: 0.17693973, y: 0.18789089}
   m_Direction: 0
 --- !u!114 &8005352576517692514
 MonoBehaviour:
@@ -231,3 +232,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
+  _prefabPath: 

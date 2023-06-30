@@ -257,12 +257,68 @@ public class RoleAndWeaponSelectWindow : BaseWindow
         {
             //更新gameData中需要更新的数据
             GameController.getInstance().getGameData()._isFirstPlaying = false;
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 1; i++)
             {
                 GameController.getInstance().getGameData()._weaponList.Add(int.Parse(btn.name));
             }
             int ID = GameController.getInstance().getGameData()._playerID;
             CharacterAttribute attr = JsonLoader.rolePool[ID];
+            foreach (KeyValuePair<string, float> item in TalentTreeWindow.Instance.getAttributeFinal())
+            {
+                switch (item.Key)
+                {
+                    case "maxHealth":
+                        attr.setMaxHealth(attr.getMaxHealth() + item.Value);
+                        break;
+                    case "healthRecovery":
+                        attr.setHealthRecovery(attr.getHealthRecovery() + item.Value);
+                        break;
+                    case "healthSteal":
+                        attr.setHealthSteal(attr.getHealthSteal() + item.Value);
+                        break;
+                    case "attackAmplification":
+                        attr.setAttackAmplification(attr.getAttackAmplification() + item.Value);
+                        break;
+                    case "meleeDamage":
+                        attr.setMeleeDamage(attr.getMeleeDamage() + item.Value);
+                        break;
+                    case "rangedDamage":
+                        attr.setRangedDamage(attr.getRangedDamage() + item.Value);
+                        break;
+                    case "abilityDamage":
+                        attr.setAbilityDamage(attr.getAbilityDamage() + item.Value);
+                        break;
+                    case "attackSpeedAmplification":
+                        attr.setAttackSpeedAmplification(attr.getAttackSpeedAmplification() + item.Value);
+                        break;
+                    case "criticalRate":
+                        attr.setCriticalRate(attr.getCriticalRate() + item.Value);
+                        break;
+                    case "engineering":
+                        attr.setEngineering(attr.getEngineering() + item.Value);
+                        break;
+                    case "attackRangeAmplification":
+                        attr.setAttackRangeAmplification(attr.getAttackRangeAmplification() + item.Value);
+                        break;
+                    case "armorStrength":
+                        attr.setArmorStrength(attr.getArmorStrength() + item.Value);
+                        break;
+                    case "dodgeRate":
+                        attr.setDodgeRate(attr.getDodgeRate() + item.Value);
+                        break;
+                    case "moveSpeedAmplification":
+                        attr.setMoveSpeedAmplification(attr.getMoveSpeedAmplification() + item.Value);
+                        break;
+                    case "scanAccuracy":
+                        attr.setScanAccuracy(attr.getScanAccuracy() + item.Value);
+                        break;
+                    case "collectEfficiency":
+                        attr.setCollectEfficiency(attr.getCollectEfficiency() + item.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
             GameController.getInstance().getGameData()._attr.setAllPlayerAttribute(attr);
             //已经选择完角色的前提下点击武器按钮直接切换场景
             SceneLoader._instance.loadScene(GameController.getInstance().getGameData()._scene);

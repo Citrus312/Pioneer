@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     {
         if(Input.GetMouseButton(0)){
             float _moveDistance = (Input.mousePosition.x - _preMousePosX) * _dragSpeed;
-            _cameraTrans.position = new Vector3(_cameraTrans.position.x + _moveDistance, _cameraTrans.position.y, _cameraTrans.position.z);
+            _cameraTrans.position = new Vector3(_cameraTrans.position.x - _moveDistance, _cameraTrans.position.y, _cameraTrans.position.z);
         }
         _preMousePosX = Input.mousePosition.x;
     }

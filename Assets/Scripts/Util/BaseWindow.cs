@@ -76,7 +76,7 @@ public class BaseWindow
         return true;
     }
     //开启窗体
-    public void Open()
+    public virtual void Open()
     {
         //开启窗体前的窗体初始化
         if (transform == null)

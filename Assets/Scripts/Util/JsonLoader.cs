@@ -5,7 +5,7 @@ using LitJson;
 using System.IO;
 using System.Text;
 
-public class JsonLoader : MonoBehaviour
+public class JsonLoader
 {
     //武器属性池 道具属性池 角色属性池
     public static List<WeaponAttribute> weaponPool = new();
@@ -240,6 +240,7 @@ public class JsonLoader : MonoBehaviour
             CharacterAttribute addAttr = new();
             roleConfig = rolesConfig[i];
             addAttr.setID((int)roleConfig["ID"]);
+            addAttr.setBulletCount((int)roleConfig["bulletCount"]);
             addAttr.setName((string)roleConfig["name"]);
             addAttr.setIcon((string)roleConfig["icon"]);
             temp = (double)roleConfig["rawMoveSpeed"];
@@ -265,7 +266,7 @@ public class JsonLoader : MonoBehaviour
             temp = (double)roleConfig["engineering"];
             addAttr.setEngineering((float)temp);
             temp = (double)roleConfig["attackRangeAmplification"];
-            addAttr.setAttackRangedAmplification((float)temp);
+            addAttr.setAttackRangeAmplification((float)temp);
             temp = (double)roleConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
             temp = (double)roleConfig["dodgeRate"];
@@ -325,6 +326,11 @@ public class JsonLoader : MonoBehaviour
             addAttr.setID((int)monsterConfig["ID"]);
             addAttr.setMonsterPrefabPath((string)monsterConfig["prefabPath"]);
             addAttr.setFirstGenWave((int)monsterConfig["firstGenWave"]);
+            addAttr.setBelongLevel((string)monsterConfig["belongLevel"]);
+            temp = (double)monsterConfig["attackRange"];
+            addAttr.setAttackRangeAmplification((float)temp);
+            temp = (double)monsterConfig["armorStrength"];
+            addAttr.setArmorStrength((float)temp);
             temp = (double)monsterConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
             temp = (double)monsterConfig["healthIncPerWave"];

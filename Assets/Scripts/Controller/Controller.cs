@@ -20,6 +20,25 @@ public class Controller : MonoBehaviour
     //动画
     public Animator _animator;
 
+    //是否处于滑行状态
+    protected bool isSkating = false;
+    //滑行的方向
+    protected Vector2 skatingDirection;
+    //滑行状态的速度倍率
+    public float skatingSpeedRatio = 2.0f;
+
+    //进入冰面时进入滑行状态
+    public virtual void inIceSurface()
+    {
+        isSkating = true;
+    }
+
+    //离开冰面时退出滑行状态
+    public virtual void outIceSurface()
+    {
+        isSkating = false;
+    }
+
     protected virtual void Awake()
     {
         _transform = GetComponent<Transform>();
@@ -38,6 +57,8 @@ public class Controller : MonoBehaviour
     {
         _animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
         float moveSpeed = _characterAttribute.getMoveSpeed();
+        if (isSkating)
+            moveSpeed *= skatingSpeedRatio;
         //角色转向
         if (direction.x < 0)
         {

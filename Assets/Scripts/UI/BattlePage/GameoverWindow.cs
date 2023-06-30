@@ -7,9 +7,12 @@ public class GameoverWindow : BaseWindow
 {
     private static GameoverWindow instance;
     private Text attributeText;
+    private Text roleNameText;
+    private Image roleIcon;
     private Transform weaponDisplay;
     private Transform propDisplay;
     public string titleText;
+    public GameObject detailDisplay;
 
     private GameoverWindow()
     {
@@ -35,14 +38,25 @@ public class GameoverWindow : BaseWindow
     protected override void AwakeWindow()
     {
         base.AwakeWindow();
-
+        //初始化武器和道具详细信息的面板
+        if (GameObject.Find("DetailPanel") == null)
+        {
+            GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+            obj = GameObject.Instantiate(obj);
+            obj.SetActive(false);
+            detailDisplay = obj;
+        }
+        //获取各UI组件
         attributeText = transform.Find("AttributeDisplay").GetChild(0).GetComponent<Text>();
+        roleNameText = transform.Find("AttributeDisplay").GetChild(1).GetComponent<Text>();
+        roleIcon = transform.Find("AttributeDisplay").GetChild(2).GetComponent<Image>();
         weaponDisplay = transform.Find("WeaponDisplay");
         propDisplay = transform.Find("PropDisplay");
+        //设置窗口标题
         transform.Find("TitleText").GetComponent<Text>().text = titleText;
 
+        //设置角色属性文本
         CharacterAttribute roleAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
-        //Debug.Log(roleAttr.get);
         attributeText.text = $"最大生命  <color={(roleAttr.getMaxHealth() > 0 ? "green" : "red")}> {roleAttr.getMaxHealth()} </color>\n" +
                              $"生命回复  <color={(roleAttr.getHealthRecovery() > 0 ? "green" : "red")}> {roleAttr.getHealthRecovery()} </color>\n" +
                              $"生命汲取  <color={(roleAttr.getHealthSteal() > 0 ? "green" : "red")}> {roleAttr.getHealthSteal()} </color>\n" +
@@ -59,35 +73,62 @@ public class GameoverWindow : BaseWindow
                              $"移动速度  <color={(roleAttr.getMoveSpeedAmplification() > 0 ? "green" : "red")}> {roleAttr.getMoveSpeedAmplification()} </color>\n" +
                              $"扫描精度  <color={(roleAttr.getScanAccuracy() > 0 ? "green" : "red")}> {roleAttr.getScanAccuracy()} </color>\n" +
                              $"采集效率  <color={(roleAttr.getCollectEfficiency() > 0 ? "green" : "red")}> {roleAttr.getCollectEfficiency()} </color>\n";
+        //设置角色图标和名字文本
+        roleNameText.text = roleAttr.getName();
+        ImageLoader.LoadImage($"Assets/Sprites/Player/{roleAttr.getIcon()}", roleIcon);
 
-        for (int i = 0; i < 6; i++)
+        //设置武器图标
+        for (int i = 0; i < GameController.getInstance().getGameData()._weaponList.Count; i++)
         {
-            if (i > GameController.getInstance().getGameData()._weaponList.Count - 1)
+            //将索引作为物体名字方便后续根据名字获取对应数据，以下相似做法皆是如此
+            weaponDisplay.GetChild(i).name = $"{GameController.getInstance().getGameData()._weaponList[i]}";
+            //激活预设的游戏物体
+            weaponDisplay.GetChild(i).gameObject.SetActive(true);
+            weaponDisplay.GetChild(i).GetChild(0).GetComponent<WeaponDetailDisplay>().detailDisplay = detailDisplay;
+            weaponDisplay.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            string prePath = "";
+            //根据武器的攻击类型确定武器图片的路径
+            switch (JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponDamageType())
             {
-                weaponDisplay.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+                case WeaponAttribute.WeaponDamageType.Melee:
+                    prePath = "Assets/Sprites/Weapon/Melee Weapon/";
+                    break;
+                case WeaponAttribute.WeaponDamageType.Ranged:
+                    prePath = "Assets/Sprites/Weapon/Ranged Weapon/";
+                    break;
+                case WeaponAttribute.WeaponDamageType.Ability:
+                    prePath = "Assets/Sprites/Weapon/Ability Weapon/";
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                string prePath = "";
-                //根据武器的攻击类型确定武器图片的路径
-                switch (JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponDamageType())
-                {
-                    case WeaponAttribute.WeaponDamageType.Melee:
-                        prePath = "Assets/Sprites/Weapon/Melee Weapon/";
-                        break;
-                    case WeaponAttribute.WeaponDamageType.Ranged:
-                        prePath = "Assets/Sprites/Weapon/Ranged Weapon/";
-                        break;
-                    case WeaponAttribute.WeaponDamageType.Ability:
-                        prePath = "Assets/Sprites/Weapon/Ability Weapon/";
-                        break;
-                    default:
-                        break;
-                }
-                ImageLoader.LoadImage(prePath + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponIcon(), weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>());
-                ImageLoader.LoadImage("Assets/Sprites/Weapon/" + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponBgIcon(), weaponDisplay.GetChild(i).GetComponent<Image>());
-            }
+            //加载武器背景图标和自身图标
+            ImageLoader.LoadImage(prePath + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponIcon(), weaponDisplay.GetChild(i).GetChild(0).GetComponent<Image>());
+            ImageLoader.LoadImage("Assets/Sprites/Weapon/" + JsonLoader.weaponPool[GameController.getInstance().getGameData()._weaponList[i]].getWeaponBgIcon(), weaponDisplay.GetChild(i).GetComponent<Image>());
         }
+        //设置道具图标
+        for (int i = 0; i < GameController.getInstance().getGameData()._propList.Count; i++)
+        {
+            //获取指定的道具属性
+            PropAttribute prop = JsonLoader.propPool[GameController.getInstance().getGameData()._propList[i]];
+            //加载用于显示道具图标的预制体
+            GameObject obj = Resources.Load<GameObject>("UI/prop");
+            obj = GameObject.Instantiate(obj);
+            //见上
+            obj.name = $"{GameController.getInstance().getGameData()._propList[i]}";
+            //添加详细信息显示控制脚本
+            obj.AddComponent<PropDetailDisplay>();
+            obj.GetComponent<PropDetailDisplay>().detailDisplay = detailDisplay;
+            //加载道具背景和自身图标
+            ImageLoader.LoadImage($"Assets/Sprites/Weapon/{prop.getPropBgIcon()}", obj.GetComponent<Image>());
+            ImageLoader.LoadImage($"Assets/Sprites/Prop/{prop.getPropIcon()}", obj.transform.GetChild(0).GetComponent<Image>());
+            //设置道具数量文本
+            obj.transform.GetChild(1).GetComponent<Text>().text = $"x{GameController.getInstance().getGameData()._propCount[i]}";
+            //将道具挂载到滚动窗口
+            obj.transform.SetParent(propDisplay.GetChild(0).GetChild(0));
+        }
+
     }
     protected override void FillTextContent()
     {
@@ -112,9 +153,17 @@ public class GameoverWindow : BaseWindow
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
+
+        btnList[0].onClick.AddListener(() => { OnExitBtn(); });
     }
     protected override void Update()
     {
         base.Update();
+    }
+
+    public void OnExitBtn()
+    {
+        SceneLoader._instance.loadScene("mainPage");
+        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.0f);
     }
 }

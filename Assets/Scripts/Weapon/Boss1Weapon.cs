@@ -88,7 +88,7 @@ public class Boss1Weapon : RangedMonsterHit
         GetComponent<Boss1Controller>()._isDashing = true;
 
         //冲刺距离设置为攻击距离
-        float attackDistance = _weaponAttribute.getAttackRange();
+        float attackDistance = _weaponAttribute.getAttackRange() * 0.02f;
         //计时器
         float timer = 0;
 

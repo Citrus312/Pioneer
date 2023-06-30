@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2582487769076849214}
   - component: {fileID: 2582487769076849154}
   - component: {fileID: 2582487769076849153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9881c9d5798244985d4c106288222a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initWeapons: []
 --- !u!95 &2582487769076849152
 Animator:
   serializedVersion: 4
@@ -170,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  skatingSpeedRatio: 2
 --- !u!114 &2582487769076849154
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -148,6 +148,8 @@ public class Boss2Weapon : RangedMonsterHit
         if (_prefabInList == null)
             return;
 
+        StopAllCoroutines();
+
         while (_projectiles.Count != 0)
         {
             GameObject obj = _projectiles[0];

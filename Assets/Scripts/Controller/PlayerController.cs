@@ -23,13 +23,20 @@ public class PlayerController : Controller
         }
     }
 
+    //玩家进入冰面时进入滑行状态
+    public override void inIceSurface()
+    {
+        base.inIceSurface();
+        skatingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    }
+
     protected override void Awake()
     {
         base.Awake();
         //设置碰撞体大小和位置
         _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
         _capsuleCollider2D.offset = new Vector2(0, -0.05f);
-        _capsuleCollider2D.isTrigger = true;
+        // _capsuleCollider2D.isTrigger = true;
 
         //设置player标签
         gameObject.tag = "Player";
@@ -41,7 +48,11 @@ public class PlayerController : Controller
     // Update is called once per frame
     void Update()
     {
-        //根据键盘输入进行移动
-        move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized);
+        //如果处于滑行状态则直接朝滑行方向移动
+        if (isSkating)
+            move(skatingDirection);
+        else
+            //根据键盘输入进行移动
+            move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized);
     }
 }
