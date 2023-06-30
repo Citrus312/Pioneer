@@ -221,7 +221,7 @@
     "type": "melee",
     "category": [ "machete" ],
     "damage": 15.0,
-    "range": 2.0,
+    "range": 100.0,
     "ratio": 0.8,
     "bonus": 2.0,
     "speed": 1.0,
