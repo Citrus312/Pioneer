@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
     protected Vector2 getAttackDirection(string tag)
     {
         //获取攻击距离
-        float attackRange = _weaponAttribute.getAttackRange();
+        float attackRange = _weaponAttribute.getAttackRange() * 0.02f;
 
         //进行球形射线检测判断攻击范围内的敌人
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(_attachPoint.position, attackRange);
