@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7720711751293163563}
   - component: {fileID: 7720711751293163560}
   - component: {fileID: 7720711751293163561}
+  - component: {fileID: 7196186532459074651}
   m_Layer: 3
   m_Name: IceLake_1
   m_TagString: Untagged
@@ -269,3 +270,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074f10b18567e5f428b7a720ec61af63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7196186532459074651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720711751293163566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a35a6fa7fcb81488d7cbd7428f662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 4.1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6809856375329090934}
   - component: {fileID: 6809856375329090935}
   - component: {fileID: 6809856375329090928}
+  - component: {fileID: 5526667631547820031}
   m_Layer: 3
   m_Name: Rock8_1
   m_TagString: Untagged
@@ -126,3 +127,16 @@ PolygonCollider2D:
       - {x: 0.9132752, y: 0.4208346}
       - {x: 1.0917296, y: 0.5661496}
       - {x: 0.78459346, y: 1.0827577}
+--- !u!114 &5526667631547820031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809856375329090929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a35a6fa7fcb81488d7cbd7428f662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1.3

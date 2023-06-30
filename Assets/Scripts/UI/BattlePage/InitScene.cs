@@ -9,7 +9,6 @@ public class InitScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("weapon" + GameController.getInstance().getGameData()._weaponList.Count);
         // 初始化场景
         GameController.getInstance().initBattleScene();
         // 挂载相机

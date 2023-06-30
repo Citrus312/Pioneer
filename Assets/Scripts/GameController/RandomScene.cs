@@ -6,26 +6,23 @@ public class RandomScene : MonoBehaviour
 {
     public static RandomScene _instance;
 
-    public List<string> _prefabList = new List<string>();
+    public List<string> _obstacleList = new List<string>();
+    public List<string> _terrainList = new List<string>();
     // 场景大小
-    public float _sceneWidth;
-    public float _sceneHeight;
+    private float _sceneWidth;
+    private float _sceneHeight;
     // 每个格子的大小
-    private float _gridSize;
+    public float _gridSize = 4.0f;
     // 障碍物数量
-    private int _obstacleCnt;
+    public int _obstacleCnt = 8;
     // 右上、右下、左下、左上
-    int[,] dirs = new int[4,2];
+    private int[,] dirs = new int[4,2];
 
     private void Awake() {
         _instance = this;
-        _gridSize = 5.0f;
-        _obstacleCnt = 10;
         
         setUpDirs();
         setUpSceneSize();
-
-        //randomGenerateScene();
     }
 
     void setUpDirs()
@@ -58,28 +55,69 @@ public class RandomScene : MonoBehaviour
     {
         int n = (int)(_sceneHeight / 2 / _gridSize);
         int m = (int)(_sceneWidth / 2 / _gridSize);
-        // 障碍物二维数组
-        int[,] matrix = new int[n, m];
-        int cnt = _obstacleCnt;
+        // 障碍物数组
+        int[,,] matrix = new int[4, n, m];
+        Debug.Log("n:" + n + " m:" + m);
+        // 总量取较小值
+        int cnt = _obstacleCnt <= (4 * n * m) ? _obstacleCnt : (4 * n * m);
         while(cnt > 0){
+            // 象限
+            int randDir = Random.Range(0,4);
+            // 数组索引
             int randY = Random.Range(0, n), randX = Random.Range(0, m);
-            if((randY == 0 && randX == 0) || matrix[randY, randX] != 0)
+            if((randY == 0 && randX == 0) || matrix[randDir, randY, randX] != 0)
             {
                 continue;
             }
-            // 障碍物id
-            int obstacleID = Random.Range(0, _prefabList.Capacity);
-            // 象限
-            int randDir = Random.Range(0,4);
-            GameObject newObject = ObjectPool.getInstance().get(_prefabList[obstacleID]);
-            // 位置偏移
-            float offsetX = Random.Range(0f, _gridSize), offsetY = Random.Range(0f, _gridSize);
-            // 生成
-            newObject.transform.position = new Vector3(dirs[randDir,0] * (randX * _gridSize + offsetX), dirs[randDir,1] * (randY * _gridSize + offsetY), 0);
-            cnt--;
+            if(Random.Range(0,2) == 0) cnt -= generateObstacle(randDir, randY, randX, matrix);
+            else cnt -= generateTerrain(randDir, randY, randX, matrix);
         }
     }
 
+    private int generateObstacle(int randDir, int randY, int randX, int[,,] matrix)
+    {
+        if(_obstacleList.Capacity == 0) return 0;
 
+        // 障碍物id
+        int idx = Random.Range(0, _obstacleList.Capacity);
+        matrix[randDir, randY, randX] = idx + 1;
+        GameObject newObject = ObjectPool.getInstance().get(_obstacleList[idx]);
+        // 位置偏移
+        float minOffset = getSize(newObject) / 2;
+        float maxOffset = _gridSize - (getSize(newObject) / 2);
+        float offsetX = Random.Range(minOffset, maxOffset);
+        float offsetY = Random.Range(minOffset, maxOffset);
+        // 生成
+        newObject.transform.position = new Vector3(dirs[randDir,0] * (randX * _gridSize + offsetX), dirs[randDir,1] * (randY * _gridSize + offsetY), 0);
 
+        return 1;
+    }
+
+    private int generateTerrain(int randDir, int randY, int randX, int[,,] matrix)
+    {
+        if(_terrainList.Capacity == 0) return 0;
+
+        // 地形id
+        int idx = Random.Range(0, _terrainList.Capacity);
+        matrix[randDir, randY, randX] = idx + 1;
+        GameObject newObject = ObjectPool.getInstance().get(_terrainList[idx]);
+        
+        // 位置偏移
+        float minOffset = getSize(newObject) / 2;
+        float maxOffset = _gridSize - (getSize(newObject) / 2);
+        float offsetX = Random.Range(minOffset, maxOffset);
+        float offsetY = Random.Range(minOffset, maxOffset);
+        // 生成
+        newObject.transform.position = new Vector3(dirs[randDir,0] * (randX * _gridSize + offsetX), dirs[randDir,1] * (randY * _gridSize + offsetY), 0);
+
+        // 旋转
+        float minRotationAngle = 0f, maxRotationAngle = 360f;
+        newObject.transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(minRotationAngle, maxRotationAngle));
+        return 1;
+    }
+
+    float getSize(GameObject obj)
+    {
+        return obj.GetComponent<ObstacleSize>().size;
+    }
 }

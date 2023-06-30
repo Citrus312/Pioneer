@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8828690702779244421}
   - component: {fileID: 8828690702779244423}
   - component: {fileID: 8828690702779244422}
+  - component: {fileID: -5231362879194765526}
   m_Layer: 3
   m_Name: Rock3_5
   m_TagString: Untagged
@@ -119,3 +120,16 @@ PolygonCollider2D:
       - {x: 0.12192321, y: -0.27323222}
       - {x: 0.24454343, y: -0.1701687}
       - {x: 0.2442472, y: -0.05095859}
+--- !u!114 &-5231362879194765526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828690702779244420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a35a6fa7fcb81488d7cbd7428f662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.4
