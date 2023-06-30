@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public GameObject _objectPool;
 
     public GameObject _generator;
+
 
     public static GameController getInstance()
     {
@@ -33,8 +34,8 @@ public class GameController : MonoBehaviour
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeRoleConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
-        initBattleScene();
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
+        // initBattleScene();
+        // MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
     }
 
     //初始化战斗场景
@@ -78,7 +79,6 @@ public class GameController : MonoBehaviour
 
         return true;
     }
-
     //波次开始
     public void waveStart()
     {

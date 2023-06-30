@@ -20,7 +20,7 @@ public class RandomScene : MonoBehaviour
     private void Awake() {
         _instance = this;
         _gridSize = 5.0f;
-        _obstacleCnt = 15;
+        _obstacleCnt = 10;
         
         setUpDirs();
         setUpSceneSize();
