@@ -77,6 +77,8 @@ public class ObjectPool : MonoBehaviour
         // 若存在池子
         if (_objectPool.ContainsKey(prefabPath))
         {
+            if (_objectPool[prefabPath].Contains(obj))
+                return;
             // 入队
             _objectPool[prefabPath].Enqueue(obj);
             obj.SetActive(false);

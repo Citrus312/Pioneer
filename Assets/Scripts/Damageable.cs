@@ -29,7 +29,7 @@ public class Damageable : MonoBehaviour
     private IEnumerator OnHit()
     {
         // 镜头震动，判断角色
-        if(gameObject.tag == "Player")
+        if (gameObject.tag == "Player")
         {
             CameraShake._instance.startShake();
         }

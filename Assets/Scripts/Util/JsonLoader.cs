@@ -85,6 +85,7 @@ public class JsonLoader
             temp = (double)weaponConfig["price"];
             addAttr.setWeaponPrice((float)temp);
             addAttr.setWeaponID((int)weaponConfig["ID"]);
+            addAttr.setBulletCount((int)weaponConfig["bulletCount"]);
             addAttr.setWeaponName((string)weaponConfig["name"]);
             addAttr.setWeaponIcon((string)weaponConfig["icon"]);
             addAttr.setWeaponBgIcon((string)weaponConfig["bgIcon"]);

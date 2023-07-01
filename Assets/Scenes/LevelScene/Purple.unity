@@ -424,7 +424,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e38547b9095b664d894a6a68e1bd422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstacleList: []
+  _obstacleList:
+  - Assets/Prefab/Obstacles/Rock/Rock1_1.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_3.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_4.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_5.prefab
   _terrainList: []
   _gridSize: 4
   _obstacleCnt: 8
