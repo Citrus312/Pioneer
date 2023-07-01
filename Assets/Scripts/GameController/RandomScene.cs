@@ -120,4 +120,14 @@ public class RandomScene : MonoBehaviour
     {
         return obj.GetComponent<ObstacleSize>().size;
     }
+
+    public float getSceneWidth()
+    {
+        return _sceneWidth;
+    }
+
+    public float getSceneHeight()
+    {
+        return _sceneHeight;
+    } 
 }
