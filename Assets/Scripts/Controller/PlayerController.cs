@@ -36,7 +36,7 @@ public class PlayerController : Controller
         //设置碰撞体大小和位置
         _capsuleCollider2D.size = new Vector2(0.2f, 0.2f);
         _capsuleCollider2D.offset = new Vector2(0, -0.05f);
-        _capsuleCollider2D.isTrigger = true;
+        // _capsuleCollider2D.isTrigger = true;
 
         //设置player标签
         gameObject.tag = "Player";

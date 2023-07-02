@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9020265215816810282}
   - component: {fileID: -8862155073351065601}
   - component: {fileID: -7720190619264452000}
-  - component: {fileID: -5312459528822476749}
   m_Layer: 0
   m_Name: Fireball VFX
   m_TagString: Untagged
@@ -74,21 +73,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-5312459528822476749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9020265215816810283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba32e007a7355504bb8b9637fde1ac5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitVFX: {fileID: 1548194862845439516, guid: 2de9c23b0ba61db429a39367f0f79e6e, type: 3}
-  _weapon: {fileID: 300666766787327960, guid: d85eb20d8d915b141aab30c802822970, type: 3}
-  _prefab: 
 --- !u!1 &9020265216245727586
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,6 @@ public class ExtraEffect : MonoBehaviour
         transform.SetParent(null);
 
         // 回收
-        Debug.Log("回收");
         ObjectPool.getInstance().remove(_prefabPath, gameObject);
     }
 }

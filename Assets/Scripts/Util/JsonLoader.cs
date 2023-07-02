@@ -85,6 +85,7 @@ public class JsonLoader
             temp = (double)weaponConfig["price"];
             addAttr.setWeaponPrice((float)temp);
             addAttr.setWeaponID((int)weaponConfig["ID"]);
+            addAttr.setBulletCount((int)weaponConfig["bulletCount"]);
             addAttr.setWeaponName((string)weaponConfig["name"]);
             addAttr.setWeaponIcon((string)weaponConfig["icon"]);
             addAttr.setWeaponBgIcon((string)weaponConfig["bgIcon"]);
@@ -240,6 +241,7 @@ public class JsonLoader
             CharacterAttribute addAttr = new();
             roleConfig = rolesConfig[i];
             addAttr.setID((int)roleConfig["ID"]);
+            addAttr.setBulletCount((int)roleConfig["bulletCount"]);
             addAttr.setName((string)roleConfig["name"]);
             addAttr.setIcon((string)roleConfig["icon"]);
             temp = (double)roleConfig["rawMoveSpeed"];
@@ -265,7 +267,7 @@ public class JsonLoader
             temp = (double)roleConfig["engineering"];
             addAttr.setEngineering((float)temp);
             temp = (double)roleConfig["attackRangeAmplification"];
-            addAttr.setAttackRangedAmplification((float)temp);
+            addAttr.setAttackRangeAmplification((float)temp);
             temp = (double)roleConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
             temp = (double)roleConfig["dodgeRate"];
@@ -325,6 +327,11 @@ public class JsonLoader
             addAttr.setID((int)monsterConfig["ID"]);
             addAttr.setMonsterPrefabPath((string)monsterConfig["prefabPath"]);
             addAttr.setFirstGenWave((int)monsterConfig["firstGenWave"]);
+            addAttr.setBelongLevel((string)monsterConfig["belongLevel"]);
+            temp = (double)monsterConfig["attackRange"];
+            addAttr.setAttackRangeAmplification((float)temp);
+            temp = (double)monsterConfig["armorStrength"];
+            addAttr.setArmorStrength((float)temp);
             temp = (double)monsterConfig["maxHealth"];
             addAttr.setMaxHealth((float)temp);
             temp = (double)monsterConfig["healthIncPerWave"];

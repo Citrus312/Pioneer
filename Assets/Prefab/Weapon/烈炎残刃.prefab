@@ -190,8 +190,9 @@ PolygonCollider2D:
     - - {x: -0.205, y: -0.48}
       - {x: 0.53603, y: 0.38472176}
       - {x: 0.53999996, y: 0.64}
-      - {x: 0.41, y: 0.64}
-      - {x: -0.3867396, y: -0.16895625}
+      - {x: 0.06471124, y: 0.881229}
+      - {x: -0.6658085, y: 0.124302655}
+      - {x: -0.4552914, y: -0.26481214}
       - {x: -0.61987704, y: -0.57018435}
       - {x: -0.5042828, y: -0.6598771}
 --- !u!1 &5637967223906986292
@@ -218,7 +219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637967223906986292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.297, y: 0.305, z: 0}
+  m_LocalPosition: {x: 0.227, y: 0.246, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

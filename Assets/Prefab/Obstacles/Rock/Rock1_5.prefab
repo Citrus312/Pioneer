@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7491085421757517210}
   - component: {fileID: 7491085421757517208}
   - component: {fileID: 7491085421757517209}
+  - component: {fileID: 4432042807118440554}
   m_Layer: 3
   m_Name: Rock1_5
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +119,16 @@ PolygonCollider2D:
       - {x: 0.30823216, y: -0.1683825}
       - {x: 0.32257566, y: 0.15318099}
       - {x: 0.11551356, y: 0.3225757}
+--- !u!114 &4432042807118440554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491085421757517211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a35a6fa7fcb81488d7cbd7428f662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.3

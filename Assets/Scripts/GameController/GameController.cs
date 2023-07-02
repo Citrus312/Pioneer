@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public GameObject _objectPool;
 
     public GameObject _generator;
+
 
     public static GameController getInstance()
     {
@@ -33,8 +34,6 @@ public class GameController : MonoBehaviour
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeRoleConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
-        initBattleScene();
-        MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
     }
 
     //初始化战斗场景
@@ -44,6 +43,8 @@ public class GameController : MonoBehaviour
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
         //初始化生成器
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
+        //初始化障碍物
+        RandomScene.getInstance().randomGenerateScene();
         //初始化角色
         initPlayer();
         _gameData._wave = 1;
@@ -58,7 +59,6 @@ public class GameController : MonoBehaviour
             // _player = ObjectPool.getInstance().get(_playerPrefab);
             _player.GetComponent<Damageable>()._prefabPath = null;
             _player.transform.position = Vector3.zero;
-            _player.GetComponent<CharacterAttribute>().setRawMoveSpeed(4);
         }
         else
         {
@@ -72,26 +72,23 @@ public class GameController : MonoBehaviour
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
             GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
 
         return true;
     }
-
     //波次开始
     public void waveStart()
     {
-        // 随机生成场景
-        // RandomScene.getInstance().randomGenerateScene();
-
         _player.SetActive(true);
         MonsterInfoCalcu.Instance.Cal();
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
         {
             //生成的数量
             int num = MonsterInfoCalcu.Instance.genMonsterCount[i];
-            Debug.Log(num);
+            //Debug.Log(num);
             //生成的怪物属性
             CharacterAttribute characterAttribute = MonsterInfoCalcu.Instance.genMonsterAttr[i];
             StartCoroutine(generateMonster(characterAttribute, num));
@@ -149,4 +146,38 @@ public class GameController : MonoBehaviour
         _gameData._exp += num;
     }
 
+    private void AppendPropList(int val)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(val));
+        if (index == -1)
+        {
+            _gameData._propList.Add(val);
+        }
+    }
+
+    private void ModifyPropCount(int prop, int modifyCount)
+    {
+        int index = _gameData._propList.FindIndex(item => item.Equals(prop));
+        if (index >= _gameData._propCount.Count)
+        {
+            _gameData._propCount.Add(modifyCount);
+        }
+        else
+        {
+            if (_gameData._propCount[index] + modifyCount < 0)
+            {
+                Debug.LogError($"_propList[{index}]对应的道具数量被修改为负数");
+            }
+            else
+            {
+                _gameData._propCount[index] += modifyCount;
+            }
+        }
+    }
+
+    public void ModifyProp(int prop, int count)
+    {
+        AppendPropList(prop);
+        ModifyPropCount(prop, count);
+    }
 }

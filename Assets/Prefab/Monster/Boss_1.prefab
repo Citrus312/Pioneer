@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6639145256553927330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RotateCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 1286853561412380474}
   - component: {fileID: 7384178506596898394}
   - component: {fileID: 6586489317002370374}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

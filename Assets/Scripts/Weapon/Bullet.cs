@@ -42,17 +42,18 @@ public class Bullet : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collider2D)
     {
-        //如果碰撞的不为怪物则直接返回
-        if (collider2D.tag != _targetTag)
+        //如果碰撞的不为目标且不为障碍物则直接返回
+        if (collider2D.tag != _targetTag && collider2D.tag != "Obstacles")
             return;
         //击退怪物
-        if (_targetTag == "Enemy")
+        if (collider2D.tag == "Enemy")
             collider2D.GetComponent<AIController>().OnHit(GetComponent<Rigidbody2D>().velocity.normalized);
         //判断角色是否处于无敌时间
-        if (_targetTag == "Player" && !collider2D.GetComponent<PlayerController>().tryDamage())
+        if (collider2D.tag == "Player" && !collider2D.GetComponent<PlayerController>().tryDamage())
             return;
-        //对怪物造成伤害
-        _weapon.GetComponent<Damager>().Damage(collider2D);
+        //如果碰撞的不为障碍物则造成伤害
+        if (collider2D.tag != "Obstacles")
+            _weapon.GetComponent<Damager>().Damage(collider2D);
 
         //贯穿次数-1
         _pierce--;

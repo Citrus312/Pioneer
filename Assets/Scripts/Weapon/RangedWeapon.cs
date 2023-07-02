@@ -20,22 +20,59 @@ public class RangedWeapon : Weapon
         _pierce = 1;
     }
 
+    //高斯分布采样
+    private float NextGaussian(float mean, float variance, float min, float max)
+    {
+        float x;
+        do
+        {
+            x = NextGaussian(mean, variance);
+        } while (x < min || x > max);
+        return x;
+    }
+
+    private float NextGaussian(float mean, float standard_deviation)
+    {
+        return mean + NextGaussian() * standard_deviation;
+    }
+
+    private float NextGaussian()
+    {
+        float v1, v2, s;
+        do
+        {
+            v1 = 2.0f * Random.Range(0f, 1f) - 1.0f;
+            v2 = 2.0f * Random.Range(0f, 1f) - 1.0f;
+            s = v1 * v1 + v2 * v2;
+        } while (s >= 1.0f || s == 0f);
+        s = Mathf.Sqrt((-2.0f * Mathf.Log(s)) / s);
+        return v1 * s;
+    }
+
     //向射击方向发射一颗子弹
     protected void shoot(Vector2 shootDirection)
     {
-        //实例化一颗子弹
-        // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
-        GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
-        bullet.transform.position = _attachPoint.position;
-        // bullet.transform.rotation = _attachPoint.rotation;
-        Quaternion bulletRotation = new Quaternion();
-        bulletRotation.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(new Vector2(1, 0), shootDirection));
-        bullet.transform.rotation = bulletRotation;
+        //武器的弹道数
+        int bulletCount = GetComponent<WeaponAttribute>().getBulletCount();
 
-        // bullet.GetComponent<Bullet>()._weapon = gameObject;
-        // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
-        bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy", _pierce);
-        bullet.GetComponent<Rigidbody2D>().AddForce(shootDirection, ForceMode2D.Impulse);
+        for (int i = 0; i < bulletCount; i++)
+        {
+            //实例化一颗子弹
+            // GameObject bullet = Instantiate(_bulletPrefab, _endPoint.position, _endPoint.rotation);
+            GameObject bullet = ObjectPool.getInstance().get(_bulletPrefab);
+            bullet.transform.position = _attachPoint.position;
+            // bullet.transform.rotation = _attachPoint.rotation;
+            Quaternion bulletRotation = new Quaternion();
+            //如果弹道数量大于1则加上一个-15°到15°的高斯分布的随机值
+            float shootAngle = Vector2.SignedAngle(new Vector2(1, 0), shootDirection) + (bulletCount > 1 ? NextGaussian(0, 15.0f, -15, 15) : 0);
+            bulletRotation.eulerAngles = new Vector3(0, 0, shootAngle);
+            bullet.transform.rotation = bulletRotation;
+
+            // bullet.GetComponent<Bullet>()._weapon = gameObject;
+            // bullet.GetComponent<Bullet>()._prefab = _bulletPrefab;
+            bullet.GetComponent<Bullet>().setup(gameObject, _bulletPrefab, "Enemy", _pierce);
+            bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(shootAngle * Mathf.Deg2Rad), Mathf.Sin(shootAngle * Mathf.Deg2Rad)), ForceMode2D.Impulse);
+        }
     }
 
     // Update is called once per frame
