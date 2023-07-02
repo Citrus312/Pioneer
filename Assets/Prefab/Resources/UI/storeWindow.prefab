@@ -327,11 +327,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponPropList: []
+  PropPoolList: []
   selectedCardId: 
   lockedCardIndex: 
   isLocked: 
   normalColor: {r: 1, g: 1, b: 1, a: 0.5}
   highLightColor: {r: 0, g: 0, b: 0, a: 0.5}
+  luck: 0
+  probability:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1762611132644304699
 GameObject:
   m_ObjectHideFlags: 0

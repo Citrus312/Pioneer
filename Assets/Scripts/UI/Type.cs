@@ -19,7 +19,8 @@ public enum WindowType
     titleWindow,
     countDownTimerWindow,
     PauseWindow,
-    TalentTreeWindow
+    TalentTreeWindow,
+    GameoverWindow
 }
 
 
@@ -33,6 +34,6 @@ public enum SceneType
     Select,
     gameProcess,
     Pause,
-    TalentTree
+    TalentTree,
 
 }
