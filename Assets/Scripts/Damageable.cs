@@ -44,11 +44,6 @@ public class Damageable : MonoBehaviour
     private void die()
     {
         GetComponent<Controller>().OnDie();
-        if (gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-            return;
-        }
         // 死亡动画
         GetComponent<Animator>().SetBool("B_isAlive", false);
         Invoke("removeFromPool", 0.5f);

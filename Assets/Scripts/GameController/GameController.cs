@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     private GameData _gameData = new GameData();
 
-    public GameObject _playerPrefab;
+    public string _playerPrefab;
     private GameObject _player;
 
     public GameObject _objectPool;
@@ -55,9 +55,9 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
-            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-            // _player = ObjectPool.getInstance().get(_playerPrefab);
-            _player.GetComponent<Damageable>()._prefabPath = null;
+            // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            _player = ObjectPool.getInstance().get(_playerPrefab);
+            _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
             _player.transform.position = Vector3.zero;
         }
         else
@@ -77,13 +77,15 @@ public class GameController : MonoBehaviour
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
+        ObjectPool.getInstance().remove(_playerPrefab, _player);
 
         return true;
     }
     //波次开始
     public void waveStart()
     {
-        _player.SetActive(true);
+        // _player.SetActive(true);
+        _player = ObjectPool.getInstance().get(_playerPrefab);
         MonsterInfoCalcu.Instance.Cal();
         // Debug.Log("genMonstreCount.Count=" + MonsterInfoCalcu.Instance.genMonsterCount.Count);
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
