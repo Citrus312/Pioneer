@@ -167,6 +167,7 @@ public class JsonLoader
             PropAttribute addAttr = new();
             propConfig = propsConfig[i];
             addAttr.setPropID((int)propConfig["ID"]);
+            GameController.getInstance().getGameData()._propCountPerQuality[(int)Mathf.Floor(((int)propConfig["ID"] - 40000) / 10000)] += 1;
             addAttr.setPropName((string)propConfig["name"]);
             addAttr.setPropIcon((string)propConfig["icon"]);
             addAttr.setPropBgIcon((string)propConfig["bgIcon"]);
