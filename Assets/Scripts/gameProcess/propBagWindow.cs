@@ -8,6 +8,7 @@ public class propBagWindow : BaseWindow
     private static propBagWindow instance;
     public int buyedProp;
     public List<int> ownPropList = new();
+    public bool isExist = false;
 
     private propBagWindow()
     {
@@ -34,8 +35,6 @@ public class propBagWindow : BaseWindow
 
     protected override void AwakeWindow()
     {
-
-
         //注册UI事件(细节由子类实现)
         RegisterUIEvent();
         //填充文本内容(细节由子类实现)

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 44074652}
   - component: {fileID: 44074651}
   - component: {fileID: 44074650}
+  - component: {fileID: 44074653}
   m_Layer: 0
   m_Name: SkipButton
   m_TagString: Untagged
@@ -257,6 +258,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44074648}
   m_CullTransparentMesh: 1
+--- !u!114 &44074653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44074648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7451260f52d8aa4b816249509fb0481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &135464595
 GameObject:
   m_ObjectHideFlags: 3
@@ -866,6 +879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 565584254}
+  skatingSpeedRatio: 2
 --- !u!212 &565584256
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -964,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
+  _prefabPath: 
 --- !u!1 &615207320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1151,7 @@ GameObject:
   - component: {fileID: 655425559}
   - component: {fileID: 655425558}
   - component: {fileID: 655425557}
+  - component: {fileID: 655425560}
   m_Layer: 0
   m_Name: SkipButton
   m_TagString: Untagged
@@ -1258,6 +1274,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655425555}
   m_CullTransparentMesh: 1
+--- !u!114 &655425560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655425555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7451260f52d8aa4b816249509fb0481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783383108
 GameObject:
   m_ObjectHideFlags: 0

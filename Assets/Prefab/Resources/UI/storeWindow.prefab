@@ -327,11 +327,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponPropList: []
+  PropPoolList: []
   selectedCardId: 
   lockedCardIndex: 
   isLocked: 
   normalColor: {r: 1, g: 1, b: 1, a: 0.5}
   highLightColor: {r: 0, g: 0, b: 0, a: 0.5}
+  luck: 0
+  probability:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1762611132644304699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2013902944122228730}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3132917408266603391}
+        m_TargetAssemblyTypeName: textController, Assembly-CSharp
+        m_MethodName: startRefreshOnclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3047241763600731025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,10 +2940,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u77F3\u5934"
+  m_text: "\u77F3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c55e8ee059bb3b0469678b4d9c8a5247, type: 2}
-  m_sharedMaterial: {fileID: -3229664984336658175, guid: c55e8ee059bb3b0469678b4d9c8a5247, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23d649f1bce4aa74dadd660da92b5846, type: 2}
+  m_sharedMaterial: {fileID: -4481395151793968722, guid: 23d649f1bce4aa74dadd660da92b5846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

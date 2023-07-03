@@ -31,11 +31,13 @@ public class textController : MonoBehaviour
             selectedCardId[i] = -1;
         }
 
-        
+
 
         //加载json文件将数据放入卡池
-        JsonLoader.LoadAndDecodeWeaponConfig();
-        JsonLoader.LoadAndDecodePropConfig();
+        if (JsonLoader.propPool.Count == 0)
+            JsonLoader.LoadAndDecodePropConfig();
+        if (JsonLoader.weaponPool.Count == 0)
+            JsonLoader.LoadAndDecodeWeaponConfig();
         WeaponPropList = JsonLoader.weaponPool;
         PropPoolList = JsonLoader.propPool;
 
@@ -448,9 +450,9 @@ public class textController : MonoBehaviour
                 }
                 GameObject card = GameObject.Find(cardName);
                 card.SetActive(false);
-                Debug.Log("购买成功");
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
                 weaponBagWindow.Instance.ownWeaponList.Add(selectedCardId[cardID]);
+                GameController.getInstance().getGameData()._weaponList.Add(selectedCardId[cardID]);
             }
         }
         else
@@ -478,9 +480,25 @@ public class textController : MonoBehaviour
             card.SetActive(false);
             Debug.Log("购买成功");
             propBagWindow.Instance.buyedProp = selectedCardId[cardID];
-            propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-
+            if(propBagWindow.Instance.ownPropList.Contains(selectedCardId[cardID]))
+            {
+                propBagWindow.Instance.isExist = true;
+                propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
+                GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+            }
+            else
+            {
+                propBagWindow.Instance.isExist = false;
+                propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
+                GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+            }
         }
 
+    }
+
+    //点击出发按钮后会自动刷新一次
+    public void startRefreshOnclick()
+    {
+        OnRefreshButtonClicked();
     }
 }
