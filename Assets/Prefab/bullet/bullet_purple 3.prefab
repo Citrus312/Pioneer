@@ -48,9 +48,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: -0.06596137, y: -0.0052076764}
+  m_Size: {x: 0.6320079, y: 0.12167687}
+  m_Direction: 1
 --- !u!50 &-4963964288423747914
 Rigidbody2D:
   serializedVersion: 4
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba32e007a7355504bb8b9637fde1ac5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVFX: Assets/Prefab/Bullet/Fireball VFX.prefab
+  _hitVFX: Assets/Prefab/Bullet/Hit VFX.prefab
   _weapon: {fileID: 300666766787327960, guid: d85eb20d8d915b141aab30c802822970, type: 3}
   _prefab: 
 --- !u!212 &-2299552602624554283

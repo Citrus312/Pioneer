@@ -251,4 +251,4 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  _bulletPrefab: Assets/Prefab/Bullet/monster_bullet.prefab
+  _bulletPrefab: Assets/Prefab/Bullet/Fireball3.prefab

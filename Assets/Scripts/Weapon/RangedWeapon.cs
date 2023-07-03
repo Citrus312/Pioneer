@@ -9,14 +9,13 @@ public class RangedWeapon : Weapon
 {
     //子弹的预制体
     // [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/bullet_red 3.prefab";
+    [SerializeField] protected string _bulletPrefab;
     //子弹的贯穿次数
     protected int _pierce;
 
     protected override void Awake()
     {
         base.Awake();
-        _bulletPrefab = "Assets/Prefab/Bullet/bullet_red 3.prefab";
         _pierce = 1;
     }
 

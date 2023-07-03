@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &9044822310326348336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +128,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 9044822311358194943}
   _grip: {fileID: 9044822310622223376}
   _endPoint: {fileID: 9044822311236233482}
-  _bulletPrefab: 
+  _bulletPrefab: Assets/Prefab/Bullet/bullet_yellow 3.prefab
 --- !u!1 &9044822310622223407
 GameObject:
   m_ObjectHideFlags: 0

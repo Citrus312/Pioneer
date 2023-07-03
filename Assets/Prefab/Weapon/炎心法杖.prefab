@@ -128,7 +128,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 8793653922392239980}
   _grip: {fileID: 8793653923128465283}
   _endPoint: {fileID: 8793653922513543833}
-  _bulletPrefab: {fileID: 6787016985104416660, guid: ec177da7ee6357d488c5975c4bb6c205, type: 3}
+  _bulletPrefab: Assets/Prefab/Bullet/bullet_red 3.prefab
 --- !u!1 &8793653922392239981
 GameObject:
   m_ObjectHideFlags: 0
