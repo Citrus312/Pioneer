@@ -166,7 +166,7 @@ public class PausePageWindow : BaseWindow
     private void OnRestartBtn(Button btn)
     {
         Close();
-        SceneLoader._instance.loadScene("SampleScene");
+        SceneLoader._instance.loadScene("h_scene");
     }
 
     private void OnSettingBtn(Button btn)
