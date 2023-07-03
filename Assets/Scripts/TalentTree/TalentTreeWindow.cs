@@ -188,25 +188,124 @@ public class TalentTreeWindow : BaseWindow
         transform.localScale = new Vector3(1f, 1f, 1f);
         //点击后颜色加深
         transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+        this.transform.Find("Image_1 (1)").GetComponent<Image>().sprite = transform.GetComponent<CustomUI.CircularImage>().sprite;
     }
 
     //重置符文页的Panel，radius，color
     private void resetFirstBtn()
     {
+        //重置左侧显示图片
+        transform.Find("Image_2 (1)").GetComponent<Image>().sprite = transform.Find("Image_2").GetComponent<Image>().sprite;
+        transform.Find("Image_3 (1)").GetComponent<Image>().sprite = transform.Find("Image_3").GetComponent<Image>().sprite;
+        transform.Find("Image_4 (1)").GetComponent<Image>().sprite = transform.Find("Image_4").GetComponent<Image>().sprite;
+
+        //重置右侧显示图片及文本
+        transform.Find("ContentPanel").transform.Find("Image").GetComponent<CustomUI.CircularImage>().sprite = transform.Find("ContentPanel").transform.Find("Image (1)").GetComponent<CustomUI.CircularImage>().sprite;
+        transform.Find("ContentPanel").transform.Find("Title").GetComponent<Text>().text = "";
+        transform.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = "";
+
+        //重置主符文
         transform.Find("AttackButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("DefenseButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("ComprehensiveButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-
-        transform.Find("RecoveryPanel").gameObject.SetActive(false);
         transform.Find("AttackPanel").gameObject.SetActive(false);
-        transform.Find("DefensePanel").gameObject.SetActive(false);
-        transform.Find("ComprehensivePanel").gameObject.SetActive(false);
-
         transform.Find("AttackButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("DefenseButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("DefensePanel").gameObject.SetActive(false);
         transform.Find("DefenseButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("ComprehensiveButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("ComprehensivePanel").gameObject.SetActive(false);
         transform.Find("ComprehensiveButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("RecoveryPanel").gameObject.SetActive(false);
         transform.Find("RecoveryButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        //重置Attack的副按钮
+        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置Recovery的副按钮
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置Defense的副按钮
+        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置ComprehensivePanel的副按钮
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置属性条
+        resetDictionary(attribute1);
+        resetDictionary(attribute2);
+        resetDictionary(attribute3);
+
 
     }
 
@@ -226,7 +325,7 @@ public class TalentTreeWindow : BaseWindow
         GameObject.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = GameObject.Find(second.name).transform.Find("content").GetComponent<Text>().text;
 
         GameObject.Find(second.name).transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-
+        GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
 
 
         switch (second.name)
@@ -234,150 +333,150 @@ public class TalentTreeWindow : BaseWindow
             //生命符文
             case "EButton1":
                 attribute1["maxHealth"] += 1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton2":
                 attribute1["healthRecovery"] += 1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton3":
                 attribute1["healthSteal"] += 0.01f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton4":
                 attribute2["maxHealth"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton5":
                 attribute2["healthRecovery"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton6":
                 attribute2["healthSteal"] += 0.02f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton7":
                 attribute3["maxHealth"] += 4f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton8":
                 attribute3["healthRecovery"] += 4f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "EButton9":
                 attribute3["healthSteal"] += 0.04f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             //防御符文
             case "DButton1":
                 attribute1["armorStrength"] += 1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton2":
                 attribute1["dodgeRate"] += 0.02f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton3":
                 attribute1["moveSpeedAmplification"] += 0.02f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton4":
                 attribute2["armorStrength"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton5":
                 attribute2["dodgeRate"] += 0.04f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton6":
                 attribute2["moveSpeedAmplification"] += 0.04f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton7":
                 attribute3["armorStrength"] += 3f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton8":
                 attribute3["dodgeRate"] += 0.06f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "DButton9":
                 attribute3["moveSpeedAmplification"] += 0.06f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             //攻击符文1（暴击率，伤害增幅）
             case "AButton1":
                 attribute1["criticalRate"] += 0.04f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton2":
                 attribute1["attackAmplification"] += 0.04f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton3":
                 attribute1["meleeDamage"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton4":
                 attribute2["criticalRate"] += 0.06f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton5":
                 attribute2["attackAmplification"] += 0.08f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton6":
                 attribute2["rangedDamage"] += 1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton7":
                 attribute3["criticalRate"] += 0.08f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton8":
                 attribute3["attackAmplification"] += 0.12f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "AButton9":
                 attribute3["abilityDamage"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             //攻击符文2（综合：范围，攻速）
             case "CButton1":
                 attribute1["meleeDamage"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton2":
                 attribute1["attackRangeAmplification"] += 10f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton3":
                 attribute1["attackSpeedAmplification"] += 0.08f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+                transform.Find("Image_2 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton4":
                 attribute2["rangedDamage"] += 1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton5":
                 attribute2["attackRangeAmplification"] += 40f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton6":
                 attribute2["attackSpeedAmplification"] += 0.1f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton7":
                 attribute3["abilityDamage"] += 2f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton8":
                 attribute3["attackRangeAmplification"] += 20f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton9":
                 attribute3["attackSpeedAmplification"] += 0.06f;
-                GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
+                transform.Find("Image_4 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
         }
 
@@ -391,25 +490,19 @@ public class TalentTreeWindow : BaseWindow
         secondTrasform.parent.GetChild(0).transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         secondTrasform.parent.GetChild(1).transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         secondTrasform.parent.GetChild(2).transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        secondTrasform.parent.GetChild(0).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        secondTrasform.parent.GetChild(1).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        secondTrasform.parent.GetChild(2).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
 
         switch (secondTrasform.parent.name)
         {
             case "Panel1":
-                secondTrasform.parent.GetChild(0).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-                secondTrasform.parent.GetChild(1).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-                secondTrasform.parent.GetChild(2).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
                 resetDictionary(attribute1);
                 break;
             case "Panel2":
-                secondTrasform.parent.GetChild(0).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-                secondTrasform.parent.GetChild(1).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-                secondTrasform.parent.GetChild(2).transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
                 resetDictionary(attribute2);
                 break;
             case "Panel3":
-                secondTrasform.parent.GetChild(0).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 0.5f);
-                secondTrasform.parent.GetChild(1).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 0.5f);
-                secondTrasform.parent.GetChild(2).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 0.5f);
                 resetDictionary(attribute3);
                 break;
             default:
