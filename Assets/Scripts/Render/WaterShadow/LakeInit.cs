@@ -14,8 +14,8 @@ public class LakeInit : MonoBehaviour
     {
         // 创建一个新的相机
         GameObject cameraObject = new GameObject("NewCamera");
-        cameraObject.transform.position = new Vector3(this.transform.position.x + 60.0f, this.transform.position.y + 4.5f, -10.0f);
-        cameraObject.transform.rotation = this.transform.rotation;
+        cameraObject.transform.position = new Vector3(-this.transform.position.x + 60.0f, this.transform.position.y + 4.5f, -10.0f);
+        cameraObject.transform.rotation = Quaternion.Euler(0, 0, 180.0f);
         
         // 添加相机组件到相机对象上
         tempCamera = cameraObject.AddComponent<Camera>();

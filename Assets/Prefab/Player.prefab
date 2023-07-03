@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2582487769076849214}
   - component: {fileID: 2582487769076849154}
   - component: {fileID: 2582487769076849153}
+  - component: {fileID: -5963691374564252842}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -201,3 +202,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &-5963691374564252842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582487769076849202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

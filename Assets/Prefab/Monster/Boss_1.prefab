@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 1286853561412380474}
   - component: {fileID: 7384178506596898394}
   - component: {fileID: 6586489317002370374}
+  - component: {fileID: 978715534149269708}
   m_Layer: 7
   m_Name: Boss_1
   m_TagString: Untagged
@@ -239,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &1286853561412380474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +267,9 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
+  radius: 0
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &6586489317002370374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,3 +324,16 @@ MonoBehaviour:
   - 235
   - 280
   - 325
+--- !u!114 &978715534149269708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906711177235312325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

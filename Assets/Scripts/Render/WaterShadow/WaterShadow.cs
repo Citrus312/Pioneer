@@ -20,9 +20,9 @@ public class WaterShadow : MonoBehaviour
     void Update()
     {
         copySprite.sprite = selfSprite.sprite;
-        copySprite.flipX = selfSprite.flipX;
-        copyObj.transform.position = new Vector3(this.transform.position.x + 60.0f, -this.transform.position.y);
-        copyObj.transform.localScale = new Vector3(this.transform.localScale.x, -this.transform.localScale.y);
+        copySprite.flipX = !selfSprite.flipX;
+        copyObj.transform.position = new Vector3(-this.transform.position.x + 60.0f, this.transform.position.y);
+        copyObj.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y);
     }
 
     public void removeWaterShadow()

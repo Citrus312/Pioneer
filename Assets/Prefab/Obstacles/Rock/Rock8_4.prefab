@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6201030562489916142}
   - component: {fileID: 6201030562489916145}
   - component: {fileID: -2563341694177518586}
+  - component: {fileID: 4957987710927765945}
   m_Layer: 3
   m_Name: Rock8_4
   m_TagString: Obstacles
@@ -135,3 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0.6
+--- !u!114 &4957987710927765945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6201030562489916144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab
