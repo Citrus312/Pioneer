@@ -16,6 +16,9 @@ public class GameData
     // 当前选择的游戏难度
     public int _difficulty;
 
+    // 各种品质道具的数量
+    public int[] _propCountPerQuality = { 0, 0, 0, 0 };
+
     // 拥有的道具种类
     public List<int> _propList = new List<int>();
 
@@ -29,16 +32,16 @@ public class GameData
     public CharacterAttribute _attr = new();
 
     // 当前波次
-    public int _wave=1;
+    public int _wave = 1;
 
     // 当前选择的关卡
     public int _level;
 
     // 货币
-    public int _money=0;
+    public int _money = 0;
 
     // 角色等级
-    public int _playerLevel=2;
+    public int _playerLevel = 2;
 
     // 经验
     public float _exp;

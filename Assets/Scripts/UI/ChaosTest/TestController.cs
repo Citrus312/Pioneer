@@ -30,14 +30,14 @@ public class TestController : MonoBehaviour
         //Debug.Log($"masterPool  {JsonLoader.monsterPool.Count}");
         for (int i = 0; i < 6; i++)
         {
-            GameController.getInstance().getGameData()._weaponList.Add(3);
+            GameController.getInstance().getGameData()._weaponList.Add(55);
         }
         //GameController.getInstance().getGameData()._weaponList.Add(1);
         GameController.getInstance().getGameData()._playerID = 0;
         GameController.getInstance().initBattleScene();
         GameController.getInstance().getGameData()._difficulty = 4;
         GameController.getInstance().getGameData()._wave = 19;
-        GameController.getInstance().getGameData()._scene = "BattleScene1";
+        GameController.getInstance().getGameData()._scene = "Purple";
         //Debug.Log(GameController.getInstance().getGameData()._weaponList.Count);
         //Debug.Log(JsonLoader.weaponPool.Count);
         CM.Follow = GameController.getInstance().getPlayer().transform;
@@ -46,7 +46,11 @@ public class TestController : MonoBehaviour
         //GameController.getInstance().ModifyProp(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRangedDamage(20);
-        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAttackSpeedAmplification(100);
+        //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAttackSpeedAmplification(100);
+        //Debug.Log($"normal {GameController.getInstance().getGameData()._propCountPerQuality[0]}");
+        //Debug.Log($"senior {GameController.getInstance().getGameData()._propCountPerQuality[1]}");
+        //Debug.Log($"elite {GameController.getInstance().getGameData()._propCountPerQuality[2]}");
+        //Debug.Log($"legendary {GameController.getInstance().getGameData()._propCountPerQuality[3]}");
         GameController.getInstance().waveStart();
     }
 }

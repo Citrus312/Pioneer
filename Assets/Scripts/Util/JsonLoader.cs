@@ -147,6 +147,9 @@ public class JsonLoader
                     case "polearms":
                         tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
                         break;
+                    case "sword":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Sword);
+                        break;
                     default:
                         Debug.Log("weapon json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
                         break;
@@ -169,6 +172,7 @@ public class JsonLoader
             PropAttribute addAttr = new();
             propConfig = propsConfig[i];
             addAttr.setPropID((int)propConfig["ID"]);
+            GameController.getInstance().getGameData()._propCountPerQuality[(int)Mathf.Floor(((int)propConfig["ID"] - 40000) / 10000)] += 1;
             addAttr.setPropName((string)propConfig["name"]);
             addAttr.setPropIcon((string)propConfig["icon"]);
             addAttr.setPropBgIcon((string)propConfig["bgIcon"]);
@@ -304,6 +308,9 @@ public class JsonLoader
                         break;
                     case "polearms":
                         tempCategory.Add(WeaponAttribute.WeaponCategory.Polearms);
+                        break;
+                    case "sword":
+                        tempCategory.Add(WeaponAttribute.WeaponCategory.Sword);
                         break;
                     default:
                         Debug.Log("role json config " + i + ": weapon category" + (string)weaponCategory[i] + " error");
