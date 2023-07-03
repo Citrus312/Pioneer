@@ -430,6 +430,7 @@ MonoBehaviour:
   - Assets/Prefab/Obstacles/Rock/Rock1_3.prefab
   - Assets/Prefab/Obstacles/Rock/Rock1_4.prefab
   - Assets/Prefab/Obstacles/Rock/Rock1_5.prefab
+  - Assets/Prefab/Obstacles/Lake/Lake_1.prefab
   _terrainList: []
   _gridSize: 4
   _obstacleCnt: 8
