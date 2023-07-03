@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 1362514018175255276}
   - component: {fileID: 1362514018175255278}
   - component: {fileID: 1362514018175255186}
-  - component: {fileID: 1362514018175255187}
+  - component: {fileID: 6178304503803497143}
   - component: {fileID: 4767062174331305175}
   - component: {fileID: 4025176803056103484}
   - component: {fileID: 1537899302376484343}
   - component: {fileID: 778424921989382319}
   - component: {fileID: 4909702326223183641}
+  - component: {fileID: 5818001331195304691}
   m_Layer: 7
   m_Name: Monster2_3
   m_TagString: Untagged
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719ff943c03f834ba7d8b96a196d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1362514018175255187
+--- !u!114 &6178304503803497143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,12 +156,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362514018175255274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb0315c36ca1241982bb131674a52a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d9d1c868596de14cb647703940ecb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1362514018175255276}
   skatingSpeedRatio: 2
-  beatBackTime: 0.2
+  beatBackTime: 0.1
   beatBackTimeSpeed: 5
 --- !u!70 &4767062174331305175
 CapsuleCollider2D:
@@ -176,7 +177,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.04}
-  m_Size: {x: 0.19299752, y: 0.2399008}
+  m_Size: {x: 0.26, y: 0.26}
   m_Direction: 0
 --- !u!114 &4025176803056103484
 MonoBehaviour:
@@ -205,7 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 20
 --- !u!114 &778424921989382319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +233,22 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  radius: 0
+  radius: 0.25
   offsetX: 0
-  offsetY: 0
+  offsetY: -0.04
+--- !u!114 &5818001331195304691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362514018175255274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2e9c6de80f561408936c9cae3f1932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attachPoint: {fileID: 0}
+  _grip: {fileID: 0}
+  _endPoint: {fileID: 0}
+  _bulletPrefab: Assets/Prefab/Bullet/monster_bullet.prefab

@@ -40,7 +40,7 @@ public class WeaponDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
         weaponAttrText.text = $"<color=yellow>伤害</color>:  {weapon.getWeaponDamage()} | {weapon.getRawWeaponDamage()}\n" +
                               $"<color=yellow>范围</color>:  {weapon.getAttackRange()} | {weapon.getRawAttackRange()}\n" +
                               $"<color=yellow>转化</color>:  {weapon.getConvertRatio() * 100}%\n" +
-                              $"<color=yellow>暴击</color>:  x{weapon.getCriticalBonus()} ({weapon.getCriticalRate() * 100}%)\n" +
+                              $"<color=yellow>暴击</color>:  x{weapon.getCriticalBonus()} ({weapon.getRawCriticalRate() * 100}%)\n" +
                               $"<color=yellow>攻速</color>:  {weapon.getAttackSpeed()}s\n";
         //将面板移动到指定位置
         detailDisplay.transform.GetChild(0).position = new Vector3(transform.position.x, transform.position.y - 130f, transform.position.z);

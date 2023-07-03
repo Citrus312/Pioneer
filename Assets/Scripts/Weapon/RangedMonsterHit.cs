@@ -12,6 +12,8 @@ public class RangedMonsterHit : Weapon
     [SerializeField] protected string _bulletPrefab = "Assets/Prefab/Bullet/monster_bullet.prefab";
     //子弹的贯穿次数
     protected int _pierce;
+    //射击间隔
+    private float _interval = 3.0f;
 
     protected new virtual void Awake()
     {
@@ -44,14 +46,14 @@ public class RangedMonsterHit : Weapon
         //找到射击方向
         if (attackDirection != new Vector2(0, 0))
         {
-            Debug.DrawLine(_attachPoint.position, getAttackDirection("Player") * 100, Color.red);
+            Debug.DrawLine(_attachPoint.position, attackDirection * 100, Color.red);
 
             //如果当前时间大于攻击冷却时间则攻击
             if (Time.time > _nextAttackTime)
             {
                 shoot(attackDirection);
                 //更新下次射击时间
-                _nextAttackTime = Time.time + _weaponAttribute.getAttackSpeed();
+                _nextAttackTime = Time.time + _interval;
             }
         }
     }

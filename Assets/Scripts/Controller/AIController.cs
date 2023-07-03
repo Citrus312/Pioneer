@@ -71,13 +71,13 @@ public class AIController : Controller
         if (_dontMove)
             return;
         //如果处于滑行状态则直接向滑行方向移动
-        if (isSkating)
+        if (isSkating > 0)
             move(skatingDirection);
         else
             move(getMoveDirection());
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         // 重置碰撞盒
         GetComponent<Collider2D>().enabled = true;
@@ -98,6 +98,5 @@ public class AIController : Controller
         // 掉落物品
         CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
         DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getCrateRate());
-        base.OnDie();
     }
 }
