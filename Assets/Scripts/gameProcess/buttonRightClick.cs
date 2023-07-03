@@ -56,7 +56,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
                 compositeBtn.gameObject.SetActive(false);
             }
 
-            copyOption.localPosition = new Vector3(-150f, 180f, 0f);
+            copyOption.localPosition = new Vector3(150f, 180f, 0f);
         }
     }
     //给按钮添加监听事件
@@ -74,6 +74,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
         string n = new string(transform.name.Where(char.IsDigit).ToArray());
         int ID = int.Parse(n);
         GameController.getInstance().getGameData()._weaponList.Remove(ID);
+        GameController.getInstance().getGameData()._money +=Mathf.Ceil(JsonLoader.weaponPool[ID].getWeaponPrice() * 0.75f);
     }
 
     //武器背包中的物品右键点击事件-合成

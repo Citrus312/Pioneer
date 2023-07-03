@@ -704,49 +704,51 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                 transform.Find("Panel").GetComponentInChildren<Text>().text = "角色的最大生命值";
                 break;
             case "HealthRecovery":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[2];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每秒回复{0.2+0.1*(_player.GetComponent<CharacterAttribute>().getHealthSteal()-1)}点生命值";
                 break;
             case "HealthSteal":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[3];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%的概率回复1点生命值";
                 break;
             case "AttackAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[4];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"造成的伤害增加{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
                 break;
             case "MeleeDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[5];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"近战伤害增加{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
                 break;
             case "RangedDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[6];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"远程伤害增加{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
                 break;
             case "AbilityDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[7];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"属性伤害增加{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
                 break;
             case "AttackSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[8];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击速度增加{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
                 break;
             case "CriticalRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[9];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()*100}%的概率产生暴击";
                 break;
             case "Engineering":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[10];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "提升机器人道具的属性";
                 break;
             case "AttackRangeAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[11];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击范围叠加{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
                 break;
             case "ArmorStrength":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[12];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = _player.GetComponent<CharacterAttribute>().getArmorStrength() >= 0 ? 
+                                                                              $"减少{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%受到的伤害" :
+                                                                              $"增加{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%受到的伤害";
                 break;
             case "DodgeRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[13];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"有{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%的概率避免此次伤害";
                 break;
             case "MoveSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[14];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"移动速度增加{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
                 break;
             case "ScanAccuracy":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[15];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "提高高品质武器和道具的刷新概率";
                 break;
             case "CollectEfficiency":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[16];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每一波次结束给予{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}金矿";
                 break;
             default:
                 break;
