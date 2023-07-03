@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8661217208230091102}
   - component: {fileID: 3537624101654292751}
   - component: {fileID: 6893626770321378598}
+  - component: {fileID: -1982478236331305707}
   m_Layer: 7
   m_Name: Monster_3
   m_TagString: Untagged
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
+  rawAttackRange: 0
 --- !u!114 &8661217208230091102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,9 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
+  radius: 0
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &6893626770321378598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,3 +237,19 @@ MonoBehaviour:
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
   _prefabPath: 
+--- !u!114 &-1982478236331305707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113607264010915762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2e9c6de80f561408936c9cae3f1932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attachPoint: {fileID: 0}
+  _grip: {fileID: 0}
+  _endPoint: {fileID: 0}
+  _bulletPrefab: Assets/Prefab/Bullet/monster_bullet.prefab

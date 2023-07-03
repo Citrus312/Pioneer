@@ -18,7 +18,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器的弹道数
     private int bulletCount = 1;
     //武器基础攻击范围
-    [SerializeField] private float rawAttackRange = 5.0f;
+    private float rawAttackRange = 0;
     //对应类型伤害的转换比例
     private float convertRatio = 0.8f;
     //暴击伤害的倍率
@@ -46,11 +46,6 @@ public class WeaponAttribute : MonoBehaviour
     //武器的预制体路径
     private string weaponPrefabPath;
 
-
-    private void Start()
-    {
-        ownerAttr = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
-    }
     public void setOwnerAttr(CharacterAttribute input)
     {
         ownerAttr = input;
@@ -176,7 +171,7 @@ public class WeaponAttribute : MonoBehaviour
     //获取武器经过角色属性加成后的攻击范围
     public float getAttackRange()
     {
-        return rawAttackRange + ownerAttr.getAttackRangeAmplification() >= 0 ? rawAttackRange + ownerAttr.getAttackRangeAmplification() : 0;
+        return ((rawAttackRange + ownerAttr.getAttackRangeAmplification()) >= 0) ? rawAttackRange + ownerAttr.getAttackRangeAmplification() : 0;
     }
 
     //获取武器基础伤害

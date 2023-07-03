@@ -71,7 +71,7 @@ public class AIController : Controller
         if (_dontMove)
             return;
         //如果处于滑行状态则直接向滑行方向移动
-        if (isSkating)
+        if (isSkating > 0)
             move(skatingDirection);
         else
             move(getMoveDirection());

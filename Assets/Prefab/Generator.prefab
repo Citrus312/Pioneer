@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94319191e21030d4ea0477491638235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterPrefabPath: 
-  _distance: 0
+  _meleeMonsterDistance: 5
+  _rangedMonsterX: 10
+  _rangedMonsterY: 5
 --- !u!114 &6153411045653467629
 MonoBehaviour:
   m_ObjectHideFlags: 0
