@@ -22,6 +22,9 @@ public class TextController : MonoBehaviour
     public GameObject _nextLog;
     protected List<string> _textList = new List<string>();
 
+    [Header("音效")]
+    public AudioSource _dialogueAudio;
+
     protected TextController()
     {
         _textSpeed = 0.05f;
@@ -107,6 +110,11 @@ public class TextController : MonoBehaviour
         for(int i = 0; !_textFinished && i < _textList[_index].Length; i++)
         {
             _textLabel.text += _textList[_index][i];
+            // 播放音效
+            if(_dialogueAudio != null && (i % 2 == 0))
+            {
+                _dialogueAudio.PlayOneShot(_dialogueAudio.clip);
+            }
 
             yield return new WaitForSeconds(_textSpeed);
         }

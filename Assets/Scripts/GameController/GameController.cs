@@ -34,8 +34,6 @@ public class GameController : MonoBehaviour
         JsonLoader.LoadAndDecodePropConfig();
         JsonLoader.LoadAndDecodeRoleConfig();
         JsonLoader.LoadAndDecodeWeaponConfig();
-        // initBattleScene();
-        // MonsterGenerator.getInstance().beginGenerate("Assets/Prefab/Monster/Monster_1.prefab", 3, _player.GetComponent<CharacterAttribute>());
     }
 
     //初始化战斗场景
