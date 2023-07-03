@@ -84,6 +84,7 @@ public class JsonLoader
             addAttr.setRawCriticalRate((float)temp);
             temp = (double)weaponConfig["price"];
             addAttr.setWeaponPrice((float)temp);
+            addAttr.setBulletCount((int)weaponConfig["bulletCount"]);
             addAttr.setWeaponID((int)weaponConfig["ID"]);
             addAttr.setWeaponName((string)weaponConfig["name"]);
             addAttr.setWeaponIcon((string)weaponConfig["icon"]);

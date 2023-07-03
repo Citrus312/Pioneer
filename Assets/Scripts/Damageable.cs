@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
     public class DamageableEvent : UnityEvent { }
-    public float currentHealth { get; protected set; }
+    //public float currentHealth { get; protected set; }
     [SerializeField]
     public DamageableEvent onDeath = new DamageableEvent();
     //受击闪烁的颜色
@@ -19,6 +19,7 @@ public class Damageable : MonoBehaviour
 
     protected void Awake()
     {
+
         onDeath.AddListener(die);
         //初始化受击闪烁颜色和持续时间
         _onHitColor = new Color(255.0f / 255.0f, 100.0f / 255.0f, 100.0f / 255.0f, 255.0f / 255.0f);
@@ -29,7 +30,7 @@ public class Damageable : MonoBehaviour
     private IEnumerator OnHit()
     {
         // 镜头震动，判断角色
-        if(gameObject.tag == "Player")
+        if (gameObject.tag == "Player")
         {
             CameraShake._instance.startShake();
         }
@@ -42,6 +43,7 @@ public class Damageable : MonoBehaviour
 
     private void die()
     {
+        Debug.Log(GetComponent<CharacterAttribute>().getMaxHealth());
         GetComponent<Controller>().OnDie();
         // 死亡动画
         GetComponent<Animator>().SetBool("B_isAlive", false);
@@ -58,10 +60,12 @@ public class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        GetComponent<CharacterAttribute>().setCurrentHealth(currentHealth);
+        Debug.Log($"damage: {damage}");
+        GetComponent<CharacterAttribute>().setCurrentHealth(GetComponent<CharacterAttribute>().getCurrentHealth() - damage);
+        //currentHealth -= damage;
+        //GetComponent<CharacterAttribute>().setCurrentHealth(currentHealth);
         StartCoroutine("OnHit");
-        if (currentHealth <= 0)
+        if (GetComponent<CharacterAttribute>().getCurrentHealth() <= 0)
         {
             onDeath.Invoke();
         }
