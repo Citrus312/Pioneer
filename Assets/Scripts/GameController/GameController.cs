@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         _instance = this;
     }
 
-    private void Start()
+    private void Awake()
     {
         JsonLoader.LoadAndDecodeGameData();
         JsonLoader.LoadAndDecodeMonsterConfig();

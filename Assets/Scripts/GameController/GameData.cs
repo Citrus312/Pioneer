@@ -38,10 +38,10 @@ public class GameData
     public int _level;
 
     // 货币
-    public int _money = 0;
+    public float _money = 0;
 
     // 角色等级
-    public int _playerLevel = 2;
+    public int _playerLevel=2;
 
     // 经验
     public float _exp;

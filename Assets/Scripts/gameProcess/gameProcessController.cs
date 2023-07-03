@@ -21,9 +21,9 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public float maxBlood;//最大生命值
     public float experience;//当前经验值
     public float maxExperience;//最大经验值
-    public int level = 1;//关卡数
+    public int level=1;//关卡数
     public TextMeshProUGUI levelText;//关卡显示文本
-    public int money;
+    public float money;
 
     public float HPValue;
     public float EXPValue;
@@ -36,13 +36,15 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public List<PropAttribute> PropPoolList;
 
     Transform stateBg;//由当前血量值决定的效果图
-
+    
     //倒计时需要用到的变量
     public float currentTime;
     public float totalTime;
     public TextMeshProUGUI timeText;
     void Start()
     {
+
+        test();
         //初始化窗口
         origin();
 
@@ -56,11 +58,11 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     // Update is called once per frame
     void Update()
     {
-        if (currentTime <= 10)
+        if(currentTime<=10)
         {
             timeText.color = Color.red;
         }
-        if (currentTime == 0)
+         if(currentTime==0)
         {
             timeEnd();
         }
@@ -88,7 +90,13 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         blood = playerProperty.getCurrentHealth();
         experience = GameController.getInstance().getGameData()._exp;
         money = GameController.getInstance().getGameData()._money;
-        while (experience >= EXPMaxValue)
+        Transform moneyValue = storeWindow.Instance.getTransform().Find("moneyValue");
+        Transform roleState = roleStateWindow.Instance.getTransform().Find("roleState");
+        Transform moneyValue2 = roleState.Find("moneyValue");
+        moneyValue.GetComponent<TextMeshProUGUI>().text = "" + money;
+        moneyValue2.GetComponent<TextMeshProUGUI>().text = "" + money;
+
+        while(experience>=EXPMaxValue)
         {
             experience = experience - EXPMaxValue;
             GameController.getInstance().getGameData()._exp = experience;
@@ -100,40 +108,69 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         HPValue = blood;
         EXPValue = experience;
 
-        if (HPValue <= 0)
+        if(HPValue<=0)
         {
             Time.timeScale = 0f;
             //死亡界面
         }
-        else if (HPValue <= HPMaxValue * 2 / 3 && HPValue > HPMaxValue * 1 / 4)
+        else if(HPValue<= HPMaxValue*2/3 && HPValue> HPMaxValue*1/4)
+        {
+            stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
+        }
+        else if(HPValue<=HPMaxValue*1/4)
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        else if (HPValue <= HPMaxValue * 1 / 4)
-        {
-            stateBg.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        }
-        HPValueText.text = "" + HPValue;
+        HPValueText.text =""+ HPValue;
         EXPValueText.text = "Lv" + grade;
-
+         
     }
 
+    //test初始化
+    void test()
+    {
+        if (JsonLoader.weaponPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeWeaponConfig();
+        }
+        if (JsonLoader.rolePool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeRoleConfig();
+        }
+        if (JsonLoader.monsterPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeMonsterConfig();
+        }
+        if (JsonLoader.propPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodePropConfig();
+        }
+        GameController.getInstance().getGameData()._weaponList.Add(12);
+        GameController.getInstance().getGameData()._playerID = 1;
+        GameController.getInstance().getGameData()._difficulty = 1;
+        GameController.getInstance().getGameData()._wave = 1;
+        GameController.getInstance().getGameData()._money = 1000;
+        GameController.getInstance().initBattleScene();
+        GameController.getInstance().getGameData()._attr = JsonLoader.rolePool[0];
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
+        GameController.getInstance().waveStart();
+    }
     //数据初始化
     void dataOrigin()
     {
-        if (JsonLoader.propPool.Count == 0)
-            JsonLoader.LoadAndDecodePropConfig();
-        if (JsonLoader.weaponPool.Count == 0)
+        if(JsonLoader.propPool.Count == 0)        
+            JsonLoader.LoadAndDecodePropConfig();       
+        if(JsonLoader.weaponPool.Count==0)
             JsonLoader.LoadAndDecodeWeaponConfig();
         WeaponPropList = JsonLoader.weaponPool;
         PropPoolList = JsonLoader.propPool;
 
-
+        GameController.getInstance().getGameData()._money = 1000f;
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
         blood = 15;
         experience = 0;
-        money = 0;
+        money = 50;
         gradeCount = 2;
         Transform roleState = roleStateWindow.Instance.getTransform().Find("roleState");
         HPValue = roleState.Find("blood").GetComponent<Slider>().value;
@@ -146,12 +183,12 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         EXPMaxValue = 20;
 
         HPValueText = roleStateWindow.Instance.getTransform().Find("HPValue").GetComponent<TextMeshProUGUI>();
-        EXPValueText = roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
+        EXPValueText= roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
 
         stateBg = roleStateWindow.Instance.getTransform().Find("stateBg");
-        stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
+        stateBg.GetComponent<RectTransform>().localScale =new Vector3(2f, 2f, 2f);
 
-
+       
 
         totalTime = 5f;//第一关时间
     }
@@ -159,14 +196,14 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //窗口初始化
     void origin()
     {
-
+        
         UIRoot.Init();
 
-
+        
 
         PausePageWindow.Instance.Open();
         PausePageWindow.Instance.Close();
-
+       
         storeWindow.Instance.Open();
         storeWindow.Instance.Close();
         upgradeWindow.Instance.Open();
@@ -180,13 +217,13 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
 
 
-        GameController.getInstance().initBattleScene();
 
         roleStateWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
         titleWindow.Instance.Open();
 
         _player = GameController.getInstance().getPlayer();
+      
         propertyWindow.Instance.inputText = getAttribute(_player);
         propertyWindow.Instance.Open();
         setAllTriggers();
@@ -196,7 +233,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         addListenerForstartBtn();
         addListenerForBuy();
 
-
+        
         Transform countDownTimer = countDownTimerWindow.Instance.getTransform().Find("countDownTimer");
         timeText = countDownTimer.GetComponent<TextMeshProUGUI>();
 
@@ -208,9 +245,9 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //倒计时计算
     void updateCountDownTimer()
     {
-
+        
         currentTime--;
-        timeText.text = "" + currentTime;
+        timeText.text = "" + currentTime ;
         if (currentTime <= 0f)
         {
             currentTime = 0;
@@ -221,7 +258,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //倒计时显示
     void timeDisplay()
     {
-        currentTime = totalTime;
+        currentTime = totalTime;      
         InvokeRepeating("updateCountDownTimer", 1f, 1f);
     }
 
@@ -234,25 +271,25 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //倒计时结束后的事件
     void timeEnd()
     {
-
+        
         Transform endText = countDownTimerWindow.Instance.getTransform().Find("endText");
         endText.gameObject.SetActive(true);
         StartCoroutine(wait());
         endText.gameObject.SetActive(false);
-        currentTime = -1;
+        currentTime = -1;       
         if (gradeCount > 0)
         {
-            Debug.Log("升级");
+           
             Time.timeScale = 0f;
             timeText.text = "<color=white>升级</color>";
             upgradeWindow.Instance.Open();
-
+            
             propertyWindow.Instance.Open();
         }
         else
         {
             Debug.Log("商店");
-
+            
             storeWindow.Instance.Open();
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
@@ -287,8 +324,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //升级按钮事件
     void upgradeBtnOnclik()
     {
-        Debug.Log("升级成功");
-        Debug.Log(gradeCount);
+     
         string n = upgradeWindow.Instance.name;
         float v = upgradeWindow.Instance.value;
         switch (n)
@@ -346,7 +382,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
         gradeCount--;
 
-        if (gradeCount == 0)
+        if(gradeCount==0)
         {
             propertyWindow.Instance.Close();
             upgradeWindow.Instance.Close();
@@ -354,10 +390,10 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
             propertyWindow.Instance.Open();
-
-
-
-
+            
+            
+            
+            
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
@@ -387,7 +423,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         //血量、经验、等级、倒计时、关卡重置
         totalTime = totalTime + 10 >= 90 ? 90 : totalTime + 10;
         timeDisplay();
-
+        
         level++;
         levelText.text = "第" + level + "关";
         GameController.getInstance().getGameData()._wave = level;
@@ -418,94 +454,148 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //购买按钮事件
     void buyBtnOnclick()
     {
-        if (weaponBagWindow.Instance.isWeapon)
+
+        if(weaponBagWindow.Instance.isWeapon)
         {
             if (weaponBagWindow.Instance.addWeapon)
             {
                 int w = weaponBagWindow.Instance.buyedWeapon;
-                string assetPath;
-                string assetPathBg;
-
-                GameObject weapon = new GameObject("weapon" + w);//背景图
-                Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
-                weapon.transform.SetParent(weaponBag);
-                weapon.AddComponent<Image>();
-                weapon.AddComponent<buttonRightClick>();
-
-                GameObject image = new GameObject("image");//武器图
-                image.transform.SetParent(weapon.transform);
-                image.AddComponent<Image>();
-
-                RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
-                rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
-
-                if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+                if(WeaponPropList[w].getWeaponPrice() > GameController.getInstance().getGameData()._money)
                 {
-                    assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
-                }
-                else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
-                {
-                    assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    Debug.Log("钱不够");
+                   // Debug.Log(GameController.getInstance().getGameData()._money);
                 }
                 else
                 {
-                    assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    GameController.getInstance().getGameData()._money -= WeaponPropList[w].getWeaponPrice();
+                    //Debug.Log(GameController.getInstance().getGameData()._money);
+                    string assetPath;
+                    string assetPathBg;
+                    GameObject weapon = new GameObject("weapon" + w);//背景图
+                    Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+                    weapon.transform.SetParent(weaponBag);
+                    weapon.AddComponent<Image>();
+                    weapon.AddComponent<buttonRightClick>();                  
+                    GameObject image = new GameObject(""+w);//武器图
+                    image.transform.SetParent(weapon.transform);
+                    //image.AddComponent<Image>();
+
+                    GameObject id = new GameObject("id");
+                    id.transform.SetParent(image.transform);
+                    id.AddComponent<Image>();
+                    id.AddComponent<WeaponDetailDisplay>();
+                    if (GameObject.Find("DetailPanel") == null)
+                    {
+                        GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                        obj = GameObject.Instantiate(obj);
+                        obj.SetActive(false);
+                        id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
+
+                    }
+
+
+                    RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+                    rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
+
+                    if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+                    else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+                    else
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+
+                    loadImage(assetPathBg, weapon.transform);
+                    loadImage(assetPath, id.transform);
                 }
-
-                loadImage(assetPathBg, weapon.transform);
-                loadImage(assetPath, image.transform);
+                
             }
-
+           
         }
         else
         {
             int w = propBagWindow.Instance.buyedProp;
             w = w - 40000;
-            string assetPath;
-            string assetPathBg;
-            Transform propBag = propBagWindow.Instance.getTransform().Find("propBag");
-            Transform listContent = propBag.Find("listContent");
-            if (propBagWindow.Instance.isExist)
+            if (PropPoolList[w].getPropPrice() > GameController.getInstance().getGameData()._money)
             {
-                Transform existedProp = listContent.Find("prop" + w);
-                Transform count = existedProp.Find("count");
-                string text = count.GetComponent<TextMeshProUGUI>().text;
-                int c = int.Parse(text);
-                c += 1;
-                count.GetComponent<TextMeshProUGUI>().text = c.ToString();
-                count.gameObject.SetActive(true);
-
+                Debug.Log("钱不够");
+                //Debug.Log(GameController.getInstance().getGameData()._money);
             }
             else
             {
-                GameObject prop = new GameObject("prop" + w);//背景图
-                prop.transform.SetParent(listContent);
-                prop.AddComponent<Image>();
-                //prop.AddComponent<propRightClick>();
+                GameController.getInstance().getGameData()._money -= PropPoolList[w].getPropPrice();
+                //Debug.Log(GameController.getInstance().getGameData()._money);
+                string assetPath;
+                string assetPathBg;
+                Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
+                Transform viewport = propBag.Find("Viewport");
+                Transform listContent = viewport.Find("Content");
+                if (propBagWindow.Instance.isExist)
+                {
+                    Transform existedProp = listContent.Find("prop" + w);
+                    Transform count = existedProp.Find("count");
+                    string text = count.GetComponent<TextMeshProUGUI>().text;
+                    int c = int.Parse(text);
+                    c += 1;
+                    count.GetComponent<TextMeshProUGUI>().text = c.ToString();
+                    count.gameObject.SetActive(true);
 
-                GameObject item = new GameObject("count");//数量标签
-                item.transform.SetParent(prop.transform);
-                item.AddComponent<TextMeshProUGUI>();
-                item.GetComponent<TextMeshProUGUI>().text = "" + 0;
-                item.SetActive(false);
-                item.transform.localPosition = new Vector3(150f, -40f, 0f);
-                item.GetComponent<TextMeshProUGUI>().fontSize = 40;
-                string fontPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/" + "fontFirst";
-                TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
-                item.GetComponent<TMP_Text>().font = font;
+                }
+                else
+                {
+                    GameObject prop = new GameObject("prop" + w);//背景图
+                   
+          
+                    prop.transform.SetParent(listContent);
+                    prop.AddComponent<Image>();
+                    //prop.AddComponent<propRightClick>();
 
-                GameObject image = new GameObject("image");//道具图
-                image.transform.SetParent(prop.transform);
-                image.AddComponent<Image>();
-                RectTransform rectProp = prop.GetComponent<RectTransform>();
-                rectProp.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                assetPathBg = "Assets/Sprites/Weapon/" + PropPoolList[w].getPropBgIcon();
 
-                assetPath = "Assets/Sprites/Prop/" + PropPoolList[w].getPropIcon();
 
-                loadImage(assetPathBg, prop.transform);
-                loadImage(assetPath, image.transform);
+
+                    GameObject item = new GameObject("count");//数量标签
+                    item.transform.SetParent(prop.transform);
+                    item.AddComponent<TextMeshProUGUI>();
+                    item.GetComponent<TextMeshProUGUI>().text = "" + 0;
+                    item.SetActive(false);
+                    item.transform.localPosition = new Vector3(150f, -40f, 0f);
+                    item.GetComponent<TextMeshProUGUI>().fontSize = 40;
+                    string fontPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/" + "fontFirst";
+                    TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
+                    item.GetComponent<TMP_Text>().font = font;
+
+                    GameObject image = new GameObject("" + w);//道具图
+                    image.transform.SetParent(prop.transform);
+                    image.AddComponent<Image>();
+                    RectTransform rectProp = prop.GetComponent<RectTransform>();
+                    rectProp.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    image.transform.localPosition = new Vector3(0f, 0f, 0f);
+                    assetPathBg = "Assets/Sprites/Weapon/" + PropPoolList[w].getPropBgIcon();
+
+                    assetPath = "Assets/Sprites/Prop/" + PropPoolList[w].getPropIcon();
+
+                    loadImage(assetPathBg, prop.transform);
+                    loadImage(assetPath, image.transform);
+
+
+                    image.AddComponent<PropDetailDisplay>();
+                    
+                    //Debug.Log(image.GetComponent<PropDetailDisplay>().detailDisplay);
+                    if(GameObject.Find("DetailPanel")==null)
+                    {
+                        GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                        obj = GameObject.Instantiate(obj);
+                        obj.SetActive(false);
+                        image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
+
+                    }
+                }
             }
         }
     }
@@ -538,7 +628,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     //获取属性文本
     private List<string> getAttribute(GameObject _player)
     {
-        List<string> content = new List<string>();
+        List<string> content = new List<string>();       
         content.Add("目前等级: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
         content.Add("生命上限: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
         content.Add("生命回复: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
@@ -608,55 +698,57 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         switch (parentName)
         {
             case "CurrentPlayerLevel":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[0];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "角色的等级";
                 break;
             case "MaxHealth":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[1];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "角色的最大生命值";
                 break;
             case "HealthRecovery":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[2];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每秒回复{0.2+0.1*(_player.GetComponent<CharacterAttribute>().getHealthSteal()-1)}点生命值";
                 break;
             case "HealthSteal":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[3];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%的概率回复1点生命值";
                 break;
             case "AttackAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[4];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"造成的伤害增加{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
                 break;
             case "MeleeDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[5];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"近战伤害增加{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
                 break;
             case "RangedDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[6];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"远程伤害增加{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
                 break;
             case "AbilityDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[7];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"属性伤害增加{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
                 break;
             case "AttackSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[8];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击速度增加{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
                 break;
             case "CriticalRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[9];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()*100}%的概率产生暴击";
                 break;
             case "Engineering":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[10];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "提升机器人道具的属性";
                 break;
             case "AttackRangeAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[11];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击范围叠加{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
                 break;
             case "ArmorStrength":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[12];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = _player.GetComponent<CharacterAttribute>().getArmorStrength() >= 0 ? 
+                                                                              $"减少{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%受到的伤害" :
+                                                                              $"增加{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%受到的伤害";
                 break;
             case "DodgeRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[13];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"有{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%的概率避免此次伤害";
                 break;
             case "MoveSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[14];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"移动速度增加{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
                 break;
             case "ScanAccuracy":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[15];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "提高高品质武器和道具的刷新概率";
                 break;
             case "CollectEfficiency":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[16];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每一波次结束给予{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}金矿";
                 break;
             default:
                 break;
