@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 446319369514202572}
   - component: {fileID: 446319369514202574}
   - component: {fileID: -5598510417807754960}
-  - component: {fileID: -4042495792069327552}
   m_Layer: 3
   m_Name: Rock3_2
   m_TagString: Obstacles
@@ -162,16 +161,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1.2
---- !u!114 &-4042495792069327552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446319369514202570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

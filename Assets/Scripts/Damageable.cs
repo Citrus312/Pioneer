@@ -54,7 +54,8 @@ public class Damageable : MonoBehaviour
         // 回收
         if (_prefabPath != null)
             ObjectPool.getInstance().remove(_prefabPath, gameObject);
-        // Destroy(gameObject);
+        // 回收倒影
+        GetComponent<WaterShadow>().removeWaterShadow();
     }
 
     public void TakeDamage(float damage)

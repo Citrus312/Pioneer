@@ -14,13 +14,12 @@ public class LakeInit : MonoBehaviour
     {
         // 创建一个新的相机
         GameObject cameraObject = new GameObject("NewCamera");
-        cameraObject.transform.position = new Vector3(-this.transform.position.x + 60.0f, this.transform.position.y + 4.5f, -10.0f);
-        cameraObject.transform.rotation = Quaternion.Euler(0, 0, 180.0f);
+        cameraObject.transform.position = new Vector3(this.transform.position.x + 60.0f, this.transform.position.y + 1.3f, -10.0f);
         
         // 添加相机组件到相机对象上
         tempCamera = cameraObject.AddComponent<Camera>();
         tempCamera.orthographic = true;
-        tempCamera.orthographicSize = 2.1f;
+        tempCamera.orthographicSize = 1.5f;
         tempCamera.cullingMask = layerToRender;
 
         // 生成渲染纹理

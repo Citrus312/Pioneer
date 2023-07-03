@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 3537624101654292751}
   - component: {fileID: -1982478236331305707}
   - component: {fileID: 6893626770321378598}
-  - component: {fileID: 9219522346546015918}
   m_Layer: 7
   m_Name: Monster3_3
   m_TagString: Untagged
@@ -253,16 +252,3 @@ MonoBehaviour:
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
   _prefabPath: 
---- !u!114 &9219522346546015918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113607264010915762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

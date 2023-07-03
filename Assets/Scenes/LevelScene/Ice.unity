@@ -415,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 435092222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 670184233}
@@ -449,7 +449,7 @@ MonoBehaviour:
   - Assets/Prefab/Obstacles/IceLake/IceLake_3.prefab
   - Assets/Prefab/Obstacles/IceLake/IceLake_4.prefab
   _gridSize: 4
-  _obstacleCnt: 8
+  _obstacleCnt: 10
 --- !u!212 &435092225
 SpriteRenderer:
   m_ObjectHideFlags: 0

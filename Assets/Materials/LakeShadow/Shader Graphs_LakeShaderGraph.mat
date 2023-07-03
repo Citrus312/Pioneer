@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FlowSpeed: 0.3
-    - _ReflectRate: 0.3
+    - _FlowSpeed: 0.5
+    - _ReflectRate: 0.7
     m_Colors: []
   m_BuildTextureStacks: []
