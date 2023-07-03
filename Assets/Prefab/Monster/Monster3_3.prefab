@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 113607264010915764}
   - component: {fileID: 113607264010915766}
   - component: {fileID: 113607264010915786}
-  - component: {fileID: 113607264010915787}
+  - component: {fileID: 779788741424037839}
   - component: {fileID: 7031811629422958296}
   - component: {fileID: 7759939764342781747}
   - component: {fileID: 8661217208230091102}
   - component: {fileID: 3537624101654292751}
-  - component: {fileID: 6893626770321378598}
   - component: {fileID: -1982478236331305707}
+  - component: {fileID: 6893626770321378598}
   m_Layer: 7
   m_Name: Monster3_3
   m_TagString: Untagged
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719ff943c03f834ba7d8b96a196d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &113607264010915787
+--- !u!114 &779788741424037839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 113607264010915762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb0315c36ca1241982bb131674a52a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d9d1c868596de14cb647703940ecb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 113607264010915764}
@@ -177,7 +177,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 0.21526885, y: 0.2580567}
+  m_Size: {x: 0.25, y: 0.25}
   m_Direction: 0
 --- !u!114 &7759939764342781747
 MonoBehaviour:
@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 0
 --- !u!114 &8661217208230091102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,24 +218,9 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  radius: 0
+  radius: 0.25
   offsetX: 0
-  offsetY: 0
---- !u!114 &6893626770321378598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113607264010915762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onHitColor: {r: 0, g: 0, b: 0, a: 0}
-  _onHitTime: 0
-  _prefabPath: 
+  offsetY: -0.05
 --- !u!114 &-1982478236331305707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +237,18 @@ MonoBehaviour:
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
   _bulletPrefab: Assets/Prefab/Bullet/monster_bullet.prefab
+--- !u!114 &6893626770321378598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113607264010915762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372d96e1b29a07e4d8aa458770376a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onHitColor: {r: 0, g: 0, b: 0, a: 0}
+  _onHitTime: 0
+  _prefabPath: 

@@ -53,7 +53,7 @@ public class Controller : MonoBehaviour
         _rigidbody2D.freezeRotation = true;
     }
 
-    protected void move(Vector2 direction)
+    protected virtual void move(Vector2 direction)
     {
         _animator.SetBool("Moving", !(direction.x == 0 && direction.y == 0));
         float moveSpeed = _characterAttribute.getMoveSpeed();

@@ -43,8 +43,12 @@ public class Damageable : MonoBehaviour
 
     private void die()
     {
-        Debug.Log(GetComponent<CharacterAttribute>().getMaxHealth());
         GetComponent<Controller>().OnDie();
+        if (gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+            return;
+        }
         // 死亡动画
         GetComponent<Animator>().SetBool("B_isAlive", false);
         Invoke("removeFromPool", 0.5f);
@@ -60,7 +64,6 @@ public class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log($"damage: {damage}");
         GetComponent<CharacterAttribute>().setCurrentHealth(GetComponent<CharacterAttribute>().getCurrentHealth() - damage);
         //currentHealth -= damage;
         //GetComponent<CharacterAttribute>().setCurrentHealth(currentHealth);

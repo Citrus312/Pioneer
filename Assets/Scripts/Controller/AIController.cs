@@ -77,7 +77,7 @@ public class AIController : Controller
             move(getMoveDirection());
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         // 重置碰撞盒
         GetComponent<Collider2D>().enabled = true;
@@ -98,6 +98,5 @@ public class AIController : Controller
         // 掉落物品
         CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
         DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getCrateRate());
-        base.OnDie();
     }
 }
