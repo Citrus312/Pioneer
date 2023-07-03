@@ -30,7 +30,7 @@ public class TestController : MonoBehaviour
         //Debug.Log($"masterPool  {JsonLoader.monsterPool.Count}");
         for (int i = 0; i < 6; i++)
         {
-            GameController.getInstance().getGameData()._weaponList.Add(19);
+            GameController.getInstance().getGameData()._weaponList.Add(3);
         }
         //GameController.getInstance().getGameData()._weaponList.Add(1);
         GameController.getInstance().getGameData()._playerID = 0;
@@ -46,6 +46,7 @@ public class TestController : MonoBehaviour
         //GameController.getInstance().ModifyProp(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRangedDamage(20);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAttackSpeedAmplification(100);
         GameController.getInstance().waveStart();
     }
 }
