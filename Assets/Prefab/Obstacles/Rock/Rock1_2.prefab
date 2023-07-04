@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4677904933651798471}
   - component: {fileID: 4677904933651798469}
   - component: {fileID: 7025390199571901323}
+  - component: {fileID: 7073000226014323267}
   m_Layer: 3
   m_Name: Rock1_2
   m_TagString: Obstacles
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 47be9f5cc46890a45aa4ab7ac449200c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,3 +157,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
+--- !u!114 &7073000226014323267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677904933651798465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

@@ -15,7 +15,7 @@ TagManager:
   - UI
   - Player
   - Monster
-  - 
+  - FlyMonster
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 3475849337
+    locked: 0
+  - name: DropItem
+    uniqueID: 626548501
     locked: 0
   - name: Weapon
     uniqueID: 3926876125

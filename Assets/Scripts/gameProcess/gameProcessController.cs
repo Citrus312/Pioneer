@@ -15,14 +15,14 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     GameObject _player;
 
 
-    public int grade;//µÈ¼¶
-    public int gradeCount;//¿ÉÒÔÉý¼¶µÄ´ÎÊý
-    public float blood;//µ±Ç°ÑªÁ¿
-    public float maxBlood;//×î´óÉúÃüÖµ
-    public float experience;//µ±Ç°¾­ÑéÖµ
-    public float maxExperience;//×î´ó¾­ÑéÖµ
-    public int level=1;//¹Ø¿¨Êý
-    public TextMeshProUGUI levelText;//¹Ø¿¨ÏÔÊ¾ÎÄ±¾
+    public int grade;//ï¿½È¼ï¿½
+    public int gradeCount;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+    public float blood;//ï¿½ï¿½Ç°Ñªï¿½ï¿½
+    public float maxBlood;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    public float experience;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+    public float maxExperience;//ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    public int level=1;//ï¿½Ø¿ï¿½ï¿½ï¿½
+    public TextMeshProUGUI levelText;//ï¿½Ø¿ï¿½ï¿½ï¿½Ê¾ï¿½Ä±ï¿½
     public float money;
 
     public float HPValue;
@@ -32,26 +32,23 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public TextMeshProUGUI HPValueText;
     public TextMeshProUGUI EXPValueText;
 
-    public List<WeaponAttribute> WeaponPropList;//¿¨³Ø
+    public List<WeaponAttribute> WeaponPropList;//ï¿½ï¿½ï¿½ï¿½
     public List<PropAttribute> PropPoolList;
 
-    Transform stateBg;//ÓÉµ±Ç°ÑªÁ¿Öµ¾ö¶¨µÄÐ§¹ûÍ¼
-    
-    //µ¹¼ÆÊ±ÐèÒªÓÃµ½µÄ±äÁ¿
+    Transform stateBg;//ï¿½Éµï¿½Ç°Ñªï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Í¼
+    //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Òªï¿½Ãµï¿½ï¿½Ä±ï¿½ï¿½ï¿½
     public float currentTime;
     public float totalTime;
     public TextMeshProUGUI timeText;
     void Start()
     {
-
-        test();
-        //³õÊ¼»¯´°¿Ú
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         origin();
 
-        //³õÊ¼»¯Êý¾Ý
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         dataOrigin();
 
-        //µ¹¼ÆÊ±ÏÔÊ¾
+        //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¾
         timeDisplay();
     }
 
@@ -83,7 +80,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //ÈÎÎñ×´Ì¬ÊµÊ±¸üÐÂÏÔÊ¾
+    //ï¿½ï¿½ï¿½ï¿½×´Ì¬ÊµÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
     void roleStateUpdate()
     {
         grade = GameController.getInstance().getGameData()._playerLevel;
@@ -111,22 +108,22 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         if(HPValue<=0)
         {
             Time.timeScale = 0f;
-            //ËÀÍö½çÃæ
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
-        else if(HPValue<= HPMaxValue*2/3 && HPValue> HPMaxValue*1/4)
+        else if (HPValue <= HPMaxValue * 2 / 3 && HPValue > HPMaxValue * 1 / 4)
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
         }
-        else if(HPValue<=HPMaxValue*1/4)
+        else if (HPValue <= HPMaxValue * 1 / 4)
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        HPValueText.text =""+ HPValue;
+        HPValueText.text = "" + HPValue;
         EXPValueText.text = "Lv" + grade;
          
     }
 
-    //test³õÊ¼»¯
+    //testï¿½ï¿½Ê¼ï¿½ï¿½
     void test()
     {
         if (JsonLoader.weaponPool.Count == 0)
@@ -155,12 +152,12 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
         GameController.getInstance().waveStart();
     }
-    //Êý¾Ý³õÊ¼»¯
+    //ï¿½ï¿½ï¿½Ý³ï¿½Ê¼ï¿½ï¿½
     void dataOrigin()
     {
-        if(JsonLoader.propPool.Count == 0)        
-            JsonLoader.LoadAndDecodePropConfig();       
-        if(JsonLoader.weaponPool.Count==0)
+        if (JsonLoader.propPool.Count == 0)
+            JsonLoader.LoadAndDecodePropConfig();
+        if (JsonLoader.weaponPool.Count == 0)
             JsonLoader.LoadAndDecodeWeaponConfig();
         WeaponPropList = JsonLoader.weaponPool;
         PropPoolList = JsonLoader.propPool;
@@ -186,24 +183,24 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         EXPValueText= roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
 
         stateBg = roleStateWindow.Instance.getTransform().Find("stateBg");
-        stateBg.GetComponent<RectTransform>().localScale =new Vector3(2f, 2f, 2f);
+        stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
 
-       
 
-        totalTime = 5f;//µÚÒ»¹ØÊ±¼ä
+
+        totalTime = 5f;//ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½
     }
 
-    //´°¿Ú³õÊ¼»¯
+    //ï¿½ï¿½ï¿½Ú³ï¿½Ê¼ï¿½ï¿½
     void origin()
     {
         
         UIRoot.Init();
 
-        
+
 
         PausePageWindow.Instance.Open();
         PausePageWindow.Instance.Close();
-       
+
         storeWindow.Instance.Open();
         storeWindow.Instance.Close();
         upgradeWindow.Instance.Open();
@@ -233,7 +230,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         addListenerForstartBtn();
         addListenerForBuy();
 
-        
+
         Transform countDownTimer = countDownTimerWindow.Instance.getTransform().Find("countDownTimer");
         timeText = countDownTimer.GetComponent<TextMeshProUGUI>();
 
@@ -242,7 +239,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
     }
 
-    //µ¹¼ÆÊ±¼ÆËã
+    //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
     void updateCountDownTimer()
     {
         
@@ -255,20 +252,20 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //µ¹¼ÆÊ±ÏÔÊ¾
+    //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê¾
     void timeDisplay()
     {
         currentTime = totalTime;      
         InvokeRepeating("updateCountDownTimer", 1f, 1f);
     }
 
-    //Ð­³Ì
+    //Ð­ï¿½ï¿½
     IEnumerator wait()
     {
         yield return new WaitForSeconds(0.5f);
     }
 
-    //µ¹¼ÆÊ±½áÊøºóµÄÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     void timeEnd()
     {
         
@@ -281,15 +278,15 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         {
            
             Time.timeScale = 0f;
-            timeText.text = "<color=white>Éý¼¶</color>";
+            timeText.text = "<color=white>ï¿½ï¿½ï¿½ï¿½</color>";
             upgradeWindow.Instance.Open();
-            
+
             propertyWindow.Instance.Open();
         }
         else
         {
-            Debug.Log("ÉÌµê");
-            
+            Debug.Log("ï¿½Ìµï¿½");
+
             storeWindow.Instance.Open();
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
@@ -301,7 +298,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //ÎªÉý¼¶°´Å¥Ìí¼Ó¼àÌýÊÂ¼þ
+    //Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     void addListenerForupgrade()
     {
         Transform child1 = upgradeWindow.Instance.getTransform().Find("cardA");
@@ -321,7 +318,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
     }
 
-    //Éý¼¶°´Å¥ÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Â¼ï¿½
     void upgradeBtnOnclik()
     {
      
@@ -329,52 +326,52 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         float v = upgradeWindow.Instance.value;
         switch (n)
         {
-            case "ÉúÃüÉÏÏÞ":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½":
                 playerProperty.setMaxHealth(playerProperty.getMaxHealth() + v);
                 break;
-            case "ÉúÃü»Ø¸´":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½":
                 playerProperty.setHealthRecovery(playerProperty.getHealthRecovery() + v);
                 break;
-            case "ÉúÃü¼³È¡":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡":
                 playerProperty.setHealthSteal(playerProperty.getHealthSteal() + v);
                 break;
-            case "Êä³öÔö·ù":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½":
                 playerProperty.setAttackAmplification(playerProperty.getAttackAmplification() + v);
                 break;
-            case "½üÕ½ÉËº¦":
+            case "ï¿½ï¿½Õ½ï¿½Ëºï¿½":
                 playerProperty.setMeleeDamage(playerProperty.getMeleeDamage() + v);
                 break;
-            case "Ô¶³ÌÉËº¦":
+            case "Ô¶ï¿½ï¿½ï¿½Ëºï¿½":
                 playerProperty.setRangedDamage(playerProperty.getRangedDamage() + v);
                 break;
-            case "ÊôÐÔÉËº¦":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½":
                 playerProperty.setAbilityDamage(playerProperty.getAbilityDamage() + v);
                 break;
-            case "¹¥ËÙ¼Ó³É":
+            case "ï¿½ï¿½ï¿½Ù¼Ó³ï¿½":
                 playerProperty.setAttackSpeedAmplification(playerProperty.getAttackSpeedAmplification() + v);
                 break;
-            case "±©»÷¸ÅÂÊ":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½":
                 playerProperty.setCriticalRate(playerProperty.getCriticalRate() + v);
                 break;
-            case "¹¤³Ì»úÐµ":
+            case "ï¿½ï¿½ï¿½Ì»ï¿½Ðµ":
                 playerProperty.setEngineering(playerProperty.getEngineering() + v);
                 break;
-            case "¹¥»÷·¶Î§":
+            case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§":
                 playerProperty.setAttackRangeAmplification(playerProperty.getAttackRangeAmplification() + v);
                 break;
-            case "»ú¼×Ç¿¶È":
+            case "ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½":
                 playerProperty.setArmorStrength(playerProperty.getArmorStrength() + v);
                 break;
-            case "ÉÁ±Ü¸ÅÂÊ":
+            case "ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½":
                 playerProperty.setDodgeRate(playerProperty.getDodgeRate() + v);
                 break;
-            case "ÒÆËÙ¼Ó³É":
+            case "ï¿½ï¿½ï¿½Ù¼Ó³ï¿½":
                 playerProperty.setMoveSpeedAmplification(playerProperty.getMoveSpeedAmplification() + v);
                 break;
-            case "É¨Ãè¾«¶È":
+            case "É¨ï¿½è¾«ï¿½ï¿½":
                 playerProperty.setScanAccuracy(playerProperty.getScanAccuracy() + v);
                 break;
-            case "²É¼¯Ð§ÂÊ":
+            case "ï¿½É¼ï¿½Ð§ï¿½ï¿½":
                 playerProperty.setCollectEfficiency(playerProperty.getCollectEfficiency() + v);
                 break;
             default:
@@ -390,27 +387,27 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
             propertyWindow.Instance.Open();
-            
-            
-            
-            
+
+
+
+
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
         }
     }
-    //Îª³ö·¢°´Å¥ÉèÖÃ¼àÌýÊÂ¼þ
+    //Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     void addListenerForstartBtn()
     {
         Transform startBtn = storeWindow.Instance.getTransform().Find("startButton");
         startBtn.GetComponent<Button>().onClick.AddListener(startBtnOnclick);
     }
 
-    //³ö·¢°´Å¥ÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Â¼ï¿½
     void startBtnOnclick()
     {
         HPValue = HPMaxValue;
-        Debug.Log("¿ªÊ¼ÏÂÒ»¹Ø");
+        Debug.Log("ï¿½ï¿½Ê¼ï¿½ï¿½Ò»ï¿½ï¿½");
         Time.timeScale = 1f;
         storeWindow.Instance.Close();
         propBagWindow.Instance.Close();
@@ -420,19 +417,19 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         titleWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
 
-        //ÑªÁ¿¡¢¾­Ñé¡¢µÈ¼¶¡¢µ¹¼ÆÊ±¡¢¹Ø¿¨ÖØÖÃ
+        //Ñªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¡¢ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½
         totalTime = totalTime + 10 >= 90 ? 90 : totalTime + 10;
         timeDisplay();
         
         level++;
-        levelText.text = "µÚ" + level + "¹Ø";
+        levelText.text = "ï¿½ï¿½" + level + "ï¿½ï¿½";
         GameController.getInstance().getGameData()._wave = level;
 
         grade = 2;
 
     }
 
-    //Îª¹ºÂò°´Å¥ÉèÖÃ¼àÌýÊÂ¼þ
+    //Îªï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     void addListenerForBuy()
     {
         Transform card1 = storeWindow.Instance.getTransform().Find("card_a");
@@ -451,7 +448,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         btn4.GetComponent<Button>().onClick.AddListener(buyBtnOnclick);
     }
 
-    //¹ºÂò°´Å¥ÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Â¼ï¿½
     void buyBtnOnclick()
     {
 
@@ -460,9 +457,26 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             if (weaponBagWindow.Instance.addWeapon)
             {
                 int w = weaponBagWindow.Instance.buyedWeapon;
-                if(WeaponPropList[w].getWeaponPrice() > GameController.getInstance().getGameData()._money)
+                string assetPath;
+                string assetPathBg;
+
+                GameObject weapon = new GameObject("weapon" + w);//ï¿½ï¿½ï¿½ï¿½Í¼
+                Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+                weapon.transform.SetParent(weaponBag);
+                weapon.AddComponent<Image>();
+                weapon.AddComponent<buttonRightClick>();
+
+                GameObject image = new GameObject("image");//ï¿½ï¿½ï¿½ï¿½Í¼
+                image.transform.SetParent(weapon.transform);
+                image.AddComponent<Image>();
+
+                RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+                rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
+
+                if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
                 {
-                    Debug.Log("Ç®²»¹»");
+                    Debug.Log("Ç®ï¿½ï¿½ï¿½ï¿½");
                    // Debug.Log(GameController.getInstance().getGameData()._money);
                 }
                 else
@@ -471,12 +485,12 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                     //Debug.Log(GameController.getInstance().getGameData()._money);
                     string assetPath;
                     string assetPathBg;
-                    GameObject weapon = new GameObject("weapon" + w);//±³¾°Í¼
+                    GameObject weapon = new GameObject("weapon" + w);//ï¿½ï¿½ï¿½ï¿½Í¼
                     Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
                     weapon.transform.SetParent(weaponBag);
                     weapon.AddComponent<Image>();
                     weapon.AddComponent<buttonRightClick>();                  
-                    GameObject image = new GameObject(""+w);//ÎäÆ÷Í¼
+                    GameObject image = new GameObject(""+w);//ï¿½ï¿½ï¿½ï¿½Í¼
                     image.transform.SetParent(weapon.transform);
                     //image.AddComponent<Image>();
 
@@ -524,8 +538,14 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             w = w - 40000;
             if (PropPoolList[w].getPropPrice() > GameController.getInstance().getGameData()._money)
             {
-                Debug.Log("Ç®²»¹»");
-                //Debug.Log(GameController.getInstance().getGameData()._money);
+                Transform existedProp = listContent.Find("prop" + w);
+                Transform count = existedProp.Find("count");
+                string text = count.GetComponent<TextMeshProUGUI>().text;
+                int c = int.Parse(text);
+                c += 1;
+                count.GetComponent<TextMeshProUGUI>().text = c.ToString();
+                count.gameObject.SetActive(true);
+
             }
             else
             {
@@ -546,20 +566,21 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                     count.GetComponent<TextMeshProUGUI>().text = c.ToString();
                     count.gameObject.SetActive(true);
 
-                }
-                else
-                {
-                    GameObject prop = new GameObject("prop" + w);//±³¾°Í¼
-                   
-          
-                    prop.transform.SetParent(listContent);
-                    prop.AddComponent<Image>();
-                    //prop.AddComponent<propRightClick>();
+                GameObject item = new GameObject("count");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç©
+                item.transform.SetParent(prop.transform);
+                item.AddComponent<TextMeshProUGUI>();
+                item.GetComponent<TextMeshProUGUI>().text = "" + 0;
+                item.SetActive(false);
+                item.transform.localPosition = new Vector3(150f, -40f, 0f);
+                item.GetComponent<TextMeshProUGUI>().fontSize = 40;
+                string fontPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/" + "fontFirst";
+                TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
+                item.GetComponent<TMP_Text>().font = font;
 
 
 
 
-                    GameObject item = new GameObject("count");//ÊýÁ¿±êÇ©
+                    GameObject item = new GameObject("count");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç©
                     item.transform.SetParent(prop.transform);
                     item.AddComponent<TextMeshProUGUI>();
                     item.GetComponent<TextMeshProUGUI>().text = "" + 0;
@@ -570,7 +591,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                     TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
                     item.GetComponent<TMP_Text>().font = font;
 
-                    GameObject image = new GameObject("" + w);//µÀ¾ßÍ¼
+                    GameObject image = new GameObject("" + w);//ï¿½ï¿½ï¿½ï¿½Í¼
                     image.transform.SetParent(prop.transform);
                     image.AddComponent<Image>();
                     RectTransform rectProp = prop.GetComponent<RectTransform>();
@@ -600,7 +621,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //¼ÓÔØÍ¼Æ¬
+    //ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
     void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
@@ -608,48 +629,48 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ´´½¨Sprite²¢¸½¼Óµ½Image×é¼þÉÏ
+            // ï¿½ï¿½ï¿½ï¿½Spriteï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Imageï¿½ï¿½ï¿½ï¿½ï¿½
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
             //RectTransform size = child.GetComponent<RectTransform>();
             //size.sizeDelta = new Vector2(50, 50);
 
-            //Debug.Log("³É¹¦¼ÓÔØÍ¼Æ¬: ");
+            //Debug.Log("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬: ");
         }
         else
         {
-            //Debug.Log("ÎÞ·¨¶ÁÈ¡ÎÄ¼þ: ");
+            //Debug.Log("ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½: ");
         }
     }
 
 
 
     //fei
-    //»ñÈ¡ÊôÐÔÎÄ±¾
+    //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
     private List<string> getAttribute(GameObject _player)
     {
         List<string> content = new List<string>();       
-        content.Add("Ä¿Ç°µÈ¼¶: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
-        content.Add("ÉúÃüÉÏÏÞ: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
-        content.Add("ÉúÃü»Ø¸´: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
-        content.Add("ÉúÃü¼³È¡: " + _player.GetComponent<CharacterAttribute>().getHealthSteal());
-        content.Add("Êä³öÔö·ù: " + _player.GetComponent<CharacterAttribute>().getAttackAmplification());
-        content.Add("½üÕ½ÉËº¦: " + _player.GetComponent<CharacterAttribute>().getMeleeDamage());
-        content.Add("Ô¶³ÌÉËº¦: " + _player.GetComponent<CharacterAttribute>().getRangedDamage());
-        content.Add("ÔªËØÉËº¦: " + _player.GetComponent<CharacterAttribute>().getAbilityDamage());
-        content.Add("¹¥»÷ËÙ¶È: " + _player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification());
-        content.Add("±©»÷¸ÅÂÊ: " + _player.GetComponent<CharacterAttribute>().getCriticalRate());
-        content.Add("¹¤³Ì»úÐµ: " + _player.GetComponent<CharacterAttribute>().getEngineering());
-        content.Add("¹¥»÷·¶Î§: " + _player.GetComponent<CharacterAttribute>().getAttackRangeAmplification());
-        content.Add("»ú¼×Ç¿¶È: " + _player.GetComponent<CharacterAttribute>().getArmorStrength());
-        content.Add("ÉÁ±Ü¸ÅÂÊ: " + _player.GetComponent<CharacterAttribute>().getDodgeRate());
-        content.Add("ÒÆËÙ¼Ó³É: " + _player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification());
-        content.Add("É¨Ãè¾«¶È: " + _player.GetComponent<CharacterAttribute>().getScanAccuracy());
-        content.Add("²É¼¯Ð§ÂÊ: " + _player.GetComponent<CharacterAttribute>().getCollectEfficiency());
+        content.Add("Ä¿Ç°ï¿½È¼ï¿½: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡: " + _player.GetComponent<CharacterAttribute>().getHealthSteal());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getAttackAmplification());
+        content.Add("ï¿½ï¿½Õ½ï¿½Ëºï¿½: " + _player.GetComponent<CharacterAttribute>().getMeleeDamage());
+        content.Add("Ô¶ï¿½ï¿½ï¿½Ëºï¿½: " + _player.GetComponent<CharacterAttribute>().getRangedDamage());
+        content.Add("Ôªï¿½ï¿½ï¿½Ëºï¿½: " + _player.GetComponent<CharacterAttribute>().getAbilityDamage());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½: " + _player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getCriticalRate());
+        content.Add("ï¿½ï¿½ï¿½Ì»ï¿½Ðµ: " + _player.GetComponent<CharacterAttribute>().getEngineering());
+        content.Add("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§: " + _player.GetComponent<CharacterAttribute>().getAttackRangeAmplification());
+        content.Add("ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getArmorStrength());
+        content.Add("ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getDodgeRate());
+        content.Add("ï¿½ï¿½ï¿½Ù¼Ó³ï¿½: " + _player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification());
+        content.Add("É¨ï¿½è¾«ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getScanAccuracy());
+        content.Add("ï¿½É¼ï¿½Ð§ï¿½ï¿½: " + _player.GetComponent<CharacterAttribute>().getCollectEfficiency());
         return content;
     }
 
-    //»ñÈ¡µ±Ç°³¡¾°Ãû³Æ
+    //ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private string getCurrentScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -698,57 +719,57 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         switch (parentName)
         {
             case "CurrentPlayerLevel":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = "½ÇÉ«µÄµÈ¼¶";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "ï¿½ï¿½É«ï¿½ÄµÈ¼ï¿½";
                 break;
             case "MaxHealth":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = "½ÇÉ«µÄ×î´óÉúÃüÖµ";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ";
                 break;
             case "HealthRecovery":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿Ãë»Ø¸´{0.2+0.1*(_player.GetComponent<CharacterAttribute>().getHealthSteal()-1)}µãÉúÃüÖµ";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿ï¿½ï¿½Ø¸ï¿½{0.2+0.1*(_player.GetComponent<CharacterAttribute>().getHealthSteal()-1)}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ";
                 break;
             case "HealthSteal":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿´Î¹¥»÷ÓÐ{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%µÄ¸ÅÂÊ»Ø¸´1µãÉúÃüÖµ";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%ï¿½Ä¸ï¿½ï¿½Ê»Ø¸ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ";
                 break;
             case "AttackAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ôì³ÉµÄÉËº¦Ôö¼Ó{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½Éµï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
                 break;
             case "MeleeDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"½üÕ½ÉËº¦Ôö¼Ó{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½Õ½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
                 break;
             case "RangedDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ô¶³ÌÉËº¦Ôö¼Ó{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ô¶ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
                 break;
             case "AbilityDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ÊôÐÔÉËº¦Ôö¼Ó{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
                 break;
             case "AttackSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"¹¥»÷ËÙ¶ÈÔö¼Ó{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
                 break;
             case "CriticalRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿´Î¹¥»÷ÓÐ{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()*100}%µÄ¸ÅÂÊ²úÉú±©»÷";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()*100}%ï¿½Ä¸ï¿½ï¿½Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
                 break;
             case "Engineering":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = "ÌáÉý»úÆ÷ÈËµÀ¾ßµÄÊôÐÔ";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½";
                 break;
             case "AttackRangeAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"¹¥»÷·¶Î§µþ¼Ó{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
                 break;
             case "ArmorStrength":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = _player.GetComponent<CharacterAttribute>().getArmorStrength() >= 0 ? 
-                                                                              $"¼õÉÙ{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%ÊÜµ½µÄÉËº¦" :
-                                                                              $"Ôö¼Ó{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%ÊÜµ½µÄÉËº¦";
+                                                                              $"ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%ï¿½Üµï¿½ï¿½ï¿½ï¿½Ëºï¿½" :
+                                                                              $"ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%ï¿½Üµï¿½ï¿½ï¿½ï¿½Ëºï¿½";
                 break;
             case "DodgeRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ÓÐ{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%µÄ¸ÅÂÊ±ÜÃâ´Ë´ÎÉËº¦";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%ï¿½Ä¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ë´ï¿½ï¿½Ëºï¿½";
                 break;
             case "MoveSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ÒÆ¶¯ËÙ¶ÈÔö¼Ó{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
                 break;
             case "ScanAccuracy":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = "Ìá¸ß¸ßÆ·ÖÊÎäÆ÷ºÍµÀ¾ßµÄË¢ÐÂ¸ÅÂÊ";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "ï¿½ï¿½ß¸ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ßµï¿½Ë¢ï¿½Â¸ï¿½ï¿½ï¿½";
                 break;
             case "CollectEfficiency":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿Ò»²¨´Î½áÊø¸øÓè{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}½ð¿ó";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"Ã¿Ò»ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}ï¿½ï¿½ï¿½";
                 break;
             default:
                 break;
@@ -756,7 +777,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         transform.Find("Panel").gameObject.SetActive(true);
     }
 
-    //¹Ø±ÕÊôÐÔÎÄ±¾µÄ×Ó´°¿Ú£¨¾ßÌåÃèÊöÊôÐÔ£©
+    //ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½
     public void closePanel(Transform transform)
     {
         transform.Find("Panel").gameObject.SetActive(false);

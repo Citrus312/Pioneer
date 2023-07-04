@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7475874279185502205}
   - component: {fileID: 6395104610226092125}
   - component: {fileID: 5208835520202956241}
+  - component: {fileID: 7361875708659391335}
   m_Layer: 0
   m_Name: Chest_1
   m_TagString: Untagged
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 626548501
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 665962989, guid: 35b53aefd1e90c84f99e5d3896cad7fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,3 +116,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabPath: Assets/Prefab/DropItem/Chest_1.prefab
+--- !u!114 &7361875708659391335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7475874279185502206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

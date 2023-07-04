@@ -277,7 +277,7 @@ public class CharacterAttribute : MonoBehaviour
     {
         setID(id);
         setRawMoveSpeed(rawMoveSpeed);
-        setCurrentHealth(currentHealth);
+        setCurrentHealth(maxHealth);
         setCurrentExp(currentExp);
         setCurrentPlayerLevel(currentPlayerLevel);
         setBasicUpgradeExp(basicUpgradeExp);
@@ -317,6 +317,7 @@ public class CharacterAttribute : MonoBehaviour
     {
         setID(id);
         setMaxHealth(maxHealth);
+        setCurrentHealth(maxHealth);
         setHealthIncPerWave(healthIncPerWave);
         setRawMoveSpeed(speed);
         setMeleeDamage(meleeDamage);
@@ -538,5 +539,26 @@ public class CharacterAttribute : MonoBehaviour
     public float getCollectEfficiency()
     {
         return collectEfficiency;
+    }
+
+    public void propModifyAttribute(int propIndex, int count = 1)
+    {
+        PropAttribute prop = JsonLoader.propPool[propIndex];
+        maxHealth += prop.getMaxHealth() * count;
+        healthRecovery += prop.getHealthRecovery() * count;
+        healthSteal += prop.getHealthSteal() * count;
+        attackAmplification += prop.getAttackAmplification() * count;
+        meleeDamage += prop.getMeleeDamage() * count;
+        rangedDamage += prop.getRangedDamage() * count;
+        abilityDamage += prop.getAbilityDamage() * count;
+        attackSpeedAmplification += prop.getAttackSpeedAmplification() * count;
+        criticalRate += prop.getCriticalRate() * count;
+        engineering += prop.getEngineering() * count;
+        attackRangeAmplification += prop.getAttackRangeAmplification() * count;
+        armorStrength += prop.getArmorStrength() * count;
+        dodgeRate += prop.getDodgeRate() * count;
+        moveSpeedAmplification += prop.getMoveSpeedAmplification() * count;
+        scanAccuracy += prop.getScanAccuracy() * count;
+        collectEfficiency += prop.getCollectEfficiency() * count;
     }
 }

@@ -103,7 +103,7 @@ Animator:
   m_GameObject: {fileID: 5154029384931896376}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e7a7eb88b328431458e0a1f06ecab42c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 312d39440036d6a48a09dfd5924d97de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5154029384931896382}
   skatingSpeedRatio: 2
-  beatBackTime: 0.2
+  beatBackTime: 0.1
   beatBackTimeSpeed: 5
 --- !u!70 &1677121261000331781
 CapsuleCollider2D:
@@ -175,8 +175,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
-  m_Size: {x: 0.19299752, y: 0.2399008}
+  m_Offset: {x: 0, y: -0.06}
+  m_Size: {x: 0.2, y: 0.2}
   m_Direction: 0
 --- !u!114 &7111775164933922542
 MonoBehaviour:
@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 20
 --- !u!114 &6891581082905669245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +232,6 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
-  radius: 0
+  radius: 0.2
   offsetX: 0
-  offsetY: 0
+  offsetY: -0.06

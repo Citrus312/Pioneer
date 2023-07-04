@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 763897425495254248}
   - component: {fileID: 4933317075867728734}
   m_Layer: 7
-  m_Name: Monster_1
+  m_Name: Monster2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1350220864868869803}
   skatingSpeedRatio: 2
-  beatBackTime: 0.2
+  beatBackTime: 0.1
   beatBackTimeSpeed: 5
 --- !u!70 &4790823077417064592
 CapsuleCollider2D:
@@ -176,7 +176,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.04}
-  m_Size: {x: 0.19299752, y: 0.2399008}
+  m_Size: {x: 0.24, y: 0.24}
   m_Direction: 0
 --- !u!114 &4001484583878710395
 MonoBehaviour:
@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 20
 --- !u!114 &763897425495254248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,3 +232,6 @@ MonoBehaviour:
   _attachPoint: {fileID: 0}
   _grip: {fileID: 0}
   _endPoint: {fileID: 0}
+  radius: 0.24
+  offsetX: 0
+  offsetY: -0.04

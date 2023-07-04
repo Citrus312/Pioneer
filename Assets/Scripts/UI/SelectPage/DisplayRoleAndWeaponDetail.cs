@@ -80,7 +80,7 @@ public class DisplayRoleAndWeaponDetail : MonoBehaviour, IPointerEnterHandler, I
             weaponAttrText.text = $"<color=yellow>伤害</color>:  {weaponAttr.getWeaponDamage()} | {weaponAttr.getRawWeaponDamage()}\n" +
                                   $"<color=yellow>范围</color>:  {weaponAttr.getAttackRange()} | {weaponAttr.getRawAttackRange()}\n" +
                                   $"<color=yellow>转化</color>:  {weaponAttr.getConvertRatio() * 100}%\n" +
-                                  $"<color=yellow>暴击</color>:  x{weaponAttr.getCriticalBonus()}({weaponAttr.getCriticalRate() * 100}%)\n" +
+                                  $"<color=yellow>暴击</color>:  x{weaponAttr.getCriticalBonus()}({weaponAttr.getRawCriticalRate() * 100}%)\n" +
                                   $"<color=yellow>攻速</color>:  {weaponAttr.getAttackSpeed()}s\n";
         }
     }

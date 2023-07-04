@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7233487950713913400}
   - component: {fileID: 7233487950713913401}
   - component: {fileID: 7233487950713913798}
+  - component: {fileID: 8055333068149253544}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -368091171
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e7ee8451e54277d45bdd348aaa698c5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -195,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &7233487950713913401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,4 +223,17 @@ MonoBehaviour:
   _attachPoint: {fileID: 7233487949681184502}
   _grip: {fileID: 7233487948945225241}
   _endPoint: {fileID: 7233487949535101699}
-  _bulletPrefab: 
+  _bulletPrefab: Assets/Prefab/Bullet/bullet_red 2.prefab
+--- !u!114 &8055333068149253544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233487950713913796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

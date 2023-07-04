@@ -10,8 +10,9 @@ public class ExtraEffect : MonoBehaviour
     public string _prefabPath;
     // 父角色
     protected GameObject _character;
-    
-    private void OnEnable() {
+
+    private void OnEnable()
+    {
         StartCoroutine(effect());
     }
 
@@ -20,7 +21,7 @@ public class ExtraEffect : MonoBehaviour
         yield return null;
     }
 
-    protected void removeFromParent()
+    public void removeFromParent()
     {
         // 将对象从父物体中移除
         transform.SetParent(null);

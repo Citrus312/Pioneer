@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2895428872481583178}
   - component: {fileID: 2895428872481583179}
   - component: {fileID: 2895428872481583176}
-  - component: {fileID: 2895428872481583177}
+  - component: {fileID: -4338327095006028995}
   - component: {fileID: 2895428872481583174}
   m_Layer: 0
   m_Name: Fireball3
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2895428872481583175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.96264, y: 0.2996695, z: -10.016631}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,9 +69,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: -0.03878816, y: 0.00620622}
+  m_Size: {x: 0.4197258, y: 0.24905759}
+  m_Direction: 1
 --- !u!50 &2895428872481583176
 Rigidbody2D:
   serializedVersion: 4
@@ -84,7 +84,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -93,7 +93,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2895428872481583177
+--- !u!114 &-4338327095006028995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,11 +102,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2895428872481583175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba32e007a7355504bb8b9637fde1ac5e, type: 3}
+  m_Script: {fileID: 11500000, guid: c044d979d2b38794189be7fe8ccb152b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVFX: {fileID: 0}
+  _hitVFX: Assets/Prefab/Bullet/Hit VFX.prefab
   _weapon: {fileID: 0}
+  _prefab: 
+  _flamePrefab: Assets/Prefab/Effect/flame.prefab
 --- !u!212 &2895428872481583174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -147,8 +149,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e960f330921be2843a1f1d220738b8fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,6 +158,6 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

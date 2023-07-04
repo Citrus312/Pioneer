@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5661857579409951791}
   - component: {fileID: 5719224934862684029}
   - component: {fileID: 5661857579409951786}
+  - component: {fileID: 4493551709029287079}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -171,7 +172,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -368091171
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f69791014695c174c82070a3ef08e5d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -196,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &5661857579409951791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,5 +252,18 @@ PolygonCollider2D:
     - - {x: 0.7078913, y: 0.5834366}
       - {x: 0.35597506, y: 0.64771783}
       - {x: -0.46866244, y: -0.12076433}
-      - {x: -0.69201076, y: -0.5846111}
-      - {x: -0.5571809, y: -0.69834846}
+      - {x: -1.1623008, y: -1.0360897}
+      - {x: -0.9647656, y: -1.1749091}
+--- !u!114 &4493551709029287079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661857579409951795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab
