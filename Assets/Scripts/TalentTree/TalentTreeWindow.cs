@@ -150,6 +150,7 @@ public class TalentTreeWindow : BaseWindow
                 //其它均为子符文图标按钮
                 default:
                     btn.onClick.AddListener(() => { OnSecondButton(btn); });
+                    setEventTrigger(btn);
                     break;
             }
         }
@@ -194,112 +195,17 @@ public class TalentTreeWindow : BaseWindow
     //重置符文页的Panel，radius，color
     private void resetFirstBtn()
     {
-        //重置左侧显示图片
-        transform.Find("Image_2 (1)").GetComponent<Image>().sprite = transform.Find("Image_2").GetComponent<Image>().sprite;
-        transform.Find("Image_3 (1)").GetComponent<Image>().sprite = transform.Find("Image_3").GetComponent<Image>().sprite;
-        transform.Find("Image_4 (1)").GetComponent<Image>().sprite = transform.Find("Image_4").GetComponent<Image>().sprite;
+        //初始化左侧显示图片
+        resetLeftPanel();
 
-        //重置右侧显示图片及文本
-        transform.Find("ContentPanel").transform.Find("Image").GetComponent<CustomUI.CircularImage>().sprite = transform.Find("ContentPanel").transform.Find("Image (1)").GetComponent<CustomUI.CircularImage>().sprite;
-        transform.Find("ContentPanel").transform.Find("Title").GetComponent<Text>().text = "";
-        transform.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = "";
+        //初始化右侧显示图片及文本
+        resetRightPanel();
 
-        //重置主符文
-        transform.Find("AttackButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("AttackPanel").gameObject.SetActive(false);
-        transform.Find("AttackButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        //初始化主符文
+        initFirst();
 
-        transform.Find("DefenseButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("DefensePanel").gameObject.SetActive(false);
-        transform.Find("DefenseButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-
-        transform.Find("ComprehensiveButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("ComprehensivePanel").gameObject.SetActive(false);
-        transform.Find("ComprehensiveButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-
-        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        transform.Find("RecoveryPanel").gameObject.SetActive(false);
-        transform.Find("RecoveryButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-
-        //重置Attack的副按钮
-        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-
-        //重置Recovery的副按钮
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-
-        //重置Defense的副按钮
-        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-
-        //重置ComprehensivePanel的副按钮
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        //初始化子符文
+        initSecond();
 
         //重置属性条
         resetDictionary(attribute1);
@@ -320,10 +226,7 @@ public class TalentTreeWindow : BaseWindow
     private void setSecondBtn(Button second)
     {
         //Debug.Log(GameObject.Find(second.name));
-        GameObject.Find("ContentPanel").transform.Find("Image").GetComponent<CustomUI.CircularImage>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
-        GameObject.Find("ContentPanel").transform.Find("Title").GetComponent<Text>().text = GameObject.Find(second.name).transform.Find("name").GetComponent<Text>().text;
-        GameObject.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = GameObject.Find(second.name).transform.Find("content").GetComponent<Text>().text;
-
+        setRightPanel(second);
         GameObject.Find(second.name).transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
         GameObject.Find(second.name).transform.GetComponent<CustomUI.CircularImage>().color = new Color(1f, 1f, 1f, 1f);
 
@@ -513,21 +416,28 @@ public class TalentTreeWindow : BaseWindow
 
     private void OnExitButton(Button button)
     {
+        //SceneLoader._instance.loadScene("MainPage");
+        ////初始化界面并关闭界面
+
+        //DelayToInvoke.DelayToInvokeBySecond(() =>
+        //{
+        //    MainPageWindow.Instance.Open();
+        //    //初始化界面
+        //    resetFirstBtn();
+        //    transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+        //    transform.Find("RecoveryPanel").gameObject.SetActive(true);
+        //    transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+        //    TalentTreeWindow.Instance.Close(false);
+        //}, 1.7f);
+
+        //初始化界面
+        resetFirstBtn();
+        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+        transform.Find("RecoveryPanel").gameObject.SetActive(true);
+        transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+        TalentTreeWindow.Instance.Close(false);
+        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
         SceneLoader._instance.loadScene("MainPage");
-        //初始化界面并关闭界面
-
-        DelayToInvoke.DelayToInvokeBySecond(() =>
-        {
-            MainPageWindow.Instance.Open();
-            //初始化界面
-            resetFirstBtn();
-            transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
-            transform.Find("RecoveryPanel").gameObject.SetActive(true);
-            transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
-            TalentTreeWindow.Instance.Close(false);
-        }, 1.7f);
-
-
     }
 
     private void OnConfirmButton(Button button)
@@ -550,20 +460,29 @@ public class TalentTreeWindow : BaseWindow
         attributeFinal["scanAccuracy"] = attribute1["scanAccuracy"] + attribute2["scanAccuracy"] + attribute3["scanAccuracy"];
         attributeFinal["collectEfficiency"] = attribute1["collectEfficiency"] + attribute2["collectEfficiency"] + attribute3["collectEfficiency"];
         //初始化界面并关闭界面
-        SceneLoader._instance.loadScene("MainPage");
+        //SceneLoader._instance.loadScene("MainPage");
         //初始化界面并关闭界面
 
-        DelayToInvoke.DelayToInvokeBySecond(() =>
-        {
-            MainPageWindow.Instance.Open();
-            //初始化界面
-            resetFirstBtn();
-            transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
-            transform.Find("RecoveryPanel").gameObject.SetActive(true);
-            transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
-            TalentTreeWindow.Instance.Close(false);
-        }, 1.7f);
+        //DelayToInvoke.DelayToInvokeBySecond(() =>
+        //{
+        //    MainPageWindow.Instance.Open();
+        //    //初始化界面
+        //    resetFirstBtn();
+        //    transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+        //    transform.Find("RecoveryPanel").gameObject.SetActive(true);
+        //    transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+        //    TalentTreeWindow.Instance.Close(false);
+        //}, 1.7f);
 
+
+        //初始化界面
+        resetFirstBtn();
+        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+        transform.Find("RecoveryPanel").gameObject.SetActive(true);
+        transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+        TalentTreeWindow.Instance.Close(false);
+        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
+        SceneLoader._instance.loadScene("MainPage");
         //SceneLoader._instance.loadScene("TalentTree");
         //DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
         //foreach (KeyValuePair<string, float> kvp in attributeFinal)
@@ -575,6 +494,141 @@ public class TalentTreeWindow : BaseWindow
     public Dictionary<string, float> getAttributeFinal()
     {
         return attributeFinal;
+    }
+
+    public void setEventTrigger(Button btn)
+    {
+        btn.GetComponent<EventTrigger>().triggers.Add(
+                new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
+        btn.GetComponent<EventTrigger>().triggers.Add(
+            new EventTrigger.Entry { eventID = EventTriggerType.PointerExit, callback = new EventTrigger.TriggerEvent() });
+
+        btn.GetComponent<EventTrigger>().triggers[0].callback.AddListener((eventData) => { setRightPanel(btn); });
+        btn.GetComponent<EventTrigger>().triggers[1].callback.AddListener((eventData) => { resetRightPanel(); });
+    }
+
+    private void setRightPanel(Button button)
+    {
+        GameObject.Find("ContentPanel").transform.Find("Image").GetComponent<CustomUI.CircularImage>().sprite = GameObject.Find(button.name).GetComponent<CustomUI.CircularImage>().sprite;
+        GameObject.Find("ContentPanel").transform.Find("Title").GetComponent<Text>().text = GameObject.Find(button.name).transform.Find("name").GetComponent<Text>().text;
+        GameObject.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = GameObject.Find(button.name).transform.Find("content").GetComponent<Text>().text;
+
+    }
+
+    private void resetRightPanel()
+    {
+        transform.Find("ContentPanel").transform.Find("Image").GetComponent<CustomUI.CircularImage>().sprite = transform.Find("ContentPanel").transform.Find("Image (1)").GetComponent<CustomUI.CircularImage>().sprite;
+        transform.Find("ContentPanel").transform.Find("Title").GetComponent<Text>().text = "";
+        transform.Find("ContentPanel").transform.Find("Content").GetComponent<Text>().text = "";
+    }
+
+    private void resetLeftPanel()
+    {
+        transform.Find("Image_2 (1)").GetComponent<Image>().sprite = transform.Find("Image_2").GetComponent<Image>().sprite;
+        transform.Find("Image_3 (1)").GetComponent<Image>().sprite = transform.Find("Image_3").GetComponent<Image>().sprite;
+        transform.Find("Image_4 (1)").GetComponent<Image>().sprite = transform.Find("Image_4").GetComponent<Image>().sprite;
+    }
+
+    private void initFirst()
+    {
+        //重置主符文
+        transform.Find("AttackButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("AttackPanel").gameObject.SetActive(false);
+        transform.Find("AttackButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("DefenseButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("DefensePanel").gameObject.SetActive(false);
+        transform.Find("DefenseButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("ComprehensiveButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("ComprehensivePanel").gameObject.SetActive(false);
+        transform.Find("ComprehensiveButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        transform.Find("RecoveryPanel").gameObject.SetActive(false);
+        transform.Find("RecoveryButton").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+    }
+
+    private void initSecond()
+    { //重置Attack的副按钮
+        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(0).Find("AButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(1).Find("AButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("AttackPanel").GetChild(2).Find("AButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置Recovery的副按钮
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(0).Find("EButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(1).Find("EButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("RecoveryPanel").GetChild(2).Find("EButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置Defense的副按钮
+        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(0).Find("DButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(1).Find("DButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("DefensePanel").GetChild(2).Find("DButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+
+        //重置ComprehensivePanel的副按钮
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton1").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton2").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(0).Find("CButton3").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton4").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton5").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(1).Find("CButton6").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton7").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton8").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        transform.Find("ComprehensivePanel").GetChild(2).Find("CButton9").transform.GetComponent<CustomUI.CircularImage>().color = new Color(0.6f, 0.6f, 0.6f, 0.5f);
     }
 }
 
