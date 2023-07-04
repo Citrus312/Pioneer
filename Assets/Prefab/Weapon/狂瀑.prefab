@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8489868599268492402}
   - component: {fileID: 8489868599268492396}
   - component: {fileID: 8489868599268492407}
+  - component: {fileID: 5427424989943104355}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -134,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &8489868599268492402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +195,19 @@ PolygonCollider2D:
       - {x: -0.51906353, y: -0.30474502}
       - {x: -0.7067458, y: -0.53640205}
       - {x: -0.51876086, y: -0.68883336}
+--- !u!114 &5427424989943104355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489868599268492398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab
 --- !u!1 &8489868599944452604
 GameObject:
   m_ObjectHideFlags: 0

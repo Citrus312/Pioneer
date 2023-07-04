@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2288398072891005570}
   - component: {fileID: 2288398072891005571}
   - component: {fileID: 2288398072891005820}
+  - component: {fileID: 3752075066016870712}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -128,7 +129,20 @@ MonoBehaviour:
   _attachPoint: {fileID: 2288398073939137612}
   _grip: {fileID: 2288398073203174563}
   _endPoint: {fileID: 2288398073793059257}
-  _bulletPrefab: Assets/Prefab/Bullet/bullet_Blue 3.prefab
+  _bulletPrefab: 
+--- !u!114 &3752075066016870712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288398072891005822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab
 --- !u!1 &2288398073203174556
 GameObject:
   m_ObjectHideFlags: 0

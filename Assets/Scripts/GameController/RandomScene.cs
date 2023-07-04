@@ -57,15 +57,19 @@ public class RandomScene : MonoBehaviour
         int m = (int)(_sceneWidth / 2 / _gridSize);
         // 障碍物数组
         int[,,] matrix = new int[4, n, m];
+        matrix[0,0,0] = 1;
+        matrix[1,0,0] = 1;
+        matrix[2,0,0] = 1;
+        matrix[3,0,0] = 1;
         Debug.Log("n:" + n + " m:" + m);
         // 总量取较小值
-        int cnt = _obstacleCnt <= (4 * n * m) ? _obstacleCnt : (4 * n * m);
+        int cnt = Mathf.Min(_obstacleCnt, 4 * n * m - 4);
         while(cnt > 0){
             // 象限
             int randDir = Random.Range(0,4);
             // 数组索引
             int randY = Random.Range(0, n), randX = Random.Range(0, m);
-            if((randY == 0 && randX == 0) || matrix[randDir, randY, randX] != 0)
+            if(matrix[randDir, randY, randX] != 0)
             {
                 continue;
             }

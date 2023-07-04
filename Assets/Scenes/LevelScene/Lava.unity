@@ -931,7 +931,7 @@ MonoBehaviour:
   - Assets/Prefab/Obstacles/Rock/Rock8_5.prefab
   _terrainList: []
   _gridSize: 4
-  _obstacleCnt: 8
+  _obstacleCnt: 12
 --- !u!212 &2029326917
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -993,7 +993,7 @@ Transform:
   m_GameObject: {fileID: 2029326914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1766170621}
