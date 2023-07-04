@@ -513,8 +513,20 @@ public class TalentTreeWindow : BaseWindow
 
     private void OnExitButton(Button button)
     {
-        TalentTreeWindow.Instance.Close(false);
-        //SceneLoader._instance.loadScene("MainPage");
+        SceneLoader._instance.loadScene("MainPage");
+        //初始化界面并关闭界面
+
+        DelayToInvoke.DelayToInvokeBySecond(() =>
+        {
+            MainPageWindow.Instance.Open();
+            //初始化界面
+            resetFirstBtn();
+            transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+            transform.Find("RecoveryPanel").gameObject.SetActive(true);
+            transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+            TalentTreeWindow.Instance.Close(false);
+        }, 1.7f);
+
 
     }
 
@@ -537,8 +549,21 @@ public class TalentTreeWindow : BaseWindow
         attributeFinal["moveSpeedAmplification"] = attribute1["moveSpeedAmplification"] + attribute2["moveSpeedAmplification"] + attribute3["moveSpeedAmplification"];
         attributeFinal["scanAccuracy"] = attribute1["scanAccuracy"] + attribute2["scanAccuracy"] + attribute3["scanAccuracy"];
         attributeFinal["collectEfficiency"] = attribute1["collectEfficiency"] + attribute2["collectEfficiency"] + attribute3["collectEfficiency"];
-        TalentTreeWindow.Instance.Close(false);
-        //SceneLoader._instance.loadScene("MainPage");
+        //初始化界面并关闭界面
+        SceneLoader._instance.loadScene("MainPage");
+        //初始化界面并关闭界面
+
+        DelayToInvoke.DelayToInvokeBySecond(() =>
+        {
+            MainPageWindow.Instance.Open();
+            //初始化界面
+            resetFirstBtn();
+            transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+            transform.Find("RecoveryPanel").gameObject.SetActive(true);
+            transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+            TalentTreeWindow.Instance.Close(false);
+        }, 1.7f);
+
         //SceneLoader._instance.loadScene("TalentTree");
         //DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
         //foreach (KeyValuePair<string, float> kvp in attributeFinal)
