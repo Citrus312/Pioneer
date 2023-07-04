@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Fonts/J032-鱼石行书 SDF.asset.meta
+guid: decf2f346c8b7ce46ac4848de0aef7b3
+NativeFormatImporter:
+========
 guid: 0d7acbf9eff893c438e8b9f50ec0f487
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> origin/Chaos:Assets/Prefab/Effect.meta
   externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

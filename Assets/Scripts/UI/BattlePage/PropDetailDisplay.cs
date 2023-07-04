@@ -13,6 +13,7 @@ public class PropDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         //根据物体名字获取对应的数据
         PropAttribute prop = JsonLoader.propPool[int.Parse(this.name)];
+        
         //加载道具的背景和图标
         ImageLoader.LoadImage($"Assets/Sprites/Weapon/{prop.getPropBgIcon()}", detailDisplay.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>());
         ImageLoader.LoadImage($"Assets/Sprites/Prop/{prop.getPropIcon()}", detailDisplay.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>());

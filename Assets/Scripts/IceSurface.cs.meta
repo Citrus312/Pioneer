@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/gameProcess/propRightClick.cs.meta
+guid: a3caea4c68bc1f146948c9d37b33cb68
+========
 guid: 074f10b18567e5f428b7a720ec61af63
+>>>>>>>> origin/Chaos:Assets/Scripts/IceSurface.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
