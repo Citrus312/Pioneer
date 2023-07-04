@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
+            Debug.Log(_playerPrefab);
             // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
             _player = ObjectPool.getInstance().get(_playerPrefab);
             _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
