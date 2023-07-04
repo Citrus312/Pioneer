@@ -84,6 +84,8 @@ public class Damager : MonoBehaviour
         }
 
         //生命汲取
+        if (gameObject.tag == "Enemy")
+            return;
         float healthSteal = GetComponentInParent<CharacterAttribute>().getHealthSteal();
         float randmNum = Random.Range(0, 100.0f);
         if (randmNum < healthSteal)
