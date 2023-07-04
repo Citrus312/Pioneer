@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &2546390300789452938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +188,8 @@ PolygonCollider2D:
     - - {x: 0.52582705, y: -0.016318992}
       - {x: 0.64537543, y: 0.6507614}
       - {x: -0.038356155, y: 0.5034502}
-      - {x: -0.69201076, y: -0.5846111}
-      - {x: -0.5908433, y: -0.6839217}
+      - {x: -1.0937663, y: -0.895211}
+      - {x: -0.8164937, y: -1.1156347}
 --- !u!1 &2546390301561268333
 GameObject:
   m_ObjectHideFlags: 0

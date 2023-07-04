@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &3583763441912615776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,11 +216,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.06417096, y: -0.4683573}
+    - - {x: -0.8222617, y: -1.1304908}
+      - {x: 0.06417096, y: -0.4683573}
       - {x: 0.72913647, y: 0.55860054}
       - {x: 0.53957933, y: 0.727704}
       - {x: -0.47596774, y: 0.051411867}
-      - {x: -0.667786, y: -0.65987706}
+      - {x: -1.0758445, y: -0.91491365}
 --- !u!1 &4957850902479984513
 GameObject:
   m_ObjectHideFlags: 0

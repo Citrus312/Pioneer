@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608e07497080474abf4ba8a3f23cb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawAttackRange: 5
 --- !u!114 &2662158319209681539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +254,8 @@ PolygonCollider2D:
       - {x: 0.59499997, y: 0.64}
       - {x: 0.465, y: 0.64}
       - {x: -0.64, y: -0.39999998}
-      - {x: -0.59, y: -0.59499997}
+      - {x: -1.0353558, y: -0.79496944}
+      - {x: -0.73087895, y: -1.1115508}
       - {x: -0.14999999, y: -0.64}
     - - {x: -0.101247564, y: -0.60928434}
       - {x: -0.100444674, y: -0.6053738}

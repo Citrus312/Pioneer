@@ -277,7 +277,7 @@ public class CharacterAttribute : MonoBehaviour
     {
         setID(id);
         setRawMoveSpeed(rawMoveSpeed);
-        setCurrentHealth(currentHealth);
+        setCurrentHealth(maxHealth);
         setCurrentExp(currentExp);
         setCurrentPlayerLevel(currentPlayerLevel);
         setBasicUpgradeExp(basicUpgradeExp);

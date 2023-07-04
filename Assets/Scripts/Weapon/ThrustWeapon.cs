@@ -17,7 +17,7 @@ public class ThrustWeapon : MeleeWeapon
             固定0.05s为出刀时间，使用开始位置和目标位置做插值来显示
             开始位置和目标位置要转换到_attachPoint的相对坐标
         */
-        float dur = 0.0f, time = 0.1f;
+        float dur = 0.0f, time = 0.15f;
         Vector2 startPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position);
         Vector2 endPos = _attachPoint.InverseTransformPoint(GetComponent<Transform>().position + (Vector3)attackDirection * (_weaponAttribute.getAttackRange() * 0.02f - Vector2.Distance(_attachPoint.position, GetComponent<Transform>().position)));
         while (dur < time)
