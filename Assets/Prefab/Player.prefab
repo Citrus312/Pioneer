@@ -186,6 +186,7 @@ MonoBehaviour:
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
   _prefabPath: 
+  _cureTextPrefabPath: Assets/Prefab/DamageText.prefab
 --- !u!70 &2582487769076849153
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

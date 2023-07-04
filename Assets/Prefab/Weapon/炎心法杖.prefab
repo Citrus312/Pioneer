@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -368091171
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6a31ee62465302844b1ba4317660144c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,7 +129,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 8793653922392239980}
   _grip: {fileID: 8793653923128465283}
   _endPoint: {fileID: 8793653922513543833}
-  _bulletPrefab: 
+  _bulletPrefab: Assets/Prefab/Bullet/bullet_red 1.prefab
 --- !u!114 &2739134758480178823
 MonoBehaviour:
   m_ObjectHideFlags: 0

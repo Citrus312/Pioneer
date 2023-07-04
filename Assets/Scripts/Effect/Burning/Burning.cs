@@ -8,7 +8,8 @@ public class Burning : ExtraEffect
     float _burningDamage;
     // 燃烧间隔
     float _interval;
-    private void Awake() {
+    private void Awake()
+    {
         _burningDamage = 1.0f;
         _interval = 1.0f;
         _duration = 5.0f;
@@ -16,13 +17,14 @@ public class Burning : ExtraEffect
 
     protected override IEnumerator effect()
     {
+        yield return null;
         _character = transform.parent.gameObject;
         Damageable dm = _character.GetComponent<Damageable>();
-        if(dm)
+        if (dm)
         {
             // 总时长
             float remainTime = _duration;
-            while(remainTime > 0)
+            while (remainTime > 0)
             {
                 // 每隔一段时间就扣一次血
                 dm.TakeDamage(_burningDamage);

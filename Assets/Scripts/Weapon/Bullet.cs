@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] string _hitVFX;
+    [SerializeField] protected string _hitVFX;
     //发射出该子弹的武器
     public GameObject _weapon;
     //子弹能够贯穿的次数
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     //预制体
     public string _prefab;
     //子弹想要击中的目标
-    string _targetTag;
+    protected string _targetTag;
 
     public void setup(GameObject weapon, string prefab, string targetTag, int pierce)
     {
@@ -37,10 +37,10 @@ public class Bullet : MonoBehaviour
         // rigidbody2D.mass = 0.5f;
 
         //设置击中特效路径
-        _hitVFX = "Assets/Prefab/Bullet/Hit VFX.prefab";
+        // _hitVFX = "Assets/Prefab/Bullet/Hit VFX.prefab";
     }
 
-    protected void OnTriggerEnter2D(Collider2D collider2D)
+    private void OnTriggerEnter2D(Collider2D collider2D)
     {
         //如果碰撞的不为目标且不为障碍物则直接返回
         if (collider2D.tag != _targetTag && collider2D.tag != "Obstacles")

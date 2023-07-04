@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6787016985104416656}
-  - component: {fileID: 6657835873465510075}
   - component: {fileID: -4963964288423747914}
   - component: {fileID: 5930630262935879180}
   - component: {fileID: -2299552602624554283}
+  - component: {fileID: 1672231953863152224}
   m_Layer: 0
   m_Name: bullet_Blue 1
   m_TagString: Untagged
@@ -35,22 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &6657835873465510075
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6787016985104416660}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!50 &-4963964288423747914
 Rigidbody2D:
   serializedVersion: 4
@@ -84,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba32e007a7355504bb8b9637fde1ac5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVFX: Assets/Prefab/Bullet/Fireball VFX.prefab
+  _hitVFX: Assets/Prefab/Bullet/Hit VFX.prefab
   _weapon: {fileID: 300666766787327960, guid: d85eb20d8d915b141aab30c802822970, type: 3}
   _prefab: 
 --- !u!212 &-2299552602624554283
@@ -127,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dd54d0c6762661143b67c546827efbad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -139,3 +123,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &1672231953863152224
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787016985104416660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013179423, y: -0.0012395927}
+  m_Size: {x: 0.5263608, y: 0.0782462}
+  m_Direction: 1

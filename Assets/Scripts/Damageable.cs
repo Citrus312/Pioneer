@@ -16,6 +16,8 @@ public class Damageable : MonoBehaviour
     public float _onHitTime;
     //预制体路径
     public string _prefabPath;
+    //治疗文本预制体
+    public string _cureTextPrefabPath;
 
     protected void Awake()
     {
@@ -24,6 +26,11 @@ public class Damageable : MonoBehaviour
         //初始化受击闪烁颜色和持续时间
         _onHitColor = new Color(255.0f / 255.0f, 100.0f / 255.0f, 100.0f / 255.0f, 255.0f / 255.0f);
         _onHitTime = 0.2f;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(recovery());
     }
 
     //受击闪烁
@@ -67,6 +74,42 @@ public class Damageable : MonoBehaviour
         if (GetComponent<CharacterAttribute>().getCurrentHealth() <= 0)
         {
             onDeath.Invoke();
+        }
+    }
+
+    //治疗
+    public void cure(float cureHealth)
+    {
+        CharacterAttribute characterAttribute = GetComponent<CharacterAttribute>();
+        //如果满血就直接返回
+        if (characterAttribute.getCurrentHealth() == characterAttribute.getMaxHealth())
+            return;
+        cureHealth = Mathf.Min(cureHealth, characterAttribute.getMaxHealth() - characterAttribute.getCurrentHealth());
+        //显示治疗
+        GameObject cureTextObj = ObjectPool.getInstance().get(_cureTextPrefabPath);
+        cureTextObj.transform.position = transform.position + new Vector3(Random.Range(0, 0.5f), Random.Range(0, 0.5f), 0);
+        DamageText recoveryText = cureTextObj.GetComponent<DamageText>();
+        recoveryText.setup(DamageText.TextType.PlayerCure, ((int)cureHealth > 0) ? (int)cureHealth : 1);
+        GetComponent<CharacterAttribute>().setCurrentHealth(Mathf.Min(GetComponent<CharacterAttribute>().getCurrentHealth() + cureHealth, GetComponent<CharacterAttribute>().getMaxHealth()));
+        // Debug.Log(gameObject.tag + " cure " + cureHealth + ", current health=" + characterAttribute.getCurrentHealth() + ", max health=" + characterAttribute.getMaxHealth());
+    }
+
+    //生命回复
+    IEnumerator recovery()
+    {
+        CharacterAttribute characterAttribute = GetComponent<CharacterAttribute>();
+        float cureHealth = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            float healthRecovery = characterAttribute.getHealthRecovery();
+            if (healthRecovery > 0)
+                cureHealth += 0.2f + 0.1f * (healthRecovery - 1);
+            if (cureHealth >= 1)
+            {
+                cure((int)cureHealth);
+                cureHealth -= (int)cureHealth;
+            }
         }
     }
 }
