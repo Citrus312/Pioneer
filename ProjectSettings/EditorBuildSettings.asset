@@ -15,8 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: ed70c4485c5443446bead09e59b56d9b
+    path: Assets/Scenes/LevelScene/Ice.unity
+    guid: f763a4aa2ae16e44c8c3f9ff84ef6a25
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/Lava.unity
+    guid: 7736df1e1918d28459938b06b16bd580
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/Purple.unity
+    guid: 489266b81bb0b9c4282bfbb8a44ca972
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainPage.unity
     guid: 14d4e33100f63e14f81f30feeacf4e41
