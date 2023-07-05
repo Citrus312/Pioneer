@@ -74,6 +74,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
         string n = new string(transform.name.Where(char.IsDigit).ToArray());
         int ID = int.Parse(n);
         GameController.getInstance().getGameData()._weaponList.Remove(ID);
+        weaponBagWindow.Instance.ownWeaponList.Remove(ID);
         GameController.getInstance().getGameData()._money +=Mathf.Ceil(JsonLoader.weaponPool[ID].getWeaponPrice() * 0.75f);
     }
 
