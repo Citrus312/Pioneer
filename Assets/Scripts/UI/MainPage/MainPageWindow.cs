@@ -157,7 +157,8 @@ public class MainPageWindow : BaseWindow
 
         Debug.Log("点击了 天赋 按钮");
         SceneLoader._instance.loadScene("TalentTree");
-        DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
+        TalentTreeWindow.Instance.Open();
+        MainPageWindow.Instance.Close();
 
     }
     private void OnExitBtn()
@@ -225,6 +226,6 @@ public class MainPageWindow : BaseWindow
     public override void Open()
     {
         // 主页窗口延迟显示
-        DelayToInvoke.DelayToInvokeBySecond(()=>{base.Open();}, 1.0f);
+        DelayToInvoke.DelayToInvokeBySecond(() => { base.Open(); }, 1.0f);
     }
 }

@@ -29,16 +29,16 @@ public class MonsterInfoCalcu
             int wave = GameController.getInstance().getGameData()._wave;
             int difficulty = GameController.getInstance().getGameData()._difficulty;
             CharacterAttribute monster = JsonLoader.monsterPool[i];
-            if (monster.getFirstGenWave() <= wave)
+            if (monster.getFirstGenWave() <= wave && monster.getBelongLevel() == GameController.getInstance().getGameData()._scene)
             {
                 genMonsterType.Add(i);
                 float baseCount = Random.Range(monster.getMinGenCount(), monster.getMaxGenCount());
-                genMonsterCount.Add((int)Mathf.Ceil(baseCount * (1 + (difficulty - 1) * 0.1f) * (1 + (wave - 1) * 0.1f)));
+                genMonsterCount.Add((int)Mathf.Ceil(baseCount * (1 + (difficulty - 1) * 0.1f) * (1 + (wave - 1) * 0.05f)));
 
                 CharacterAttribute temp = monster;
-                temp.setMaxHealth((monster.getMaxHealth() + monster.getHealthIncPerWave() * (wave - 1)) * (difficulty - 1) * 0.2f);
-                temp.setMeleeDamage((monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * (difficulty - 1) * 0.1f);
-                temp.setRangedDamage((monster.getRangedDamage() + monster.getDamageIncPerWave() * (wave - 1)) * (difficulty - 1) * 0.1f);
+                temp.setMaxHealth((monster.getMaxHealth() + monster.getHealthIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.2f + 1));
+                temp.setMeleeDamage((monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
+                temp.setRangedDamage((monster.getRangedDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
                 genMonsterAttr.Add(temp);
             }
         }

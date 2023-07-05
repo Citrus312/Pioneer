@@ -11,6 +11,8 @@ public class AIController : Controller
     //击退速度
     [SerializeField] protected float beatBackTimeSpeed = 5.0f;
 
+    protected bool _dontMove;
+
     //击中怪物，怪物开始击退
     public void OnHit(Vector2 direction)
     {
@@ -66,25 +68,35 @@ public class AIController : Controller
     // Update is called once per frame
     void Update()
     {
+        if (_dontMove)
+            return;
         //如果处于滑行状态则直接向滑行方向移动
-        if (isSkating)
+        if (isSkating > 0)
             move(skatingDirection);
         else
             move(getMoveDirection());
     }
 
-    private void OnEnable() {
+    protected void OnEnable()
+    {
         // 重置碰撞盒
         GetComponent<Collider2D>().enabled = true;
+        //恢复碰撞伤害
+        GetComponent<MeleeMonsterHit>().enabled = true;
+        //恢复移动
+        _dontMove = false;
     }
 
     public override void OnDie()
     {
         // 取消碰撞盒
         GetComponent<Collider2D>().enabled = false;
+        //取消碰撞伤害
+        GetComponent<MeleeMonsterHit>().enabled = false;
+        //取消移动
+        _dontMove = true;
         // 掉落物品
         CharacterAttribute monsterAttribute = GetComponent<CharacterAttribute>();
         DropItemGenerator.getInstance().dropItem(gameObject.transform.position, (int)monsterAttribute.getLootCount(), monsterAttribute.getCrateRate());
-        base.OnDie();
     }
 }

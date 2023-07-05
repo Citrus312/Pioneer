@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4037624574702354125}
   - component: {fileID: 506896740615227757}
   - component: {fileID: 565582092779899477}
+  - component: {fileID: -6144439465973997435}
   m_Layer: 0
   m_Name: Ore_2
   m_TagString: Untagged
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 626548501
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc6909ea2f02edc4991f049b09a97e66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,3 +116,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabPath: Assets/Prefab/DropItem/Ore_2.prefab
+--- !u!114 &-6144439465973997435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037624574702354126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a0b0704decea4b8cac91df2d52d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabPath: Assets/Prefab/Obstacles/Lake/EmptyObject.prefab

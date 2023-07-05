@@ -28,13 +28,13 @@ public class CircularButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         switch (str)
         {
             case "1":
-                GameController.getInstance().getGameData()._scene = "BattleScene1";
+                GameController.getInstance().getGameData()._scene = "Purple";
                 break;
             case "2":
-                GameController.getInstance().getGameData()._scene = "BattleScene1";
+                GameController.getInstance().getGameData()._scene = "Lava";
                 break;
             case "3":
-                GameController.getInstance().getGameData()._scene = "BattleScene1";
+                GameController.getInstance().getGameData()._scene = "Ice";
                 break;
             default:
                 break;

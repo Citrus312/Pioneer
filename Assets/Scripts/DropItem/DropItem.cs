@@ -40,5 +40,7 @@ public class DropItem : MonoBehaviour
     {
         // 移除
         ObjectPool.getInstance().remove(_prefabPath, gameObject);
+        // 移除倒影
+        GetComponent<WaterShadow>().removeWaterShadow();
     }
 }

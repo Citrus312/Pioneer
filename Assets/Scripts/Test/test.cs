@@ -9,7 +9,7 @@ public class test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Animator>().SetBool("B_isAlive", false);
+            RandomScene.getInstance().randomGenerateScene();
         }
     }
 }

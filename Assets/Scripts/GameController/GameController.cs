@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 public class GameController : MonoBehaviour
 {
@@ -9,12 +9,13 @@ public class GameController : MonoBehaviour
 
     private GameData _gameData = new GameData();
 
-    public GameObject _playerPrefab;
+    public string _playerPrefab;
     private GameObject _player;
 
     public GameObject _objectPool;
 
     public GameObject _generator;
+
 
     public static GameController getInstance()
     {
@@ -54,9 +55,9 @@ public class GameController : MonoBehaviour
         // 初始化玩家对象
         if (_playerPrefab != null)
         {
-            _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-            // _player = ObjectPool.getInstance().get(_playerPrefab);
-            _player.GetComponent<Damageable>()._prefabPath = null;
+            // _player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            _player = ObjectPool.getInstance().get(_playerPrefab);
+            _player.GetComponent<Damageable>()._prefabPath = _playerPrefab;
             _player.transform.position = Vector3.zero;
         }
         else
@@ -71,24 +72,27 @@ public class GameController : MonoBehaviour
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
             GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setOwnerAttr(_player.GetComponent<CharacterAttribute>());
             weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
+        ObjectPool.getInstance().remove(_playerPrefab, _player);
 
         return true;
     }
-
     //波次开始
     public void waveStart()
     {
-        _player.SetActive(true);
+        // _player.SetActive(true);
+        _player = ObjectPool.getInstance().get(_playerPrefab);
         MonsterInfoCalcu.Instance.Cal();
+        // Debug.Log("genMonstreCount.Count=" + MonsterInfoCalcu.Instance.genMonsterCount.Count);
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
         {
             //生成的数量
             int num = MonsterInfoCalcu.Instance.genMonsterCount[i];
-            //Debug.Log(num);
+            // Debug.Log("monster num=" + num);
             //生成的怪物属性
             CharacterAttribute characterAttribute = MonsterInfoCalcu.Instance.genMonsterAttr[i];
             StartCoroutine(generateMonster(characterAttribute, num));

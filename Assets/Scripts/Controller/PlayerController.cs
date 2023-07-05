@@ -49,7 +49,7 @@ public class PlayerController : Controller
     void Update()
     {
         //如果处于滑行状态则直接朝滑行方向移动
-        if (isSkating)
+        if (isSkating > 0)
             move(skatingDirection);
         else
             //根据键盘输入进行移动
