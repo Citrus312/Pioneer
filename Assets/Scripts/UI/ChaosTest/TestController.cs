@@ -28,7 +28,7 @@ public class TestController : MonoBehaviour
         //Debug.Log($"weaponPool  {JsonLoader.weaponPool.Count}");
         //Debug.Log($"rolePool  {JsonLoader.rolePool.Count}");
         //Debug.Log($"masterPool  {JsonLoader.monsterPool.Count}");
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 0; i++)
         {
             GameController.getInstance().getGameData()._weaponList.Add(55);
         }
@@ -46,7 +46,7 @@ public class TestController : MonoBehaviour
         //GameController.getInstance().ModifyProp(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRangedDamage(20);
-        //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAttackSpeedAmplification(100);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setDodgeRate(100);
         //Debug.Log($"normal {GameController.getInstance().getGameData()._propCountPerQuality[0]}");
         //Debug.Log($"senior {GameController.getInstance().getGameData()._propCountPerQuality[1]}");
         //Debug.Log($"elite {GameController.getInstance().getGameData()._propCountPerQuality[2]}");

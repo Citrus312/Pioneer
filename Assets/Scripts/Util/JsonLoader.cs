@@ -58,14 +58,14 @@ public class JsonLoader
     {
         //json文件中读取到的所有数据
         JsonData weaponsConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Weapons.json", Encoding.GetEncoding("utf-8")));
-        //存储从json获取的武器分类临时变量
-        List<WeaponAttribute.WeaponCategory> tempCategory = new();
         //从json文件中获取的一个武器的数据
         JsonData weaponConfig;
         JsonData weaponCategory;
         double temp;
         for (int i = 0; i < weaponsConfig.Count; i++)
         {
+            //存储从json获取的武器分类临时变量
+            List<WeaponAttribute.WeaponCategory> tempCategory = new();
             //添加进池中的武器属性临时变量
             WeaponAttribute addAttr = new();
             weaponConfig = weaponsConfig[i];
@@ -199,7 +199,7 @@ public class JsonLoader
             temp = (double)propConfig["engineering"];
             addAttr.setEngineering((float)temp);
             temp = (double)propConfig["attackRangeAmplification"];
-            addAttr.setAttackRangedAmplification((float)temp);
+            addAttr.setAttackRangeAmplification((float)temp);
             temp = (double)propConfig["armorStrength"];
             addAttr.setArmorStrength((float)temp);
             temp = (double)propConfig["dodgeRate"];
@@ -238,12 +238,12 @@ public class JsonLoader
         JsonData rolesConfig = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Config/Roles.json", Encoding.GetEncoding("utf-8")));
         JsonData roleConfig;
         JsonData weaponCategory;
-        List<WeaponAttribute.WeaponCategory> tempCategory = new();
         double temp;
 
         for (int i = 0; i < rolesConfig.Count; i++)
         {
             CharacterAttribute addAttr = new();
+            List<WeaponAttribute.WeaponCategory> tempCategory = new();
             roleConfig = rolesConfig[i];
             addAttr.setID((int)roleConfig["ID"]);
             addAttr.setBulletCount((int)roleConfig["bulletCount"]);

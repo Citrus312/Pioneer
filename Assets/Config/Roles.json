@@ -27,7 +27,7 @@
     "ID": 2,
     "name": "全能士兵",
     "icon": "player-idle1.png",
-    "weaponCategory": [ "machete", "polearms" ],
+    "weaponCategory": [ "machete", "polearms", "sword" ],
     "bulletCount": 0,
     "rawMoveSpeed": 3.0,
     "maxHealth": 20.0,

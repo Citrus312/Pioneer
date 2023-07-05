@@ -28,8 +28,8 @@ public class upgradeController : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             int level = calculationLevel();
-            valueList[i] = calculateValue(selectedCardId[i],level);
-            drawCards(i, selectedCardId[i],level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
+            valueList[i] = calculateValue(selectedCardId[i], level);
+            drawCards(i, selectedCardId[i], level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
         }
 
         //为刷新按钮添加监听事件
@@ -83,7 +83,7 @@ public class upgradeController : MonoBehaviour
         int count = 0;
         while (count < 4)
         {
-            int randomId = Random.Range(0,15);
+            int randomId = Random.Range(0, 15);
             if (!selectedCardId.Contains(randomId))
             {
                 selectedCardId[count] = randomId;
@@ -96,11 +96,11 @@ public class upgradeController : MonoBehaviour
     //抽取概率计算并返回抽取后的id
     int calculationLevel()
     {
-        float luck = 50f;//到时替换成角色的属性
-        probability[0] = 400f + luck * 0.1f;
-        probability[1] = 300f + luck * 0.2f;
-        probability[2] = 200f + luck * 0.3f;
-        probability[3] = 100f + luck * 0.4f;
+        float luck = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().getScanAccuracy();
+        probability[0] = 800f + luck * 2f + GameController.getInstance().getGameData()._wave * 10;
+        probability[1] = 400f + luck * 4f + GameController.getInstance().getGameData()._wave * 20;
+        probability[2] = GameController.getInstance().getGameData()._wave >= 5 ? (GameController.getInstance().getGameData()._wave - 5) * 40 + luck * 2 : 0;
+        probability[3] = GameController.getInstance().getGameData()._wave >= 10 ? (GameController.getInstance().getGameData()._wave - 10) * 50 + luck * 2 : 0;
         float sum = 0;
         for (int i = 0; i < probability.Length; i++)
         {
@@ -127,7 +127,7 @@ public class upgradeController : MonoBehaviour
 
     }
     //将卡片内容显示在UI上
-    public void drawCards(int i, int id,int level)
+    public void drawCards(int i, int id, int level)
     {
         string cardName = "card";
         switch (i)
@@ -161,7 +161,7 @@ public class upgradeController : MonoBehaviour
         nameText.text = propertyName[id];
 
         TextMeshProUGUI valueText = child3.GetComponent<TextMeshProUGUI>();
-        valueText.text = "+" + calculateValue(id,level);
+        valueText.text = "+" + calculateValue(id, level);
 
         switch (level)
         {
@@ -184,58 +184,58 @@ public class upgradeController : MonoBehaviour
 
     }
     //计算具体数值
-    float calculateValue(int id,int level)
+    float calculateValue(int id, int level)
     {
         switch (id)
         {
             case 0:
                 return 2 + 2 * level;
-                
+
             case 1:
                 return 2 + 1 * level;
-                
+
             case 2:
                 return 1 + 2 * level;
-                
+
             case 3:
                 return 4 + 2 * level;
-                
+
             case 4:
                 return 1 + 2 * level;
-                
+
             case 5:
                 return 1 + 2 * level;
-                
+
             case 6:
                 return 1 + 2 * level;
-                
+
             case 7:
                 return 3 + 3 * level;
-                
+
             case 8:
                 return 2 + 2 * level;
-               
+
             case 9:
                 return 2 + 1 * level;
-                
+
             case 10:
                 return 10 + 10 * level;
-                
+
             case 11:
                 return 1 + 1 * level;
-                
+
             case 12:
                 return 3 + 2 * level;
-                
+
             case 13:
                 return 2 + 2 * level;
-                
+
             case 14:
                 return 3 + 3 * level;
-                
+
             case 15:
                 return 5 + 5 * level;
-                
+
 
             default:
                 return 0;
@@ -278,6 +278,9 @@ public class upgradeController : MonoBehaviour
     //升级按钮点击事件
     public void OnupgradeButtonClicked(int cardId)
     {
+        upgradeWindow.Instance.value = valueList[cardId];
+        upgradeWindow.Instance.name = propertyName[selectedCardId[cardId]];
+
         extractCard();
         for (int i = 0; i < 4; i++)
         {
@@ -286,8 +289,5 @@ public class upgradeController : MonoBehaviour
             valueList[i] = calculateValue(selectedCardId[i], level);
             drawCards(i, selectedCardId[i], level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
         }
-
-        upgradeWindow.Instance.value = valueList[cardId];
-        upgradeWindow.Instance.name = propertyName[selectedCardId[cardId]];
     }
 }

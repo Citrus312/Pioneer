@@ -25,19 +25,6 @@ public class RoleAndWeaponSelectWindow : BaseWindow
         isVisible = false;
         selfType = WindowType.RoleAndWeaponSelectWindow;
         sceneType = SceneType.Select;
-        //加载角色和武器数据配置，用于调试
-        if (JsonLoader.rolePool.Count == 0)
-        {
-            JsonLoader.LoadAndDecodeRoleConfig();
-        }
-        if (JsonLoader.weaponPool.Count == 0)
-        {
-            JsonLoader.LoadAndDecodeWeaponConfig();
-        }
-        if (JsonLoader.propPool.Count == 0)
-        {
-            JsonLoader.LoadAndDecodePropConfig();
-        }
         //往角色选择内容中添加相应数量的按钮
         for (int i = 0; i < JsonLoader.rolePool.Count; i++)
         {
@@ -45,6 +32,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
             Button btn = obj.AddComponent<Button>();
             //按钮的image组件需要另外添加
             btn.image = btn.gameObject.AddComponent<Image>();
+            btn.image.color = new Color(1f, 1f, 1f, 0f);
             roleContentList.Add(obj);
         }
         //等待按钮添加完成后，给按钮赋予对应角色的图标
@@ -55,7 +43,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
                 Button btn = roleContentList[i].GetComponent<Button>();
                 ImageLoader.LoadImage("Assets/Sprites/Player/" + JsonLoader.rolePool[i].getIcon(), btn.image);
             }
-        }, 3);
+        }, 1);
         //等待以上操作完成后给每个按钮添加上控制脚本
         DelayToInvoke.DelayToInvokeByFrame(() =>
         {
@@ -63,7 +51,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
             {
                 roleContentList[i].AddComponent<DisplayRoleAndWeaponDetail>();
             }
-        }, 6);
+        }, 1);
     }
     //实例的自动属性
     public static RoleAndWeaponSelectWindow Instance
@@ -151,23 +139,30 @@ public class RoleAndWeaponSelectWindow : BaseWindow
     //选择完角色后用于获取选定角色可用的武器
     public List<int> FetchUsableWeapon()
     {
+        //JsonLoader.weaponPool.Clear();
+        //JsonLoader.LoadAndDecodeWeaponConfig();
         //获取选定角色可以使用的武器分类
         List<WeaponAttribute.WeaponCategory> list = JsonLoader.rolePool[GameController.getInstance().getGameData()._playerID].getWeaponCategory();
         //最后获得的存有选定角色能使用的所有武器的索引
         List<int> result = new();
+        //Debug.Log($"role  {list.Count}");
+        //Debug.Log($"weaponPool  {JsonLoader.weaponPool.Count}");
+        //Debug.Log(JsonLoader.weaponPool);
         //由于每种武器有四种品质，故索引每次递增4
         for (int i = 0; i < JsonLoader.weaponPool.Count; i += 4)
         {
+            //Debug.Log(weapon);
+            //Debug.Log($"{weapon.getWeaponName()}  索引 {i}");
             //判断当前索引对应的武器选定的角色能否使用
             foreach (WeaponAttribute.WeaponCategory category in JsonLoader.weaponPool[i].getWeaponCategory())
             {
-                if (list.Contains(WeaponAttribute.WeaponCategory.All))
+                if (list.Exists(t => t == WeaponAttribute.WeaponCategory.All))
                 {
                     //All表示可以使用任何武器
                     result.Add(i);
                     break;
                 }
-                else if (list.Contains(category))
+                else if (list.Exists(t => t == category))
                 {
                     result.Add(i);
                     break;
@@ -255,6 +250,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
         }
         else if (isSelectRole)  //武器选择按钮的逻辑
         {
+            btn.enabled = false;
             //更新gameData中需要更新的数据
             GameController.getInstance().getGameData()._isFirstPlaying = false;
             for (int i = 0; i < 1; i++)
@@ -322,7 +318,36 @@ public class RoleAndWeaponSelectWindow : BaseWindow
             GameController.getInstance().getGameData()._attr.setAllPlayerAttribute(attr);
             //已经选择完角色的前提下点击武器按钮直接切换场景
             SceneLoader._instance.loadScene(GameController.getInstance().getGameData()._scene);
-            DelayToInvoke.DelayToInvokeBySecond(() => { RoleAndWeaponSelectWindow.Instance.Close(); }, 0.8f);
+            DelayToInvoke.DelayToInvokeBySecond(() =>
+            {
+                RoleAndWeaponSelectWindow.Instance.Close();
+                //清空武器详细信息显示区域
+                RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponName").GetComponent<Text>().text = "";
+                RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponAttribute").GetComponent<Text>().text = "";
+                Image weaponImg = RoleAndWeaponSelectWindow.Instance.weaponDisplay.Find("WeaponImage").GetComponent<Image>();
+                weaponImg.color = new Color(weaponImg.color.r, weaponImg.color.g, weaponImg.color.b, 0);
+                //清空角色详细信息显示区域
+                RoleAndWeaponSelectWindow.Instance.roleDisplay.Find("RoleName").GetComponent<Text>().text = "";
+                RoleAndWeaponSelectWindow.Instance.roleDisplay.Find("RoleAttribute").GetComponent<Text>().text = "";
+                Image roleImg = RoleAndWeaponSelectWindow.Instance.roleDisplay.Find("RoleImage").GetComponent<Image>();
+                roleImg.color = new Color(roleImg.color.r, roleImg.color.g, roleImg.color.b, 0);
+                //清空可用武器列表，因为不同角色的可用武器列表可能不同
+                RoleAndWeaponSelectWindow.Instance.weaponContentList.Clear();
+                //销毁滚动区域内的所有武器显示按钮
+                Transform scrollAreaContent = transform.Find("ScrollSelectArea").GetChild(0).GetChild(0);
+                Transform[] allChildren = scrollAreaContent.GetComponentsInChildren<Transform>(true);
+                foreach (Transform child in allChildren)
+                {
+                    if (child != scrollAreaContent)
+                    {
+                        GameObject.DestroyImmediate(child.gameObject);
+                    }
+                }
+                //重新显示角色选择滚动窗口内容
+                RoleAndWeaponSelectWindow.Instance.DisplayRoleScrollContent();
+                //更新角色选择状态
+                RoleAndWeaponSelectWindow.Instance.isSelectRole = false;
+            }, 0.8f);
         }
     }
 }

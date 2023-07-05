@@ -7,7 +7,7 @@ public class InitScene : MonoBehaviour
 {
     public CinemachineVirtualCamera CM;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // 初始化场景
         GameController.getInstance().initBattleScene();
@@ -15,6 +15,10 @@ public class InitScene : MonoBehaviour
         CM.Follow = GameController.getInstance().getPlayer().transform;
         // 属性赋值
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
+        GameObject manager = new GameObject("StoreManager");
+        manager.AddComponent<gameProcessController>();
+        gameProcessController.Instance.gameObject.SetActive(true);
+        gameProcessController.Instance.Init();
         GameController.getInstance().waveStart();
     }
 }

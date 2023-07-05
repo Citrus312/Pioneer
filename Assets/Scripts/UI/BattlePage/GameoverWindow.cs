@@ -111,7 +111,8 @@ public class GameoverWindow : BaseWindow
         for (int i = 0; i < GameController.getInstance().getGameData()._propList.Count; i++)
         {
             //获取指定的道具属性
-            PropAttribute prop = JsonLoader.propPool[GameController.getInstance().getGameData()._propList[i]];
+            PropAttribute prop = new();
+            prop.setPropAttribute(JsonLoader.propPool[GameController.getInstance().getGameData()._propList[i]]);
             //加载用于显示道具图标的预制体
             GameObject obj = Resources.Load<GameObject>("UI/prop");
             obj = GameObject.Instantiate(obj);
@@ -163,7 +164,14 @@ public class GameoverWindow : BaseWindow
 
     public void OnExitBtn()
     {
-        SceneLoader._instance.loadScene("mainPage");
-        DelayToInvoke.DelayToInvokeBySecond(() => { Close(); }, 1.0f);
+        GameController.getInstance().getGameData().ResetGameData();
+        JsonLoader.UpdateGameData();
+        Time.timeScale = 1f;
+        SceneLoader._instance.loadScene("MainPage");
+
+        DelayToInvoke.DelayToInvokeBySecond(() =>
+        {
+            Close(); MainPageWindow.Instance.Open();
+        }, 1.0f);
     }
 }

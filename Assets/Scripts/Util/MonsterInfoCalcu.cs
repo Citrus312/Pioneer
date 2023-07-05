@@ -28,7 +28,14 @@ public class MonsterInfoCalcu
         {
             int wave = GameController.getInstance().getGameData()._wave;
             int difficulty = GameController.getInstance().getGameData()._difficulty;
-            CharacterAttribute monster = JsonLoader.monsterPool[i];
+            CharacterAttribute monster = new();
+            monster.setAllMonsterAttribute(JsonLoader.monsterPool[i]);
+            if (monster.getBelongLevel() == "Boss" && GameController.getInstance().getGameData()._wave == 20)
+            {
+                genMonsterType.Add(i);
+                genMonsterCount.Add(1);
+                genMonsterAttr.Add(monster);
+            }
             if (monster.getFirstGenWave() <= wave && monster.getBelongLevel() == GameController.getInstance().getGameData()._scene)
             {
                 genMonsterType.Add(i);
