@@ -481,7 +481,13 @@ public class textController : MonoBehaviour
                         break;
                 }
                 GameObject card = GameObject.Find(cardName);
+                Transform lockIcon = card.transform.Find("lockIcon");
                 card.SetActive(false);
+                if(isLocked[cardID])
+                {
+                    lockedCardIndex[cardID] = -1;
+                    lockIcon.gameObject.SetActive(false);
+                }
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
 
                 weaponBagWindow.Instance.ownWeaponList.Add(selectedCardId[cardID]);
@@ -521,7 +527,13 @@ public class textController : MonoBehaviour
                         break;
                 }
                 GameObject card = GameObject.Find(cardName);
+                Transform lockIcon = card.transform.Find("lockIcon");
                 card.SetActive(false);
+                if (isLocked[cardID])
+                {
+                    lockedCardIndex[cardID] = -1;
+                    lockIcon.gameObject.SetActive(false);
+                }
                 propBagWindow.Instance.buyedProp = selectedCardId[cardID];
                 if (propBagWindow.Instance.ownPropList.Contains(selectedCardId[cardID]))
                 {

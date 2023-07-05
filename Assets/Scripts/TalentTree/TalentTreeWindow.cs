@@ -366,7 +366,7 @@ public class TalentTreeWindow : BaseWindow
                 transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton6":
-                attribute2["attackSpeedAmplification"] += 101f;
+                attribute2["attackSpeedAmplification"] += 10f;
                 transform.Find("Image_3 (1)").GetComponent<Image>().sprite = GameObject.Find(second.name).GetComponent<CustomUI.CircularImage>().sprite;
                 break;
             case "CButton7":
