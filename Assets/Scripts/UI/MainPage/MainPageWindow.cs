@@ -47,6 +47,9 @@ public class MainPageWindow : BaseWindow
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        JsonLoader.LoadAndDecodeGameData();
+
         //遍历按钮列表寻找“继续”按钮
         foreach (Button btn in btnList)
         {
@@ -63,7 +66,6 @@ public class MainPageWindow : BaseWindow
                 {
                     btn.interactable = true;
                 }
-
             }
         }
     }

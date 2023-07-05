@@ -111,7 +111,7 @@ public class PropAttribute : MonoBehaviour
     {
         engineering = input;
     }
-    public void setAttackRangedAmplification(float input)
+    public void setAttackRangeAmplification(float input)
     {
         attackRangeAmplification = input;
     }
@@ -224,5 +224,30 @@ public class PropAttribute : MonoBehaviour
     public float getCollectEfficiency()
     {
         return collectEfficiency;
+    }
+
+    public void setPropAttribute(PropAttribute prop)
+    {
+        setPropID(prop.getPropID());
+        setPropName(prop.getPropName());
+        setPropQuality(prop.getPropQuality());
+        setPropIcon(prop.getPropIcon());
+        setPropBgIcon(prop.getPropBgIcon());
+        setPropPrice(prop.getPropPrice());
+        setMaxHealth(prop.getMaxHealth());
+        setHealthRecovery(prop.getHealthRecovery());
+        setHealthSteal(prop.getHealthSteal());
+        setAttackAmplification(prop.getAttackAmplification());
+        setMeleeDamage(prop.getMeleeDamage());
+        setRangedDamage(prop.getRangedDamage());
+        setAbilityDamage(prop.getAbilityDamage());
+        setCriticalRate(prop.getCriticalRate());
+        setEngineering(prop.getEngineering());
+        setAttackRangeAmplification(prop.getAttackRangeAmplification());
+        setArmorStrength(prop.getArmorStrength());
+        setDodgeRate(prop.getDodgeRate());
+        setMoveSpeedAmplification(prop.getMoveSpeedAmplification());
+        setScanAccuracy(prop.getScanAccuracy());
+        setCollectEfficiency(prop.getCollectEfficiency());
     }
 }

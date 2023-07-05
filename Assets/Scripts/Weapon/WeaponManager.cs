@@ -48,4 +48,9 @@ public class WeaponManager : MonoBehaviour
                 break;
         }
     }
+
+    public void RemoveAllWeapon()
+    {
+        _weapons.Clear();
+    }
 }

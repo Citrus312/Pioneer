@@ -51,8 +51,10 @@ public class DropItemGenerator : Generator
             pos.y += Random.Range(-1 * _offset, _offset);
 
             int randomItem = Random.Range(0, _droppedLootPath.Length - 1);
-            generateObject(_droppedLootPath[randomItem], pos);
-
+            GameObject newObject = generateObject(_droppedLootPath[randomItem], pos);
+            //随机旋转一定角度
+            newObject.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360.0f)));
+            
             num--;
         }
     }

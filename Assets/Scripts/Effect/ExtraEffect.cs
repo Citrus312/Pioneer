@@ -21,7 +21,7 @@ public class ExtraEffect : MonoBehaviour
         yield return null;
     }
 
-    public void removeFromParent()
+    public virtual void removeFromParent()
     {
         // 将对象从父物体中移除
         transform.SetParent(null);

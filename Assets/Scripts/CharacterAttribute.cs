@@ -17,7 +17,7 @@ public class CharacterAttribute : MonoBehaviour
     //角色的基础移速
     private float rawMoveSpeed = 4.0f;
     //角色受击后的无敌时间
-    private float immuneTime = 0.2f;
+    private float immuneTime = 0.5f;
     //角色的当前生命值
     private float currentHealth = 10f;
     //角色的当前经验值
@@ -250,7 +250,7 @@ public class CharacterAttribute : MonoBehaviour
 
     public void setDodgeRate(float input)
     {
-        dodgeRate = input;
+        dodgeRate = input;// > 60f ? 60f : input;
     }
 
     public void setMoveSpeedAmplification(float input)
@@ -269,11 +269,11 @@ public class CharacterAttribute : MonoBehaviour
     }
 
     //用于初始化角色
-    public void setAllPlayerAttribute(int id, float rawMoveSpeed, float currentHealth, float currentExp, int currentPlayerLevel,
+    public void setAllPlayerAttribute(int id, float rawMoveSpeed, float currentExp, int currentPlayerLevel,
         float basicUpgradeExp, float maxHealth, float healthRecovery, float healthSteal, float attackAmplication,
         float meleeDamage, float rangedDamage, float abilityDamage, float attackSpeedAmplification, float criticalRate,
         float engieering, float attackRangeAmplification, float armorStrength, float dodgeRate, float moveSpeedAmplification,
-        float scanAccuracy, float collectEfficiency, int bulletCount)
+        float scanAccuracy, float collectEfficiency, int bulletCount, string icon)
     {
         setID(id);
         setRawMoveSpeed(rawMoveSpeed);
@@ -298,15 +298,16 @@ public class CharacterAttribute : MonoBehaviour
         setScanAccuracy(scanAccuracy);
         setCollectEfficiency(collectEfficiency);
         setBulletCount(bulletCount);
+        setIcon(icon);
     }
 
     public void setAllPlayerAttribute(CharacterAttribute input)
     {
-        setAllPlayerAttribute(input.getID(), input.getRawMoveSpeed(), input.getCurrentHealth(), input.getCurrentExp(), input.getCurrentPlayerLevel(),
+        setAllPlayerAttribute(input.getID(), input.getRawMoveSpeed(), input.getCurrentExp(), input.getCurrentPlayerLevel(),
                               input.getBasicUpgradeExp(), input.getMaxHealth(), input.getHealthRecovery(), input.getHealthSteal(), input.getAttackAmplification(),
                               input.getMeleeDamage(), input.getRangedDamage(), input.getAbilityDamage(), input.getAttackSpeedAmplification(), input.getCriticalRate(),
                               input.getEngineering(), input.getAttackRangeAmplification(), input.getArmorStrength(), input.getDodgeRate(), input.getMoveSpeedAmplification(),
-                              input.getScanAccuracy(), input.getCollectEfficiency(), input.getBulletCount());
+                              input.getScanAccuracy(), input.getCollectEfficiency(), input.getBulletCount(), input.getIcon());
     }
 
     //用于初始化怪物
@@ -543,7 +544,8 @@ public class CharacterAttribute : MonoBehaviour
 
     public void propModifyAttribute(int propIndex, int count = 1)
     {
-        PropAttribute prop = JsonLoader.propPool[propIndex];
+        PropAttribute prop = new();
+        prop.setPropAttribute(JsonLoader.propPool[propIndex]);
         maxHealth += prop.getMaxHealth() * count;
         healthRecovery += prop.getHealthRecovery() * count;
         healthSteal += prop.getHealthSteal() * count;
