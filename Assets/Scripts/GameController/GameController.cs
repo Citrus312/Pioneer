@@ -95,6 +95,10 @@ public class GameController : MonoBehaviour
             // Debug.Log("monster num=" + num);
             //生成的怪物属性
             CharacterAttribute characterAttribute = MonsterInfoCalcu.Instance.genMonsterAttr[i];
+            if (characterAttribute.getID() == 10 || characterAttribute.getID() == 11)
+            {
+                generateBoss(characterAttribute);
+            }
             StartCoroutine(generateMonster(characterAttribute, num));
         }
     }
@@ -121,6 +125,13 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(interval);
             MonsterGenerator.getInstance().beginGenerate(monsterPrefabPath, num, characterAttribute);
         }
+    }
+
+    //生成boss
+    private void generateBoss(CharacterAttribute characterAttribute)
+    {
+        string monsterPrefabPath = characterAttribute.getMonsterPrefabPath();
+        MonsterGenerator.getInstance().beginGenerate(monsterPrefabPath, 1, characterAttribute);
     }
 
     public GameObject getPlayer()
