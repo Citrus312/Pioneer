@@ -657,7 +657,6 @@ MonoBehaviour:
   _terrainList:
   - Assets/Prefab/Obstacles/IceLake/IceLake_1.prefab
   - Assets/Prefab/Obstacles/IceLake/IceLake_2.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_3.prefab
   - Assets/Prefab/Obstacles/IceLake/IceLake_4.prefab
   _gridSize: 4
   _obstacleCnt: 10
