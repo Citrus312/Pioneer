@@ -8,12 +8,12 @@ public class weaponBagWindow : BaseWindow
     private  static weaponBagWindow instance;
     public int buyedWeapon;
     public List<int> ownWeaponList = new();
-    public bool addWeapon=true;//ÅĞ¶ÏÄÜ·ñ¼ÌĞøÌí¼Ó×°±¸
-    public bool isWeapon=true;//¹ºÂòµÄÊÇ·ñÊÇÎäÆ÷
+    public bool addWeapon=true;//åˆ¤æ–­èƒ½å¦ç»§ç»­æ·»åŠ è£…å¤‡
+    public bool isWeapon=true;//è´­ä¹°çš„æ˜¯å¦æ˜¯æ­¦å™¨
 
     private weaponBagWindow()
     {
-        // ÔÚÕâÀï³õÊ¼»¯GameManager
+        // åœ¨è¿™é‡Œåˆå§‹åŒ–GameManager
         resName = "UI/weaponBagWindow";
         isResident = true;
         isVisible = false;
@@ -38,9 +38,9 @@ public class weaponBagWindow : BaseWindow
     {
 
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         //FillTextContent(inputText);
 
     }

@@ -10,9 +10,9 @@ public class upgradeController : MonoBehaviour
     public Color secondLV = new(0f, 1f, 0f, 0.5f);
     public Color thirdLV = new(1f, 0.647f, 0f, 0.5f);
     public Color forthLV = new(0.502f, 0f, 0.502f, 0.5f);
-    public List<int> selectedCardId;//±»Ñ¡ÔñµÄ¿¨Æ¬idÔİ´æÁĞ±í
-    public float[] probability = new float[4];//°´Ë³Ğò·Ö±ğ´ú±íÊôĞÔËÄ¸öµÈ¼¶µÄ¸ÅÂÊ
-    public float[] valueList = new float[4];//±»Ñ¡ÔñµÄ¿¨Æ¬¾ßÌåÌí¼ÓµÄÊıÖµ£¬ºÍselectedCardId¶ÔÓ¦
+    public List<int> selectedCardId;//è¢«é€‰æ‹©çš„å¡ç‰‡idæš‚å­˜åˆ—è¡¨
+    public float[] probability = new float[4];//æŒ‰é¡ºåºåˆ†åˆ«ä»£è¡¨å±æ€§å››ä¸ªç­‰çº§çš„æ¦‚ç‡
+    public float[] valueList = new float[4];//è¢«é€‰æ‹©çš„å¡ç‰‡å…·ä½“æ·»åŠ çš„æ•°å€¼ï¼Œå’ŒselectedCardIdå¯¹åº”
     public List<string> propertyIcon = new();
     public List<string> propertyName = new();
     public List<float> increaseValue = new();
@@ -23,61 +23,61 @@ public class upgradeController : MonoBehaviour
         selectedCardId = new List<int>(new int[4]);
 
         cardListInit();
-        //Ã¿´Î¿ªÆô»á×Ô¶¯Ë¢ĞÂ¿¨³ØÒ»´Î
+        //æ¯æ¬¡å¼€å¯ä¼šè‡ªåŠ¨åˆ·æ–°å¡æ± ä¸€æ¬¡
         extractCard();
         for (int i = 0; i < 4; i++)
         {
             int level = calculationLevel();
             valueList[i] = calculateValue(selectedCardId[i],level);
-            drawCards(i, selectedCardId[i],level);//iÎª¿¨²ÛĞòºÅ£¬ids[i]Îª±»³éÈ¡µÄ¿¨Æ¬ºÅ,calculationLevel()Îª°´¸ÅÂÊ³éÈ¡µ½µÄµÈ¼¶
+            drawCards(i, selectedCardId[i],level);//iä¸ºå¡æ§½åºå·ï¼Œids[i]ä¸ºè¢«æŠ½å–çš„å¡ç‰‡å·,calculationLevel()ä¸ºæŒ‰æ¦‚ç‡æŠ½å–åˆ°çš„ç­‰çº§
         }
 
-        //ÎªË¢ĞÂ°´Å¥Ìí¼Ó¼àÌıÊÂ¼ş
+        //ä¸ºåˆ·æ–°æŒ‰é’®æ·»åŠ ç›‘å¬äº‹ä»¶
         Transform freshBtn = transform.Find("refreshBtn");
         freshBtn.GetComponent<Button>().onClick.AddListener(OnRefreshButtonClicked);
 
     }
 
-    //ËùÓĞÊôĞÔµÄÍ¼±êºÍÃû³ÆÁĞ±í
+    //æ‰€æœ‰å±æ€§çš„å›¾æ ‡å’Œåç§°åˆ—è¡¨
     void cardListInit()
     {
-        propertyIcon.Add("ÉúÃüÉÏÏŞ.png");
-        propertyIcon.Add("ÉúÃü»Ø¸´.png");
-        propertyIcon.Add("ÉúÃü¼³È¡.png");
-        propertyIcon.Add("Êä³öÔö·ù.png");
-        propertyIcon.Add("½üÕ½ÉËº¦.png");
-        propertyIcon.Add("Ô¶³ÌÉËº¦.png");
-        propertyIcon.Add("ÊôĞÔÉËº¦.png");
-        propertyIcon.Add("¹¥ËÙ¼Ó³É.png");
-        propertyIcon.Add("±©»÷¸ÅÂÊ.png");
-        propertyIcon.Add("¹¤³Ì»úĞµ.png");
-        propertyIcon.Add("¹¥»÷·¶Î§.png");
-        propertyIcon.Add("»ú¼×Ç¿¶È.png");
-        propertyIcon.Add("ÉÁ±Ü¸ÅÂÊ.png");
-        propertyIcon.Add("ÒÆËÙ¼Ó³É.png");
-        propertyIcon.Add("É¨Ãè¾«¶È.png");
-        propertyIcon.Add("²É¼¯Ğ§ÂÊ.png");
+        propertyIcon.Add("ç”Ÿå‘½ä¸Šé™.png");
+        propertyIcon.Add("ç”Ÿå‘½å›å¤.png");
+        propertyIcon.Add("ç”Ÿå‘½æ±²å–.png");
+        propertyIcon.Add("è¾“å‡ºå¢å¹….png");
+        propertyIcon.Add("è¿‘æˆ˜ä¼¤å®³.png");
+        propertyIcon.Add("è¿œç¨‹ä¼¤å®³.png");
+        propertyIcon.Add("å±æ€§ä¼¤å®³.png");
+        propertyIcon.Add("æ”»é€ŸåŠ æˆ.png");
+        propertyIcon.Add("æš´å‡»æ¦‚ç‡.png");
+        propertyIcon.Add("å·¥ç¨‹æœºæ¢°.png");
+        propertyIcon.Add("æ”»å‡»èŒƒå›´.png");
+        propertyIcon.Add("æœºç”²å¼ºåº¦.png");
+        propertyIcon.Add("é—ªé¿æ¦‚ç‡.png");
+        propertyIcon.Add("ç§»é€ŸåŠ æˆ.png");
+        propertyIcon.Add("æ‰«æç²¾åº¦.png");
+        propertyIcon.Add("é‡‡é›†æ•ˆç‡.png");
 
-        propertyName.Add("ÉúÃüÉÏÏŞ");
-        propertyName.Add("ÉúÃü»Ø¸´");
-        propertyName.Add("ÉúÃü¼³È¡");
-        propertyName.Add("Êä³öÔö·ù");
-        propertyName.Add("½üÕ½ÉËº¦");
-        propertyName.Add("Ô¶³ÌÉËº¦");
-        propertyName.Add("ÊôĞÔÉËº¦");
-        propertyName.Add("¹¥ËÙ¼Ó³É");
-        propertyName.Add("±©»÷¸ÅÂÊ");
-        propertyName.Add("¹¤³Ì»úĞµ");
-        propertyName.Add("¹¥»÷·¶Î§");
-        propertyName.Add("»ú¼×Ç¿¶È");
-        propertyName.Add("ÉÁ±Ü¸ÅÂÊ");
-        propertyName.Add("ÒÆËÙ¼Ó³É");
-        propertyName.Add("É¨Ãè¾«¶È");
-        propertyName.Add("²É¼¯Ğ§ÂÊ");
+        propertyName.Add("ç”Ÿå‘½ä¸Šé™");
+        propertyName.Add("ç”Ÿå‘½å›å¤");
+        propertyName.Add("ç”Ÿå‘½æ±²å–");
+        propertyName.Add("è¾“å‡ºå¢å¹…");
+        propertyName.Add("è¿‘æˆ˜ä¼¤å®³");
+        propertyName.Add("è¿œç¨‹ä¼¤å®³");
+        propertyName.Add("å±æ€§ä¼¤å®³");
+        propertyName.Add("æ”»é€ŸåŠ æˆ");
+        propertyName.Add("æš´å‡»æ¦‚ç‡");
+        propertyName.Add("å·¥ç¨‹æœºæ¢°");
+        propertyName.Add("æ”»å‡»èŒƒå›´");
+        propertyName.Add("æœºç”²å¼ºåº¦");
+        propertyName.Add("é—ªé¿æ¦‚ç‡");
+        propertyName.Add("ç§»é€ŸåŠ æˆ");
+        propertyName.Add("æ‰«æç²¾åº¦");
+        propertyName.Add("é‡‡é›†æ•ˆç‡");
 
 
     }
-    //³éÈ¡¿¨Æ¬
+    //æŠ½å–å¡ç‰‡
     void extractCard()
     {
         int count = 0;
@@ -93,10 +93,10 @@ public class upgradeController : MonoBehaviour
         }
 
     }
-    //³éÈ¡¸ÅÂÊ¼ÆËã²¢·µ»Ø³éÈ¡ºóµÄid
+    //æŠ½å–æ¦‚ç‡è®¡ç®—å¹¶è¿”å›æŠ½å–åçš„id
     int calculationLevel()
     {
-        float luck = 50f;//µ½Ê±Ìæ»»³É½ÇÉ«µÄÊôĞÔ
+        float luck = 50f;//åˆ°æ—¶æ›¿æ¢æˆè§’è‰²çš„å±æ€§
         probability[0] = 400f + luck * 0.1f;
         probability[1] = 300f + luck * 0.2f;
         probability[2] = 200f + luck * 0.3f;
@@ -126,7 +126,7 @@ public class upgradeController : MonoBehaviour
         return index;
 
     }
-    //½«¿¨Æ¬ÄÚÈİÏÔÊ¾ÔÚUIÉÏ
+    //å°†å¡ç‰‡å†…å®¹æ˜¾ç¤ºåœ¨UIä¸Š
     public void drawCards(int i, int id,int level)
     {
         string cardName = "card";
@@ -183,7 +183,7 @@ public class upgradeController : MonoBehaviour
         }
 
     }
-    //¼ÆËã¾ßÌåÊıÖµ
+    //è®¡ç®—å…·ä½“æ•°å€¼
     float calculateValue(int id,int level)
     {
         switch (id)
@@ -248,21 +248,21 @@ public class upgradeController : MonoBehaviour
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ´´½¨Sprite²¢¸½¼Óµ½Image×é¼şÉÏ
+            // åˆ›å»ºSpriteå¹¶é™„åŠ åˆ°Imageç»„ä»¶ä¸Š
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
             //RectTransform size = child.GetComponent<RectTransform>();
             //size.sizeDelta = new Vector2(50, 50);
 
-            //Debug.Log("³É¹¦¼ÓÔØÍ¼Æ¬: ");
+            //Debug.Log("æˆåŠŸåŠ è½½å›¾ç‰‡: ");
         }
         else
         {
-            //Debug.Log("ÎŞ·¨¶ÁÈ¡ÎÄ¼ş: ");
+            //Debug.Log("æ— æ³•è¯»å–æ–‡ä»¶: ");
         }
     }
 
-    //Ë¢ĞÂ°´Å¥µã»÷ÊÂ¼ş
+    //åˆ·æ–°æŒ‰é’®ç‚¹å‡»äº‹ä»¶
     void OnRefreshButtonClicked()
     {
         extractCard();
@@ -271,11 +271,11 @@ public class upgradeController : MonoBehaviour
 
             int level = calculationLevel();
             valueList[i] = calculateValue(selectedCardId[i], level);
-            drawCards(i, selectedCardId[i], level);//iÎª¿¨²ÛĞòºÅ£¬ids[i]Îª±»³éÈ¡µÄ¿¨Æ¬ºÅ,calculationLevel()Îª°´¸ÅÂÊ³éÈ¡µ½µÄµÈ¼¶
+            drawCards(i, selectedCardId[i], level);//iä¸ºå¡æ§½åºå·ï¼Œids[i]ä¸ºè¢«æŠ½å–çš„å¡ç‰‡å·,calculationLevel()ä¸ºæŒ‰æ¦‚ç‡æŠ½å–åˆ°çš„ç­‰çº§
         }
     }
 
-    //Éı¼¶°´Å¥µã»÷ÊÂ¼ş
+    //å‡çº§æŒ‰é’®ç‚¹å‡»äº‹ä»¶
     public void OnupgradeButtonClicked(int cardId)
     {
         extractCard();
@@ -284,7 +284,7 @@ public class upgradeController : MonoBehaviour
 
             int level = calculationLevel();
             valueList[i] = calculateValue(selectedCardId[i], level);
-            drawCards(i, selectedCardId[i], level);//iÎª¿¨²ÛĞòºÅ£¬ids[i]Îª±»³éÈ¡µÄ¿¨Æ¬ºÅ,calculationLevel()Îª°´¸ÅÂÊ³éÈ¡µ½µÄµÈ¼¶
+            drawCards(i, selectedCardId[i], level);//iä¸ºå¡æ§½åºå·ï¼Œids[i]ä¸ºè¢«æŠ½å–çš„å¡ç‰‡å·,calculationLevel()ä¸ºæŒ‰æ¦‚ç‡æŠ½å–åˆ°çš„ç­‰çº§
         }
 
         upgradeWindow.Instance.value = valueList[cardId];
