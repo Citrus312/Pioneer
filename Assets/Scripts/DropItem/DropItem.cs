@@ -23,7 +23,7 @@ public class DropItem : MonoBehaviour
         float d = Vector2.Distance(transform.position, _player.transform.position);
         while (d > _minDistance)
         {
-            transform.Translate((_player.transform.position - transform.position).normalized * _speed * Time.deltaTime);
+            transform.Translate((_player.transform.position - transform.position).normalized * _speed * Time.deltaTime, Space.World);
             d = Vector2.Distance(transform.position, _player.transform.position);
             yield return null;
         }

@@ -30,14 +30,14 @@ public class TestController : MonoBehaviour
         //Debug.Log($"masterPool  {JsonLoader.monsterPool.Count}");
         for (int i = 0; i < 6; i++)
         {
-            GameController.getInstance().getGameData()._weaponList.Add(3);
+            GameController.getInstance().getGameData()._weaponList.Add(23);
         }
         //GameController.getInstance().getGameData()._weaponList.Add(1);
         GameController.getInstance().getGameData()._playerID = 0;
         GameController.getInstance().initBattleScene();
-        GameController.getInstance().getGameData()._difficulty = 4;
+        GameController.getInstance().getGameData()._difficulty = 1;
         GameController.getInstance().getGameData()._wave = 19;
-        GameController.getInstance().getGameData()._scene = "BattleScene1";
+        GameController.getInstance().getGameData()._scene = "Ice";
         //Debug.Log(GameController.getInstance().getGameData()._weaponList.Count);
         //Debug.Log(JsonLoader.weaponPool.Count);
         CM.Follow = GameController.getInstance().getPlayer().transform;
@@ -47,6 +47,11 @@ public class TestController : MonoBehaviour
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(4, 100);
         //GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRangedDamage(20);
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAttackSpeedAmplification(100);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setHealthSteal(20.0f);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setMaxHealth(200.0f);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setCurrentHealth(200.0f);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRawMoveSpeed(5.0f);
+        GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setMeleeDamage(50.0f);
         GameController.getInstance().waveStart();
     }
 }

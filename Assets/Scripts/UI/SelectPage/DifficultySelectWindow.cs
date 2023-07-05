@@ -96,6 +96,9 @@ public class DifficultySelectWindow : BaseWindow
     //逻辑一致，只有部分参数不同
     public void OnLv1Btn()
     {
+        GameObject.Find("BtnCanvas").transform.GetChild(0).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(1).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(2).GetComponent<Button>().enabled = false;
         //点击难度选择按钮后将全局游戏数据的_difficulty设为1
         GameController.getInstance().getGameData()._difficulty = 1;
         //关闭难度选择窗口
@@ -113,6 +116,9 @@ public class DifficultySelectWindow : BaseWindow
 
     public void OnLv2Btn()
     {
+        GameObject.Find("BtnCanvas").transform.GetChild(0).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(1).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(2).GetComponent<Button>().enabled = false;
         GameController.getInstance().getGameData()._difficulty = 2;
         Instance.Close();
         SceneLoader._instance.loadScene("RoleAndWeaponSelect");
@@ -125,6 +131,9 @@ public class DifficultySelectWindow : BaseWindow
 
     public void OnLv3Btn()
     {
+        GameObject.Find("BtnCanvas").transform.GetChild(0).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(1).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(2).GetComponent<Button>().enabled = false;
         GameController.getInstance().getGameData()._difficulty = 3;
         Instance.Close();
         SceneLoader._instance.loadScene("RoleAndWeaponSelect");
@@ -137,6 +146,9 @@ public class DifficultySelectWindow : BaseWindow
 
     public void OnLv4Btn()
     {
+        GameObject.Find("BtnCanvas").transform.GetChild(0).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(1).GetComponent<Button>().enabled = false;
+        GameObject.Find("BtnCanvas").transform.GetChild(2).GetComponent<Button>().enabled = false;
         GameController.getInstance().getGameData()._difficulty = 4;
         Instance.Close();
         SceneLoader._instance.loadScene("RoleAndWeaponSelect");

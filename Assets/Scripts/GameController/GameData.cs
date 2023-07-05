@@ -41,7 +41,7 @@ public class GameData
     public float _money = 0;
 
     // 角色等级
-    public int _playerLevel=2;
+    public int _playerLevel = 0;
 
     // 经验
     public float _exp;
@@ -59,9 +59,9 @@ public class GameData
         dict.Add("weaponList", _weaponList);
         dict.Add("wave", _wave);
         dict.Add("level", _level);
-        dict.Add("money", _money);
+        dict.Add("money", (int)_money);
         dict.Add("playerLevel", _playerLevel);
-        dict.Add("exp", _exp);
+        dict.Add("exp", (int)_exp);
         return dict;
     }
 
@@ -69,9 +69,14 @@ public class GameData
     public void ResetGameData()
     {
         _playerID = 0;
-        _propList = new List<int>();
-        _propCount = new List<int>();
-        _weaponList = new List<int>();
+        _scene = "";
+        _difficulty = 0;
+        //_propList = new List<int>();
+        //_propCount = new List<int>();
+        //_weaponList = new List<int>();
+        _propList.Clear();
+        _propCount.Clear();
+        _weaponList.Clear();
         _wave = 0;
         _level = 0;
         _money = 0;

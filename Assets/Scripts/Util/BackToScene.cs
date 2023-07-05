@@ -21,7 +21,7 @@ public class BackToScene : MonoBehaviour
             switch (sceneName)
             {
                 case "MainPage":
-                    DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.8f);
+                    MainPageWindow.Instance.Open();
                     break;
                 default:
                     break;

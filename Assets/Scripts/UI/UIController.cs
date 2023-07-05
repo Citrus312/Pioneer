@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //一个临时的控制器，用于调试，后续可合并入GameController
-public class UIController : PersistentSingleton<UIController>
+public class UIController : MonoBehaviour
 {
     private void Start()
     {

@@ -7,8 +7,8 @@ public class WeaponAttribute : MonoBehaviour
     //武器伤害类型的枚举
     public enum WeaponDamageType { Unknown = -1, Melee, Ranged, Ability }
     //武器分类的枚举
-    //全能 未知 枪械 属性 治疗 法杖 刀具 长柄
-    public enum WeaponCategory { All = -2, Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms }
+    //全能 未知 枪械 属性 治疗 法杖 刀具 长柄 剑
+    public enum WeaponCategory { All = -2, Unknown = -1, Gun, Ability, Heal, Wand, Machete, Polearms, Sword }
     //物品品质的枚举
     public enum Quality { Unknown = -1, Normal, Senior, Elite, Legendary }
     //武器所有者的属性

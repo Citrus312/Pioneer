@@ -77,7 +77,7 @@ public class propertyWindow : BaseWindow
     {
         foreach (Text txt in textList)
         {
-            
+
             switch (txt.name)
             {
                 case "CurrentPlayerLevel":
@@ -131,11 +131,14 @@ public class propertyWindow : BaseWindow
                 case "CollectEfficiency":
                     txt.text = inputText[16];
                     break;
-                default:                  
+                default:
                     break;
             }
         }
     }
 
-
+    public void RefreshText()
+    {
+        FillTextContent();
+    }
 }
