@@ -15,7 +15,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
     Transform cancelBtn;
     Transform compositeBtn;
 
-    public List<WeaponAttribute> WeaponPropList;//����
+    public List<WeaponAttribute> WeaponPropList;//卡池
 
     private void Start()
     {
@@ -59,8 +59,9 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
             copyOption.localPosition = new Vector3(0f, 150f, 0f);
             namesCount.Clear();
         }
+
     }
-    //����ť���Ӽ����¼�
+    //给按钮添加监听事件
     public void addListener()
     {
         recycleBtn.GetComponent<Button>().onClick.AddListener(recycleOnclick);
@@ -68,7 +69,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         compositeBtn.GetComponent<Button>().onClick.AddListener(compoundOnclick);
     }
 
-    //���������е���Ʒ�Ҽ�����¼�-����
+    //武器背包中的物品右键点击事件-回收
     public void recycleOnclick()
     {
         Destroy(this.gameObject);
@@ -83,7 +84,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    //���������е���Ʒ�Ҽ�����¼�-�ϳ�
+    //武器背包中的物品右键点击事件-合成
     public void compoundOnclick()
     {
         int count = 0;
@@ -110,7 +111,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
 
     }
 
-    //���������е���Ʒ�Ҽ�����¼�-ȡ��
+    //武器背包中的物品右键点击事件-取消
     public void cancelOnclick()
     {
         copyOption.gameObject.SetActive(false);
@@ -129,7 +130,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         weaponBagWindow.Instance.ownWeaponList.Add(i);
     }
 
-    //����ͼƬ
+    //加载图片
     void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
@@ -137,17 +138,17 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ����Sprite�����ӵ�Image�����
+            // 创建Sprite并附加到Image组件上
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
             //RectTransform size = child.GetComponent<RectTransform>();
             //size.sizeDelta = new Vector2(50, 50);
 
-            //Debug.Log("�ɹ�����ͼƬ: ");
+            //Debug.Log("成功加载图片: ");
         }
         else
         {
-            //Debug.Log("�޷���ȡ�ļ�: ");
+            //Debug.Log("无法读取文件: ");
         }
     }
 }

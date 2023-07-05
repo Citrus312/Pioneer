@@ -34,6 +34,6 @@ public enum SceneType
     Select,
     gameProcess,
     Pause,
-    TalentTree
+    TalentTree,
 
 }

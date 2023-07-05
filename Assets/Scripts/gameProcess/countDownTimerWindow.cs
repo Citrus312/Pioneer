@@ -9,7 +9,7 @@ public class countDownTimerWindow : BaseWindow
 
     private countDownTimerWindow()
     {
-        // ÔÚÕâÀï³õÊ¼»¯GameManager
+        // åœ¨è¿™é‡Œåˆå§‹åŒ–GameManager
         resName = "UI/countDownTimerWindow";
         isResident = true;
         isVisible = false;
@@ -34,9 +34,9 @@ public class countDownTimerWindow : BaseWindow
     {
 
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         //FillTextContent(inputText);
 
     }

@@ -89,7 +89,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
         setEventTrigger("CollectEfficiency");
     }
 
- 
+
     public void setEventTrigger(string secondToFind)
     {
         Transform first = PausePageWindow.Instance.getTransform().Find("Property");
@@ -103,7 +103,7 @@ public class PausePageController : PersistentSingleton<PausePageController>
         second.GetComponent<EventTrigger>().triggers[1].callback.AddListener((eventData) => { closePanel(second); });
     }
 
-   
+
     public void openPanel(Transform transform, string parentName)
     {
         List<string> attributeList = getAttribute(_Player);
