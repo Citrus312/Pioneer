@@ -183,7 +183,7 @@ public class PausePageWindow : BaseWindow
 
     private void OnExitBtn(Button btn)
     {
-        Close(true);
+        Close();
         weaponBagWindow.Instance.Close();
         propBagWindow.Instance.Close();
         propertyWindow.Instance.Close();

@@ -278,6 +278,8 @@ public class upgradeController : MonoBehaviour
     //升级按钮点击事件
     public void OnupgradeButtonClicked(int cardId)
     {
+        upgradeWindow.Instance.value = valueList[cardId];
+        upgradeWindow.Instance.name = propertyName[selectedCardId[cardId]];
         extractCard();
         for (int i = 0; i < 4; i++)
         {
@@ -287,7 +289,6 @@ public class upgradeController : MonoBehaviour
             drawCards(i, selectedCardId[i], level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
         }
 
-        upgradeWindow.Instance.value = valueList[cardId];
-        upgradeWindow.Instance.name = propertyName[selectedCardId[cardId]];
+        
     }
 }

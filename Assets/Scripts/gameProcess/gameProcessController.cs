@@ -417,9 +417,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
             propertyWindow.Instance.Open();
-            
-            
-            
+     
             
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
@@ -588,7 +586,7 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
                     GameObject item = new GameObject("count");//数量标签
                     item.transform.SetParent(prop.transform);
                     item.AddComponent<TextMeshProUGUI>();
-                    item.GetComponent<TextMeshProUGUI>().text = "" + 0;
+                    item.GetComponent<TextMeshProUGUI>().text = "" + 1;
                     item.SetActive(false);
                     item.transform.localPosition = new Vector3(150f, -40f, 0f);
                     item.GetComponent<TextMeshProUGUI>().fontSize = 40;
