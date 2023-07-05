@@ -108,7 +108,8 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
             }
         }
         copyOption.gameObject.SetActive(false);
-
+        weaponBagWindow.Instance.ownWeaponList.Remove(id);
+        GameController.getInstance().getGameData()._weaponList.Remove(id);
     }
 
     //武器背包中的物品右键点击事件-取消
