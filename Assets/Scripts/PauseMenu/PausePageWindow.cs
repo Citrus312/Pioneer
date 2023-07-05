@@ -161,12 +161,19 @@ public class PausePageWindow : BaseWindow
     private void OnContinueBtn(Button btn)
     {
         Close();
+        weaponBagWindow.Instance.Close();
+        propBagWindow.Instance.Close();
+        propertyWindow.Instance.Close();
     }
 
     private void OnRestartBtn(Button btn)
     {
         Close();
-        SceneLoader._instance.loadScene("h_scene");
+        weaponBagWindow.Instance.Close();
+        propBagWindow.Instance.Close();
+        propertyWindow.Instance.Close();
+        DifficultySelectWindow.Instance.Open();
+        SceneLoader._instance.loadScene("LevelSelect");
     }
 
     private void OnSettingBtn(Button btn)
@@ -177,6 +184,19 @@ public class PausePageWindow : BaseWindow
     private void OnExitBtn(Button btn)
     {
         Close(true);
+        weaponBagWindow.Instance.Close();
+        propBagWindow.Instance.Close();
+        propertyWindow.Instance.Close();
+        if (storeWindow.Instance.getVisible() == true)
+            storeWindow.Instance.Close();
+        if (countDownTimerWindow.Instance.getVisible() == true)
+            countDownTimerWindow.Instance.Close();
+        if (titleWindow.Instance.getVisible() == true)
+            titleWindow.Instance.Close();
+        if (roleStateWindow.Instance.getVisible() == true)
+            roleStateWindow.Instance.Close();
+        if (upgradeWindow.Instance.getVisible() == true)
+            upgradeWindow.Instance.Close();
         SceneLoader._instance.loadScene("MainPage");
         DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.8f);
     }

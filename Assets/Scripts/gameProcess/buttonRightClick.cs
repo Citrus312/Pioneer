@@ -15,7 +15,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
     Transform cancelBtn;
     Transform compositeBtn;
 
-    public List<WeaponAttribute> WeaponPropList;//¿¨³Ø
+    public List<WeaponAttribute> WeaponPropList;//å¡æ± 
 
     private void Start()
     {
@@ -59,7 +59,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
             copyOption.localPosition = new Vector3(150f, 180f, 0f);
         }
     }
-    //¸ø°´Å¥Ìí¼Ó¼àÌıÊÂ¼ş
+    //ç»™æŒ‰é’®æ·»åŠ ç›‘å¬äº‹ä»¶
     public void addListener()
     {
         recycleBtn.GetComponent<Button>().onClick.AddListener(recycleOnclick);
@@ -67,17 +67,18 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
         compositeBtn.GetComponent<Button>().onClick.AddListener(compoundOnclick);
     }
 
-    //ÎäÆ÷±³°üÖĞµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼ş-»ØÊÕ
+    //æ­¦å™¨èƒŒåŒ…ä¸­çš„ç‰©å“å³é”®ç‚¹å‡»äº‹ä»¶-å›æ”¶
     public void recycleOnclick()
     {
         Destroy(this.gameObject);
         string n = new string(transform.name.Where(char.IsDigit).ToArray());
         int ID = int.Parse(n);
         GameController.getInstance().getGameData()._weaponList.Remove(ID);
+        weaponBagWindow.Instance.ownWeaponList.Remove(ID);
         GameController.getInstance().getGameData()._money +=Mathf.Ceil(JsonLoader.weaponPool[ID].getWeaponPrice() * 0.75f);
     }
 
-    //ÎäÆ÷±³°üÖĞµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼ş-ºÏ³É
+    //æ­¦å™¨èƒŒåŒ…ä¸­çš„ç‰©å“å³é”®ç‚¹å‡»äº‹ä»¶-åˆæˆ
     public void compoundOnclick()
     {
         int count = 0;
@@ -104,7 +105,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
 
     }
 
-    //ÎäÆ÷±³°üÖĞµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼ş-È¡Ïû
+    //æ­¦å™¨èƒŒåŒ…ä¸­çš„ç‰©å“å³é”®ç‚¹å‡»äº‹ä»¶-å–æ¶ˆ
     public void cancelOnclick()
     {
         copyOption.gameObject.SetActive(false);
@@ -123,7 +124,7 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
         weaponBagWindow.Instance.ownWeaponList.Add(i);
     }
 
-    //¼ÓÔØÍ¼Æ¬
+    //åŠ è½½å›¾ç‰‡
     void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
@@ -131,17 +132,17 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ´´½¨Sprite²¢¸½¼Óµ½Image×é¼şÉÏ
+            // åˆ›å»ºSpriteå¹¶é™„åŠ åˆ°Imageç»„ä»¶ä¸Š
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
             //RectTransform size = child.GetComponent<RectTransform>();
             //size.sizeDelta = new Vector2(50, 50);
 
-            //Debug.Log("³É¹¦¼ÓÔØÍ¼Æ¬: ");
+            //Debug.Log("æˆåŠŸåŠ è½½å›¾ç‰‡: ");
         }
         else
         {
-            //Debug.Log("ÎŞ·¨¶ÁÈ¡ÎÄ¼ş: ");
+            //Debug.Log("æ— æ³•è¯»å–æ–‡ä»¶: ");
         }
     }
 }

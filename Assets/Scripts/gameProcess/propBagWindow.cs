@@ -12,7 +12,7 @@ public class propBagWindow : BaseWindow
 
     private propBagWindow()
     {
-        // ÔÚÕâÀï³õÊ¼»¯GameManager
+        // åœ¨è¿™é‡Œåˆå§‹åŒ–GameManager
         resName = "UI/propBagWindow";
         isResident = true;
         isVisible = false;
@@ -35,9 +35,9 @@ public class propBagWindow : BaseWindow
 
     protected override void AwakeWindow()
     {
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         //FillTextContent(inputText);
 
     }
