@@ -135,6 +135,20 @@ public class BaseWindow
         isVisible = false;
     }
 
+    //预加载窗体
+    public void PreLoad()
+    {
+        if (transform == null)
+        {
+            //创建窗体
+            if (Create())
+            {
+                //初始化窗体
+                AwakeWindow();
+            }
+        }
+    }
+
     //以下是获取各种窗体属性的方法
     public SceneType getSceneType()
     {

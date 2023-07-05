@@ -1,14 +1,1 @@
-{
-  "isFirstPlaying": false,
-  "playerID": 0,
-  "scene": "",
-  "difficulty": 0,
-  "propList": [],
-  "propCount": [],
-  "weaponList": [],
-  "wave": 0,
-  "level": 0,
-  "money": 0,
-  "playerLevel": 0,
-  "exp": 0
-}
+{"isFirstPlaying":false,"playerID":1,"scene":"Purple","difficulty":1,"propList":[],"propCount":[],"weaponList":[52],"wave":1,"level":0,"money":1000,"playerLevel":0,"exp":0}

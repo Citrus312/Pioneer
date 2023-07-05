@@ -4,26 +4,38 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 
 
-
-public class gameProcessController : PersistentSingleton<gameProcessController>
+public class gameProcessController : MonoBehaviour
 {
+    private static gameProcessController instance;
+    public static gameProcessController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
+
+    private gameProcessController() { instance = this; }
+
     CharacterAttribute playerProperty;
     GameObject _player;
 
-
-    public int grade;//µÈ¼¶
-    public int gradeCount;//¿ÉÒÔÉı¼¶µÄ´ÎÊı
-    public float blood;//µ±Ç°ÑªÁ¿
-    public float maxBlood;//×î´óÉúÃüÖµ
-    public float experience;//µ±Ç°¾­ÑéÖµ
-    public float maxExperience;//×î´ó¾­ÑéÖµ
-    public int level = 1;//¹Ø¿¨Êı
-    public TextMeshProUGUI levelText;//¹Ø¿¨ÏÔÊ¾ÎÄ±¾
-    public int money;
+    public int grade;//ç­‰çº§
+    public int gradeCount;//å¯ä»¥å‡çº§çš„æ¬¡æ•°
+    public float blood;//å½“å‰è¡€é‡
+    public float maxBlood;//æœ€å¤§ç”Ÿå‘½å€¼
+    public float experience;//å½“å‰ç»éªŒå€¼
+    public float maxExperience;//æœ€å¤§ç»éªŒå€¼
+    public int level = 20;//å…³å¡æ•°
+    public TextMeshProUGUI levelText;//å…³å¡æ˜¾ç¤ºæ–‡æœ¬
+    public float money;
 
     public float HPValue;
     public float EXPValue;
@@ -32,30 +44,40 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
     public TextMeshProUGUI HPValueText;
     public TextMeshProUGUI EXPValueText;
 
-    public List<WeaponAttribute> WeaponPropList;//¿¨³Ø
+    public List<WeaponAttribute> WeaponPropList;//å¡æ± 
     public List<PropAttribute> PropPoolList;
 
-    Transform stateBg;//ÓÉµ±Ç°ÑªÁ¿Öµ¾ö¶¨µÄĞ§¹ûÍ¼
+    Transform stateBg;//ç”±å½“å‰è¡€é‡å€¼å†³å®šçš„æ•ˆæœå›¾
+    bool isDying = false;
 
-    //µ¹¼ÆÊ±ĞèÒªÓÃµ½µÄ±äÁ¿
+    //å€’è®¡æ—¶éœ€è¦ç”¨åˆ°çš„å˜é‡
     public float currentTime;
     public float totalTime;
     public TextMeshProUGUI timeText;
-    void Start()
+    public void Init()
     {
-        //³õÊ¼»¯´°¿Ú
+
+        //test();
+        //åˆå§‹åŒ–çª—å£
         origin();
 
-        //³õÊ¼»¯Êı¾İ
+        //åˆå§‹åŒ–æ•°æ®
         dataOrigin();
 
-        //µ¹¼ÆÊ±ÏÔÊ¾
+        //å€’è®¡æ—¶æ˜¾ç¤º
         timeDisplay();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timeText.color == Color.red)
+        {
+            if (currentTime > 10)
+            {
+                timeText.color = Color.white;
+            }
+        }
         if (currentTime <= 10)
         {
             timeText.color = Color.red;
@@ -81,112 +103,115 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //ÈÎÎñ×´Ì¬ÊµÊ±¸üĞÂÏÔÊ¾
+    //äººç‰©çŠ¶æ€å®æ—¶æ›´æ–°æ˜¾ç¤º
     void roleStateUpdate()
     {
         grade = GameController.getInstance().getGameData()._playerLevel;
         blood = playerProperty.getCurrentHealth();
         experience = GameController.getInstance().getGameData()._exp;
         money = GameController.getInstance().getGameData()._money;
+        Transform moneyValue = storeWindow.Instance.getTransform().Find("moneyValue");
+        Transform roleState = roleStateWindow.Instance.getTransform().Find("roleState");
+        Transform moneyValue2 = roleState.Find("moneyValue");
+        moneyValue.GetComponent<TextMeshProUGUI>().text = "" + money;
+        moneyValue2.GetComponent<TextMeshProUGUI>().text = "" + money;
+        HPValue = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().getCurrentHealth();
+        HPMaxValue = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().getMaxHealth();
         while (experience >= EXPMaxValue)
         {
             experience = experience - EXPMaxValue;
             GameController.getInstance().getGameData()._exp = experience;
             gradeCount++;
             grade++;
-            HPMaxValue += 2;
-            EXPMaxValue += 5;
+            //HPMaxValue += 2;
+            roleState.Find("exp").GetComponent<Slider>().maxValue += 15;
         }
-        HPValue = blood;
-        EXPValue = experience;
+        GameController.getInstance().getGameData()._playerLevel = grade;
+        roleState.Find("blood").GetComponent<Slider>().value = blood;
+        roleState.Find("exp").GetComponent<Slider>().value = experience;
 
-        if (HPValue <= 0)
+        if (HPValue <= 0 && isDying == false)
         {
             Time.timeScale = 0f;
-            //ËÀÍö½çÃæ
+            isDying = true;
+            GameController.getInstance().waveEnd();
+            roleStateWindow.Instance.Close();
+            titleWindow.Instance.Close();
+            countDownTimerWindow.Instance.Close();
+            GameoverWindow.Instance.titleText = "å¤±è´¥";
+            GameoverWindow.Instance.Open();
+            gameProcessController.Instance.gameObject.SetActive(false);
         }
         else if (HPValue <= HPMaxValue * 2 / 3 && HPValue > HPMaxValue * 1 / 4)
         {
-            stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
         }
         else if (HPValue <= HPMaxValue * 1 / 4)
         {
-            stateBg.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+            stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        HPValueText.text = "" + HPValue;
+        HPValueText.text = $"{(int)Mathf.Ceil(HPValue)}/{HPMaxValue}";
         EXPValueText.text = "Lv" + grade;
 
     }
 
-    //Êı¾İ³õÊ¼»¯
+    //æ•°æ®åˆå§‹åŒ–
     void dataOrigin()
     {
         if (JsonLoader.propPool.Count == 0)
             JsonLoader.LoadAndDecodePropConfig();
         if (JsonLoader.weaponPool.Count == 0)
             JsonLoader.LoadAndDecodeWeaponConfig();
-        WeaponPropList = JsonLoader.weaponPool;
-        PropPoolList = JsonLoader.propPool;
+        WeaponPropList = JsonLoader.weaponPool.GetRange(0, JsonLoader.weaponPool.Count);
+        PropPoolList = JsonLoader.propPool.GetRange(0, JsonLoader.propPool.Count);
 
-
+        //GameController.getInstance().getGameData()._money = 1000f;
+        level = 1;
+        isDying = false;
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
-        blood = 15;
-        experience = 0;
-        money = 0;
-        gradeCount = 2;
+        //blood = 15;
+        //experience = 0;
+        //money = 50;
+        //gradeCount = 2;
         Transform roleState = roleStateWindow.Instance.getTransform().Find("roleState");
+
+        roleState.Find("blood").GetComponent<Slider>().value = _player.GetComponent<CharacterAttribute>().getCurrentHealth();
+        roleState.Find("exp").GetComponent<Slider>().value = _player.GetComponent<CharacterAttribute>().getCurrentExp();
+        roleState.Find("blood").GetComponent<Slider>().maxValue = _player.GetComponent<CharacterAttribute>().getMaxHealth();
+        roleState.Find("exp").GetComponent<Slider>().maxValue = _player.GetComponent<CharacterAttribute>().getBasicUpgradeExp();
+
         HPValue = roleState.Find("blood").GetComponent<Slider>().value;
         EXPValue = roleState.Find("exp").GetComponent<Slider>().value;
         HPMaxValue = roleState.Find("blood").GetComponent<Slider>().maxValue;
         EXPMaxValue = roleState.Find("exp").GetComponent<Slider>().maxValue;
-        HPValue = 15;
-        EXPValue = 20;
-        HPMaxValue = 15;
-        EXPMaxValue = 20;
 
-        HPValueText = roleStateWindow.Instance.getTransform().Find("HPValue").GetComponent<TextMeshProUGUI>();
-        EXPValueText = roleStateWindow.Instance.getTransform().Find("EXPValue").GetComponent<TextMeshProUGUI>();
+        HPValueText = roleStateWindow.Instance.getTransform().Find("roleState").Find("HPValue").GetComponent<TextMeshProUGUI>();
+        EXPValueText = roleStateWindow.Instance.getTransform().Find("roleState").Find("EXPValue").GetComponent<TextMeshProUGUI>();
 
         stateBg = roleStateWindow.Instance.getTransform().Find("stateBg");
-        stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
+        stateBg.GetComponent<RectTransform>().localScale = new Vector3(3f, 3f, 3f);
 
+        LoadInitWeapon();
 
-
-        totalTime = 5f;//µÚÒ»¹ØÊ±¼ä
+        totalTime = 30f;//ç¬¬ä¸€å…³æ—¶é—´
     }
 
-    //´°¿Ú³õÊ¼»¯
+    //çª—å£åˆå§‹åŒ–
     void origin()
     {
-
-        UIRoot.Init();
-
-
-
-        PausePageWindow.Instance.Open();
-        PausePageWindow.Instance.Close();
-
-        storeWindow.Instance.Open();
-        storeWindow.Instance.Close();
-        upgradeWindow.Instance.Open();
-        upgradeWindow.Instance.Close();
-        weaponBagWindow.Instance.Open();
-        weaponBagWindow.Instance.Close();
-        propBagWindow.Instance.Open();
-        propBagWindow.Instance.Close();
-        roleStateWindow.Instance.Open();
-        roleStateWindow.Instance.Close();
-
-
-
-        GameController.getInstance().initBattleScene();
+        PausePageWindow.Instance.PreLoad();
+        storeWindow.Instance.PreLoad();
+        upgradeWindow.Instance.PreLoad();
+        weaponBagWindow.Instance.PreLoad();
+        propBagWindow.Instance.PreLoad();
 
         roleStateWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
         titleWindow.Instance.Open();
 
         _player = GameController.getInstance().getPlayer();
+
         propertyWindow.Instance.inputText = getAttribute(_player);
         propertyWindow.Instance.Open();
         setAllTriggers();
@@ -196,19 +221,65 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         addListenerForstartBtn();
         addListenerForBuy();
 
-
         Transform countDownTimer = countDownTimerWindow.Instance.getTransform().Find("countDownTimer");
         timeText = countDownTimer.GetComponent<TextMeshProUGUI>();
 
         Transform titleText = titleWindow.Instance.getTransform().Find("title");
         levelText = titleText.GetComponent<TextMeshProUGUI>();
-
     }
 
-    //µ¹¼ÆÊ±¼ÆËã
+    public void LoadInitWeapon()
+    {
+        int w = GameController.getInstance().getGameData()._weaponList[0];
+        weaponBagWindow.Instance.ownWeaponList.Add(w);
+        string assetPath;
+        string assetPathBg;
+        GameObject weapon = new GameObject("weapon" + w);//èƒŒæ™¯å›¾
+        Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+        weapon.transform.SetParent(weaponBag);
+        weapon.AddComponent<Image>();
+        weapon.AddComponent<buttonRightClick>();
+        GameObject image = new GameObject("" + w);//æ­¦å™¨å›¾
+        image.transform.SetParent(weapon.transform);
+        //image.AddComponent<Image>();
+
+        GameObject id = new GameObject("id");
+        id.transform.SetParent(image.transform);
+        id.AddComponent<Image>();
+        id.AddComponent<WeaponDetailDisplay>();
+        if (GameObject.Find("DetailPanel") == null)
+        {
+            GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+            obj = GameObject.Instantiate(obj);
+            obj.SetActive(false);
+            id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
+
+        }
+
+        RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+        rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
+
+        if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+        {
+            assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
+        }
+        else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
+        {
+            assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+        }
+        else
+        {
+            assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+        }
+
+        loadImage(assetPathBg, weapon.transform);
+        loadImage(assetPath, id.transform);
+    }
+
+    //å€’è®¡æ—¶è®¡ç®—
     void updateCountDownTimer()
     {
-
         currentTime--;
         timeText.text = "" + currentTime;
         if (currentTime <= 0f)
@@ -218,53 +289,67 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         }
     }
 
-    //µ¹¼ÆÊ±ÏÔÊ¾
+    //å€’è®¡æ—¶æ˜¾ç¤º
     void timeDisplay()
     {
         currentTime = totalTime;
         InvokeRepeating("updateCountDownTimer", 1f, 1f);
     }
 
-    //Ğ­³Ì
+    //åç¨‹
     IEnumerator wait()
     {
         yield return new WaitForSeconds(0.5f);
     }
 
-    //µ¹¼ÆÊ±½áÊøºóµÄÊÂ¼ş
+    //å€’è®¡æ—¶ç»“æŸåçš„äº‹ä»¶
     void timeEnd()
     {
-
-        Transform endText = countDownTimerWindow.Instance.getTransform().Find("endText");
-        endText.gameObject.SetActive(true);
-        StartCoroutine(wait());
-        endText.gameObject.SetActive(false);
-        currentTime = -1;
-        if (gradeCount > 0)
+        if (level == 20)
         {
-            Debug.Log("Éı¼¶");
             Time.timeScale = 0f;
-            timeText.text = "<color=white>Éı¼¶</color>";
-            upgradeWindow.Instance.Open();
-
-            propertyWindow.Instance.Open();
-        }
-        else
-        {
-            Debug.Log("ÉÌµê");
-
-            storeWindow.Instance.Open();
-            weaponBagWindow.Instance.Open();
-            propBagWindow.Instance.Open();
-
-            propertyWindow.Instance.Open();
+            GameController.getInstance().waveEnd();
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
+            GameoverWindow.Instance.titleText = "é€šå…³";
+            GameoverWindow.Instance.Open();
+            gameProcessController.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            Transform endText = countDownTimerWindow.Instance.getTransform().Find("endText");
+            endText.gameObject.SetActive(true);
+            StartCoroutine(wait());
+            endText.gameObject.SetActive(false);
+            currentTime = -1;
+            GameController.getInstance().waveEnd();
+            if (gradeCount > 0)
+            {
+
+                Time.timeScale = 0f;
+                timeText.text = "<color=white>å‡çº§</color>";
+                upgradeWindow.Instance.Open();
+
+                //propertyWindow.Instance.Open();
+            }
+            else
+            {
+                Debug.Log("å•†åº—");
+
+                storeWindow.Instance.Open();
+                propBagWindow.Instance.Open();
+                weaponBagWindow.Instance.Open();
+
+                propertyWindow.Instance.Open();
+                roleStateWindow.Instance.Close();
+                titleWindow.Instance.Close();
+                countDownTimerWindow.Instance.Close();
+            }
         }
     }
 
-    //ÎªÉı¼¶°´Å¥Ìí¼Ó¼àÌıÊÂ¼ş
+    //ä¸ºå‡çº§æŒ‰é’®æ·»åŠ ç›‘å¬äº‹ä»¶
     void addListenerForupgrade()
     {
         Transform child1 = upgradeWindow.Instance.getTransform().Find("cardA");
@@ -284,97 +369,97 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
 
     }
 
-    //Éı¼¶°´Å¥ÊÂ¼ş
+    //å‡çº§æŒ‰é’®äº‹ä»¶
     void upgradeBtnOnclik()
     {
-        Debug.Log("Éı¼¶³É¹¦");
-        Debug.Log(gradeCount);
+
         string n = upgradeWindow.Instance.name;
         float v = upgradeWindow.Instance.value;
+        Debug.Log(n);
         switch (n)
         {
-            case "ÉúÃüÉÏÏŞ":
+            case "ç”Ÿå‘½ä¸Šé™":
                 playerProperty.setMaxHealth(playerProperty.getMaxHealth() + v);
                 break;
-            case "ÉúÃü»Ø¸´":
+            case "ç”Ÿå‘½å›å¤":
                 playerProperty.setHealthRecovery(playerProperty.getHealthRecovery() + v);
                 break;
-            case "ÉúÃü¼³È¡":
+            case "ç”Ÿå‘½æ±²å–":
                 playerProperty.setHealthSteal(playerProperty.getHealthSteal() + v);
                 break;
-            case "Êä³öÔö·ù":
+            case "è¾“å‡ºå¢å¹…":
                 playerProperty.setAttackAmplification(playerProperty.getAttackAmplification() + v);
                 break;
-            case "½üÕ½ÉËº¦":
+            case "è¿‘æˆ˜ä¼¤å®³":
                 playerProperty.setMeleeDamage(playerProperty.getMeleeDamage() + v);
                 break;
-            case "Ô¶³ÌÉËº¦":
+            case "è¿œç¨‹ä¼¤å®³":
                 playerProperty.setRangedDamage(playerProperty.getRangedDamage() + v);
                 break;
-            case "ÊôĞÔÉËº¦":
+            case "å±æ€§ä¼¤å®³":
                 playerProperty.setAbilityDamage(playerProperty.getAbilityDamage() + v);
                 break;
-            case "¹¥ËÙ¼Ó³É":
+            case "æ”»é€ŸåŠ æˆ":
                 playerProperty.setAttackSpeedAmplification(playerProperty.getAttackSpeedAmplification() + v);
                 break;
-            case "±©»÷¸ÅÂÊ":
+            case "æš´å‡»æ¦‚ç‡":
                 playerProperty.setCriticalRate(playerProperty.getCriticalRate() + v);
                 break;
-            case "¹¤³Ì»úĞµ":
+            case "å·¥ç¨‹æœºæ¢°":
                 playerProperty.setEngineering(playerProperty.getEngineering() + v);
                 break;
-            case "¹¥»÷·¶Î§":
+            case "æ”»å‡»èŒƒå›´":
                 playerProperty.setAttackRangeAmplification(playerProperty.getAttackRangeAmplification() + v);
                 break;
-            case "»ú¼×Ç¿¶È":
+            case "æœºç”²å¼ºåº¦":
                 playerProperty.setArmorStrength(playerProperty.getArmorStrength() + v);
                 break;
-            case "ÉÁ±Ü¸ÅÂÊ":
+            case "é—ªé¿æ¦‚ç‡":
                 playerProperty.setDodgeRate(playerProperty.getDodgeRate() + v);
                 break;
-            case "ÒÆËÙ¼Ó³É":
+            case "ç§»é€ŸåŠ æˆ":
                 playerProperty.setMoveSpeedAmplification(playerProperty.getMoveSpeedAmplification() + v);
                 break;
-            case "É¨Ãè¾«¶È":
+            case "æ‰«æç²¾åº¦":
                 playerProperty.setScanAccuracy(playerProperty.getScanAccuracy() + v);
                 break;
-            case "²É¼¯Ğ§ÂÊ":
+            case "é‡‡é›†æ•ˆç‡":
                 playerProperty.setCollectEfficiency(playerProperty.getCollectEfficiency() + v);
                 break;
             default:
                 break;
         }
+        Debug.Log(playerProperty.getAttackSpeedAmplification());
+
         gradeCount--;
 
         if (gradeCount == 0)
         {
-            propertyWindow.Instance.Close();
+            RefreshPropertyText();
+            //propertyWindow.Instance.Close();
             upgradeWindow.Instance.Close();
             storeWindow.Instance.Open();
             weaponBagWindow.Instance.Open();
             propBagWindow.Instance.Open();
             propertyWindow.Instance.Open();
 
-
-
-
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
         }
     }
-    //Îª³ö·¢°´Å¥ÉèÖÃ¼àÌıÊÂ¼ş
+    //ä¸ºå‡ºå‘æŒ‰é’®è®¾ç½®ç›‘å¬äº‹ä»¶
     void addListenerForstartBtn()
     {
         Transform startBtn = storeWindow.Instance.getTransform().Find("startButton");
         startBtn.GetComponent<Button>().onClick.AddListener(startBtnOnclick);
     }
 
-    //³ö·¢°´Å¥ÊÂ¼ş
+    //å‡ºå‘æŒ‰é’®äº‹ä»¶
     void startBtnOnclick()
     {
         HPValue = HPMaxValue;
-        Debug.Log("¿ªÊ¼ÏÂÒ»¹Ø");
+        Debug.Log("å¼€å§‹ä¸‹ä¸€å…³");
         Time.timeScale = 1f;
         storeWindow.Instance.Close();
         propBagWindow.Instance.Close();
@@ -384,19 +469,17 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         titleWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
 
-        //ÑªÁ¿¡¢¾­Ñé¡¢µÈ¼¶¡¢µ¹¼ÆÊ±¡¢¹Ø¿¨ÖØÖÃ
-        totalTime = totalTime + 10 >= 90 ? 90 : totalTime + 10;
+        //è¡€é‡ã€å€’è®¡æ—¶ã€å…³å¡é‡ç½®
+        totalTime = totalTime + 10 >= 100 ? 100 : totalTime + 10;
         timeDisplay();
 
         level++;
-        levelText.text = "µÚ" + level + "¹Ø";
+        levelText.text = "ç¬¬" + level + "å…³";
         GameController.getInstance().getGameData()._wave = level;
-
-        grade = 2;
-
+        GameController.getInstance().waveStart();
     }
 
-    //Îª¹ºÂò°´Å¥ÉèÖÃ¼àÌıÊÂ¼ş
+    //ä¸ºè´­ä¹°æŒ‰é’®è®¾ç½®ç›‘å¬äº‹ä»¶
     void addListenerForBuy()
     {
         Transform card1 = storeWindow.Instance.getTransform().Find("card_a");
@@ -415,46 +498,70 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         btn4.GetComponent<Button>().onClick.AddListener(buyBtnOnclick);
     }
 
-    //¹ºÂò°´Å¥ÊÂ¼ş
+    //è´­ä¹°æŒ‰é’®äº‹ä»¶
     void buyBtnOnclick()
     {
+
         if (weaponBagWindow.Instance.isWeapon)
         {
             if (weaponBagWindow.Instance.addWeapon)
             {
                 int w = weaponBagWindow.Instance.buyedWeapon;
-                string assetPath;
-                string assetPathBg;
-
-                GameObject weapon = new GameObject("weapon" + w);//±³¾°Í¼
-                Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
-                weapon.transform.SetParent(weaponBag);
-                weapon.AddComponent<Image>();
-                weapon.AddComponent<buttonRightClick>();
-
-                GameObject image = new GameObject("image");//ÎäÆ÷Í¼
-                image.transform.SetParent(weapon.transform);
-                image.AddComponent<Image>();
-
-                RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
-                rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
-
-                if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+                if (WeaponPropList[w].getWeaponPrice() > GameController.getInstance().getGameData()._money)
                 {
-                    assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
-                }
-                else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
-                {
-                    assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    Debug.Log("é’±ä¸å¤Ÿ");
+                    // Debug.Log(GameController.getInstance().getGameData()._money);
                 }
                 else
                 {
-                    assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    GameController.getInstance().getGameData()._money -= WeaponPropList[w].getWeaponPrice();
+                    //Debug.Log(GameController.getInstance().getGameData()._money);
+                    string assetPath;
+                    string assetPathBg;
+                    GameObject weapon = new GameObject("weapon" + w);//èƒŒæ™¯å›¾
+                    Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+                    weapon.transform.SetParent(weaponBag);
+                    weapon.AddComponent<Image>();
+                    weapon.AddComponent<buttonRightClick>();
+                    GameObject image = new GameObject("" + w);//æ­¦å™¨å›¾
+                    image.transform.SetParent(weapon.transform);
+                    //image.AddComponent<Image>();
+
+                    GameObject id = new GameObject("id");
+                    id.transform.SetParent(image.transform);
+                    id.AddComponent<Image>();
+                    id.AddComponent<WeaponDetailDisplay>();
+                    if (GameObject.Find("DetailPanel") == null)
+                    {
+                        GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                        obj = GameObject.Instantiate(obj);
+                        obj.SetActive(false);
+                        id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
+
+                    }
+
+
+                    RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+                    rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
+
+                    if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+                    else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+                    else
+                    {
+                        assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+                    }
+
+                    loadImage(assetPathBg, weapon.transform);
+                    loadImage(assetPath, id.transform);
                 }
 
-                loadImage(assetPathBg, weapon.transform);
-                loadImage(assetPath, image.transform);
             }
 
         }
@@ -462,55 +569,85 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         {
             int w = propBagWindow.Instance.buyedProp;
             w = w - 40000;
-            string assetPath;
-            string assetPathBg;
-            Transform propBag = propBagWindow.Instance.getTransform().Find("propBag");
-            Transform listContent = propBag.Find("listContent");
-            if (propBagWindow.Instance.isExist)
+            if (PropPoolList[w].getPropPrice() > GameController.getInstance().getGameData()._money)
             {
-                Transform existedProp = listContent.Find("prop" + w);
-                Transform count = existedProp.Find("count");
-                string text = count.GetComponent<TextMeshProUGUI>().text;
-                int c = int.Parse(text);
-                c += 1;
-                count.GetComponent<TextMeshProUGUI>().text = c.ToString();
-                count.gameObject.SetActive(true);
-
+                Debug.Log("é’±ä¸å¤Ÿ");
+                //Debug.Log(GameController.getInstance().getGameData()._money);
             }
             else
             {
-                GameObject prop = new GameObject("prop" + w);//±³¾°Í¼
-                prop.transform.SetParent(listContent);
-                prop.AddComponent<Image>();
-                //prop.AddComponent<propRightClick>();
+                GameController.getInstance().getGameData()._money -= PropPoolList[w].getPropPrice();
+                //Debug.Log(GameController.getInstance().getGameData()._money);
+                string assetPath;
+                string assetPathBg;
+                Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
+                Transform viewport = propBag.Find("Viewport");
+                Transform listContent = viewport.Find("Content");
+                if (propBagWindow.Instance.isExist)
+                {
+                    Transform existedProp = listContent.Find("prop" + w);
+                    Transform count = existedProp.Find("count");
+                    string text = count.GetComponent<TextMeshProUGUI>().text;
+                    int c = int.Parse(text);
+                    c += 1;
+                    count.GetComponent<TextMeshProUGUI>().text = c.ToString();
+                    count.gameObject.SetActive(true);
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    RefreshPropertyText();
+                }
+                else
+                {
+                    GameObject prop = new GameObject("prop" + w);//èƒŒæ™¯å›¾
 
-                GameObject item = new GameObject("count");//ÊıÁ¿±êÇ©
-                item.transform.SetParent(prop.transform);
-                item.AddComponent<TextMeshProUGUI>();
-                item.GetComponent<TextMeshProUGUI>().text = "" + 0;
-                item.SetActive(false);
-                item.transform.localPosition = new Vector3(150f, -40f, 0f);
-                item.GetComponent<TextMeshProUGUI>().fontSize = 40;
-                string fontPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/" + "fontFirst";
-                TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
-                item.GetComponent<TMP_Text>().font = font;
 
-                GameObject image = new GameObject("image");//µÀ¾ßÍ¼
-                image.transform.SetParent(prop.transform);
-                image.AddComponent<Image>();
-                RectTransform rectProp = prop.GetComponent<RectTransform>();
-                rectProp.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                assetPathBg = "Assets/Sprites/Weapon/" + PropPoolList[w].getPropBgIcon();
+                    prop.transform.SetParent(listContent);
+                    prop.AddComponent<Image>();
+                    //prop.AddComponent<propRightClick>();
 
-                assetPath = "Assets/Sprites/Prop/" + PropPoolList[w].getPropIcon();
+                    GameObject item = new GameObject("count");//æ•°é‡æ ‡ç­¾
+                    item.transform.SetParent(prop.transform);
+                    item.AddComponent<TextMeshProUGUI>();
+                    item.GetComponent<TextMeshProUGUI>().text = "" + 1;
+                    item.SetActive(false);
+                    item.transform.localPosition = new Vector3(150f, -40f, 0f);
+                    item.GetComponent<TextMeshProUGUI>().fontSize = 40;
+                    string fontPath = "Fonts/æ ‡å°æ™ºé¾™ç ä½“ SDF";
+                    TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
+                    item.GetComponent<TextMeshProUGUI>().font = font;
 
-                loadImage(assetPathBg, prop.transform);
-                loadImage(assetPath, image.transform);
+                    GameObject image = new GameObject("" + w);//é“å…·å›¾
+                    image.transform.SetParent(prop.transform);
+                    image.AddComponent<Image>();
+                    RectTransform rectProp = prop.GetComponent<RectTransform>();
+                    rectProp.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    image.transform.localPosition = new Vector3(0f, 0f, 0f);
+                    assetPathBg = "Assets/Sprites/Weapon/" + PropPoolList[w].getPropBgIcon();
+
+                    assetPath = "Assets/Sprites/Prop/" + PropPoolList[w].getPropIcon();
+
+                    loadImage(assetPathBg, prop.transform);
+                    loadImage(assetPath, image.transform);
+
+
+                    image.AddComponent<PropDetailDisplay>();
+
+                    //Debug.Log(image.GetComponent<PropDetailDisplay>().detailDisplay);
+                    if (GameObject.Find("DetailPanel") == null)
+                    {
+                        GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                        obj = GameObject.Instantiate(obj);
+                        obj.SetActive(false);
+                        image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
+
+                    }
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    RefreshPropertyText();
+                }
             }
         }
     }
 
-    //¼ÓÔØÍ¼Æ¬
+    //åŠ è½½å›¾ç‰‡
     void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
@@ -518,48 +655,44 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ´´½¨Sprite²¢¸½¼Óµ½Image×é¼şÉÏ
+            // åˆ›å»ºSpriteå¹¶é™„åŠ åˆ°Imageç»„ä»¶ä¸Š
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
-            //RectTransform size = child.GetComponent<RectTransform>();
-            //size.sizeDelta = new Vector2(50, 50);
-
-            //Debug.Log("³É¹¦¼ÓÔØÍ¼Æ¬: ");
         }
         else
         {
-            //Debug.Log("ÎŞ·¨¶ÁÈ¡ÎÄ¼ş: ");
+            //Debug.Log("æ— æ³•è¯»å–æ–‡ä»¶: ");
         }
     }
 
 
 
     //fei
-    //»ñÈ¡ÊôĞÔÎÄ±¾
+    //è·å–å±æ€§æ–‡æœ¬
     private List<string> getAttribute(GameObject _player)
     {
         List<string> content = new List<string>();
-        content.Add("Ä¿Ç°µÈ¼¶: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
-        content.Add("ÉúÃüÉÏÏŞ: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
-        content.Add("ÉúÃü»Ø¸´: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
-        content.Add("ÉúÃü¼³È¡: " + _player.GetComponent<CharacterAttribute>().getHealthSteal());
-        content.Add("Êä³öÔö·ù: " + _player.GetComponent<CharacterAttribute>().getAttackAmplification());
-        content.Add("½üÕ½ÉËº¦: " + _player.GetComponent<CharacterAttribute>().getMeleeDamage());
-        content.Add("Ô¶³ÌÉËº¦: " + _player.GetComponent<CharacterAttribute>().getRangedDamage());
-        content.Add("ÔªËØÉËº¦: " + _player.GetComponent<CharacterAttribute>().getAbilityDamage());
-        content.Add("¹¥»÷ËÙ¶È: " + _player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification());
-        content.Add("±©»÷¸ÅÂÊ: " + _player.GetComponent<CharacterAttribute>().getCriticalRate());
-        content.Add("¹¤³Ì»úĞµ: " + _player.GetComponent<CharacterAttribute>().getEngineering());
-        content.Add("¹¥»÷·¶Î§: " + _player.GetComponent<CharacterAttribute>().getAttackRangeAmplification());
-        content.Add("»ú¼×Ç¿¶È: " + _player.GetComponent<CharacterAttribute>().getArmorStrength());
-        content.Add("ÉÁ±Ü¸ÅÂÊ: " + _player.GetComponent<CharacterAttribute>().getDodgeRate());
-        content.Add("ÒÆËÙ¼Ó³É: " + _player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification());
-        content.Add("É¨Ãè¾«¶È: " + _player.GetComponent<CharacterAttribute>().getScanAccuracy());
-        content.Add("²É¼¯Ğ§ÂÊ: " + _player.GetComponent<CharacterAttribute>().getCollectEfficiency());
+        content.Add("ç›®å‰ç­‰çº§: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
+        content.Add("ç”Ÿå‘½ä¸Šé™: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
+        content.Add("ç”Ÿå‘½å›å¤: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
+        content.Add("ç”Ÿå‘½æ±²å–: " + _player.GetComponent<CharacterAttribute>().getHealthSteal());
+        content.Add("è¾“å‡ºå¢å¹…: " + _player.GetComponent<CharacterAttribute>().getAttackAmplification());
+        content.Add("è¿‘æˆ˜ä¼¤å®³: " + _player.GetComponent<CharacterAttribute>().getMeleeDamage());
+        content.Add("è¿œç¨‹ä¼¤å®³: " + _player.GetComponent<CharacterAttribute>().getRangedDamage());
+        content.Add("å…ƒç´ ä¼¤å®³: " + _player.GetComponent<CharacterAttribute>().getAbilityDamage());
+        content.Add("æ”»å‡»é€Ÿåº¦: " + _player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification());
+        content.Add("æš´å‡»æ¦‚ç‡: " + _player.GetComponent<CharacterAttribute>().getCriticalRate());
+        content.Add("å·¥ç¨‹æœºæ¢°: " + _player.GetComponent<CharacterAttribute>().getEngineering());
+        content.Add("æ”»å‡»èŒƒå›´: " + _player.GetComponent<CharacterAttribute>().getAttackRangeAmplification());
+        content.Add("æœºç”²å¼ºåº¦: " + _player.GetComponent<CharacterAttribute>().getArmorStrength());
+        content.Add("é—ªé¿æ¦‚ç‡: " + _player.GetComponent<CharacterAttribute>().getDodgeRate());
+        content.Add("ç§»é€ŸåŠ æˆ: " + _player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification());
+        content.Add("æ‰«æç²¾åº¦: " + _player.GetComponent<CharacterAttribute>().getScanAccuracy());
+        content.Add("é‡‡é›†æ•ˆç‡: " + _player.GetComponent<CharacterAttribute>().getCollectEfficiency());
         return content;
     }
 
-    //»ñÈ¡µ±Ç°³¡¾°Ãû³Æ
+    //è·å–å½“å‰åœºæ™¯åç§°
     private string getCurrentScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -608,55 +741,57 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         switch (parentName)
         {
             case "CurrentPlayerLevel":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[0];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "è§’è‰²çš„ç­‰çº§";
                 break;
             case "MaxHealth":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[1];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "è§’è‰²çš„æœ€å¤§ç”Ÿå‘½å€¼";
                 break;
             case "HealthRecovery":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[2];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ¯ç§’å›å¤{0.2 + 0.1 * (_player.GetComponent<CharacterAttribute>().getHealthSteal() - 1)}ç‚¹ç”Ÿå‘½å€¼";
                 break;
             case "HealthSteal":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[3];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ¯æ¬¡æ”»å‡»æœ‰{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%çš„æ¦‚ç‡å›å¤1ç‚¹ç”Ÿå‘½å€¼";
                 break;
             case "AttackAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[4];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"é€ æˆçš„ä¼¤å®³å¢åŠ {_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
                 break;
             case "MeleeDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[5];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"è¿‘æˆ˜ä¼¤å®³å¢åŠ {_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
                 break;
             case "RangedDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[6];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"è¿œç¨‹ä¼¤å®³å¢åŠ {_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
                 break;
             case "AbilityDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[7];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"å±æ€§ä¼¤å®³å¢åŠ {_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
                 break;
             case "AttackSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[8];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ”»å‡»é€Ÿåº¦å¢åŠ {_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
                 break;
             case "CriticalRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[9];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ¯æ¬¡æ”»å‡»æœ‰{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification() * 100}%çš„æ¦‚ç‡äº§ç”Ÿæš´å‡»";
                 break;
             case "Engineering":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[10];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "æå‡æœºå™¨äººé“å…·çš„å±æ€§";
                 break;
             case "AttackRangeAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[11];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ”»å‡»èŒƒå›´å åŠ {_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
                 break;
             case "ArmorStrength":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[12];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = _player.GetComponent<CharacterAttribute>().getArmorStrength() >= 0 ?
+                                                                              $"å‡å°‘{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%å—åˆ°çš„ä¼¤å®³" :
+                                                                              $"å¢åŠ {_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%å—åˆ°çš„ä¼¤å®³";
                 break;
             case "DodgeRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[13];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æœ‰{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%çš„æ¦‚ç‡é¿å…æ­¤æ¬¡ä¼¤å®³";
                 break;
             case "MoveSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[14];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"ç§»åŠ¨é€Ÿåº¦å¢åŠ {_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
                 break;
             case "ScanAccuracy":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[15];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "æé«˜é«˜å“è´¨æ­¦å™¨å’Œé“å…·çš„åˆ·æ–°æ¦‚ç‡";
                 break;
             case "CollectEfficiency":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = attributeList[16];
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"æ¯ä¸€æ³¢æ¬¡ç»“æŸç»™äºˆ{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}é‡‘çŸ¿";
                 break;
             default:
                 break;
@@ -664,10 +799,16 @@ public class gameProcessController : PersistentSingleton<gameProcessController>
         transform.Find("Panel").gameObject.SetActive(true);
     }
 
-    //¹Ø±ÕÊôĞÔÎÄ±¾µÄ×Ó´°¿Ú£¨¾ßÌåÃèÊöÊôĞÔ£©
+    //å…³é—­å±æ€§æ–‡æœ¬çš„å­çª—å£ï¼ˆå…·ä½“æè¿°å±æ€§ï¼‰
     public void closePanel(Transform transform)
     {
         transform.Find("Panel").gameObject.SetActive(false);
     }
 
+    //åˆ·æ–°å±æ€§æ–‡æœ¬
+    public void RefreshPropertyText()
+    {
+        propertyWindow.Instance.inputText = getAttribute(_player);
+        propertyWindow.Instance.RefreshText();
+    }
 }

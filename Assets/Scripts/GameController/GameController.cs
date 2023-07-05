@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEditor;
 
 public class GameController : MonoBehaviour
 {
@@ -22,18 +23,29 @@ public class GameController : MonoBehaviour
         return _instance;
     }
 
-    public GameController()
+    private void Awake()
     {
-        _instance = this;
-    }
-
-    private void Start()
-    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        if (JsonLoader.monsterPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeMonsterConfig();
+        }
+        if (JsonLoader.propPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodePropConfig();
+        }
+        if (JsonLoader.rolePool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeRoleConfig();
+        }
+        if (JsonLoader.weaponPool.Count == 0)
+        {
+            JsonLoader.LoadAndDecodeWeaponConfig();
+        }
         JsonLoader.LoadAndDecodeGameData();
-        JsonLoader.LoadAndDecodeMonsterConfig();
-        JsonLoader.LoadAndDecodePropConfig();
-        JsonLoader.LoadAndDecodeRoleConfig();
-        JsonLoader.LoadAndDecodeWeaponConfig();
     }
 
     //初始化战斗场景
@@ -67,19 +79,6 @@ public class GameController : MonoBehaviour
             return false;
         }
 
-        //为玩家对象添加武器
-        for (int i = 0; i < _gameData._weaponList.Count; i++)
-        {
-            int index = _gameData._weaponList[i];
-            WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
-            GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
-            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setOwnerAttr(_player.GetComponent<CharacterAttribute>());
-            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
-            weapon.transform.SetParent(_player.transform, false);
-            _player.GetComponent<WeaponManager>().addWeapon(weapon);
-        }
-        ObjectPool.getInstance().remove(_playerPrefab, _player);
-
         return true;
     }
     //波次开始
@@ -87,6 +86,18 @@ public class GameController : MonoBehaviour
     {
         // _player.SetActive(true);
         _player = ObjectPool.getInstance().get(_playerPrefab);
+        JsonLoader.UpdateGameData();
+        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        {
+            int index = _gameData._weaponList[i];
+            WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
+            GameObject weapon = AssetDatabase.LoadAssetAtPath<GameObject>(weaponAttribute.getWeaponPrefabPath());
+            weapon = Instantiate(weapon);
+            //GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
+            weapon.transform.SetParent(_player.transform, false);
+            _player.GetComponent<WeaponManager>().addWeapon(weapon);
+        }
         MonsterInfoCalcu.Instance.Cal();
         // Debug.Log("genMonstreCount.Count=" + MonsterInfoCalcu.Instance.genMonsterCount.Count);
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
@@ -109,6 +120,12 @@ public class GameController : MonoBehaviour
         ObjectPool.getInstance().removeAll();
         //将玩家对象取消激活
         _player.SetActive(false);
+
+        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        {
+            DestroyImmediate(_player.transform.GetChild(0).gameObject);
+        }
+        _player.GetComponent<WeaponManager>().RemoveAllWeapon();
     }
 
     //生成怪物
@@ -137,9 +154,9 @@ public class GameController : MonoBehaviour
     // 加钱或扣钱
     public bool updateMoney(int num)
     {
-        if ((_gameData._money + num) >= 0)
+        if ((_instance._gameData._money + num) >= 0)
         {
-            _gameData._money += num;
+            _instance._gameData._money += num;
             return true;
         }
         else return false;
@@ -184,5 +201,7 @@ public class GameController : MonoBehaviour
     {
         AppendPropList(prop);
         ModifyPropCount(prop, count);
+
+        //_player.GetComponent<CharacterAttribute>().propModifyAttribute(prop, count);
     }
 }

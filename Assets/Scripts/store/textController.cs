@@ -10,12 +10,12 @@ public class textController : MonoBehaviour
     public List<PropAttribute> PropPoolList;//道具库
     public List<int> selectedCardId;//被选择的卡片id暂存列表
     public List<int> lockedCardIndex;//被锁定的卡片列表
-    public List<bool> isLocked ;
+    public List<bool> isLocked;
     public Color normalColor = new(1f, 1f, 1f, 0.5f);
     public Color highLightColor = new(0f, 0f, 0f, 0.5f);
 
 
-    public float luck ;
+    public float luck;
     public float[] probability = new float[8];//按顺序分别代表武器和道具的四个等级的概率
 
     public void Start()
@@ -25,7 +25,7 @@ public class textController : MonoBehaviour
 
         lockedCardIndex = new List<int>(new int[4]);
         selectedCardId = new List<int>(new int[4]);
-        for (int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
             lockedCardIndex[i] = -1;
             selectedCardId[i] = -1;
@@ -38,39 +38,47 @@ public class textController : MonoBehaviour
             JsonLoader.LoadAndDecodePropConfig();
         if (JsonLoader.weaponPool.Count == 0)
             JsonLoader.LoadAndDecodeWeaponConfig();
-        WeaponPropList = JsonLoader.weaponPool;
-        PropPoolList = JsonLoader.propPool;
+        WeaponPropList = JsonLoader.weaponPool.GetRange(0, JsonLoader.weaponPool.Count);
+        PropPoolList = JsonLoader.propPool.GetRange(0, JsonLoader.propPool.Count);
 
 
         //每回合会自动刷新卡池一次
         extractCard();
-        for(int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            drawCards(i,selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
+            drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
 
+        //变量赋值
+        //card1 = transform.Find("card_a"); card2 = transform.Find("card_b");card3 = transform.Find("card_c");card4 = transform.Find("card_d");
+        //child1 = card1.Find("Button_shop"); child2 = card2.Find("Button_shop"); child3 = card3.Find("Button_shop"); child4 = card4.Find("Button_shop");
+        //money1 = child1.Find("buttonText"); money2 = child2.Find("buttonText"); money3 = child3.Find("buttonText"); money4 = child4.Find("buttonText");
+
+
     }
+
+
     //抽取卡片id
     void extractCard()
     {
 
         int count = 0;
-        for(int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            if(lockedCardIndex[i]!=-1)
+            if (lockedCardIndex[i] != -1)
             {
                 selectedCardId[i] = lockedCardIndex[i];
                 count++;
             }
         }
-        while(count<4)
+        while (count < 4)
         {
             int randomId = calculation();
-            if(!selectedCardId.Contains(randomId))
+            if (!selectedCardId.Contains(randomId))
             {
-                for(int k=0;k<4;k++)
+                for (int k = 0; k < 4; k++)
                 {
-                    if(selectedCardId[k]==-1)
+                    if (selectedCardId[k] == -1)
                     {
                         selectedCardId[k] = randomId;
                         count++;
@@ -78,24 +86,24 @@ public class textController : MonoBehaviour
                     }
                 }
             }
-            
+
         }
-       
+
     }
 
     //抽取概率计算并返回抽取后的id
     int calculation()
     {
         int randomId = 0;
-        luck = 50f;//到时替换成角色的属性
-        probability[0] = 400f + luck * 0.1f;
-        probability[1] = 300f + luck * 0.2f;
-        probability[2] = 200f + luck * 0.3f;
-        probability[3] = 100f + luck * 0.4f;
-        probability[4] = 400f + luck * 0.1f;
-        probability[5] = 300f + luck * 0.2f;
-        probability[6] = 200f + luck * 0.3f;
-        probability[7] = 100f + luck * 0.4f;
+        luck = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().getScanAccuracy();//到时替换成角色的属性
+        probability[0] = 800f + luck * 2f + GameController.getInstance().getGameData()._wave * 10;
+        probability[1] = 400f + luck * 4f + GameController.getInstance().getGameData()._wave * 20;
+        probability[2] = GameController.getInstance().getGameData()._wave >= 5 ? (GameController.getInstance().getGameData()._wave - 5) * 40 + luck * 2 : 0;
+        probability[3] = GameController.getInstance().getGameData()._wave >= 10 ? (GameController.getInstance().getGameData()._wave - 10) * 50 + luck * 2 : 0;
+        probability[4] = 800f + luck * 2f + GameController.getInstance().getGameData()._wave * 10;
+        probability[5] = 400f + luck * 4f + GameController.getInstance().getGameData()._wave * 20;
+        probability[6] = GameController.getInstance().getGameData()._wave >= 5 ? (GameController.getInstance().getGameData()._wave - 5) * 40 + luck * 2 : 0;
+        probability[7] = GameController.getInstance().getGameData()._wave >= 10 ? (GameController.getInstance().getGameData()._wave - 10) * 50 + luck * 2 : 0;
 
         //归一化
         float sum = 0;
@@ -120,11 +128,19 @@ public class textController : MonoBehaviour
                 break;
             }
         }
+        //每种品质道具的数量
+        int a = GameController.getInstance().getGameData()._propCountPerQuality[0];
+        int b = GameController.getInstance().getGameData()._propCountPerQuality[1];
+        int c = GameController.getInstance().getGameData()._propCountPerQuality[2];
+        int d = GameController.getInstance().getGameData()._propCountPerQuality[3];
 
         int kindOfWeapon = WeaponPropList.Count / 4;
-        int kindOfProp = PropPoolList.Count / 4;
-        int temp1 = Random.Range(0, kindOfWeapon - 1);
-        int temp2= Random.Range(0, kindOfProp - 1);
+        //int kindOfProp = PropPoolList.Count;
+        int temp1 = Random.Range(0, kindOfWeapon - 1);//武器
+        int temp2 = Random.Range(0, a);
+        int temp3 = Random.Range(0, b);
+        int temp4 = Random.Range(0, c);
+        int temp5 = Random.Range(0, d);
         switch (index)
         {
             case 0:
@@ -140,16 +156,16 @@ public class textController : MonoBehaviour
                 randomId = 4 * temp1 + 3;
                 break;
             case 4:
-                randomId = 4 * temp2 + 40000;
+                randomId = 40000 + temp2;
                 break;
             case 5:
-                randomId = 4 * temp2 + 40001;
+                randomId = 40000 + temp3 + a;
                 break;
             case 6:
-                randomId = 4 * temp2 + 40002;
+                randomId = 40000 + temp4 + a + b;
                 break;
             case 7:
-                randomId = 4 * temp2 + 40003;
+                randomId = 40000 + temp5 + a + b + c;
                 break;
             default:
                 break;
@@ -159,10 +175,10 @@ public class textController : MonoBehaviour
     }
 
     //将卡片内容显示在UI上
-    public void drawCards(int i,int id)
+    public void drawCards(int i, int id)
     {
-        string cardName="card";
-        switch(i)
+        string cardName = "card";
+        switch (i)
         {
             case 0:
                 cardName = "card_a";
@@ -180,7 +196,7 @@ public class textController : MonoBehaviour
                 break;
         }
         Transform card = transform.Find(cardName);
-       
+
         //获取子物体
         Transform child1 = card.Find("propText");
         Transform child2 = card.Find("bgIcon");
@@ -188,7 +204,7 @@ public class textController : MonoBehaviour
         Transform child3 = card.Find("titleText");
         Transform child4 = card.Find("Button_shop");
         Transform child4_child = child4.Find("buttonText");
-        if(id<40000)
+        if (id < 40000)
         {
 
             //武器属性文本
@@ -229,6 +245,8 @@ public class textController : MonoBehaviour
             //购买按钮文本显示
             TextMeshProUGUI myText2 = child4_child.GetComponent<TextMeshProUGUI>();
             myText2.text = "" + WeaponPropList[id].getWeaponPrice();
+            //if (WeaponPropList[id].getWeaponPrice() > GameController.getInstance().getGameData()._money)
+            //    myText2.color = Color.red;
         }
         else
         {
@@ -236,8 +254,8 @@ public class textController : MonoBehaviour
             //道具属性文本
             TextMeshProUGUI myText = child1.GetComponent<TextMeshProUGUI>();
             float[] value = new float[16];
-            
-            
+
+
             value[0] = PropPoolList[id].getMaxHealth();
             value[1] = PropPoolList[id].getHealthRecovery();
             value[2] = PropPoolList[id].getHealthSteal();
@@ -276,7 +294,7 @@ public class textController : MonoBehaviour
             {
                 if (value[count] == 0.0f)
                     propText[count] = "";
-                else if(value[count]>0.0f)
+                else if (value[count] > 0.0f)
                 {
                     propText[count] = "<color=yellow>" + propName[count] + "</color>:  +" + value[count] + "\n";
                 }
@@ -286,9 +304,9 @@ public class textController : MonoBehaviour
 
             string assetPath1 = "Assets/Sprites/Weapon/" + PropPoolList[id].getPropBgIcon();
             string assetPath2 = "Assets/Sprites/Prop/" + PropPoolList[id].getPropIcon();
-            
 
-           
+
+
             loadImage(assetPath1, child2);
             loadImage(assetPath2, child2_);
 
@@ -301,15 +319,19 @@ public class textController : MonoBehaviour
 
             //购买按钮文本显示
             TextMeshProUGUI myText2 = child4_child.GetComponent<TextMeshProUGUI>();
-            myText2.text =""+ PropPoolList[id].getPropPrice();
+            myText2.text = "" + PropPoolList[id].getPropPrice();
+            //if(PropPoolList[id].getPropPrice()> GameController.getInstance().getGameData()._money)
+            //{
+            //    myText2.color = Color.red;
+            //}
         }
-          
+
 
     }
 
 
     //加载图片资源
-    void loadImage(string assetPath,Transform child)
+    void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
 
@@ -332,7 +354,7 @@ public class textController : MonoBehaviour
 
 
     //刷新按钮点击事件
-   public void OnRefreshButtonClicked()
+    public void OnRefreshButtonClicked()
     {
         //清空卡槽列表
         for (int i = 0; i < 4; i++)
@@ -372,8 +394,8 @@ public class textController : MonoBehaviour
         {
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
-        
-        
+
+
     }
 
     //锁定按钮点击事件
@@ -407,7 +429,7 @@ public class textController : MonoBehaviour
             lockedCardIndex[cardID] = selectedCardId[cardID];
             lockIcon.gameObject.SetActive(true);
         }
-            
+
         else
         {
 
@@ -420,13 +442,23 @@ public class textController : MonoBehaviour
     //购买按钮点击事件
     public void OnCardShopButtonClicked(int cardID)
     {
-        if(selectedCardId[cardID]<40000) //40000以下的武器，40000以上的是道具
+
+        if (selectedCardId[cardID] < 40000) //40000以下的武器，40000以上的是道具
         {
             weaponBagWindow.Instance.isWeapon = true;
             if (weaponBagWindow.Instance.ownWeaponList.Count == 6)
             {
                 Debug.Log("装备武器已达上限，购买失败");
                 weaponBagWindow.Instance.addWeapon = false;
+            }
+            else if (WeaponPropList[selectedCardId[cardID]].getWeaponPrice() > GameController.getInstance().getGameData()._money)
+            {
+                weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
+                Debug.Log("text");
+                Transform warn = transform.Find("warnWindow");
+                warn.gameObject.SetActive(true);
+                StartCoroutine(wait());
+                warn.gameObject.SetActive(false);
             }
             else
             {
@@ -451,6 +483,7 @@ public class textController : MonoBehaviour
                 GameObject card = GameObject.Find(cardName);
                 card.SetActive(false);
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
+
                 weaponBagWindow.Instance.ownWeaponList.Add(selectedCardId[cardID]);
                 GameController.getInstance().getGameData()._weaponList.Add(selectedCardId[cardID]);
             }
@@ -458,47 +491,74 @@ public class textController : MonoBehaviour
         else
         {
             weaponBagWindow.Instance.isWeapon = false;
-            string cardName = "card";
-            switch (cardID)
+            if (PropPoolList[selectedCardId[cardID] - 40000].getPropPrice() > GameController.getInstance().getGameData()._money)
             {
-                case 0:
-                    cardName = "card_a";
-                    break;
-                case 1:
-                    cardName = "card_b";
-                    break;
-                case 2:
-                    cardName = "card_c";
-                    break;
-                case 3:
-                    cardName = "card_d";
-                    break;
-                default:
-                    break;
-            }
-            GameObject card = GameObject.Find(cardName);
-            card.SetActive(false);
-            Debug.Log("购买成功");
-            propBagWindow.Instance.buyedProp = selectedCardId[cardID];
-            if(propBagWindow.Instance.ownPropList.Contains(selectedCardId[cardID]))
-            {
-                propBagWindow.Instance.isExist = true;
-                propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                propBagWindow.Instance.buyedProp = selectedCardId[cardID];
+                Transform warn1 = transform.Find("warnWindow");
+                warn1.gameObject.SetActive(true);
+                StartCoroutine(wait());
+                warn1.gameObject.SetActive(false);
             }
             else
             {
-                propBagWindow.Instance.isExist = false;
-                propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                weaponBagWindow.Instance.isWeapon = false;
+                string cardName = "card";
+                switch (cardID)
+                {
+                    case 0:
+                        cardName = "card_a";
+                        break;
+                    case 1:
+                        cardName = "card_b";
+                        break;
+                    case 2:
+                        cardName = "card_c";
+                        break;
+                    case 3:
+                        cardName = "card_d";
+                        break;
+                    default:
+                        break;
+                }
+                GameObject card = GameObject.Find(cardName);
+                card.SetActive(false);
+                propBagWindow.Instance.buyedProp = selectedCardId[cardID];
+                if (propBagWindow.Instance.ownPropList.Contains(selectedCardId[cardID]))
+                {
+                    propBagWindow.Instance.isExist = true;
+                    propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    Debug.Log("before modify" + JsonLoader.propPool.Count.ToString());
+                }
+                else
+                {
+                    propBagWindow.Instance.isExist = false;
+                    propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    Debug.Log("before modify" + JsonLoader.propPool[0]);
+                }
             }
         }
 
+    }
+
+    private void close()
+    {
+        Debug.Log("close");
+        Transform warn = transform.Find("warnWindow");
+        warn.gameObject.SetActive(false);
     }
 
     //点击出发按钮后会自动刷新一次
     public void startRefreshOnclick()
     {
         OnRefreshButtonClicked();
+    }
+
+    //协程
+    IEnumerator wait()
+    {
+        Debug.Log("close");
+        yield return new WaitForSecondsRealtime(1f);
     }
 }
