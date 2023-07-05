@@ -222,6 +222,8 @@ public class gameProcessController : MonoBehaviour
         totalTime = 30f;//第一关时间
 
         levelText.text = "第" + level + "关";
+
+        
     }
 
     //窗口初始化
@@ -748,7 +750,7 @@ public class gameProcessController : MonoBehaviour
     private List<string> getAttribute(GameObject _player)
     {
         List<string> content = new List<string>();
-        content.Add("目前等级: " + _player.GetComponent<CharacterAttribute>().getCurrentPlayerLevel());
+        content.Add("目前等级: " + GameController.getInstance().getGameData()._playerLevel);
         content.Add("生命上限: " + _player.GetComponent<CharacterAttribute>().getMaxHealth());
         content.Add("生命回复: " + _player.GetComponent<CharacterAttribute>().getHealthRecovery());
         content.Add("生命汲取: " + _player.GetComponent<CharacterAttribute>().getHealthSteal());
