@@ -125,6 +125,7 @@ public class gameProcessController : MonoBehaviour
             grade++;
             //HPMaxValue += 2;
             roleState.Find("exp").GetComponent<Slider>().maxValue += 15;
+            EXPMaxValue = roleState.Find("exp").GetComponent<Slider>().maxValue;
         }
         GameController.getInstance().getGameData()._playerLevel = grade;
         roleState.Find("blood").GetComponent<Slider>().value = blood;
@@ -170,7 +171,8 @@ public class gameProcessController : MonoBehaviour
         PropPoolList = JsonLoader.propPool.GetRange(0, JsonLoader.propPool.Count);
 
         //GameController.getInstance().getGameData()._money = 1000f;
-        level = 1;
+        Debug.Log("level" + GameController.getInstance().getGameData()._wave);
+        level = GameController.getInstance().getGameData()._wave;
         isDying = false;
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
@@ -183,7 +185,7 @@ public class gameProcessController : MonoBehaviour
         roleState.Find("blood").GetComponent<Slider>().value = _player.GetComponent<CharacterAttribute>().getCurrentHealth();
         roleState.Find("exp").GetComponent<Slider>().value = _player.GetComponent<CharacterAttribute>().getCurrentExp();
         roleState.Find("blood").GetComponent<Slider>().maxValue = _player.GetComponent<CharacterAttribute>().getMaxHealth();
-        roleState.Find("exp").GetComponent<Slider>().maxValue = _player.GetComponent<CharacterAttribute>().getBasicUpgradeExp();
+        roleState.Find("exp").GetComponent<Slider>().maxValue = _player.GetComponent<CharacterAttribute>().getBasicUpgradeExp() + 15f * GameController.getInstance().getGameData()._playerLevel;
 
         HPValue = roleState.Find("blood").GetComponent<Slider>().value;
         EXPValue = roleState.Find("exp").GetComponent<Slider>().value;
@@ -198,7 +200,9 @@ public class gameProcessController : MonoBehaviour
 
         LoadInitWeapon();
 
-        totalTime = 30f;//第一关时间
+        //第一关时间
+        totalTime = 30f + (level - 1) * 10f;
+        totalTime = totalTime > 100f ? 100f : totalTime;
 
         levelText.text = "第" + level + "关";
     }
@@ -480,8 +484,9 @@ public class gameProcessController : MonoBehaviour
         timeDisplay();
 
         level++;
-        levelText.text = "第" + level + "关";
+        levelText.text = "第" + level + "波";
         GameController.getInstance().getGameData()._wave = level;
+        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
     }
 

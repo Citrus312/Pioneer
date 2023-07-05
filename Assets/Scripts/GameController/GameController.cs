@@ -45,7 +45,6 @@ public class GameController : MonoBehaviour
         {
             JsonLoader.LoadAndDecodeWeaponConfig();
         }
-        JsonLoader.LoadAndDecodeGameData();
     }
 
     //初始化战斗场景
@@ -59,7 +58,6 @@ public class GameController : MonoBehaviour
         RandomScene.getInstance().randomGenerateScene();
         //初始化角色
         initPlayer();
-        _gameData._wave = 1;
     }
 
     public bool initPlayer()
@@ -135,6 +133,8 @@ public class GameController : MonoBehaviour
             DestroyImmediate(_player.transform.GetChild(0).gameObject);
         }
         _player.GetComponent<WeaponManager>().RemoveAllWeapon();
+        _instance.updateMoney((int)Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency()));
+        _player.GetComponent<CharacterAttribute>().setCollectEfficiency(Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency() * 1.05f));
     }
 
     //生成怪物

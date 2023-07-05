@@ -52,6 +52,7 @@ public class TestController : MonoBehaviour
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setCurrentHealth(200.0f);
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setRawMoveSpeed(5.0f);
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setMeleeDamage(50.0f);
+        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
     }
 }

@@ -11,7 +11,7 @@ public class BackToScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneLoader._instance.LoadAble)
         {
             if (DifficultySelectWindow.Instance.getTransform() != null)
             {
@@ -21,7 +21,7 @@ public class BackToScene : MonoBehaviour
             switch (sceneName)
             {
                 case "MainPage":
-                    MainPageWindow.Instance.Open();
+                    DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.0f);
                     break;
                 default:
                     break;

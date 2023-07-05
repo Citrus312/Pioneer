@@ -35,7 +35,7 @@ public class GameData
     public int _wave = 1;
 
     // 当前选择的关卡
-    public int _level;
+    // public int _level;
 
     // 货币
     public float _money = 0;
@@ -58,7 +58,7 @@ public class GameData
         dict.Add("propCount", _propCount);
         dict.Add("weaponList", _weaponList);
         dict.Add("wave", _wave);
-        dict.Add("level", _level);
+        //dict.Add("level", _level);
         dict.Add("money", (int)_money);
         dict.Add("playerLevel", _playerLevel);
         dict.Add("exp", (int)_exp);
@@ -77,8 +77,8 @@ public class GameData
         _propList.Clear();
         _propCount.Clear();
         _weaponList.Clear();
-        _wave = 0;
-        _level = 0;
+        _wave = 1;
+        //_level = 0;
         _money = 0;
         _playerLevel = 0;
         _exp = 0;
