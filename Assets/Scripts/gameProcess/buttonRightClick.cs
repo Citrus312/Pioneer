@@ -15,7 +15,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
     Transform cancelBtn;
     Transform compositeBtn;
 
-    public List<WeaponAttribute> WeaponPropList;//¿¨³Ø
+    public List<WeaponAttribute> WeaponPropList;//ï¿½ï¿½ï¿½ï¿½
 
     private void Start()
     {
@@ -56,10 +56,11 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
                 compositeBtn.gameObject.SetActive(false);
             }
 
-            copyOption.localPosition = new Vector3(150f, 180f, 0f);
+            copyOption.localPosition = new Vector3(0f, 150f, 0f);
+            namesCount.Clear();
         }
     }
-    //¸ø°´Å¥Ìí¼Ó¼àÌýÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     public void addListener()
     {
         recycleBtn.GetComponent<Button>().onClick.AddListener(recycleOnclick);
@@ -67,7 +68,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         compositeBtn.GetComponent<Button>().onClick.AddListener(compoundOnclick);
     }
 
-    //ÎäÆ÷±³°üÖÐµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼þ-»ØÊÕ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Æ·ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½-ï¿½ï¿½ï¿½ï¿½
     public void recycleOnclick()
     {
         Destroy(this.gameObject);
@@ -82,7 +83,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    //ÎäÆ÷±³°üÖÐµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼þ-ºÏ³É
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Æ·ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½-ï¿½Ï³ï¿½
     public void compoundOnclick()
     {
         int count = 0;
@@ -109,7 +110,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
 
     }
 
-    //ÎäÆ÷±³°üÖÐµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼þ-È¡Ïû
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Æ·ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½-È¡ï¿½ï¿½
     public void cancelOnclick()
     {
         copyOption.gameObject.SetActive(false);
@@ -128,7 +129,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         weaponBagWindow.Instance.ownWeaponList.Add(i);
     }
 
-    //¼ÓÔØÍ¼Æ¬
+    //ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
     void loadImage(string assetPath, Transform child)
     {
         byte[] bytes = System.IO.File.ReadAllBytes(assetPath);
@@ -136,17 +137,17 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         Texture2D texture = new Texture2D(2, 2);
         if (texture.LoadImage(bytes))
         {
-            // ´´½¨Sprite²¢¸½¼Óµ½Image×é¼þÉÏ
+            // ï¿½ï¿½ï¿½ï¿½Spriteï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Imageï¿½ï¿½ï¿½ï¿½ï¿½
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
             child.GetComponent<Image>().sprite = sprite;
             //RectTransform size = child.GetComponent<RectTransform>();
             //size.sizeDelta = new Vector2(50, 50);
 
-            //Debug.Log("³É¹¦¼ÓÔØÍ¼Æ¬: ");
+            //Debug.Log("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬: ");
         }
         else
         {
-            //Debug.Log("ÎÞ·¨¶ÁÈ¡ÎÄ¼þ: ");
+            //Debug.Log("ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½Ä¼ï¿½: ");
         }
     }
 }

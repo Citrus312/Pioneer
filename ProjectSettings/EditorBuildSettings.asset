@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelScene/Purple.unity
     guid: d609536135aa21b4fae5a546635533c7
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/Lava.unity
+    guid: 793e8d599a32802479f54908e4034435
   m_configObjects: {}

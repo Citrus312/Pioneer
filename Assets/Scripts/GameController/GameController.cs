@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour
             Debug.Log("PlayerPrefab is null!");
             return false;
         }
-
+        ObjectPool.getInstance().remove(_playerPrefab, _player);
         return true;
     }
     //波次开始
@@ -86,7 +86,11 @@ public class GameController : MonoBehaviour
     {
         // _player.SetActive(true);
         _player = ObjectPool.getInstance().get(_playerPrefab);
+        // 重置角色
+        _player.transform.position = Vector3.zero;
+        _player.GetComponent<CharacterAttribute>().setCurrentHealth(_player.GetComponent<CharacterAttribute>().getMaxHealth());
         JsonLoader.UpdateGameData();
+        // 加武器
         for (int i = 0; i < _gameData._weaponList.Count; i++)
         {
             int index = _gameData._weaponList[i];
@@ -98,6 +102,7 @@ public class GameController : MonoBehaviour
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
+        // 怪物
         MonsterInfoCalcu.Instance.Cal();
         // Debug.Log("genMonstreCount.Count=" + MonsterInfoCalcu.Instance.genMonsterCount.Count);
         for (int i = 0; i < MonsterInfoCalcu.Instance.genMonsterCount.Count; i++)
@@ -124,7 +129,7 @@ public class GameController : MonoBehaviour
         ObjectPool.getInstance().removeAll();
         //将玩家对象取消激活
         _player.SetActive(false);
-
+        // 删除武器
         for (int i = 0; i < _gameData._weaponList.Count; i++)
         {
             DestroyImmediate(_player.transform.GetChild(0).gameObject);

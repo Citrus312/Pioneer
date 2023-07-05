@@ -150,6 +150,10 @@ public class gameProcessController : MonoBehaviour
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
+        else if (HPValue > HPMaxValue * 2 / 3)
+        {
+            stateBg.GetComponent<RectTransform>().localScale = new Vector3(3f, 3f, 3f);
+        }
         HPValueText.text = $"{(int)Mathf.Ceil(HPValue)}/{HPMaxValue}";
         EXPValueText.text = "Lv" + grade;
 
@@ -195,6 +199,8 @@ public class gameProcessController : MonoBehaviour
         LoadInitWeapon();
 
         totalTime = 30f;//第一关时间
+
+        levelText.text = "第" + level + "关";
     }
 
     //窗口初始化
