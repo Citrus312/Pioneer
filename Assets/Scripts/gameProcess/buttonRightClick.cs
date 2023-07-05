@@ -57,7 +57,9 @@ public class buttonRightClick : MonoBehaviour,IPointerClickHandler
             }
 
             copyOption.localPosition = new Vector3(150f, 180f, 0f);
+            namesCount.Clear();
         }
+
     }
     //给按钮添加监听事件
     public void addListener()
