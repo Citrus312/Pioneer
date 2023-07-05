@@ -19,7 +19,7 @@ public class testController : MonoBehaviour
         {
             JsonLoader.LoadAndDecodeMonsterConfig();
         }
-        if(JsonLoader.propPool.Count==0)
+        if (JsonLoader.propPool.Count == 0)
         {
             JsonLoader.LoadAndDecodePropConfig();
         }

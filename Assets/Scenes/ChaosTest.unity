@@ -2981,14 +2981,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e38547b9095b664d894a6a68e1bd422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabList:
-  - Assets/Prefab/Obstacles/Rock/Rock1_1.prefab
+  _obstacleList:
   - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_3.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_4.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
   - Assets/Prefab/Obstacles/Rock/Rock1_5.prefab
-  _sceneWidth: 0
-  _sceneHeight: 0
+  - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
+  - Assets/Prefab/Obstacles/Lake/Lake.prefab
+  - Assets/Prefab/Obstacles/Lake/Lake.prefab
+  _terrainList: []
+  _gridSize: 4
+  _obstacleCnt: 8
 --- !u!212 &1489205913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3644,7 +3647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79267060a7cb5f429e025f600c41b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 2582487769076849202, guid: fa2c1f7e549db1e4094aaf08a3438997, type: 3}
+  _playerPrefab: Assets/Prefab/Player.prefab
   _objectPool: {fileID: 5870974196353509982, guid: 200266e6894728e4c8060365aa3b59e7, type: 3}
   _generator: {fileID: 4978148260696324448, guid: b26aa5a804dc87a4bbf8cedb696e1944, type: 3}
 --- !u!4 &1995902380
