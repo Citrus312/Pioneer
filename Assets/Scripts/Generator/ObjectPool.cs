@@ -65,7 +65,7 @@ public class ObjectPool : MonoBehaviour
             List<GameObject> l = new List<GameObject>();
             l.Add(tmp);
             _objectList.Add(prefabPath, l);
-            // Debug.Log("新建池");
+            // Debug.Log("新建池 " + prefabPath);
         }
 
         return tmp;
@@ -82,6 +82,7 @@ public class ObjectPool : MonoBehaviour
             // 入队
             _objectPool[prefabPath].Enqueue(obj);
             obj.SetActive(false);
+            // Debug.Log("remove " + prefabPath);
         }
     }
 
@@ -92,11 +93,7 @@ public class ObjectPool : MonoBehaviour
         {
             foreach (GameObject obj in _objectList[prefabPath])
             {
-                //如果物体是激活状态则回收物体
-                if (obj.activeSelf)
-                {
-                    remove(prefabPath, obj);
-                }
+                remove(prefabPath, obj);
             }
         }
     }

@@ -55,8 +55,6 @@ public class GameController : MonoBehaviour
         Instantiate(_objectPool, Vector3.zero, Quaternion.identity);
         //初始化生成器
         Instantiate(_generator, Vector3.zero, Quaternion.identity);
-        //初始化障碍物
-        RandomScene.getInstance().randomGenerateScene();
         //初始化角色
         initPlayer();
         _gameData._wave = 1;
@@ -84,6 +82,8 @@ public class GameController : MonoBehaviour
     //波次开始
     public void waveStart()
     {
+        //初始化障碍物
+        RandomScene.getInstance().randomGenerateScene();
         // _player.SetActive(true);
         _player = ObjectPool.getInstance().get(_playerPrefab);
         // 重置角色
@@ -125,10 +125,9 @@ public class GameController : MonoBehaviour
     {
         //停止所有生成怪物的协程
         StopAllCoroutines();
+        MonsterGenerator.getInstance().stopGenerate();
         //回收对象池生成的所有物体
         ObjectPool.getInstance().removeAll();
-        //将玩家对象取消激活
-        _player.SetActive(false);
         // 删除武器
         for (int i = 0; i < _gameData._weaponList.Count; i++)
         {
