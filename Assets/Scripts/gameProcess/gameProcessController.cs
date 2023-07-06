@@ -195,9 +195,9 @@ public class gameProcessController : MonoBehaviour
 
         //GameController.getInstance().getGameData()._money = 1000f;
         level = GameController.getInstance().getGameData()._wave;
-        //level = 20;
-        //GameController.getInstance().getGameData()._wave = 20;
-        //_player.GetComponent<CharacterAttribute>().setMaxHealth(1000000);
+        level = 20;
+        GameController.getInstance().getGameData()._wave = 20;
+        _player.GetComponent<CharacterAttribute>().setMaxHealth(1000000);
         isDying = false;
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
@@ -228,7 +228,7 @@ public class gameProcessController : MonoBehaviour
         //第一关时间
         totalTime = 30f + (level - 1) * 10f;
         totalTime = totalTime > 100f ? 100f : totalTime;
-        //totalTime = 30f;
+        totalTime = 30f;
 
         levelText.text = "第" + level + "关";
 
