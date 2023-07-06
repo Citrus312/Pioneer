@@ -87,7 +87,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
     //武器背包中的物品右键点击事件-合成
     public void compoundOnclick()
     {
-        int count = 0;
+        
         string number = new string(transform.name.Where(char.IsDigit).ToArray());
         int id = int.Parse(number);
 
@@ -95,21 +95,17 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         {
             foreach (Transform child in father)
             {
-                if (child.name == transform.name)
-                {
-                    count++;
-                }
-                if (count == 2)
+                if (child.name == transform.name&&child!=transform)
                 {
                     Destroy(child.gameObject);
                     endofComposite(id);
                     break;
                 }
+                
             }
         }
         copyOption.gameObject.SetActive(false);
-        weaponBagWindow.Instance.ownWeaponList.Remove(id);
-        GameController.getInstance().getGameData()._weaponList.Remove(id);
+        
     }
 
     //武器背包中的物品右键点击事件-取消
@@ -124,11 +120,20 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         int i = id + 1;
         string assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[i].getWeaponBgIcon();
         transform.name = "weapon" + i;
+        transform.GetChild(0).name = "" + i;
+
         loadImage(assetPathBg, transform);
 
         weaponBagWindow.Instance.ownWeaponList.Remove(id);
         weaponBagWindow.Instance.ownWeaponList.Remove(id);
         weaponBagWindow.Instance.ownWeaponList.Add(i);
+        GameController.getInstance().getGameData()._weaponList.Remove(id);
+        GameController.getInstance().getGameData()._weaponList.Remove(id);
+        GameController.getInstance().getGameData()._weaponList.Add(i);
+        if (weaponBagWindow.Instance.addWeapon == false)
+        {
+            weaponBagWindow.Instance.addWeapon = true;
+        }
     }
 
     //加载图片

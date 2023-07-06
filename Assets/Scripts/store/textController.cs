@@ -13,6 +13,7 @@ public class textController : MonoBehaviour
     public List<bool> isLocked;
     public Color normalColor = new(1f, 1f, 1f, 0.5f);
     public Color highLightColor = new(0f, 0f, 0f, 0.5f);
+   
 
 
     public float luck;
@@ -49,11 +50,7 @@ public class textController : MonoBehaviour
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
 
-        //变量赋值
-        //card1 = transform.Find("card_a"); card2 = transform.Find("card_b");card3 = transform.Find("card_c");card4 = transform.Find("card_d");
-        //child1 = card1.Find("Button_shop"); child2 = card2.Find("Button_shop"); child3 = card3.Find("Button_shop"); child4 = card4.Find("Button_shop");
-        //money1 = child1.Find("buttonText"); money2 = child2.Find("buttonText"); money3 = child3.Find("buttonText"); money4 = child4.Find("buttonText");
-
+        
 
     }
 
@@ -356,46 +353,61 @@ public class textController : MonoBehaviour
     //刷新按钮点击事件
     public void OnRefreshButtonClicked()
     {
-        //清空卡槽列表
-        for (int i = 0; i < 4; i++)
+        if(GameController.getInstance().getGameData()._money<storeWindow.Instance.freshValue)
         {
-            selectedCardId[i] = -1;
+            Debug.Log("金矿不足");
         }
-
-        //确保将每个卡片显示出来，消除上一个阶段购买产生的影响
-        Transform child1 = transform.Find("card_a");
-        Transform child2 = transform.Find("card_b");
-        Transform child3 = transform.Find("card_c");
-        Transform child4 = transform.Find("card_d");
-
-        child1.gameObject.SetActive(true);
-        child2.gameObject.SetActive(true);
-        child3.gameObject.SetActive(true);
-        child4.gameObject.SetActive(true);
-
-        //将按钮的颜色调为初始值
-        Transform Button1 = child1.Find("Button_shop");
-        Transform Button2 = child2.Find("Button_shop");
-        Transform Button3 = child3.Find("Button_shop");
-        Transform Button4 = child4.Find("Button_shop");
-
-        Image image1 = Button1.GetComponent<Image>();
-        Image image2 = Button2.GetComponent<Image>();
-        Image image3 = Button3.GetComponent<Image>();
-        Image image4 = Button4.GetComponent<Image>();
-
-        image1.color = normalColor;
-        image2.color = normalColor;
-        image3.color = normalColor;
-        image4.color = normalColor;
-
-        extractCard();//抽取初始刷新的卡片id
-        for (int i = 0; i < 4; i++)
+        else
         {
-            drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
+            //清空卡槽列表
+            for (int i = 0; i < 4; i++)
+            {
+                selectedCardId[i] = -1;
+            }
+
+            //确保将每个卡片显示出来，消除上一个阶段购买产生的影响
+            Transform child1 = transform.Find("card_a");
+            Transform child2 = transform.Find("card_b");
+            Transform child3 = transform.Find("card_c");
+            Transform child4 = transform.Find("card_d");
+
+            child1.gameObject.SetActive(true);
+            child2.gameObject.SetActive(true);
+            child3.gameObject.SetActive(true);
+            child4.gameObject.SetActive(true);
+
+            //将按钮的颜色调为初始值
+            Transform Button1 = child1.Find("Button_shop");
+            Transform Button2 = child2.Find("Button_shop");
+            Transform Button3 = child3.Find("Button_shop");
+            Transform Button4 = child4.Find("Button_shop");
+
+            Image image1 = Button1.GetComponent<Image>();
+            Image image2 = Button2.GetComponent<Image>();
+            Image image3 = Button3.GetComponent<Image>();
+            Image image4 = Button4.GetComponent<Image>();
+
+            image1.color = normalColor;
+            image2.color = normalColor;
+            image3.color = normalColor;
+            image4.color = normalColor;
+
+            extractCard();//抽取初始刷新的卡片id
+            for (int i = 0; i < 4; i++)
+            {
+                drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
+            }
+            storeWindow.Instance.freshCount += 1;
+            GameController.getInstance().getGameData()._money -= storeWindow.Instance.freshValue;
+
+            Transform freshButton = transform.Find("freshButton");
+            Transform freshMoney = freshButton.Find("money");
+            storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + storeWindow.Instance.freshCount * (int)Mathf.Ceil(0.5f * GameController.getInstance().getGameData()._wave);
+            freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + storeWindow.Instance.freshValue;
+
+            
         }
-
-
+        
     }
 
     //锁定按钮点击事件
@@ -564,7 +576,55 @@ public class textController : MonoBehaviour
     //点击出发按钮后会自动刷新一次
     public void startRefreshOnclick()
     {
-        OnRefreshButtonClicked();
+
+        //清空卡槽列表
+        for (int i = 0; i < 4; i++)
+        {
+            selectedCardId[i] = -1;
+        }
+
+        //确保将每个卡片显示出来，消除上一个阶段购买产生的影响
+        Transform child1 = transform.Find("card_a");
+        Transform child2 = transform.Find("card_b");
+        Transform child3 = transform.Find("card_c");
+        Transform child4 = transform.Find("card_d");
+
+        child1.gameObject.SetActive(true);
+        child2.gameObject.SetActive(true);
+        child3.gameObject.SetActive(true);
+        child4.gameObject.SetActive(true);
+
+        //将按钮的颜色调为初始值
+        Transform Button1 = child1.Find("Button_shop");
+        Transform Button2 = child2.Find("Button_shop");
+        Transform Button3 = child3.Find("Button_shop");
+        Transform Button4 = child4.Find("Button_shop");
+
+        Image image1 = Button1.GetComponent<Image>();
+        Image image2 = Button2.GetComponent<Image>();
+        Image image3 = Button3.GetComponent<Image>();
+        Image image4 = Button4.GetComponent<Image>();
+
+        image1.color = normalColor;
+        image2.color = normalColor;
+        image3.color = normalColor;
+        image4.color = normalColor;
+
+        extractCard();//抽取初始刷新的卡片id
+        for (int i = 0; i < 4; i++)
+        {
+            drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
+        }
+        Transform freshButton = transform.Find("freshButton");
+        Transform freshMoney = freshButton.Find("money");
+        storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave;
+        freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + storeWindow.Instance.freshValue;
+
+
+        Transform freshButton1 = upgradeWindow.Instance.getTransform().Find("refreshBtn");
+        Transform freshMoney1 = freshButton1.Find("freshMoney");
+        upgradeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave;
+        freshMoney1.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + upgradeWindow.Instance.freshValue;
     }
 
     //协程

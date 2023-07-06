@@ -36,6 +36,11 @@ public class upgradeController : MonoBehaviour
         Transform freshBtn = transform.Find("refreshBtn");
         freshBtn.GetComponent<Button>().onClick.AddListener(OnRefreshButtonClicked);
 
+        Transform freshButton = transform.Find("refreshBtn");
+        Transform freshMoney = freshButton.Find("freshMoney");
+        upgradeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave;
+        freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + upgradeWindow.Instance.freshValue;
+
     }
 
     //所有属性的图标和名称列表
@@ -265,14 +270,29 @@ public class upgradeController : MonoBehaviour
     //刷新按钮点击事件
     void OnRefreshButtonClicked()
     {
-        extractCard();
-        for (int i = 0; i < 4; i++)
+        if (GameController.getInstance().getGameData()._money < upgradeWindow.Instance.freshValue)
         {
-
-            int level = calculationLevel();
-            valueList[i] = calculateValue(selectedCardId[i], level);
-            drawCards(i, selectedCardId[i], level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
+            Debug.Log("金矿不足");
         }
+        else
+        {
+            extractCard();
+            for (int i = 0; i < 4; i++)
+            {
+
+                int level = calculationLevel();
+                valueList[i] = calculateValue(selectedCardId[i], level);
+                drawCards(i, selectedCardId[i], level);//i为卡槽序号，ids[i]为被抽取的卡片号,calculationLevel()为按概率抽取到的等级
+            }
+            upgradeWindow.Instance.freshCount += 1;
+            GameController.getInstance().getGameData()._money -= upgradeWindow.Instance.freshValue;
+
+            Transform freshButton = transform.Find("refreshBtn");
+            Transform freshMoney = freshButton.Find("freshMoney");
+            upgradeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + upgradeWindow.Instance.freshCount * (int)Mathf.Ceil(0.5f * GameController.getInstance().getGameData()._wave);
+            freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + upgradeWindow.Instance.freshValue;
+        }
+        
     }
 
     //升级按钮点击事件

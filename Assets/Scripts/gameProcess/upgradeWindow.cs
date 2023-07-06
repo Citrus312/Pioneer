@@ -9,6 +9,8 @@ public class upgradeWindow : BaseWindow
 
     public float value;//升级的属性具体数值
     public string name;//升级的属性名字
+    public int freshCount = 0;
+    public int freshValue;
     private upgradeWindow()
     {
         // 在这里初始化GameManager
