@@ -103,7 +103,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ec8fd3e19ca55ef4ea6ccfe478368904, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 901366523265689738}
   m_maskType: 0
 --- !u!114 &901366523265689736
@@ -190,3 +190,4 @@ MonoBehaviour:
   _critDamageColor: {r: 1, g: 1, b: 0, a: 1}
   _playerHurtColor: {r: 1, g: 0, b: 0, a: 1}
   _playerCureColor: {r: 0, g: 1, b: 0, a: 1}
+  _dodgeColor: {r: 1, g: 1, b: 1, a: 1}

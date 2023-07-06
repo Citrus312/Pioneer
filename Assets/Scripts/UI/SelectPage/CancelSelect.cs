@@ -8,7 +8,7 @@ public class CancelSelect : MonoBehaviour
     void Update()
     {
         //监听Esc键是否按下
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneLoader._instance.LoadAble)
         {
             //检测角色武器选择窗口的角色选择状态
             //若已选择，则返回角色选择

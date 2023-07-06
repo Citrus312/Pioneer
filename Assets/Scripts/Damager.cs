@@ -20,12 +20,13 @@ public class Damager : MonoBehaviour
         _damageTextPrefab = DamageText.getDamageTextPath();
     }
 
-    public void Damage(Collider2D targetColl)
+    public bool Damage(Collider2D targetColl)
     {
         GameObject target = targetColl.gameObject;
         Damageable damageable = target.GetComponent<Damageable>();
         CharacterAttribute targetAttr = target.GetComponent<CharacterAttribute>();
         float damage;
+        bool isDodge = false;
 
         float weaponDamage = _weaponAttr.getWeaponDamage();
         float criticalBonus = _weaponAttr.getCriticalBonus();
@@ -87,15 +88,26 @@ public class Damager : MonoBehaviour
                 damageable.TakeDamage(damage);
             }
         }
+        else
+        {
+            //显示闪避
+            GameObject damageTextObj = ObjectPool.getInstance().get(_damageTextPrefab);
+            damageTextObj.transform.position = target.transform.position + new Vector3(Random.Range(0, 0.2f), Random.Range(0, 0.2f), 0);
+            DamageText damageText = damageTextObj.GetComponent<DamageText>();
+            damageText.setup(DamageText.TextType.Dodge);
+            isDodge = true;
+        }
 
         //生命汲取
         if (gameObject.tag == "Enemy")
-            return;
+            return isDodge;
         float healthSteal = GetComponentInParent<CharacterAttribute>().getHealthSteal();
         float randmNum = Random.Range(0, 100.0f);
         if (randmNum < healthSteal)
         {
             GetComponentInParent<Damageable>().cure(1);
         }
+
+        return isDodge;
     }
 }
