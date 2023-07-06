@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class storeWindow : BaseWindow
 {
     private static storeWindow instance;
-
+    public int freshCount = 0;
+    public int freshValue;
     private storeWindow()
     {
         // 在这里初始化GameManager
