@@ -33,7 +33,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right && PausePageWindow.Instance.getVisible()==false)
         {
             copyOption.gameObject.SetActive(true);
             foreach (Transform child in father)
