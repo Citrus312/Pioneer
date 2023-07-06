@@ -649,15 +649,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleList:
-  - Assets/Prefab/Obstacles/Rock/Rock3_1.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock3_2.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock3_3.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock3_4.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock3_5.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock3_1
+  - Assets/Prefab/Obstacles/Rock/Rock3_2
+  - Assets/Prefab/Obstacles/Rock/Rock3_3
+  - Assets/Prefab/Obstacles/Rock/Rock3_4
+  - Assets/Prefab/Obstacles/Rock/Rock3_5
   _terrainList:
-  - Assets/Prefab/Obstacles/IceLake/IceLake_1.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_2.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_4.prefab
+  - Assets/Prefab/Obstacles/IceLake/IceLake_1
+  - Assets/Prefab/Obstacles/IceLake/IceLake_2
+  - Assets/Prefab/Obstacles/IceLake/IceLake_4
   _gridSize: 4
   _obstacleCnt: 10
 --- !u!212 &435092225

@@ -845,12 +845,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleList:
-  - Assets/Prefab/Obstacles/Rock/Rock1_1.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_2.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_3.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_4.prefab
-  - Assets/Prefab/Obstacles/Rock/Rock1_5.prefab
-  - Assets/Prefab/Obstacles/Lake/Lake.prefab
+  - Assets/Prefab/Obstacles/Rock/Rock1_1
+  - Assets/Prefab/Obstacles/Rock/Rock1_2
+  - Assets/Prefab/Obstacles/Rock/Rock1_3
+  - Assets/Prefab/Obstacles/Rock/Rock1_4
+  - Assets/Prefab/Obstacles/Rock/Rock1_5
+  - Assets/Prefab/Obstacles/Lake/Lake
   _terrainList: []
   _gridSize: 5
   _obstacleCnt: 8

@@ -1,7 +1,7 @@
 [
     {
         "ID": 1,
-        "prefabPath": "Assets/Prefab/Monster/Monster1_1.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster1_1",
         "maxHealth": 5.0,
         "healthIncPerWave": 3.0,
         "speed": 1.8,
@@ -21,7 +21,7 @@
     },
     {
         "ID": 2,
-        "prefabPath": "Assets/Prefab/Monster/Monster1_2.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster1_2",
         "maxHealth": 3.0,
         "healthIncPerWave": 1.5,
         "speed": 2.4,
@@ -41,7 +41,7 @@
     },
     {
         "ID": 3,
-        "prefabPath": "Assets/Prefab/Monster/Monster1_3.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster1_3",
         "maxHealth": 8.0,
         "healthIncPerWave": 1.5,
         "speed": 1.5,
@@ -61,7 +61,7 @@
     },
     {
         "ID": 4,
-        "prefabPath": "Assets/Prefab/Monster/Monster2_1.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster2_1",
         "maxHealth": 6.0,
         "healthIncPerWave": 3.5,
         "speed": 1.9,
@@ -81,7 +81,7 @@
     },
     {
         "ID": 5,
-        "prefabPath": "Assets/Prefab/Monster/Monster2_2.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster2_2",
         "maxHealth": 4.0,
         "healthIncPerWave": 2.0,
         "speed": 2.5,
@@ -101,7 +101,7 @@
     },
     {
         "ID": 6,
-        "prefabPath": "Assets/Prefab/Monster/Monster2_3.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster2_3",
         "maxHealth": 10.0,
         "healthIncPerWave": 2.0,
         "speed": 1.6,
@@ -121,7 +121,7 @@
     },
     {
         "ID": 7,
-        "prefabPath": "Assets/Prefab/Monster/Monster3_1.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster3_1",
         "maxHealth": 7.0,
         "healthIncPerWave": 4.0,
         "speed": 2.0,
@@ -141,7 +141,7 @@
     },
     {
         "ID": 8,
-        "prefabPath": "Assets/Prefab/Monster/Monster3_2.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster3_2",
         "maxHealth": 5.0,
         "healthIncPerWave": 2.5,
         "speed": 2.6,
@@ -161,7 +161,7 @@
     },
     {
         "ID": 9,
-        "prefabPath": "Assets/Prefab/Monster/Monster3_3.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Monster3_3",
         "maxHealth": 11.0,
         "healthIncPerWave": 2.5,
         "speed": 1.7,
@@ -181,7 +181,7 @@
     },
     {
         "ID": 10,
-        "prefabPath": "Assets/Prefab/Monster/Boss_1.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Boss_1",
         "maxHealth": 30000.0,
         "healthIncPerWave": 0.0,
         "speed": 2.5,
@@ -201,7 +201,7 @@
     },
     {
         "ID": 11,
-        "prefabPath": "Assets/Prefab/Monster/Boss_2.prefab",
+        "prefabPath": "Assets/Prefab/Monster/Boss_2",
         "maxHealth": 30000.0,
         "healthIncPerWave": 0.0,
         "speed": 2.5,

@@ -14,10 +14,10 @@ public class ObjectPool : MonoBehaviour
 
     public static ObjectPool getInstance()
     {
-        if (_poolInstance == null)
-        {
-            _poolInstance = ObjectFactory.CreateInstance<ObjectPool>();
-        }
+        // if (_poolInstance == null)
+        // {
+        //     _poolInstance = ObjectFactory.CreateInstance<ObjectPool>();
+        // }
         return _poolInstance;
     }
 
@@ -47,7 +47,7 @@ public class ObjectPool : MonoBehaviour
             // 如果池子中没有物体，直接新建一个物体
             else
             {
-                GameObject prefabObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+                GameObject prefabObject = Resources.Load<GameObject>(prefabPath);
                 tmp = Instantiate(prefabObject, this.transform);
                 //保存进objectList中
                 _objectList[prefabPath].Add(tmp);
@@ -57,7 +57,7 @@ public class ObjectPool : MonoBehaviour
         else
         {
             // 新建一个池
-            GameObject prefabObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+            GameObject prefabObject = Resources.Load<GameObject>(prefabPath);
             tmp = Instantiate(prefabObject, this.transform);
             //Debug.Log("tmp " + UnityEditor.AssetDatabase.GetAssetPath(tmp));
             Queue<GameObject> q = new Queue<GameObject>();

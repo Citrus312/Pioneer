@@ -25,7 +25,7 @@ public class DropItemGenerator : Generator
 
     public void Awake()
     {
-        _droppedChestPath = "Assets/Prefab/DropItem/Chest_1.prefab";
+        _droppedChestPath = "Assets/Prefab/DropItem/Chest_1";
         _instance = this;
     }
 

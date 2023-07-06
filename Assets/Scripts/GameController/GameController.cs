@@ -66,13 +66,13 @@ public class GameController : MonoBehaviour
         switch (_gameData._playerID)
         {
             case 0:
-                _playerPrefab = "Assets/Prefab/Player.prefab";
+                _playerPrefab = "Assets/Prefab/Player";
                 break;
             case 1:
-                _playerPrefab = "Assets/Prefab/Player/Player_2.prefab";
+                _playerPrefab = "Assets/Prefab/Player/Player_2";
                 break;
             case 2:
-                _playerPrefab = "Assets/Prefab/Player/Player_3.prefab";
+                _playerPrefab = "Assets/Prefab/Player/Player_3";
                 break;
         }
         // 初始化玩家对象
@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
         {
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
-            GameObject weapon = AssetDatabase.LoadAssetAtPath<GameObject>(weaponAttribute.getWeaponPrefabPath());
+            GameObject weapon = Resources.Load<GameObject>(weaponAttribute.getWeaponPrefabPath());
             weapon = Instantiate(weapon);
             //GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
             weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
