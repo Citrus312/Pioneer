@@ -60,6 +60,18 @@ public class GameController : MonoBehaviour
 
     public bool initPlayer()
     {
+        switch (_gameData._playerID)
+        {
+            case 0:
+                _playerPrefab = "Assets/Prefab/Player.prefab";
+                break;
+            case 1:
+                _playerPrefab = "Assets/Prefab/Player/Player_2.prefab";
+                break;
+            case 2:
+                _playerPrefab = "Assets/Prefab/Player/Player_3.prefab";
+                break;
+        }
         // 初始化玩家对象
         if (_playerPrefab != null)
         {

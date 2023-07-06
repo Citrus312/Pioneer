@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 590
+  controlID: 3277
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 534
+  controlID: 3208
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 641
+  controlID: 3209
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 535
+  controlID: 3241
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2371,9 +2371,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7c270000
+      m_SelectedIDs: a8a20000
       m_LastClickedID: 0
-      m_ExpandedIDs: d0f3ffff
+      m_ExpandedIDs: 0cfbffff7e6f0000966f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2438,22 +2438,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Weapon
+    - Assets/Prefab/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Weapon
+  - Assets/Prefab/Player
   m_LastFoldersGridSize: -1
   m_LastProjectPath: G:\Project\UnityProject\Pioneer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 72}
-    m_SelectedIDs: fa8e0000
-    m_LastClickedID: 36602
-    m_ExpandedIDs: 00000000a88e0000aa8e0000ac8e0000ae8e0000b08e0000b28e0000b48e000000ca9a3b
+    m_SelectedIDs: 4aa90000
+    m_LastClickedID: 43338
+    m_ExpandedIDs: 00000000f0780000f2780000f4780000f6780000f8780000fa780000fc780000507b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2481,7 +2481,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a88e0000aa8e0000ac8e0000ae8e0000b08e0000b28e0000b48e000000ca9a3b
+    m_ExpandedIDs: 00000000f0780000f2780000f4780000f6780000f8780000fa780000fc78000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
