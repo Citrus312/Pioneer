@@ -112,6 +112,8 @@ public class GameoverWindow : BaseWindow
         {
             //获取指定的道具属性
             PropAttribute prop = new();
+            Debug.Log("propPool" + JsonLoader.propPool.Count);
+            Debug.Log("propList" + GameController.getInstance().getGameData()._propList.Count);
             prop.setPropAttribute(JsonLoader.propPool[GameController.getInstance().getGameData()._propList[i]]);
             //加载用于显示道具图标的预制体
             GameObject obj = Resources.Load<GameObject>("UI/prop");
@@ -178,16 +180,16 @@ public class GameoverWindow : BaseWindow
         Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
         Transform viewport = propBag.Find("Viewport");
         Transform listContent = viewport.Find("Content");
-        if(weaponBag.childCount>0)
+        if (weaponBag.childCount > 0)
         {
-            for(int i=0;i<weaponBag.childCount;i++)
+            for (int i = 0; i < weaponBag.childCount; i++)
             {
                 GameObject.Destroy(weaponBag.GetChild(i).gameObject);
             }
         }
-        if(listContent.childCount>0)
+        if (listContent.childCount > 0)
         {
-            for(int i=0;i<listContent.childCount;i++)
+            for (int i = 0; i < listContent.childCount; i++)
             {
                 GameObject.Destroy(listContent.GetChild(i).gameObject);
             }

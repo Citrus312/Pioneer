@@ -13,7 +13,7 @@ public class textController : MonoBehaviour
     public List<bool> isLocked;
     public Color normalColor = new(1f, 1f, 1f, 0.5f);
     public Color highLightColor = new(0f, 0f, 0f, 0.5f);
-   
+
 
 
     public float luck;
@@ -50,7 +50,7 @@ public class textController : MonoBehaviour
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
 
-        
+
 
     }
 
@@ -357,7 +357,7 @@ public class textController : MonoBehaviour
     //刷新按钮点击事件
     public void OnRefreshButtonClicked()
     {
-        if(GameController.getInstance().getGameData()._money<storeWindow.Instance.freshValue)
+        if (GameController.getInstance().getGameData()._money < storeWindow.Instance.freshValue)
         {
             Debug.Log("金矿不足");
         }
@@ -409,9 +409,9 @@ public class textController : MonoBehaviour
             storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + storeWindow.Instance.freshCount * (int)Mathf.Ceil(0.5f * GameController.getInstance().getGameData()._wave);
             freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + storeWindow.Instance.freshValue;
 
-            
+
         }
-        
+
     }
 
     //锁定按钮点击事件
@@ -557,13 +557,13 @@ public class textController : MonoBehaviour
                 {
                     propBagWindow.Instance.isExist = true;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID] - 40000, 1);
                 }
                 else
                 {
                     propBagWindow.Instance.isExist = false;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID] - 40000, 1);
                 }
             }
         }

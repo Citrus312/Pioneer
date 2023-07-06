@@ -9,6 +9,7 @@ public class InitScene : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Debug.Log("InitScene Awake");
         // 初始化场景
         GameController.getInstance().initBattleScene();
         // 挂载相机

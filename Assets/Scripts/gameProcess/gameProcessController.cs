@@ -144,12 +144,12 @@ public class gameProcessController : MonoBehaviour
         {
             Time.timeScale = 0f;
             isDying = true;
-            GameController.getInstance().waveEnd();
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
             GameoverWindow.Instance.titleText = "失败";
             GameoverWindow.Instance.Open();
+            GameController.getInstance().waveEnd();
             gameProcessController.Instance.gameObject.SetActive(false);
         }
         else if (HPValue <= HPMaxValue * 2 / 3 && HPValue > HPMaxValue * 1 / 4)

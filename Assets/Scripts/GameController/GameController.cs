@@ -137,8 +137,6 @@ public class GameController : MonoBehaviour
         //停止所有生成怪物的协程
         StopAllCoroutines();
         MonsterGenerator.getInstance().stopGenerate();
-        //回收对象池生成的所有物体
-        ObjectPool.getInstance().removeAll();
         // 删除武器
         for (int i = 0; i < _gameData._weaponList.Count; i++)
         {
@@ -147,6 +145,8 @@ public class GameController : MonoBehaviour
         _player.GetComponent<WeaponManager>().RemoveAllWeapon();
         _instance.updateMoney((int)Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency()));
         _player.GetComponent<CharacterAttribute>().setCollectEfficiency(Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency() * 1.05f));
+        //回收对象池生成的所有物体
+        ObjectPool.getInstance().removeAll();
     }
 
     //生成怪物
