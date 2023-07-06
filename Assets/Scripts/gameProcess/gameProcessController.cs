@@ -814,7 +814,7 @@ public class gameProcessController : MonoBehaviour
                                                                               $"增加{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%受到的伤害";
                 break;
             case "DodgeRate":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"有{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%的概率避免此次伤害";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"有{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%的概率避免此次伤害，最大为60%";
                 break;
             case "MoveSpeedAmplification":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = $"移动速度增加\n{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
