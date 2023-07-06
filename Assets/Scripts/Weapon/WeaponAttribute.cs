@@ -20,7 +20,7 @@ public class WeaponAttribute : MonoBehaviour
     //武器基础攻击范围
     private float rawAttackRange = 0;
     //对应类型伤害的转换比例
-    private float convertRatio = 0.8f;
+    private float convertRatio = 1.0f;
     //暴击伤害的倍率
     private float criticalBonus = 1.5f;
     //每一次攻击所用的时间

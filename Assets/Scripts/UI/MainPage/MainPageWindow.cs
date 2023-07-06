@@ -51,6 +51,8 @@ public class MainPageWindow : BaseWindow
         GameController.getInstance().getGameData().ResetGameData();
         JsonLoader.LoadAndDecodeGameData();
 
+        GameObject.Find("Manager").GetComponent<AudioSource>().clip = GameController.getInstance().themeMusic;
+
         //遍历按钮列表寻找“继续”按钮
         foreach (Button btn in btnList)
         {

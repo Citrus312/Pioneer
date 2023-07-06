@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     private GameData _gameData = new GameData();
 
     public string _playerPrefab;
+    public AudioClip themeMusic;
+    public AudioClip battleMusic;
+
     private GameObject _player;
 
     public GameObject _objectPool;
@@ -138,14 +141,18 @@ public class GameController : MonoBehaviour
         //停止所有生成怪物的协程
         StopAllCoroutines();
         MonsterGenerator.getInstance().stopGenerate();
-        
+
         _player.GetComponent<Damageable>().stopIEnumerator();
 
         // 删除武器
-        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        if (_player.transform.childCount != 0)
         {
-            DestroyImmediate(_player.transform.GetChild(0).gameObject);
+            for (int i = 0; i < _gameData._weaponList.Count; i++)
+            {
+                DestroyImmediate(_player.transform.GetChild(0).gameObject);
+            }
         }
+
         _player.GetComponent<WeaponManager>().RemoveAllWeapon();
         _instance.updateMoney((int)Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency()));
         _player.GetComponent<CharacterAttribute>().setCollectEfficiency(Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency() * 1.05f));

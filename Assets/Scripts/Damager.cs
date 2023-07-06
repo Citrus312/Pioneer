@@ -29,6 +29,8 @@ public class Damager : MonoBehaviour
         bool isDodge = false;
 
         float weaponDamage = _weaponAttr.getWeaponDamage();
+        if (gameObject.tag == "Enemy")
+            Debug.Log("weaponDamage=" + weaponDamage);
         float criticalBonus = _weaponAttr.getCriticalBonus();
         float criticalRate = _weaponAttr.getCriticalRate();
         float armorStrength = targetAttr.getArmorStrength();
