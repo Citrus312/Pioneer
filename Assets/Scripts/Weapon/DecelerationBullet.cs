@@ -18,7 +18,10 @@ public class DecelerationBullet : Bullet
         //如果碰撞的不为障碍物则造成伤害
         if (collider2D.tag != "Obstacles")
         {
-            _weapon.GetComponent<Damager>().Damage(collider2D);
+            bool isDodge = _weapon.GetComponent<Damager>().Damage(collider2D);
+            //被闪避直接返回
+            if (isDodge)
+                return;
             Deceleration deceleration = collider2D.gameObject.GetComponentInChildren<Deceleration>();
             if (deceleration != null)
             {
