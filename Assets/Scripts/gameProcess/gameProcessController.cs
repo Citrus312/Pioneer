@@ -230,7 +230,7 @@ public class gameProcessController : MonoBehaviour
         totalTime = totalTime > 100f ? 100f : totalTime;
         //totalTime = 30f;
 
-        levelText.text = "第" + level + "关";
+        levelText.text = "第" + level + "波";
 
 
     }

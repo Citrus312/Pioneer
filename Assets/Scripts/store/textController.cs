@@ -6,6 +6,21 @@ using TMPro;
 
 public class textController : MonoBehaviour
 {
+
+    private static textController instance;
+    public static textController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new();
+            }
+            return instance;
+        }
+    }
+    private textController() { instance = this; }
+
     public List<WeaponAttribute> WeaponPropList;//武器库
     public List<PropAttribute> PropPoolList;//道具库
     public List<int> selectedCardId;//被选择的卡片id暂存列表
@@ -49,7 +64,6 @@ public class textController : MonoBehaviour
         {
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
-
     }
 
 
@@ -555,13 +569,13 @@ public class textController : MonoBehaviour
                 {
                     propBagWindow.Instance.isExist = true;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID]-40000, 1);
                 }
                 else
                 {
                     propBagWindow.Instance.isExist = false;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID]-40000, 1);
                 }
             }
         }
