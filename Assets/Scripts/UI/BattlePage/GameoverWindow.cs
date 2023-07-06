@@ -131,7 +131,8 @@ public class GameoverWindow : BaseWindow
             //将道具挂载到滚动窗口
             obj.transform.SetParent(propDisplay.GetChild(0).GetChild(0));
         }
-
+        GameController.getInstance().getGameData().ResetGameData();
+        JsonLoader.UpdateGameData();
     }
     protected override void FillTextContent()
     {
@@ -166,8 +167,6 @@ public class GameoverWindow : BaseWindow
 
     public void OnExitBtn()
     {
-        GameController.getInstance().getGameData().ResetGameData();
-        JsonLoader.UpdateGameData();
         Time.timeScale = 1f;
         SceneLoader._instance.loadScene("MainPage");
 

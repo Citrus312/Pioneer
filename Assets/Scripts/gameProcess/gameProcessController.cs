@@ -626,7 +626,7 @@ public class gameProcessController : MonoBehaviour
                     c += 1;
                     count.GetComponent<TextMeshProUGUI>().text = c.ToString();
                     count.gameObject.SetActive(true);
-                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, 1);
                     RefreshPropertyText();
                 }
                 else
@@ -674,7 +674,7 @@ public class gameProcessController : MonoBehaviour
                         image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
 
                     }
-                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, 1);
                     RefreshPropertyText();
                 }
             }
