@@ -109,6 +109,7 @@ public class GameController : MonoBehaviour
             weapon = Instantiate(weapon);
             //GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
             weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
+            weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setOwnerAttr(_instance._player.GetComponent<CharacterAttribute>());
             weapon.transform.SetParent(_player.transform, false);
             _player.GetComponent<WeaponManager>().addWeapon(weapon);
         }
