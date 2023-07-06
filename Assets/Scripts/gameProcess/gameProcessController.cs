@@ -769,6 +769,7 @@ public class gameProcessController : MonoBehaviour
 
     public void openPanel(Transform transform, string parentName)
     {
+        _player = GameController.getInstance().getPlayer();
         List<string> attributeList = getAttribute(_player);
         switch (parentName)
         {

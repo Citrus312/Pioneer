@@ -50,8 +50,6 @@ public class textController : MonoBehaviour
             drawCards(i, selectedCardId[i]);//i为卡槽序号，ids[i]为被抽取的卡片号
         }
 
-        
-
     }
 
 

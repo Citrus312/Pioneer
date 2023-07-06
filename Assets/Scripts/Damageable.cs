@@ -28,11 +28,6 @@ public class Damageable : MonoBehaviour
         _onHitTime = 0.2f;
     }
 
-    private void Start()
-    {
-        StartCoroutine(recovery());
-    }
-
     //受击闪烁
     private IEnumerator OnHit()
     {
@@ -113,5 +108,17 @@ public class Damageable : MonoBehaviour
                 cureHealth -= (int)cureHealth;
             }
         }
+    }
+
+    public void startRecovery()
+    {
+        StartCoroutine(recovery());
+    }
+
+    public void stopIEnumerator()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.white;
+        StopAllCoroutines();
     }
 }
