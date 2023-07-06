@@ -12,6 +12,7 @@ public class ThrustWeapon : MeleeWeapon
     {
         //设置正在攻击
         _isAttacking = true;
+        GetComponent<PolygonCollider2D>().enabled = true;
 
         /*
             固定0.05s为出刀时间，使用开始位置和目标位置做插值来显示
@@ -39,6 +40,7 @@ public class ThrustWeapon : MeleeWeapon
 
         //设置不在攻击
         _isAttacking = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     // Update is called once per frame

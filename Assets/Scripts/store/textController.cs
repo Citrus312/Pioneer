@@ -621,14 +621,18 @@ public class textController : MonoBehaviour
         }
         Transform freshButton = transform.Find("freshButton");
         Transform freshMoney = freshButton.Find("money");
-        storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave;
+        storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + 1;
         freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + storeWindow.Instance.freshValue;
 
 
         Transform freshButton1 = upgradeWindow.Instance.getTransform().Find("refreshBtn");
         Transform freshMoney1 = freshButton1.Find("freshMoney");
-        upgradeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave;
+        upgradeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + 1;
         freshMoney1.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + upgradeWindow.Instance.freshValue;
+
+
+        storeWindow.Instance.freshCount = 0;
+        upgradeWindow.Instance.freshCount = 0;
     }
 
     //协程
