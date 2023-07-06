@@ -193,5 +193,8 @@ public class GameoverWindow : BaseWindow
             }
         }
 
+        weaponBagWindow.Instance.ownWeaponList.Clear();
+        propBagWindow.Instance.ownPropList.Clear();
+
     }
 }
