@@ -435,60 +435,42 @@ public class TalentTreeWindow : BaseWindow
         transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
         transform.Find("RecoveryPanel").gameObject.SetActive(true);
         transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
-        TalentTreeWindow.Instance.Close(false);
-        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
+        TalentTreeWindow.Instance.Close();
         SceneLoader._instance.loadScene("MainPage");
+        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
     }
 
     private void OnConfirmButton(Button button)
     {
-        resetDictionary(attributeFinal);
-        attributeFinal["maxHealth"] = attribute1["maxHealth"] + attribute2["maxHealth"] + attribute3["maxHealth"];
-        attributeFinal["healthRecovery"] = attribute1["healthRecovery"] + attribute2["healthRecovery"] + attribute3["healthRecovery"];
-        attributeFinal["healthSteal"] = attribute1["healthSteal"] + attribute2["healthSteal"] + attribute3["healthSteal"];
-        attributeFinal["attackAmplification"] = attribute1["attackAmplification"] + attribute2["attackAmplification"] + attribute3["attackAmplification"];
-        attributeFinal["meleeDamage"] = attribute1["meleeDamage"] + attribute2["meleeDamage"] + attribute3["meleeDamage"];
-        attributeFinal["rangedDamage"] = attribute1["rangedDamage"] + attribute2["rangedDamage"] + attribute3["rangedDamage"];
-        attributeFinal["abilityDamage"] = attribute1["abilityDamage"] + attribute2["abilityDamage"] + attribute3["abilityDamage"];
-        attributeFinal["attackSpeedAmplification"] = attribute1["attackSpeedAmplification"] + attribute2["attackSpeedAmplification"] + attribute3["attackSpeedAmplification"];
-        attributeFinal["criticalRate"] = attribute1["criticalRate"] + attribute2["criticalRate"] + attribute3["criticalRate"];
-        attributeFinal["engineering"] = attribute1["engineering"] + attribute2["engineering"] + attribute3["engineering"];
-        attributeFinal["attackRangeAmplification"] = attribute1["attackRangeAmplification"] + attribute2["attackRangeAmplification"] + attribute3["attackRangeAmplification"];
-        attributeFinal["armorStrength"] = attribute1["armorStrength"] + attribute2["armorStrength"] + attribute3["armorStrength"];
-        attributeFinal["dodgeRate"] = attribute1["dodgeRate"] + attribute2["dodgeRate"] + attribute3["dodgeRate"];
-        attributeFinal["moveSpeedAmplification"] = attribute1["moveSpeedAmplification"] + attribute2["moveSpeedAmplification"] + attribute3["moveSpeedAmplification"];
-        attributeFinal["scanAccuracy"] = attribute1["scanAccuracy"] + attribute2["scanAccuracy"] + attribute3["scanAccuracy"];
-        attributeFinal["collectEfficiency"] = attribute1["collectEfficiency"] + attribute2["collectEfficiency"] + attribute3["collectEfficiency"];
-        //初始化界面并关闭界面
-        //SceneLoader._instance.loadScene("MainPage");
-        //初始化界面并关闭界面
+        if (SceneLoader._instance.LoadAble)
+        {
+            resetDictionary(attributeFinal);
+            attributeFinal["maxHealth"] = attribute1["maxHealth"] + attribute2["maxHealth"] + attribute3["maxHealth"];
+            attributeFinal["healthRecovery"] = attribute1["healthRecovery"] + attribute2["healthRecovery"] + attribute3["healthRecovery"];
+            attributeFinal["healthSteal"] = attribute1["healthSteal"] + attribute2["healthSteal"] + attribute3["healthSteal"];
+            attributeFinal["attackAmplification"] = attribute1["attackAmplification"] + attribute2["attackAmplification"] + attribute3["attackAmplification"];
+            attributeFinal["meleeDamage"] = attribute1["meleeDamage"] + attribute2["meleeDamage"] + attribute3["meleeDamage"];
+            attributeFinal["rangedDamage"] = attribute1["rangedDamage"] + attribute2["rangedDamage"] + attribute3["rangedDamage"];
+            attributeFinal["abilityDamage"] = attribute1["abilityDamage"] + attribute2["abilityDamage"] + attribute3["abilityDamage"];
+            attributeFinal["attackSpeedAmplification"] = attribute1["attackSpeedAmplification"] + attribute2["attackSpeedAmplification"] + attribute3["attackSpeedAmplification"];
+            attributeFinal["criticalRate"] = attribute1["criticalRate"] + attribute2["criticalRate"] + attribute3["criticalRate"];
+            attributeFinal["engineering"] = attribute1["engineering"] + attribute2["engineering"] + attribute3["engineering"];
+            attributeFinal["attackRangeAmplification"] = attribute1["attackRangeAmplification"] + attribute2["attackRangeAmplification"] + attribute3["attackRangeAmplification"];
+            attributeFinal["armorStrength"] = attribute1["armorStrength"] + attribute2["armorStrength"] + attribute3["armorStrength"];
+            attributeFinal["dodgeRate"] = attribute1["dodgeRate"] + attribute2["dodgeRate"] + attribute3["dodgeRate"];
+            attributeFinal["moveSpeedAmplification"] = attribute1["moveSpeedAmplification"] + attribute2["moveSpeedAmplification"] + attribute3["moveSpeedAmplification"];
+            attributeFinal["scanAccuracy"] = attribute1["scanAccuracy"] + attribute2["scanAccuracy"] + attribute3["scanAccuracy"];
+            attributeFinal["collectEfficiency"] = attribute1["collectEfficiency"] + attribute2["collectEfficiency"] + attribute3["collectEfficiency"];
 
-        //DelayToInvoke.DelayToInvokeBySecond(() =>
-        //{
-        //    MainPageWindow.Instance.Open();
-        //    //初始化界面
-        //    resetFirstBtn();
-        //    transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
-        //    transform.Find("RecoveryPanel").gameObject.SetActive(true);
-        //    transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
-        //    TalentTreeWindow.Instance.Close(false);
-        //}, 1.7f);
-
-
-        //初始化界面
-        resetFirstBtn();
-        transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
-        transform.Find("RecoveryPanel").gameObject.SetActive(true);
-        transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
-        TalentTreeWindow.Instance.Close(false);
-        DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
-        SceneLoader._instance.loadScene("MainPage");
-        //SceneLoader._instance.loadScene("TalentTree");
-        //DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
-        //foreach (KeyValuePair<string, float> kvp in attributeFinal)
-        //{
-        //    Debug.Log(kvp.Key + " " + kvp.Value);
-        //}
+            //初始化界面
+            resetFirstBtn();
+            transform.Find("RecoveryButton").transform.GetComponent<CustomUI.CircularImage>().color = new Color(255f, 255f, 255f, 1f);
+            transform.Find("RecoveryPanel").gameObject.SetActive(true);
+            transform.Find("RecoveryButton").transform.localScale = new Vector3(1f, 1f, 1f);
+            TalentTreeWindow.Instance.Close();
+            SceneLoader._instance.loadScene("MainPage");
+            DelayToInvoke.DelayToInvokeBySecond(() => { MainPageWindow.Instance.Open(); }, 1.5f);
+        }
     }
 
     public Dictionary<string, float> getAttributeFinal()

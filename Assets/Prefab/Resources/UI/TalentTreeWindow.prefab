@@ -1041,7 +1041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3387471653133933045
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8129,7 +8129,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u89D2\u8272\u751F\u547D\u56DE\u590D\u5C5E\u6027+3"
+  m_Text: "\u89D2\u8272\u751F\u547D\u56DE\u590D\u5C5E\u6027+4"
 --- !u!1 &5114482222061906740
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,14 @@ public class Loot : DropItem
 
     protected override void OnDie()
     {
+        if (GameController.getInstance().getGameData()._wave <= 3)
+        {
+            _val = 3;
+        }
+        else if (GameController.getInstance().getGameData()._wave <= 6)
+        {
+            _val = 2;
+        }
         // 添加数据
         GameController.getInstance().updateMoney(_val);
         GameController.getInstance().addExp(_exp);

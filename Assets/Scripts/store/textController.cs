@@ -136,7 +136,7 @@ public class textController : MonoBehaviour
 
         int kindOfWeapon = WeaponPropList.Count / 4;
         //int kindOfProp = PropPoolList.Count;
-        int temp1 = Random.Range(0, kindOfWeapon - 1);//武器
+        int temp1 = Random.Range(0, kindOfWeapon);//武器
         int temp2 = Random.Range(0, a);
         int temp3 = Random.Range(0, b);
         int temp4 = Random.Range(0, c);
@@ -211,7 +211,7 @@ public class textController : MonoBehaviour
             TextMeshProUGUI myText = child1.GetComponent<TextMeshProUGUI>();
             myText.text = "<color=yellow>伤害</color>:  " + WeaponPropList[id].getWeaponDamage() + "\n"
                 + "<color=yellow>范围</color>:  " + WeaponPropList[id].getAttackRange() + " | " + WeaponPropList[id].getRawAttackRange() + "\n"
-                + "<color=yellow>转化率</color>:  " + WeaponPropList[id].getConvertRatio() + "\n"
+                + "<color=yellow>转化率</color>:  " + WeaponPropList[id].getConvertRatio() * 100 + "%\n"
                 + "<color=yellow>暴击</color>:  " + WeaponPropList[id].getCriticalBonus() + "(" + WeaponPropList[id].getCriticalRate() * 100 + "%)\n"
                 + "<color=yellow>攻速</color>:  " + WeaponPropList[id].getAttackSpeed() + "S\n";
 
@@ -296,7 +296,11 @@ public class textController : MonoBehaviour
                     propText[count] = "";
                 else if (value[count] > 0.0f)
                 {
-                    propText[count] = "<color=yellow>" + propName[count] + "</color>:  +" + value[count] + "\n";
+                    propText[count] = "<color=yellow>" + propName[count] + "</color>:  <color=green>+" + value[count] + "</color>\n";
+                }
+                else
+                {
+                    propText[count] = "<color=yellow>" + propName[count] + "</color>:  <color=red>" + value[count] + "</color>\n";
                 }
             }
             myText.text = propText[0] + propText[1] + propText[2] + propText[3] + propText[4] + propText[5] + propText[6] + propText[7] + propText[8] + propText[9]
@@ -483,7 +487,7 @@ public class textController : MonoBehaviour
                 GameObject card = GameObject.Find(cardName);
                 Transform lockIcon = card.transform.Find("lockIcon");
                 card.SetActive(false);
-                if(isLocked[cardID])
+                if (isLocked[cardID])
                 {
                     lockedCardIndex[cardID] = -1;
                     lockIcon.gameObject.SetActive(false);
@@ -491,7 +495,9 @@ public class textController : MonoBehaviour
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
 
                 weaponBagWindow.Instance.ownWeaponList.Add(selectedCardId[cardID]);
+                Debug.Log($"buy weapon {selectedCardId[cardID]}");
                 GameController.getInstance().getGameData()._weaponList.Add(selectedCardId[cardID]);
+                Debug.Log("weapon list length" + GameController.getInstance().getGameData()._weaponList.Count.ToString());
             }
         }
         else
@@ -540,14 +546,12 @@ public class textController : MonoBehaviour
                     propBagWindow.Instance.isExist = true;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
                     GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
-                    Debug.Log("before modify" + JsonLoader.propPool.Count.ToString());
                 }
                 else
                 {
                     propBagWindow.Instance.isExist = false;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
                     GameController.getInstance().ModifyProp(selectedCardId[cardID], 1);
-                    Debug.Log("before modify" + JsonLoader.propPool[0]);
                 }
             }
         }

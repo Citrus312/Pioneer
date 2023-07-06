@@ -33,10 +33,10 @@ public class gameProcessController : MonoBehaviour
     public float maxBlood;//最大生命值
     public float experience;//当前经验值
     public float maxExperience;//最大经验值
-    public int level=1;//关卡数
+    public int level = 1;//关卡数
     public TextMeshProUGUI levelText;//关卡显示文本
     public float money;
-    
+
 
     public float HPValue;
     public float EXPValue;
@@ -102,6 +102,7 @@ public class gameProcessController : MonoBehaviour
                 }
                 else
                 {
+                    RefreshPropertyText();
                     PausePageWindow.Instance.Open();
                     weaponBagWindow.Instance.Open();
                     propBagWindow.Instance.Open();
@@ -137,6 +138,7 @@ public class gameProcessController : MonoBehaviour
         GameController.getInstance().getGameData()._playerLevel = grade;
         roleState.Find("blood").GetComponent<Slider>().value = blood;
         roleState.Find("exp").GetComponent<Slider>().value = experience;
+        roleState.Find("blood").GetComponent<Slider>().maxValue = HPMaxValue;
 
         if (HPValue <= 0 && isDying == false)
         {
@@ -154,7 +156,7 @@ public class gameProcessController : MonoBehaviour
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
         }
-        else if(HPValue<=HPMaxValue*1/4)
+        else if (HPValue <= HPMaxValue * 1 / 4)
         {
             stateBg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
@@ -164,7 +166,7 @@ public class gameProcessController : MonoBehaviour
         }
         HPValueText.text = $"{(int)Mathf.Ceil(HPValue)}/{HPMaxValue}";
         EXPValueText.text = "Lv" + grade;
-           // currentSceneName = SceneManager.GetActiveScene().name;
+        // currentSceneName = SceneManager.GetActiveScene().name;
         // if(currentSceneName!="h_scene")
         // {
         //     upgradeWindow.Instance.Close();
@@ -177,23 +179,25 @@ public class gameProcessController : MonoBehaviour
         //     countDownTimerWindow.Instance.Close();
         //     CancelInvoke();
         // }
-         
+
 
     }
 
     //数据初始化
     void dataOrigin()
     {
-        if(JsonLoader.propPool.Count == 0)        
-            JsonLoader.LoadAndDecodePropConfig();       
-        if(JsonLoader.weaponPool.Count==0)
+        if (JsonLoader.propPool.Count == 0)
+            JsonLoader.LoadAndDecodePropConfig();
+        if (JsonLoader.weaponPool.Count == 0)
             JsonLoader.LoadAndDecodeWeaponConfig();
         WeaponPropList = JsonLoader.weaponPool.GetRange(0, JsonLoader.weaponPool.Count);
         PropPoolList = JsonLoader.propPool.GetRange(0, JsonLoader.propPool.Count);
 
         //GameController.getInstance().getGameData()._money = 1000f;
-        Debug.Log("level" + GameController.getInstance().getGameData()._wave);
         level = GameController.getInstance().getGameData()._wave;
+        //level = 20;
+        //GameController.getInstance().getGameData()._wave = 20;
+        //_player.GetComponent<CharacterAttribute>().setMaxHealth(1000000);
         isDying = false;
 
         playerProperty = GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>();
@@ -224,10 +228,11 @@ public class gameProcessController : MonoBehaviour
         //第一关时间
         totalTime = 30f + (level - 1) * 10f;
         totalTime = totalTime > 100f ? 100f : totalTime;
+        //totalTime = 30f;
 
         levelText.text = "第" + level + "关";
 
-        
+
     }
 
     //窗口初始化
@@ -408,7 +413,6 @@ public class gameProcessController : MonoBehaviour
 
         string n = upgradeWindow.Instance.name;
         float v = upgradeWindow.Instance.value;
-        Debug.Log(n);
         switch (n)
         {
             case "生命上限":
@@ -462,7 +466,6 @@ public class gameProcessController : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log(playerProperty.getAttackSpeedAmplification());
 
         gradeCount--;
 
@@ -492,7 +495,7 @@ public class gameProcessController : MonoBehaviour
     {
         HPValue = HPMaxValue;
         Debug.Log("开始下一关");
-        Time.timeScale = 1f;
+
         storeWindow.Instance.Close();
         propBagWindow.Instance.Close();
         weaponBagWindow.Instance.Close();
@@ -501,15 +504,14 @@ public class gameProcessController : MonoBehaviour
         titleWindow.Instance.Open();
         countDownTimerWindow.Instance.Open();
 
-        //血量、倒计时、关卡重置
-        totalTime = totalTime + 10 >= 100 ? 100 : totalTime + 10;
-        timeDisplay();
-
         level++;
         levelText.text = "第" + level + "波";
         GameController.getInstance().getGameData()._wave = level;
-        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
+        Time.timeScale = 1f;
+        //倒计时、关卡重置
+        totalTime = totalTime + 10 >= 100 ? 100 : totalTime + 10;
+        timeDisplay();
     }
 
     //为购买按钮设置监听事件
@@ -609,7 +611,7 @@ public class gameProcessController : MonoBehaviour
             }
             else
             {
-                GameController.getInstance().getGameData()._money -= PropPoolList[w].getPropPrice();                
+                GameController.getInstance().getGameData()._money -= PropPoolList[w].getPropPrice();
                 string assetPath;
                 string assetPathBg;
                 Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
@@ -697,59 +699,6 @@ public class gameProcessController : MonoBehaviour
         }
     }
 
-    //加载初始武器
-    void loadWeapon()
-    {
-        int w = GameController.getInstance().getGameData()._weaponList[0];
-        weaponBagWindow.Instance.ownWeaponList.Add(w);
-        string assetPath;
-        string assetPathBg;
-        GameObject weapon = new GameObject("weapon" + w);//背景图
-        Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
-        weapon.transform.SetParent(weaponBag);
-        weapon.AddComponent<Image>();
-        weapon.AddComponent<buttonRightClick>();
-        GameObject image = new GameObject("" + w);//武器图
-        image.transform.SetParent(weapon.transform);
-        //image.AddComponent<Image>();
-
-        GameObject id = new GameObject("id");
-        id.transform.SetParent(image.transform);
-        id.AddComponent<Image>();
-        id.AddComponent<WeaponDetailDisplay>();
-        if (GameObject.Find("DetailPanel") == null)
-        {
-            GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
-            obj = GameObject.Instantiate(obj);
-            obj.SetActive(false);
-            id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
-
-        }
-
-
-        RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
-        rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
-
-        if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
-        {
-            assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
-        else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
-        {
-            assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
-        else
-        {
-            assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
-
-        loadImage(assetPathBg, weapon.transform);
-        loadImage(assetPath, id.transform);
-
-    }
-
-
     //fei
     //获取属性文本
     private List<string> getAttribute(GameObject _player)
@@ -830,25 +779,25 @@ public class gameProcessController : MonoBehaviour
                 transform.Find("Panel").GetComponentInChildren<Text>().text = "角色的最大生命值";
                 break;
             case "HealthRecovery":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每秒回复{0.2 + 0.1 * (_player.GetComponent<CharacterAttribute>().getHealthSteal() - 1)}点生命值";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"每秒回复{0.2 + 0.1 * (_player.GetComponent<CharacterAttribute>().getHealthRecovery() - 1)}点生命值";
                 break;
             case "HealthSteal":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getHealthSteal()}%的概率回复1点生命值";
                 break;
             case "AttackAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"造成的伤害增加{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"造成的伤害增加\n{_player.GetComponent<CharacterAttribute>().getAttackAmplification()}%";
                 break;
             case "MeleeDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"近战伤害增加{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"近战伤害增加\n{_player.GetComponent<CharacterAttribute>().getMeleeDamage()}";
                 break;
             case "RangedDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"远程伤害增加{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"远程伤害增加\n{_player.GetComponent<CharacterAttribute>().getRangedDamage()}";
                 break;
             case "AbilityDamage":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"属性伤害增加{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"属性伤害增加\n{_player.GetComponent<CharacterAttribute>().getAbilityDamage()}";
                 break;
             case "AttackSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击速度增加{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击速度增加\n{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification()}%";
                 break;
             case "CriticalRate":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = $"每次攻击有{_player.GetComponent<CharacterAttribute>().getAttackSpeedAmplification() * 100}%的概率产生暴击";
@@ -857,21 +806,21 @@ public class gameProcessController : MonoBehaviour
                 transform.Find("Panel").GetComponentInChildren<Text>().text = "提升机器人道具的属性";
                 break;
             case "AttackRangeAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击范围叠加{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"攻击范围叠加\n{_player.GetComponent<CharacterAttribute>().getAttackRangeAmplification()}";
                 break;
             case "ArmorStrength":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = _player.GetComponent<CharacterAttribute>().getArmorStrength() >= 0 ?
-                                                                              $"减少{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15)}%受到的伤害" :
+                                                                              $"减少{Mathf.Floor(_player.GetComponent<CharacterAttribute>().getArmorStrength() * 100 / (_player.GetComponent<CharacterAttribute>().getArmorStrength() + 15))}%受到的伤害" :
                                                                               $"增加{_player.GetComponent<CharacterAttribute>().getArmorStrength() * 2}%受到的伤害";
                 break;
             case "DodgeRate":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = $"有{_player.GetComponent<CharacterAttribute>().getDodgeRate()}%的概率避免此次伤害";
                 break;
             case "MoveSpeedAmplification":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = $"移动速度增加{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = $"移动速度增加\n{_player.GetComponent<CharacterAttribute>().getMoveSpeedAmplification()}%";
                 break;
             case "ScanAccuracy":
-                transform.Find("Panel").GetComponentInChildren<Text>().text = "提高高品质武器和道具的刷新概率";
+                transform.Find("Panel").GetComponentInChildren<Text>().text = "提高高品质武器和道具刷新概率";
                 break;
             case "CollectEfficiency":
                 transform.Find("Panel").GetComponentInChildren<Text>().text = $"每一波次结束给予{_player.GetComponent<CharacterAttribute>().getCollectEfficiency()}金矿";

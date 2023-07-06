@@ -19,7 +19,6 @@ public class InitScene : MonoBehaviour
         manager.AddComponent<gameProcessController>();
         gameProcessController.Instance.gameObject.SetActive(true);
         gameProcessController.Instance.Init();
-        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
     }
 }

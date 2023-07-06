@@ -214,7 +214,7 @@ public class MainPageWindow : BaseWindow
             {
                 SceneLoader._instance.loadScene("LevelSelect");
             }
-            Close();
+            instance.Close();
         }
     }
     private void OnSettingBtn()
