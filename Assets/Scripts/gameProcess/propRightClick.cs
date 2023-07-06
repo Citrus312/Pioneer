@@ -26,7 +26,7 @@ public class propRightClick : MonoBehaviour, IPointerClickHandler
             copyOption.localPosition = new Vector3(150f, 100f, 0f);
         }
     }
-    //¸ø°´Å¥Ìí¼Ó¼àÌıÊÂ¼ş
+    //ç»™æŒ‰é’®æ·»åŠ ç›‘å¬äº‹ä»¶
     public void addListener()
     {
         Transform recycleBtn = copyOption.Find("recycleBtn");
@@ -36,14 +36,14 @@ public class propRightClick : MonoBehaviour, IPointerClickHandler
         cancelBtn.GetComponent<Button>().onClick.AddListener(cancelOnclick);
     }
 
-    //±³°üÖĞµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼ş-»ØÊÕ
+    //èƒŒåŒ…ä¸­çš„ç‰©å“å³é”®ç‚¹å‡»äº‹ä»¶-å›æ”¶
     public void recycleOnclick()
     {
         Destroy(this.gameObject);
        
     }
 
-    //±³°üÖĞµÄÎïÆ·ÓÒ¼üµã»÷ÊÂ¼ş-È¡Ïû
+    //èƒŒåŒ…ä¸­çš„ç‰©å“å³é”®ç‚¹å‡»äº‹ä»¶-å–æ¶ˆ
     public void cancelOnclick()
     {
         copyOption.gameObject.SetActive(false);

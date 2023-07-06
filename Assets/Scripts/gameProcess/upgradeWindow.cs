@@ -7,11 +7,11 @@ public class upgradeWindow : BaseWindow
 {
     private static upgradeWindow instance;
 
-    public float value;//Éı¼¶µÄÊôĞÔ¾ßÌåÊıÖµ
-    public string name;//Éı¼¶µÄÊôĞÔÃû×Ö
+    public float value;//å‡çº§çš„å±æ€§å…·ä½“æ•°å€¼
+    public string name;//å‡çº§çš„å±æ€§åå­—
     private upgradeWindow()
     {
-        // ÔÚÕâÀï³õÊ¼»¯GameManager
+        // åœ¨è¿™é‡Œåˆå§‹åŒ–GameManager
         resName = "UI/upgradeWindow";
         isResident = true;
         isVisible = false;
@@ -36,9 +36,9 @@ public class upgradeWindow : BaseWindow
     {
 
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         //FillTextContent(inputText);
 
     }

@@ -9,7 +9,7 @@ public class storeWindow : BaseWindow
 
     private storeWindow()
     {
-        // ÔÚÕâÀï³õÊ¼»¯GameManager
+        // åœ¨è¿™é‡Œåˆå§‹åŒ–GameManager
         resName = "UI/storeWindow";
         isResident = true;
         isVisible = false;
@@ -34,9 +34,9 @@ public class storeWindow : BaseWindow
     {
 
 
-        //×¢²áUIÊÂ¼ş(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //æ³¨å†ŒUIäº‹ä»¶(ç»†èŠ‚ç”±å­ç±»å®ç°)
         RegisterUIEvent();
-        //Ìî³äÎÄ±¾ÄÚÈİ(Ï¸½ÚÓÉ×ÓÀàÊµÏÖ)
+        //å¡«å……æ–‡æœ¬å†…å®¹(ç»†èŠ‚ç”±å­ç±»å®ç°)
         //FillTextContent(inputText);
 
     }

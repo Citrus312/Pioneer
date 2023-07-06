@@ -129,7 +129,7 @@ MonoBehaviour:
   _attachPoint: {fileID: 8793653922392239980}
   _grip: {fileID: 8793653923128465283}
   _endPoint: {fileID: 8793653922513543833}
-  _bulletPrefab: Assets/Prefab/Bullet/bullet_red 1.prefab
+  _bulletPrefab: Assets/Sprites/Weapon/bullet/pixelator/bullet_red1.png
 --- !u!114 &2739134758480178823
 MonoBehaviour:
   m_ObjectHideFlags: 0

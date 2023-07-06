@@ -173,5 +173,25 @@ public class GameoverWindow : BaseWindow
         {
             Close(); MainPageWindow.Instance.Open();
         }, 1.0f);
+
+        Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+        Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
+        Transform viewport = propBag.Find("Viewport");
+        Transform listContent = viewport.Find("Content");
+        if(weaponBag.childCount>0)
+        {
+            for(int i=0;i<weaponBag.childCount;i++)
+            {
+                GameObject.Destroy(weaponBag.GetChild(i).gameObject);
+            }
+        }
+        if(listContent.childCount>0)
+        {
+            for(int i=0;i<listContent.childCount;i++)
+            {
+                GameObject.Destroy(listContent.GetChild(i).gameObject);
+            }
+        }
+
     }
 }

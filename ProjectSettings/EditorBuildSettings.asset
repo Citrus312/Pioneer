@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TalentTree.unity
+    guid: 0ef7caa1c17fe7343935c7128792af47
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -27,18 +30,18 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene1.unity
     guid: 93682b87877b3d447b463f845b86e298
   - enabled: 1
-    path: Assets/Scenes/TalentTree.unity
-    guid: 0ef7caa1c17fe7343935c7128792af47
-  - enabled: 1
     path: Assets/Scenes/LevelScene/Ice.unity
     guid: f763a4aa2ae16e44c8c3f9ff84ef6a25
   - enabled: 1
     path: Assets/Scenes/LevelScene/Lava.unity
-    guid: 7736df1e1918d28459938b06b16bd580
+    guid: 793e8d599a32802479f54908e4034435
   - enabled: 1
     path: Assets/Scenes/LevelScene/Purple.unity
-    guid: d609536135aa21b4fae5a546635533c7
-  - enabled: 1
-    path: Assets/Scenes/LevelScene/Lava.unity
-    guid: 793e8d599a32802479f54908e4034435
+    guid: 489266b81bb0b9c4282bfbb8a44ca972
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

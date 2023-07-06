@@ -161,12 +161,19 @@ public class PausePageWindow : BaseWindow
     private void OnContinueBtn(Button btn)
     {
         Close();
+        weaponBagWindow.Instance.Close();
+        propBagWindow.Instance.Close();
+        propertyWindow.Instance.Close();
     }
 
     private void OnRestartBtn(Button btn)
     {
         Close();
-        SceneLoader._instance.loadScene("h_scene");
+        weaponBagWindow.Instance.Close();
+        propBagWindow.Instance.Close();
+        propertyWindow.Instance.Close();
+        DifficultySelectWindow.Instance.Open();
+        SceneLoader._instance.loadScene("LevelSelect");
     }
 
     private void OnSettingBtn(Button btn)
@@ -176,31 +183,49 @@ public class PausePageWindow : BaseWindow
 
     private void OnExitBtn(Button btn)
     {
+        GameController.getInstance().waveEnd();
         Close();
         weaponBagWindow.Instance.Close();
         propBagWindow.Instance.Close();
         propertyWindow.Instance.Close();
         if (storeWindow.Instance.getVisible() == true)
-        {
             storeWindow.Instance.Close();
-        }
         if (countDownTimerWindow.Instance.getVisible() == true)
-        {
             countDownTimerWindow.Instance.Close();
-        }
         if (titleWindow.Instance.getVisible() == true)
-        {
             titleWindow.Instance.Close();
-        }
         if (roleStateWindow.Instance.getVisible() == true)
-        {
             roleStateWindow.Instance.Close();
-        }
         if (upgradeWindow.Instance.getVisible() == true)
-        {
             upgradeWindow.Instance.Close();
-        }
+        gameProcessController.Instance.gameObject.SetActive(false);
+        Time.timeScale = 1f;
         SceneLoader._instance.loadScene("MainPage");
-        MainPageWindow.Instance.Open();
+        //GameController.getInstance().getGameData().ResetGameData();
+        JsonLoader.UpdateGameData();
+
+        DelayToInvoke.DelayToInvokeBySecond(() =>
+        {
+            Close(); MainPageWindow.Instance.Open();
+        }, 1.0f);
+
+        Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+        Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
+        Transform viewport = propBag.Find("Viewport");
+        Transform listContent = viewport.Find("Content");
+        if (weaponBag.childCount > 0)
+        {
+            for (int i = 0; i < weaponBag.childCount; i++)
+            {
+                GameObject.Destroy(weaponBag.GetChild(i).gameObject);
+            }
+        }
+        if (listContent.childCount > 0)
+        {
+            for (int i = 0; i < listContent.childCount; i++)
+            {
+                GameObject.Destroy(listContent.GetChild(i).gameObject);
+            }
+        }
     }
 }

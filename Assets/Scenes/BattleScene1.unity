@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2582487769076849206, guid: fa2c1f7e549db1e4094aaf08a3438997, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2582487769076849206, guid: fa2c1f7e549db1e4094aaf08a3438997, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grade: 0
+  oldGrade: 0
   gradeCount: 0
   blood: 0
   maxBlood: 0
@@ -2871,6 +2872,7 @@ MonoBehaviour:
   EXPValueText: {fileID: 0}
   WeaponPropList: []
   PropPoolList: []
+  currentSceneName: 
   currentTime: 0
   totalTime: 0
   timeText: {fileID: 0}

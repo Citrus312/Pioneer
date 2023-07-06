@@ -19,7 +19,7 @@ public class testController : MonoBehaviour
         {
             JsonLoader.LoadAndDecodeMonsterConfig();
         }
-        if(JsonLoader.propPool.Count==0)
+        if (JsonLoader.propPool.Count == 0)
         {
             JsonLoader.LoadAndDecodePropConfig();
         }
@@ -31,6 +31,7 @@ public class testController : MonoBehaviour
         GameController.getInstance().initBattleScene();
         GameController.getInstance().getGameData()._attr = JsonLoader.rolePool[0];
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
+        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
     }
 }

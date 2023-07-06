@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/2D Ice World.meta
+guid: df43d82b96b79834a85f68c6a69ec595
+========
 guid: e1a8bad2339d96243a15f406bdbdf473
+>>>>>>>> Citrus:Assets/Prefab/Obstacles/IceLake.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
