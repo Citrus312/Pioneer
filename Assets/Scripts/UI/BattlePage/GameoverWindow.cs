@@ -129,7 +129,8 @@ public class GameoverWindow : BaseWindow
             //将道具挂载到滚动窗口
             obj.transform.SetParent(propDisplay.GetChild(0).GetChild(0));
         }
-
+        GameController.getInstance().getGameData().ResetGameData();
+        JsonLoader.UpdateGameData();
     }
     protected override void FillTextContent()
     {
@@ -164,8 +165,6 @@ public class GameoverWindow : BaseWindow
 
     public void OnExitBtn()
     {
-        GameController.getInstance().getGameData().ResetGameData();
-        JsonLoader.UpdateGameData();
         Time.timeScale = 1f;
         SceneLoader._instance.loadScene("MainPage");
 
@@ -178,16 +177,16 @@ public class GameoverWindow : BaseWindow
         Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
         Transform viewport = propBag.Find("Viewport");
         Transform listContent = viewport.Find("Content");
-        if(weaponBag.childCount>0)
+        if (weaponBag.childCount > 0)
         {
-            for(int i=0;i<weaponBag.childCount;i++)
+            for (int i = 0; i < weaponBag.childCount; i++)
             {
                 GameObject.Destroy(weaponBag.GetChild(i).gameObject);
             }
         }
-        if(listContent.childCount>0)
+        if (listContent.childCount > 0)
         {
-            for(int i=0;i<listContent.childCount;i++)
+            for (int i = 0; i < listContent.childCount; i++)
             {
                 GameObject.Destroy(listContent.GetChild(i).gameObject);
             }
