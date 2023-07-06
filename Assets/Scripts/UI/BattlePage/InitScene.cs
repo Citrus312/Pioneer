@@ -11,6 +11,7 @@ public class InitScene : MonoBehaviour
     {
         Debug.Log("InitScene Awake");
         GameObject.Find("Manager").GetComponent<AudioSource>().clip = GameController.getInstance().battleMusic;
+        GameObject.Find("Manager").GetComponent<AudioSource>().Play();
         // 初始化场景
         GameController.getInstance().initBattleScene();
         // 挂载相机

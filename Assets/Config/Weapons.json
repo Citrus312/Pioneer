@@ -14,7 +14,7 @@
     "quality": 0,
     "icon": "零点能量枪.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/零点能量枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/零点能量枪",
     "price": 18.0
   },
   {
@@ -32,7 +32,7 @@
     "quality": 1,
     "icon": "零点能量枪.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/零点能量枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/零点能量枪",
     "price": 40.0
   },
   {
@@ -50,7 +50,7 @@
     "quality": 2,
     "icon": "零点能量枪.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/零点能量枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/零点能量枪",
     "price": 75.0
   },
   {
@@ -68,7 +68,7 @@
     "quality": 3,
     "icon": "零点能量枪.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/零点能量枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/零点能量枪",
     "price": 150.0
   },
   {
@@ -86,7 +86,7 @@
     "quality": 0,
     "icon": "暴雨.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/暴雨.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/暴雨",
     "price": 28.0
   },
   {
@@ -104,7 +104,7 @@
     "quality": 1,
     "icon": "暴雨.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/暴雨.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/暴雨",
     "price": 57.0
   },
   {
@@ -122,7 +122,7 @@
     "quality": 2,
     "icon": "暴雨.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/暴雨.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/暴雨",
     "price": 125.0
   },
   {
@@ -140,7 +140,7 @@
     "quality": 3,
     "icon": "暴雨.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/暴雨.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/暴雨",
     "price": 247.0
   },
   {
@@ -158,7 +158,7 @@
     "quality": 0,
     "icon": "炎心法杖.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/炎心法杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/炎心法杖",
     "price": 23.0
   },
   {
@@ -176,7 +176,7 @@
     "quality": 1,
     "icon": "炎心法杖.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/炎心法杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/炎心法杖",
     "price": 48.0
   },
   {
@@ -194,7 +194,7 @@
     "quality": 2,
     "icon": "炎心法杖.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/炎心法杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/炎心法杖",
     "price": 112.0
   },
   {
@@ -212,7 +212,7 @@
     "quality": 3,
     "icon": "炎心法杖.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/炎心法杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/炎心法杖",
     "price": 205.0
   },
   {
@@ -230,7 +230,7 @@
     "quality": 0,
     "icon": "千星之骸.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/千星之骸.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/千星之骸",
     "price": 24.0
   },
   {
@@ -248,7 +248,7 @@
     "quality": 1,
     "icon": "千星之骸.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/千星之骸.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/千星之骸",
     "price": 50.0
   },
   {
@@ -266,7 +266,7 @@
     "quality": 2,
     "icon": "千星之骸.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/千星之骸.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/千星之骸",
     "price": 116.0
   },
   {
@@ -284,7 +284,7 @@
     "quality": 3,
     "icon": "千星之骸.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/千星之骸.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/千星之骸",
     "price": 224.0
   },
   {
@@ -302,7 +302,7 @@
     "quality": 0,
     "icon": "反物质炮.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/反物质炮.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/反物质炮",
     "price": 25.0
   },
   {
@@ -320,7 +320,7 @@
     "quality": 1,
     "icon": "反物质炮.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/反物质炮.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/反物质炮",
     "price": 54.0
   },
   {
@@ -338,7 +338,7 @@
     "quality": 2,
     "icon": "反物质炮.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/反物质炮.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/反物质炮",
     "price": 116.0
   },
   {
@@ -356,7 +356,7 @@
     "quality": 3,
     "icon": "反物质炮.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/反物质炮.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/反物质炮",
     "price": 217.0
   },
   {
@@ -374,7 +374,7 @@
     "quality": 0,
     "icon": "星体碎击锏.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏",
     "price": 30.0
   },
   {
@@ -392,7 +392,7 @@
     "quality": 1,
     "icon": "星体碎击锏.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏",
     "price": 64.0
   },
   {
@@ -410,7 +410,7 @@
     "quality": 2,
     "icon": "星体碎击锏.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏",
     "price": 150.0
   },
   {
@@ -428,7 +428,7 @@
     "quality": 3,
     "icon": "星体碎击锏.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星体碎击锏",
     "price": 298.0
   },
   {
@@ -446,7 +446,7 @@
     "quality": 0,
     "icon": "电磁脉冲枪.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪",
     "price": 20.0
   },
   {
@@ -464,7 +464,7 @@
     "quality": 1,
     "icon": "电磁脉冲枪.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪",
     "price": 42.0
   },
   {
@@ -482,7 +482,7 @@
     "quality": 2,
     "icon": "电磁脉冲枪.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪",
     "price": 79.0
   },
   {
@@ -500,7 +500,7 @@
     "quality": 3,
     "icon": "电磁脉冲枪.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/电磁脉冲枪",
     "price": 148.0
   },
   {
@@ -518,7 +518,7 @@
     "quality": 0,
     "icon": "米诺陶洛斯.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯",
     "price": 27.0
   },
   {
@@ -536,7 +536,7 @@
     "quality": 1,
     "icon": "米诺陶洛斯.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯",
     "price": 56.0
   },
   {
@@ -554,7 +554,7 @@
     "quality": 2,
     "icon": "米诺陶洛斯.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯",
     "price": 113.0
   },
   {
@@ -572,7 +572,7 @@
     "quality": 3,
     "icon": "米诺陶洛斯.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/米诺陶洛斯",
     "price": 224.0
   },
   {
@@ -590,7 +590,7 @@
     "quality": 0,
     "icon": "星赤咒杖.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖",
     "price": 22.0
   },
   {
@@ -608,7 +608,7 @@
     "quality": 1,
     "icon": "星赤咒杖.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖",
     "price": 43.0
   },
   {
@@ -626,7 +626,7 @@
     "quality": 2,
     "icon": "星赤咒杖.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖",
     "price": 85.0
   },
   {
@@ -644,7 +644,7 @@
     "quality": 3,
     "icon": "星赤咒杖.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星赤咒杖",
     "price": 175.0
   },
   {
@@ -662,7 +662,7 @@
     "quality": 0,
     "icon": "星辰炙剑.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑",
     "price": 24.0
   },
   {
@@ -680,7 +680,7 @@
     "quality": 1,
     "icon": "星辰炙剑.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑",
     "price": 46.0
   },
   {
@@ -698,7 +698,7 @@
     "quality": 2,
     "icon": "星辰炙剑.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑",
     "price": 90.0
   },
   {
@@ -716,7 +716,7 @@
     "quality": 3,
     "icon": "星辰炙剑.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星辰炙剑",
     "price": 183.0
   },
   {
@@ -734,7 +734,7 @@
     "quality": 0,
     "icon": "星际追猎者.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/星际追猎者.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星际追猎者",
     "price": 19.0
   },
   {
@@ -752,7 +752,7 @@
     "quality": 1,
     "icon": "星际追猎者.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/星际追猎者.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星际追猎者",
     "price": 36.0
   },
   {
@@ -770,7 +770,7 @@
     "quality": 2,
     "icon": "星际追猎者.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/星际追猎者.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星际追猎者",
     "price": 80.0
   },
   {
@@ -788,7 +788,7 @@
     "quality": 3,
     "icon": "星际追猎者.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/星际追猎者.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/星际追猎者",
     "price": 175.0
   },
   {
@@ -806,7 +806,7 @@
     "quality": 0,
     "icon": "烈炎残刃.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃",
     "price": 18.0
   },
   {
@@ -824,7 +824,7 @@
     "quality": 1,
     "icon": "烈炎残刃.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃",
     "price": 34.0
   },
   {
@@ -842,7 +842,7 @@
     "quality": 2,
     "icon": "烈炎残刃.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃",
     "price": 70.0
   },
   {
@@ -860,7 +860,7 @@
     "quality": 3,
     "icon": "烈炎残刃.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/烈炎残刃",
     "price": 154.0
   },
   {
@@ -878,7 +878,7 @@
     "quality": 0,
     "icon": "狂瀑.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/狂瀑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/狂瀑",
     "price": 36.0
   },
   {
@@ -896,7 +896,7 @@
     "quality": 1,
     "icon": "狂瀑.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/狂瀑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/狂瀑",
     "price": 80.0
   },
   {
@@ -914,7 +914,7 @@
     "quality": 2,
     "icon": "狂瀑.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/狂瀑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/狂瀑",
     "price": 172.0
   },
   {
@@ -932,7 +932,7 @@
     "quality": 3,
     "icon": "狂瀑.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/狂瀑.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/狂瀑",
     "price": 304.0
   },
   {
@@ -950,7 +950,7 @@
     "quality": 0,
     "icon": "莲韵.png",
     "bgIcon": "Normal.png",
-    "prefabPath": "Assets/Prefab/Weapon/莲韵.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/莲韵",
     "price": 40.0
   },
   {
@@ -968,7 +968,7 @@
     "quality": 1,
     "icon": "莲韵.png",
     "bgIcon": "Senior.png",
-    "prefabPath": "Assets/Prefab/Weapon/莲韵.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/莲韵",
     "price": 84.0
   },
   {
@@ -986,7 +986,7 @@
     "quality": 2,
     "icon": "莲韵.png",
     "bgIcon": "Elite.png",
-    "prefabPath": "Assets/Prefab/Weapon/莲韵.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/莲韵",
     "price": 177.0
   },
   {
@@ -1004,7 +1004,7 @@
     "quality": 3,
     "icon": "莲韵.png",
     "bgIcon": "Legendary.png",
-    "prefabPath": "Assets/Prefab/Weapon/莲韵.prefab",
+    "prefabPath": "Assets/Prefab/Weapon/莲韵",
     "price": 321.0
   }
 ]

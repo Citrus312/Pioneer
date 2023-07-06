@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaterShadow : MonoBehaviour
 {
     // 空物体作为倒影载体
-    public string _prefabPath = "Assets/Prefab/Obstacles/Lake/EmptyObject.prefab";
+    public string _prefabPath = "Assets/Prefab/Obstacles/Lake/EmptyObject";
     // 屏幕外倒影
     private GameObject copyObj;
     // 倒影sprite

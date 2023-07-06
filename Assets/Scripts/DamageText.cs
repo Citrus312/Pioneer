@@ -6,7 +6,7 @@ using TMPro;
 public class DamageText : MonoBehaviour
 {
     //DamageText预制体路径
-    private static string _damageTextPrefab = "Assets/Prefab/DamageText.prefab";
+    private static string _damageTextPrefab = "Assets/Prefab/DamageText";
 
     //获取预制体路径
     public static string getDamageTextPath()
