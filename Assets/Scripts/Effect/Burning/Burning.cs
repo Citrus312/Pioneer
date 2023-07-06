@@ -26,8 +26,9 @@ public class Burning : ExtraEffect
             float remainTime = _duration;
             while (remainTime > 0)
             {
-                // 每隔一段时间就扣一次血
-                dm.TakeDamage(_burningDamage);
+                if (GetComponentInParent<CharacterAttribute>().getCurrentHealth() > _burningDamage)
+                    // 每隔一段时间就扣一次血
+                    dm.TakeDamage(_burningDamage);
                 remainTime -= _interval;
                 yield return new WaitForSeconds(_interval);
             }
