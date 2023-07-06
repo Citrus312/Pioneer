@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6893626770321378598}
   m_Layer: 7
   m_Name: Monster3_3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -819117959
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1452441762, guid: 3b2d179eeccc97b4aadd52cc498603eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

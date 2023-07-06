@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5842982149543029685}
   - component: {fileID: 6154259028665491339}
   - component: {fileID: -4015208074235996627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
   _prefabPath: 
-  _cureTextPrefabPath: 
+  _cureTextPrefabPath: Assets/Prefab/DamageText.prefab
 --- !u!70 &6154259028665491339
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

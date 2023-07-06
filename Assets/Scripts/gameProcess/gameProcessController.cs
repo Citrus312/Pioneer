@@ -96,9 +96,14 @@ public class gameProcessController : MonoBehaviour
                 if (PausePageWindow.Instance.getTransform().gameObject.activeSelf)
                 {
                     PausePageWindow.Instance.Close();
-                    weaponBagWindow.Instance.Close();
-                    propBagWindow.Instance.Close();
-                    propertyWindow.Instance.Close();
+                    if (storeWindow.Instance.getVisible() == false)
+                    {
+                        weaponBagWindow.Instance.Close();
+                        propBagWindow.Instance.Close();
+                        propertyWindow.Instance.Close();
+
+                    }
+
                 }
                 else
                 {
@@ -144,12 +149,12 @@ public class gameProcessController : MonoBehaviour
         {
             Time.timeScale = 0f;
             isDying = true;
-            GameController.getInstance().waveEnd();
             roleStateWindow.Instance.Close();
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
             GameoverWindow.Instance.titleText = "失败";
             GameoverWindow.Instance.Open();
+            GameController.getInstance().waveEnd();
             gameProcessController.Instance.gameObject.SetActive(false);
         }
         else if (HPValue <= HPMaxValue * 2 / 3 && HPValue > HPMaxValue * 1 / 4)
@@ -230,7 +235,7 @@ public class gameProcessController : MonoBehaviour
         totalTime = totalTime > 100f ? 100f : totalTime;
         totalTime = 30f;
 
-        levelText.text = "第" + level + "关";
+        levelText.text = "第" + level + "波";
 
 
     }
@@ -626,7 +631,7 @@ public class gameProcessController : MonoBehaviour
                     c += 1;
                     count.GetComponent<TextMeshProUGUI>().text = c.ToString();
                     count.gameObject.SetActive(true);
-                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, 1);
                     RefreshPropertyText();
                 }
                 else
@@ -674,7 +679,7 @@ public class gameProcessController : MonoBehaviour
                         image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
 
                     }
-                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().propModifyAttribute(w, 1);
+                    GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, 1);
                     RefreshPropertyText();
                 }
             }
@@ -769,6 +774,7 @@ public class gameProcessController : MonoBehaviour
 
     public void openPanel(Transform transform, string parentName)
     {
+        _player = GameController.getInstance().getPlayer();
         List<string> attributeList = getAttribute(_player);
         switch (parentName)
         {

@@ -161,9 +161,13 @@ public class PausePageWindow : BaseWindow
     private void OnContinueBtn(Button btn)
     {
         Close();
-        weaponBagWindow.Instance.Close();
-        propBagWindow.Instance.Close();
-        propertyWindow.Instance.Close();
+        if (storeWindow.Instance.getVisible() == false)
+        {
+            weaponBagWindow.Instance.Close();
+            propBagWindow.Instance.Close();
+            propertyWindow.Instance.Close();
+
+        }
     }
 
     private void OnRestartBtn(Button btn)

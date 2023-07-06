@@ -9,6 +9,8 @@ public class InitScene : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Debug.Log("InitScene Awake");
+        GameObject.Find("Manager").GetComponent<AudioSource>().clip = GameController.getInstance().battleMusic;
         // 初始化场景
         GameController.getInstance().initBattleScene();
         // 挂载相机
@@ -19,6 +21,7 @@ public class InitScene : MonoBehaviour
         manager.AddComponent<gameProcessController>();
         gameProcessController.Instance.gameObject.SetActive(true);
         gameProcessController.Instance.Init();
+        textController.Instance.Start();
         GameController.getInstance().waveStart();
     }
 }

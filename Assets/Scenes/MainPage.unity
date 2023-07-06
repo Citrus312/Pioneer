@@ -508,6 +508,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab: Assets/Prefab/Player.prefab
+  themeMusic: {fileID: 8300000, guid: 5fad4fea44f7a6041ad9faa4431f213b, type: 3}
+  battleMusic: {fileID: 8300000, guid: 7ddbfe800c8a50040bf3937e27301b58, type: 3}
   _objectPool: {fileID: 5870974196353509982, guid: 200266e6894728e4c8060365aa3b59e7, type: 3}
   _generator: {fileID: 4978148260696324448, guid: b26aa5a804dc87a4bbf8cedb696e1944, type: 3}
 --- !u!114 &594410765
