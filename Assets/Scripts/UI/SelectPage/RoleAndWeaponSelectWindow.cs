@@ -175,7 +175,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
     //以下是按钮的点击事件
     public void OnSelectBtn(Button btn)
     {
-        if (!isSelectRole)  //角色选择按钮的逻辑
+        if (!isSelectRole && SceneLoader._instance.LoadAble)  //角色选择按钮的逻辑
         {
             //更新角色选择状态
             isSelectRole = true;
@@ -248,7 +248,7 @@ public class RoleAndWeaponSelectWindow : BaseWindow
                 }
             }, 6);
         }
-        else if (isSelectRole)  //武器选择按钮的逻辑
+        else if (isSelectRole && SceneLoader._instance.LoadAble)  //武器选择按钮的逻辑
         {
             btn.enabled = false;
             //更新gameData中需要更新的数据
@@ -258,7 +258,8 @@ public class RoleAndWeaponSelectWindow : BaseWindow
                 GameController.getInstance().getGameData()._weaponList.Add(int.Parse(btn.name));
             }
             int ID = GameController.getInstance().getGameData()._playerID;
-            CharacterAttribute attr = JsonLoader.rolePool[ID];
+            CharacterAttribute attr = new();
+            attr.setAllPlayerAttribute(JsonLoader.rolePool[ID]);
             foreach (KeyValuePair<string, float> item in TalentTreeWindow.Instance.getAttributeFinal())
             {
                 switch (item.Key)

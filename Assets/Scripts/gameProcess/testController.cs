@@ -31,6 +31,7 @@ public class testController : MonoBehaviour
         GameController.getInstance().initBattleScene();
         GameController.getInstance().getGameData()._attr = JsonLoader.rolePool[0];
         GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().setAllPlayerAttribute(GameController.getInstance().getGameData()._attr);
+        Debug.Log("wave" + GameController.getInstance().getGameData()._wave);
         GameController.getInstance().waveStart();
     }
 }

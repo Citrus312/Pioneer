@@ -46,6 +46,12 @@ public class MonsterGenerator : Generator
         }
     }
 
+    //结束生成
+    public void stopGenerate()
+    {
+        StopAllCoroutines();
+    }
+
     // 显示红叉，闪烁后生成怪物
     protected IEnumerator generateMonster(GameObject redCross, string monsterPrefabPath, CharacterAttribute characterAttribute)
     {

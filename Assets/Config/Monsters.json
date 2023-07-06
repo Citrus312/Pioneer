@@ -14,7 +14,7 @@
     "dropRate": 0.01,
     "crateRate": 0.005,
     "firstGenWave": 1,
-    "interval": 3.0,
+    "interval": 3.5,
     "minGenCount": 1.0,
     "maxGenCount": 3.0,
     "belongLevel": "Purple"
@@ -34,9 +34,9 @@
     "dropRate": 0.02,
     "crateRate": 0.005,
     "firstGenWave": 2,
-    "interval": 2.0,
+    "interval": 3.0,
     "minGenCount": 2.0,
-    "maxGenCount": 4.0,
+    "maxGenCount": 3.0,
     "belongLevel": "Purple"
   },
   {
@@ -54,7 +54,7 @@
     "dropRate": 0.03,
     "crateRate": 0.01,
     "firstGenWave": 4,
-    "interval": 3.5,
+    "interval": 4.0,
     "minGenCount": 1.0,
     "maxGenCount": 2.0,
     "belongLevel": "Purple"
@@ -74,8 +74,8 @@
     "dropRate": 0.015,
     "crateRate": 0.005,
     "firstGenWave": 1,
-    "interval": 3.0,
-    "minGenCount": 2.0,
+    "interval": 3.5,
+    "minGenCount": 1.0,
     "maxGenCount": 4.0,
     "belongLevel": "Lava"
   },
@@ -94,9 +94,9 @@
     "dropRate": 0.025,
     "crateRate": 0.005,
     "firstGenWave": 2,
-    "interval": 2.0,
+    "interval": 3.0,
     "minGenCount": 2.0,
-    "maxGenCount": 5.0,
+    "maxGenCount": 4.0,
     "belongLevel": "Lava"
   },
   {
@@ -114,7 +114,7 @@
     "dropRate": 0.035,
     "crateRate": 0.015,
     "firstGenWave": 4,
-    "interval": 3.5,
+    "interval": 4.0,
     "minGenCount": 1.0,
     "maxGenCount": 3.0,
     "belongLevel": "Lava"
@@ -134,9 +134,9 @@
     "dropRate": 0.02,
     "crateRate": 0.005,
     "firstGenWave": 1,
-    "interval": 3.0,
+    "interval": 3.5,
     "minGenCount": 2.0,
-    "maxGenCount": 5.0,
+    "maxGenCount": 4.0,
     "belongLevel": "Ice"
   },
   {
@@ -154,9 +154,9 @@
     "dropRate": 0.03,
     "crateRate": 0.005,
     "firstGenWave": 2,
-    "interval": 2.0,
-    "minGenCount": 2.0,
-    "maxGenCount": 5.0,
+    "interval": 3.0,
+    "minGenCount": 3.0,
+    "maxGenCount": 4.0,
     "belongLevel": "Ice"
   },
   {
@@ -174,8 +174,8 @@
     "dropRate": 0.04,
     "crateRate": 0.015,
     "firstGenWave": 4,
-    "interval": 3.5,
-    "minGenCount": 2.0,
+    "interval": 4.0,
+    "minGenCount": 1.0,
     "maxGenCount": 3.0,
     "belongLevel": "Ice"
   },

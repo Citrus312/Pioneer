@@ -48,6 +48,7 @@ public class MainPageWindow : BaseWindow
     {
         base.OnEnable();
 
+        GameController.getInstance().getGameData().ResetGameData();
         JsonLoader.LoadAndDecodeGameData();
 
         //遍历按钮列表寻找“继续”按钮
@@ -130,99 +131,189 @@ public class MainPageWindow : BaseWindow
     //以下是按钮的点击事件
     private void OnContinueBtn()
     {
-        Debug.Log("点击了 继续 按钮");
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 继续 按钮");
+            CharacterAttribute attr = new();
+            attr.setAllPlayerAttribute(JsonLoader.rolePool[GameController.getInstance().getGameData()._playerID]);
+            foreach (KeyValuePair<string, float> item in TalentTreeWindow.Instance.getAttributeFinal())
+            {
+                switch (item.Key)
+                {
+                    case "maxHealth":
+                        attr.setMaxHealth(attr.getMaxHealth() + item.Value);
+                        break;
+                    case "healthRecovery":
+                        attr.setHealthRecovery(attr.getHealthRecovery() + item.Value);
+                        break;
+                    case "healthSteal":
+                        attr.setHealthSteal(attr.getHealthSteal() + item.Value);
+                        break;
+                    case "attackAmplification":
+                        attr.setAttackAmplification(attr.getAttackAmplification() + item.Value);
+                        break;
+                    case "meleeDamage":
+                        attr.setMeleeDamage(attr.getMeleeDamage() + item.Value);
+                        break;
+                    case "rangedDamage":
+                        attr.setRangedDamage(attr.getRangedDamage() + item.Value);
+                        break;
+                    case "abilityDamage":
+                        attr.setAbilityDamage(attr.getAbilityDamage() + item.Value);
+                        break;
+                    case "attackSpeedAmplification":
+                        attr.setAttackSpeedAmplification(attr.getAttackSpeedAmplification() + item.Value);
+                        break;
+                    case "criticalRate":
+                        attr.setCriticalRate(attr.getCriticalRate() + item.Value);
+                        break;
+                    case "engineering":
+                        attr.setEngineering(attr.getEngineering() + item.Value);
+                        break;
+                    case "attackRangeAmplification":
+                        attr.setAttackRangeAmplification(attr.getAttackRangeAmplification() + item.Value);
+                        break;
+                    case "armorStrength":
+                        attr.setArmorStrength(attr.getArmorStrength() + item.Value);
+                        break;
+                    case "dodgeRate":
+                        attr.setDodgeRate(attr.getDodgeRate() + item.Value);
+                        break;
+                    case "moveSpeedAmplification":
+                        attr.setMoveSpeedAmplification(attr.getMoveSpeedAmplification() + item.Value);
+                        break;
+                    case "scanAccuracy":
+                        attr.setScanAccuracy(attr.getScanAccuracy() + item.Value);
+                        break;
+                    case "collectEfficiency":
+                        attr.setCollectEfficiency(attr.getCollectEfficiency() + item.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            GameController.getInstance().getGameData()._attr.setAllPlayerAttribute(attr);
+            SceneLoader._instance.loadScene(GameController.getInstance().getGameData()._scene);
+            DelayToInvoke.DelayToInvokeBySecond(() => { instance.Close(); }, 1.0f);
+        }
     }
     //开始按钮的点击事件
     private void OnStartBtn()
     {
-        Debug.Log("点击了 开始 按钮");
-        //重置当前游戏数据
-        GameController.getInstance().getGameData().ResetGameData();
-        //判断是否第一次游玩，是则播放开场动画
-        if (GameController.getInstance().getGameData()._isFirstPlaying)
+        if (SceneLoader._instance.LoadAble)
         {
-            SceneLoader._instance.loadScene("OpeningAnimation");
+            Debug.Log("点击了 开始 按钮");
+            //重置当前游戏数据
+            GameController.getInstance().getGameData().ResetGameData();
+            //判断是否第一次游玩，是则播放开场动画
+            if (GameController.getInstance().getGameData()._isFirstPlaying)
+            {
+                SceneLoader._instance.loadScene("OpeningAnimation");
+            }
+            else
+            {
+                SceneLoader._instance.loadScene("LevelSelect");
+            }
+            instance.Close();
         }
-        else
-        {
-            SceneLoader._instance.loadScene("LevelSelect");
-        }
-        Close();
     }
     private void OnSettingBtn()
     {
-        Debug.Log("点击了 设置 按钮");
-        SettingWindow.Instance.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 设置 按钮");
+            SettingWindow.Instance.Open();
+        }
     }
     private void OnTalentBtn()
     {
-
-        Debug.Log("点击了 天赋 按钮");
-        SceneLoader._instance.loadScene("TalentTree");
-        TalentTreeWindow.Instance.Open();
-        MainPageWindow.Instance.Close();
-
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 天赋 按钮");
+            SceneLoader._instance.loadScene("TalentTree");
+            TalentTreeWindow.Instance.Open();
+            MainPageWindow.Instance.Close();
+            //DelayToInvoke.DelayToInvokeBySecond(() => { TalentTreeWindow.Instance.Open(); }, 1.8f);
+        }
     }
     private void OnExitBtn()
     {
-        Debug.Log("点击了 退出 按钮");
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 退出 按钮");
 #if UNITY_EDITOR
-        //unity编辑器中调试使用
-        EditorApplication.isPlaying = false;
+            //unity编辑器中调试使用
+            EditorApplication.isPlaying = false;
 #else
         //导出游戏后使用
         Application.Quit();
 #endif
+        }
     }
     //以下的按钮点击事件都是打开一个提示窗
     //实现逻辑一致
     private void OnModBtn()
     {
-        Debug.Log("点击了 Mod 按钮");
-        //创建一个提示窗
-        TipsWindow window = new();
-        List<string> text = new();
-        text.Add("此游戏不会有任何Mod :)");
-        //设置提示窗的文本
-        window.inputText = text;
-        //打开提示窗
-        window.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 Mod 按钮");
+            //创建一个提示窗
+            TipsWindow window = new();
+            List<string> text = new();
+            text.Add("此游戏不会有任何Mod :)");
+            //设置提示窗的文本
+            window.inputText = text;
+            //打开提示窗
+            window.Open();
+        }
     }
     private void OnMoreProductBtn()
     {
-        Debug.Log("点击了 更多作品 按钮");
-        TipsWindow window = new();
-        List<string> text = new();
-        text.Add("更多作品? 不可能！绝对不可能！！");
-        window.inputText = text;
-        window.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 更多作品 按钮");
+            TipsWindow window = new();
+            List<string> text = new();
+            text.Add("更多作品? 不可能！绝对不可能！！");
+            window.inputText = text;
+            window.Open();
+        }
     }
     private void OnNewMsgBtn()
     {
-        Debug.Log("点击了 新消息 按钮");
-        TipsWindow window = new();
-        List<string> text = new();
-        text.Add("这里空空如也，请回吧 :)");
-        window.inputText = text;
-        window.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 新消息 按钮");
+            TipsWindow window = new();
+            List<string> text = new();
+            text.Add("这里空空如也，请回吧 :)");
+            window.inputText = text;
+            window.Open();
+        }
     }
     private void OnCommunityBtn()
     {
-        Debug.Log("点击了 社区 按钮");
-        TipsWindow window = new();
-        List<string> text = new();
-        text.Add("社区? 那是什么?");
-        window.inputText = text;
-        window.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 社区 按钮");
+            TipsWindow window = new();
+            List<string> text = new();
+            text.Add("社区? 那是什么?");
+            window.inputText = text;
+            window.Open();
+        }
     }
     private void OnNameListBtn()
     {
-        Debug.Log("点击了 制作人名单 按钮");
-        TipsWindow window = new();
-        List<string> text = new();
-        text.Add("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
-        window.inputText = text;
-        window.Open();
+        if (SceneLoader._instance.LoadAble)
+        {
+            Debug.Log("点击了 制作人名单 按钮");
+            TipsWindow window = new();
+            List<string> text = new();
+            text.Add("主策划/技美/编程/多面手: 余嘉森\n" + "主程序/大佬: 莫迅\n" + "主程序/状况百出: 刘宇菲\n" + "数值策划/素材苦手: 郑涛\n" + "UI设计/日常被催: 黄俊霖");
+            window.inputText = text;
+            window.Open();
+        }
     }
 
     public override void Open()

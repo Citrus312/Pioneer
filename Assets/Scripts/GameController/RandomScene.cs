@@ -16,28 +16,29 @@ public class RandomScene : MonoBehaviour
     // 障碍物数量
     public int _obstacleCnt = 8;
     // 右上、右下、左下、左上
-    private int[,] dirs = new int[4,2];
+    private int[,] dirs = new int[4, 2];
 
-    private void Awake() {
+    private void Awake()
+    {
         _instance = this;
-        
+
         setUpDirs();
         setUpSceneSize();
     }
 
     void setUpDirs()
     {
-        dirs[0,0] = 1;
-        dirs[0,1] = 1;
+        dirs[0, 0] = 1;
+        dirs[0, 1] = 1;
 
-        dirs[1,0] = 1;
-        dirs[1,1] = -1;
+        dirs[1, 0] = 1;
+        dirs[1, 1] = -1;
 
-        dirs[2,0] = -1;
-        dirs[2,1] = -1;
+        dirs[2, 0] = -1;
+        dirs[2, 1] = -1;
 
-        dirs[3,0] = -1;
-        dirs[3,1] = 1;
+        dirs[3, 0] = -1;
+        dirs[3, 1] = 1;
     }
     void setUpSceneSize()
     {
@@ -57,30 +58,31 @@ public class RandomScene : MonoBehaviour
         int m = (int)(_sceneWidth / 2 / _gridSize);
         // 障碍物数组
         int[,,] matrix = new int[4, n, m];
-        matrix[0,0,0] = 1;
-        matrix[1,0,0] = 1;
-        matrix[2,0,0] = 1;
-        matrix[3,0,0] = 1;
-        Debug.Log("n:" + n + " m:" + m);
+        matrix[0, 0, 0] = 1;
+        matrix[1, 0, 0] = 1;
+        matrix[2, 0, 0] = 1;
+        matrix[3, 0, 0] = 1;
+        //Debug.Log("n:" + n + " m:" + m);
         // 总量取较小值
         int cnt = Mathf.Min(_obstacleCnt, 4 * n * m - 4);
-        while(cnt > 0){
+        while (cnt > 0)
+        {
             // 象限
-            int randDir = Random.Range(0,4);
+            int randDir = Random.Range(0, 4);
             // 数组索引
             int randY = Random.Range(0, n), randX = Random.Range(0, m);
-            if(matrix[randDir, randY, randX] != 0)
+            if (matrix[randDir, randY, randX] != 0)
             {
                 continue;
             }
-            if(Random.Range(0,2) == 0) cnt -= generateObstacle(randDir, randY, randX, matrix);
+            if (Random.Range(0, 2) == 0) cnt -= generateObstacle(randDir, randY, randX, matrix);
             else cnt -= generateTerrain(randDir, randY, randX, matrix);
         }
     }
 
     private int generateObstacle(int randDir, int randY, int randX, int[,,] matrix)
     {
-        if(_obstacleList.Capacity == 0) return 0;
+        if (_obstacleList.Capacity == 0) return 0;
 
         // 障碍物id
         int idx = Random.Range(0, _obstacleList.Capacity);
@@ -92,27 +94,27 @@ public class RandomScene : MonoBehaviour
         float offsetX = Random.Range(minOffset, maxOffset);
         float offsetY = Random.Range(minOffset, maxOffset);
         // 生成
-        newObject.transform.position = new Vector3(dirs[randDir,0] * (randX * _gridSize + offsetX), dirs[randDir,1] * (randY * _gridSize + offsetY), 0);
+        newObject.transform.position = new Vector3(dirs[randDir, 0] * (randX * _gridSize + offsetX), dirs[randDir, 1] * (randY * _gridSize + offsetY), 0);
 
         return 1;
     }
 
     private int generateTerrain(int randDir, int randY, int randX, int[,,] matrix)
     {
-        if(_terrainList.Capacity == 0) return 0;
+        if (_terrainList.Capacity == 0) return 0;
 
         // 地形id
         int idx = Random.Range(0, _terrainList.Capacity);
         matrix[randDir, randY, randX] = idx + 1;
         GameObject newObject = ObjectPool.getInstance().get(_terrainList[idx]);
-        
+
         // 位置偏移
         float minOffset = getSize(newObject) / 2;
         float maxOffset = _gridSize - (getSize(newObject) / 2);
         float offsetX = Random.Range(minOffset, maxOffset);
         float offsetY = Random.Range(minOffset, maxOffset);
         // 生成
-        newObject.transform.position = new Vector3(dirs[randDir,0] * (randX * _gridSize + offsetX), dirs[randDir,1] * (randY * _gridSize + offsetY), 0);
+        newObject.transform.position = new Vector3(dirs[randDir, 0] * (randX * _gridSize + offsetX), dirs[randDir, 1] * (randY * _gridSize + offsetY), 0);
 
         // 旋转
         float minRotationAngle = 0f, maxRotationAngle = 360f;
@@ -133,5 +135,5 @@ public class RandomScene : MonoBehaviour
     public float getSceneHeight()
     {
         return _sceneHeight;
-    } 
+    }
 }

@@ -24,12 +24,12 @@ public class DamageText : MonoBehaviour
     //伤害数字消失速度
     protected float _disappearSpeed = 5.0f;
     //文本类型
-    public enum TextType { CommonDamage, CritDamage, PlayerHurt, PlayerCure };
+    public enum TextType { CommonDamage, CritDamage, PlayerHurt, PlayerCure, Dodge };
     //不同类型文本对应的颜色
-    public Color _commonDamageColor, _critDamageColor, _playerHurtColor, _playerCureColor;
+    public Color _commonDamageColor, _critDamageColor, _playerHurtColor, _playerCureColor, _dodgeColor;
 
     //设置文本类型
-    public void setup(TextType textType, int damage)
+    public void setup(TextType textType, int damage = 0)
     {
         //刷新显示时间
         _showTimer = _showTime;
@@ -50,6 +50,10 @@ public class DamageText : MonoBehaviour
             case TextType.PlayerCure:
                 _textColor = _playerCureColor;
                 text = "+" + text;
+                break;
+            case TextType.Dodge:
+                _textColor = _dodgeColor;
+                text = "闪避";
                 break;
         }
         _textMeshPro.color = _textColor;

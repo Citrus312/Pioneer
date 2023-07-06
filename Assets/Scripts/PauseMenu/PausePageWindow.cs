@@ -183,6 +183,7 @@ public class PausePageWindow : BaseWindow
 
     private void OnExitBtn(Button btn)
     {
+        GameController.getInstance().waveEnd();
         Close();
         weaponBagWindow.Instance.Close();
         propBagWindow.Instance.Close();
@@ -197,11 +198,12 @@ public class PausePageWindow : BaseWindow
             roleStateWindow.Instance.Close();
         if (upgradeWindow.Instance.getVisible() == true)
             upgradeWindow.Instance.Close();
-        SceneLoader._instance.loadScene("MainPage");
-        MainPageWindow.Instance.Open();
-        GameController.getInstance().getGameData().ResetGameData();
-        JsonLoader.UpdateGameData();
+        gameProcessController.Instance.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        SceneLoader._instance.loadScene("MainPage");
+        //GameController.getInstance().getGameData().ResetGameData();
+        JsonLoader.UpdateGameData();
+
         DelayToInvoke.DelayToInvokeBySecond(() =>
         {
             Close(); MainPageWindow.Instance.Open();

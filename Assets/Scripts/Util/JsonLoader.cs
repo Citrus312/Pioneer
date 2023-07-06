@@ -24,7 +24,7 @@ public class JsonLoader
         gameData._isFirstPlaying = (bool)data["isFirstPlaying"];
         gameData._playerID = (int)data["playerID"];
         gameData._wave = (int)data["wave"];
-        gameData._level = (int)data["level"];
+        //gameData._level = (int)data["level"];
         gameData._money = (int)data["money"];
         gameData._playerLevel = (int)data["playerLevel"];
         gameData._exp = (int)data["exp"];
