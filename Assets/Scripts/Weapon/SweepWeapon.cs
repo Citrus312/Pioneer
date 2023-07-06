@@ -46,6 +46,7 @@ public class SweepWeapon : MeleeWeapon
     {
         //设置正在攻击
         _isAttacking = true;
+        GetComponent<PolygonCollider2D>().enabled = true;
 
         //将武器伸出一段距离
         transform.Translate(attackTarget.position - _endPoint.position, Space.World);
@@ -86,6 +87,7 @@ public class SweepWeapon : MeleeWeapon
 
         //设置不在攻击
         _isAttacking = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     // Update is called once per frame
