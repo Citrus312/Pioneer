@@ -654,10 +654,6 @@ MonoBehaviour:
   - Assets/Prefab/Obstacles/Rock/Rock3_3.prefab
   - Assets/Prefab/Obstacles/Rock/Rock3_4.prefab
   - Assets/Prefab/Obstacles/Rock/Rock3_5.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_1.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_2.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_3.prefab
-  - Assets/Prefab/Obstacles/IceLake/IceLake_4.prefab
   _terrainList:
   - Assets/Prefab/Obstacles/IceLake/IceLake_1.prefab
   - Assets/Prefab/Obstacles/IceLake/IceLake_2.prefab

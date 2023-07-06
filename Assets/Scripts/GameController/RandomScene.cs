@@ -95,7 +95,8 @@ public class RandomScene : MonoBehaviour
         float offsetY = Random.Range(minOffset, maxOffset);
         // 生成
         newObject.transform.position = new Vector3(dirs[randDir, 0] * (randX * _gridSize + offsetX), dirs[randDir, 1] * (randY * _gridSize + offsetY), 0);
-
+        newObject.SetActive(false);
+        newObject.SetActive(true);
         return 1;
     }
 

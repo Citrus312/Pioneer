@@ -8,12 +8,12 @@ public class LakeInit : MonoBehaviour
     public LayerMask layerToRender; // 指定要渲染的图层
     private RenderTexture renderTexture;
 
-    private Camera tempCamera;
+    public Camera tempCamera;
     
     void Start()
     {
         // 创建一个新的相机
-        GameObject cameraObject = new GameObject("NewCamera");
+        GameObject cameraObject = new GameObject("ShadowCamera_" + this.name);
         cameraObject.transform.position = new Vector3(this.transform.position.x + 60.0f, this.transform.position.y + 1.3f, -10.0f);
         
         // 添加相机组件到相机对象上
@@ -33,5 +33,12 @@ public class LakeInit : MonoBehaviour
 
         // 设置材质的纹理属性
         GetComponent<SpriteRenderer>().material.SetTexture("_CameraOutput", renderTexture);
+    }
+
+    private void OnEnable() {
+        if(tempCamera != null)
+        {
+            tempCamera.gameObject.transform.position = new Vector3(this.transform.position.x + 60.0f, this.transform.position.y + 1.3f, -10.0f);
+        }
     }
 }
