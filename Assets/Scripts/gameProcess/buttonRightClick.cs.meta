@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/gameProcess/buttonRightClick.cs.meta
+guid: b177253a363b39f4492f6393d7c09bcb
+========
+guid: 2e38547b9095b664d894a6a68e1bd422
+>>>>>>>> origin/Chaos:Assets/Scripts/GameController/RandomScene.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

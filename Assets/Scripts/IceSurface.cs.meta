@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/IceSurface.cs.meta
+guid: 074f10b18567e5f428b7a720ec61af63
+========
+guid: 37806ee3c223bbf4092b8efada4410f5
+>>>>>>>> origin/hjl:Assets/Scripts/gameProcess/propRightClick.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

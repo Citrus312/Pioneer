@@ -3,17 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Obstacles
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacles
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Monster
+  - FlyMonster
   - 
   - 
   - 
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: DropItem
+    uniqueID: 626548501
+    locked: 0
+  - name: Character
+    uniqueID: 3475849337
+    locked: 0
+  - name: Weapon
+    uniqueID: 3926876125
+    locked: 0
+  - name: DamageText
+    uniqueID: 2823329689
     locked: 0
