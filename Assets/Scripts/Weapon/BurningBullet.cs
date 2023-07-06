@@ -18,7 +18,10 @@ public class BurningBullet : Bullet
         //如果碰撞的不为障碍物则造成伤害
         if (collider2D.tag != "Obstacles")
         {
-            _weapon.GetComponent<Damager>().Damage(collider2D);
+            bool isDodge = _weapon.GetComponent<Damager>().Damage(collider2D);
+            //被闪避直接返回
+            if (isDodge)
+                return;
             Burning burning = collider2D.gameObject.GetComponentInChildren<Burning>();
             if (burning != null)
             {

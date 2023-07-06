@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4933317075867728734}
   m_Layer: 7
   m_Name: Monster2_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -819117959
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1444869280, guid: d9b35afb28c15104bac1a50dedc43b88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -193,6 +193,7 @@ MonoBehaviour:
   _onHitColor: {r: 1, g: 0, b: 0, a: 1}
   _onHitTime: 0
   _prefabPath: 
+  _cureTextPrefabPath: 
 --- !u!114 &1514294395052968368
 MonoBehaviour:
   m_ObjectHideFlags: 0

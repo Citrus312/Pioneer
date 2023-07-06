@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: -6904845404862245244}
   m_Layer: 8
   m_Name: Monster1_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -819117959
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1338902348, guid: 69067595eac4bef4fa0529775c774bbe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -236,6 +236,7 @@ MonoBehaviour:
   _onHitColor: {r: 0, g: 0, b: 0, a: 0}
   _onHitTime: 0
   _prefabPath: 
+  _cureTextPrefabPath: 
 --- !u!114 &-6904845404862245244
 MonoBehaviour:
   m_ObjectHideFlags: 0

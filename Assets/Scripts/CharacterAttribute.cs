@@ -542,7 +542,7 @@ public class CharacterAttribute : MonoBehaviour
         return collectEfficiency;
     }
 
-    public void propModifyAttribute(int propIndex, int count = 1)
+    public void PropModifyAttribute(int propIndex, int count = 1)
     {
         PropAttribute prop = new();
         prop.setPropAttribute(JsonLoader.propPool[propIndex]);
