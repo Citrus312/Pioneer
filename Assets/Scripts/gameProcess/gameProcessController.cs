@@ -96,9 +96,13 @@ public class gameProcessController : MonoBehaviour
                 if (PausePageWindow.Instance.getTransform().gameObject.activeSelf)
                 {
                     PausePageWindow.Instance.Close();
-                    weaponBagWindow.Instance.Close();
-                    propBagWindow.Instance.Close();
-                    propertyWindow.Instance.Close();
+                    if(storeWindow.Instance.getVisible()==false)
+                    {
+                        weaponBagWindow.Instance.Close();
+                        propBagWindow.Instance.Close();
+                        propertyWindow.Instance.Close();
+                    }
+                    
                 }
                 else
                 {

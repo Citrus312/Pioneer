@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
             if (characterAttribute.getID() == 10 || characterAttribute.getID() == 11)
             {
                 generateBoss(characterAttribute);
-            }
+            }          
             StartCoroutine(generateMonster(characterAttribute, num));
         }
     }
