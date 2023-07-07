@@ -36,6 +36,7 @@ public class gameProcessController : MonoBehaviour
     public int level = 1;//关卡数
     public TextMeshProUGUI levelText;//关卡显示文本
     public float money;
+    public GameObject displayPanel;
 
 
     public float HPValue;
@@ -153,6 +154,7 @@ public class gameProcessController : MonoBehaviour
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
             GameoverWindow.Instance.titleText = "失败";
+            GameoverWindow.Instance.detailDisplay = displayPanel;
             GameoverWindow.Instance.Open();
             GameController.getInstance().waveEnd();
             gameProcessController.Instance.gameObject.SetActive(false);
@@ -228,10 +230,10 @@ public class gameProcessController : MonoBehaviour
         stateBg = roleStateWindow.Instance.getTransform().Find("stateBg");
         stateBg.GetComponent<RectTransform>().localScale = new Vector3(3f, 3f, 3f);
 
-        LoadInitWeapon();
+        LoadInitProps();
+        LoadInitWeapons();
 
-        //第一关时间
-        totalTime = 30f + (level - 1) * 10f;
+        totalTime = 30f + (level - 1) * 5f;
         totalTime = totalTime > 100f ? 100f : totalTime;
         //totalTime = 30f;
 
@@ -269,55 +271,121 @@ public class gameProcessController : MonoBehaviour
 
         Transform titleText = titleWindow.Instance.getTransform().Find("title");
         levelText = titleText.GetComponent<TextMeshProUGUI>();
+
+
+        GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+        obj = GameObject.Instantiate(obj);
+        obj.SetActive(false);
+        displayPanel = obj;
     }
 
-    public void LoadInitWeapon()
+    public void LoadInitProps()
     {
-        int w = GameController.getInstance().getGameData()._weaponList[0];
-        weaponBagWindow.Instance.ownWeaponList.Add(w);
-        string assetPath;
-        string assetPathBg;
-        GameObject weapon = new GameObject("weapon" + w);//背景图
-        Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
-        weapon.transform.SetParent(weaponBag);
-        weapon.AddComponent<Image>();
-        weapon.AddComponent<buttonRightClick>();
-        GameObject image = new GameObject("" + w);//武器图
-        image.transform.SetParent(weapon.transform);
-        //image.AddComponent<Image>();
-
-        GameObject id = new GameObject("id");
-        id.transform.SetParent(image.transform);
-        id.AddComponent<Image>();
-        id.AddComponent<WeaponDetailDisplay>();
-        if (GameObject.Find("DetailPanel") == null)
+        for (int i = 0; i < GameController.getInstance().getGameData()._propList.Count; i++)
         {
-            GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
-            obj = GameObject.Instantiate(obj);
-            obj.SetActive(false);
-            id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
+            int w = GameController.getInstance().getGameData()._propList[i];
+            int count = GameController.getInstance().getGameData()._propCount[i];
+            string assetPath;
+            string assetPathBg;
+            Transform propBag = propBagWindow.Instance.getTransform().Find("PropDisplay");
+            Transform viewport = propBag.Find("Viewport");
+            Transform listContent = viewport.Find("Content");
 
+            GameObject prop = new GameObject("prop" + w);//背景图
+            prop.transform.SetParent(listContent);
+            prop.AddComponent<Image>();
+
+            GameObject item = new GameObject("count");//数量标签
+            item.transform.SetParent(prop.transform);
+            item.AddComponent<TextMeshProUGUI>();
+            item.GetComponent<TextMeshProUGUI>().text = "" + count;
+            item.SetActive(false);
+            if (count > 1)
+            {
+                item.SetActive(true);
+            }
+            item.transform.localPosition = new Vector3(150f, -40f, 0f);
+            item.GetComponent<TextMeshProUGUI>().fontSize = 40;
+            string fontPath = "Fonts/标小智龙珠体 SDF";
+            TMP_FontAsset font = Resources.Load<TMP_FontAsset>(fontPath);
+            item.GetComponent<TextMeshProUGUI>().font = font;
+
+            GameObject image = new GameObject("" + w);//道具图
+            image.transform.SetParent(prop.transform);
+            image.AddComponent<Image>();
+            RectTransform rectProp = prop.GetComponent<RectTransform>();
+            rectProp.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            image.transform.localPosition = new Vector3(0f, 0f, 0f);
+            assetPathBg = "Assets/Sprites/Weapon/" + PropPoolList[w].getPropBgIcon();
+
+            assetPath = "Assets/Sprites/Prop/" + PropPoolList[w].getPropIcon();
+
+            loadImage(assetPathBg, prop.transform);
+            loadImage(assetPath, image.transform);
+
+            image.AddComponent<PropDetailDisplay>();
+            if (GameObject.Find("DetailPanel") == null)
+            {
+                GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                //obj = GameObject.Instantiate(obj);
+                obj.SetActive(false);
+                image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
+            }
+            image.GetComponent<PropDetailDisplay>().detailDisplay = displayPanel;
+            GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, count);
+            RefreshPropertyText();
         }
+    }
 
-        RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
-        rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
-
-        if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+    public void LoadInitWeapons()
+    {
+        for (int i = 0; i < GameController.getInstance().getGameData()._weaponList.Count; i++)
         {
-            assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
-        else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
-        {
-            assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
-        else
-        {
-            assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
-        }
+            int w = GameController.getInstance().getGameData()._weaponList[i];
+            weaponBagWindow.Instance.ownWeaponList.Add(w);
+            string assetPath;
+            string assetPathBg;
+            GameObject weapon = new GameObject("weapon" + w);//背景图
+            Transform weaponBag = weaponBagWindow.Instance.getTransform().Find("weaponBag");
+            weapon.transform.SetParent(weaponBag);
+            weapon.AddComponent<Image>();
+            weapon.AddComponent<buttonRightClick>();
+            GameObject image = new GameObject("" + w);//武器图
+            image.transform.SetParent(weapon.transform);
 
-        loadImage(assetPathBg, weapon.transform);
-        loadImage(assetPath, id.transform);
+            GameObject id = new GameObject("id");
+            id.transform.SetParent(image.transform);
+            id.AddComponent<Image>();
+            id.AddComponent<WeaponDetailDisplay>();
+            if (GameObject.Find("DetailPanel") == null)
+            {
+                GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
+                //obj = GameObject.Instantiate(obj);
+                obj.SetActive(false);
+                id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
+            }
+            id.GetComponent<WeaponDetailDisplay>().detailDisplay = displayPanel;
+
+            RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
+            rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            assetPathBg = "Assets/Sprites/Weapon/" + WeaponPropList[w].getWeaponBgIcon();
+
+            if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Melee)
+            {
+                assetPath = "Assets/Sprites/Weapon/" + "Melee Weapon/" + WeaponPropList[w].getWeaponIcon();
+            }
+            else if (WeaponPropList[w].getWeaponDamageType() == WeaponAttribute.WeaponDamageType.Ranged)
+            {
+                assetPath = "Assets/Sprites/Weapon/" + "Ranged Weapon/" + WeaponPropList[w].getWeaponIcon();
+            }
+            else
+            {
+                assetPath = "Assets/Sprites/Weapon/" + "Ability Weapon/" + WeaponPropList[w].getWeaponIcon();
+            }
+
+            loadImage(assetPathBg, weapon.transform);
+            loadImage(assetPath, id.transform);
+        }
     }
 
     //倒计时计算
@@ -356,6 +424,7 @@ public class gameProcessController : MonoBehaviour
             titleWindow.Instance.Close();
             countDownTimerWindow.Instance.Close();
             GameoverWindow.Instance.titleText = "通关";
+            GameoverWindow.Instance.detailDisplay = displayPanel;
             GameoverWindow.Instance.Open();
             gameProcessController.Instance.gameObject.SetActive(false);
         }
@@ -515,7 +584,7 @@ public class gameProcessController : MonoBehaviour
         GameController.getInstance().waveStart();
         Time.timeScale = 1f;
         //倒计时、关卡重置
-        totalTime = totalTime + 10 >= 100 ? 100 : totalTime + 10;
+        totalTime = totalTime + 5 >= 100 ? 100 : totalTime + 5;
         timeDisplay();
     }
 
@@ -574,12 +643,11 @@ public class gameProcessController : MonoBehaviour
                     if (GameObject.Find("DetailPanel") == null)
                     {
                         GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
-                        obj = GameObject.Instantiate(obj);
+                        //obj = GameObject.Instantiate(obj);
                         obj.SetActive(false);
                         id.GetComponent<WeaponDetailDisplay>().detailDisplay = obj;
-
                     }
-
+                    id.GetComponent<WeaponDetailDisplay>().detailDisplay = displayPanel;
 
                     RectTransform rectWeapon = weapon.GetComponent<RectTransform>();
                     rectWeapon.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -674,11 +742,12 @@ public class gameProcessController : MonoBehaviour
                     if (GameObject.Find("DetailPanel") == null)
                     {
                         GameObject obj = Resources.Load<GameObject>("UI/DetailPanel");
-                        obj = GameObject.Instantiate(obj);
+                        //obj = GameObject.Instantiate(obj);
                         obj.SetActive(false);
                         image.GetComponent<PropDetailDisplay>().detailDisplay = obj;
-
                     }
+                    image.GetComponent<PropDetailDisplay>().detailDisplay = displayPanel;
+
                     GameController.getInstance().getPlayer().GetComponent<CharacterAttribute>().PropModifyAttribute(w, 1);
                     RefreshPropertyText();
                 }

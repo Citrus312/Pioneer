@@ -11,6 +11,8 @@ public class PropDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //将面板移动到指定的位置
+        detailDisplay.transform.GetChild(0).position = new Vector3(transform.position.x - 10f, transform.position.y + 110f, transform.position.z);
         //根据物体名字获取对应的数据
         PropAttribute prop = new();
         prop.setPropAttribute(JsonLoader.propPool[int.Parse(this.name)]);
@@ -55,8 +57,7 @@ public class PropDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointerEx
             propAttrText.text += $"扫描精度  <color={(prop.getScanAccuracy() > 0 ? "green" : "red")}> {(prop.getScanAccuracy() > 0 ? "+" : "")}{prop.getScanAccuracy()} </color>\n";
         if (prop.getCollectEfficiency() != 0f)
             propAttrText.text += $"采集效率  <color={(prop.getCollectEfficiency() > 0 ? "green" : "red")}> {(prop.getCollectEfficiency() > 0 ? "+" : "")}{prop.getCollectEfficiency()} </color>\n";
-        //将面板移动到指定的位置
-        detailDisplay.transform.GetChild(0).position = new Vector3(transform.position.x, transform.position.y + 110f, transform.position.z);
+
         //激活面板
         detailDisplay.SetActive(true);
     }

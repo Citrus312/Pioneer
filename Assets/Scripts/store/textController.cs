@@ -28,7 +28,7 @@ public class textController : MonoBehaviour
     public List<bool> isLocked;
     public Color normalColor = new(1f, 1f, 1f, 0.5f);
     public Color highLightColor = new(0f, 0f, 0f, 0.5f);
-   
+
 
 
     public float luck;
@@ -369,7 +369,7 @@ public class textController : MonoBehaviour
     //刷新按钮点击事件
     public void OnRefreshButtonClicked()
     {
-        if(GameController.getInstance().getGameData()._money<storeWindow.Instance.freshValue)
+        if (GameController.getInstance().getGameData()._money < storeWindow.Instance.freshValue)
         {
             Debug.Log("金矿不足");
         }
@@ -421,9 +421,9 @@ public class textController : MonoBehaviour
             storeWindow.Instance.freshValue = GameController.getInstance().getGameData()._wave + storeWindow.Instance.freshCount * (int)Mathf.Ceil(0.5f * GameController.getInstance().getGameData()._wave);
             freshMoney.GetComponent<TextMeshProUGUI>().text = "  刷新" + " - " + storeWindow.Instance.freshValue;
 
-            
+
         }
-        
+
     }
 
     //锁定按钮点击事件
@@ -482,7 +482,6 @@ public class textController : MonoBehaviour
             else if (WeaponPropList[selectedCardId[cardID]].getWeaponPrice() > GameController.getInstance().getGameData()._money)
             {
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
-                Debug.Log("text");
                 Transform warn = transform.Find("warnWindow");
                 warn.gameObject.SetActive(true);
                 StartCoroutine(wait());
@@ -519,9 +518,7 @@ public class textController : MonoBehaviour
                 weaponBagWindow.Instance.buyedWeapon = selectedCardId[cardID];
 
                 weaponBagWindow.Instance.ownWeaponList.Add(selectedCardId[cardID]);
-                Debug.Log($"buy weapon {selectedCardId[cardID]}");
                 GameController.getInstance().getGameData()._weaponList.Add(selectedCardId[cardID]);
-                Debug.Log("weapon list length" + GameController.getInstance().getGameData()._weaponList.Count.ToString());
             }
         }
         else
@@ -569,13 +566,13 @@ public class textController : MonoBehaviour
                 {
                     propBagWindow.Instance.isExist = true;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID]-40000, 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID] - 40000, 1);
                 }
                 else
                 {
                     propBagWindow.Instance.isExist = false;
                     propBagWindow.Instance.ownPropList.Add(selectedCardId[cardID]);
-                    GameController.getInstance().ModifyProp(selectedCardId[cardID]-40000, 1);
+                    GameController.getInstance().ModifyProp(selectedCardId[cardID] - 40000, 1);
                 }
             }
         }
@@ -650,7 +647,6 @@ public class textController : MonoBehaviour
     //协程
     IEnumerator wait()
     {
-        Debug.Log("close");
         yield return new WaitForSecondsRealtime(1f);
     }
 }

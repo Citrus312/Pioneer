@@ -42,11 +42,12 @@ public class MonsterInfoCalcu
                 float baseCount = Random.Range(monster.getMinGenCount(), monster.getMaxGenCount());
                 genMonsterCount.Add((int)Mathf.Ceil(baseCount * (1 + (difficulty - 1) * 0.1f) * (1 + (wave - 1) * 0.05f)));
 
-                CharacterAttribute temp = monster;
+                CharacterAttribute temp = new();
+                temp.setAllMonsterAttribute(monster);
                 temp.setMaxHealth((monster.getMaxHealth() + monster.getHealthIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.2f + 1));
-                temp.setMeleeDamage((monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
-                temp.setRangedDamage((monster.getRangedDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
-                Debug.Log(temp.getMeleeDamage());
+                temp.setMeleeDamage((monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f + 1));
+                Debug.Log($"{i} {monster.getMeleeDamage()} {monster.getDamageIncPerWave()} {wave} {difficulty} {(monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f + 1)}");
+                temp.setRangedDamage((monster.getRangedDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f + 1));
                 genMonsterAttr.Add(temp);
             }
         }

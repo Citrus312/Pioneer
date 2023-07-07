@@ -76,6 +76,11 @@ public class MonsterGenerator : Generator
         //设置怪物属性
         monster.GetComponent<CharacterAttribute>().setAllMonsterAttribute(characterAttribute);
         monster.GetComponent<WeaponAttribute>().setOwnerAttr(monster.GetComponent<CharacterAttribute>());
+        Debug.Log("怪物武器伤害" + monster.GetComponent<WeaponAttribute>().getWeaponDamage());
+        Debug.Log("怪物近战伤害" + monster.GetComponent<CharacterAttribute>().getMeleeDamage());
+        Debug.Log("怪物远程伤害" + monster.GetComponent<CharacterAttribute>().getRangedDamage());
+        Debug.Log("给怪物赋值的近战伤害" + characterAttribute.getMeleeDamage());
+        Debug.Log("给怪物赋值的远程伤害" + characterAttribute.getRangedDamage());
     }
 
     // 随机获取怪物生成位置

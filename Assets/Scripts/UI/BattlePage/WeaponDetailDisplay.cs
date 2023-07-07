@@ -11,6 +11,8 @@ public class WeaponDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //将面板移动到指定位置
+        detailDisplay.transform.GetChild(0).position = new Vector3(transform.position.x - 125f, transform.position.y > 95f ? transform.position.y : 95f, transform.position.z);
         //根据物体名字获取对应的武器数据
         WeaponAttribute weapon = JsonLoader.weaponPool[int.Parse(this.transform.parent.name)];
         //加载武器背景
@@ -54,13 +56,11 @@ public class WeaponDetailDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
                 Debug.Log("weapon type error");
                 break;
         }
-        weaponAttrText.text = $"<color=yellow>伤害</color>:  {temp} | {weapon.getRawWeaponDamage()}\n" +
+        weaponAttrText.text = $"<color=yellow>伤害</color>:  {Mathf.Ceil(temp)} | {weapon.getRawWeaponDamage()}\n" +
                               $"<color=yellow>范围</color>:  {weapon.getAttackRange()} | {weapon.getRawAttackRange()}\n" +
                               $"<color=yellow>转化</color>:  {weapon.getConvertRatio() * 100}%\n" +
                               $"<color=yellow>暴击</color>:  x{weapon.getCriticalBonus()} ({weapon.getRawCriticalRate() * 100}%)\n" +
                               $"<color=yellow>攻速</color>:  {weapon.getAttackSpeed()}s\n";
-        //将面板移动到指定位置
-        detailDisplay.transform.GetChild(0).position = new Vector3(transform.position.x - 100f, transform.position.y > 95f ? transform.position.y : 95f, transform.position.z);
         //激活面板
         detailDisplay.SetActive(true);
     }

@@ -30,7 +30,7 @@ public class Damager : MonoBehaviour
 
         float weaponDamage = _weaponAttr.getWeaponDamage();
         if (gameObject.tag == "Enemy")
-            Debug.Log("weaponDamage=" + weaponDamage);
+            Debug.Log("enemy weaponDamage=" + weaponDamage);
         float criticalBonus = _weaponAttr.getCriticalBonus();
         float criticalRate = _weaponAttr.getCriticalRate();
         float armorStrength = targetAttr.getArmorStrength();
@@ -57,7 +57,7 @@ public class Damager : MonoBehaviour
             damage = weaponDamage * (1 - damageRedution);
         }
         //����˺��ж�
-        damage = damage > 1 ? damage : 1;
+        damage = damage > 1 ? Mathf.Ceil(damage) : 1;
         float rand = Random.Range(0f, 1f);
         if (rand >= dodgeRate * 0.01f)
         {
