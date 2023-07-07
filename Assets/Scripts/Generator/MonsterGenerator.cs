@@ -21,7 +21,7 @@ public class MonsterGenerator : Generator
 
     public void Awake()
     {
-        _redCrossPath = "Assets/Prefab/RedCross.prefab";
+        _redCrossPath = "Assets/Prefab/RedCross";
         _instance = this;
     }
 

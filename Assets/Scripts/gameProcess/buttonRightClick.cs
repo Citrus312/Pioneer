@@ -87,7 +87,7 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
     //武器背包中的物品右键点击事件-合成
     public void compoundOnclick()
     {
-        
+
         string number = new string(transform.name.Where(char.IsDigit).ToArray());
         int id = int.Parse(number);
 
@@ -95,17 +95,17 @@ public class buttonRightClick : MonoBehaviour, IPointerClickHandler
         {
             foreach (Transform child in father)
             {
-                if (child.name == transform.name&&child!=transform)
+                if (child.name == transform.name && child != transform)
                 {
                     Destroy(child.gameObject);
                     endofComposite(id);
                     break;
                 }
-                
+
             }
         }
         copyOption.gameObject.SetActive(false);
-        
+
     }
 
     //武器背包中的物品右键点击事件-取消

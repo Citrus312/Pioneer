@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     private GameData _gameData = new GameData();
 
     public string _playerPrefab;
+    public AudioClip themeMusic;
+    public AudioClip battleMusic;
+
     private GameObject _player;
 
     public GameObject _objectPool;
@@ -63,13 +66,13 @@ public class GameController : MonoBehaviour
         switch (_gameData._playerID)
         {
             case 0:
-                _playerPrefab = "Assets/Prefab/Player.prefab";
+                _playerPrefab = "Assets/Prefab/Player";
                 break;
             case 1:
-                _playerPrefab = "Assets/Prefab/Player/Player_2.prefab";
+                _playerPrefab = "Assets/Prefab/Player/Player_2";
                 break;
             case 2:
-                _playerPrefab = "Assets/Prefab/Player/Player_3.prefab";
+                _playerPrefab = "Assets/Prefab/Player/Player_3";
                 break;
         }
         // 初始化玩家对象
@@ -106,7 +109,7 @@ public class GameController : MonoBehaviour
         {
             int index = _gameData._weaponList[i];
             WeaponAttribute weaponAttribute = JsonLoader.weaponPool[index];
-            GameObject weapon = AssetDatabase.LoadAssetAtPath<GameObject>(weaponAttribute.getWeaponPrefabPath());
+            GameObject weapon = Resources.Load<GameObject>(weaponAttribute.getWeaponPrefabPath());
             weapon = Instantiate(weapon);
             //GameObject weapon = ObjectPool.getInstance().get(weaponAttribute.getWeaponPrefabPath());
             weapon.transform.GetChild(0).GetComponent<WeaponAttribute>().setAllAttribute(weaponAttribute);
@@ -138,14 +141,18 @@ public class GameController : MonoBehaviour
         //停止所有生成怪物的协程
         StopAllCoroutines();
         MonsterGenerator.getInstance().stopGenerate();
-        
+
         _player.GetComponent<Damageable>().stopIEnumerator();
 
         // 删除武器
-        for (int i = 0; i < _gameData._weaponList.Count; i++)
+        if (_player.transform.childCount != 0)
         {
-            DestroyImmediate(_player.transform.GetChild(0).gameObject);
+            for (int i = 0; i < _gameData._weaponList.Count; i++)
+            {
+                DestroyImmediate(_player.transform.GetChild(0).gameObject);
+            }
         }
+
         _player.GetComponent<WeaponManager>().RemoveAllWeapon();
         _instance.updateMoney((int)Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency()));
         _player.GetComponent<CharacterAttribute>().setCollectEfficiency(Mathf.Ceil(_player.GetComponent<CharacterAttribute>().getCollectEfficiency() * 1.05f));

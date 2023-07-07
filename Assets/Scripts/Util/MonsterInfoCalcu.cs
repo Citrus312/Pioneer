@@ -46,6 +46,7 @@ public class MonsterInfoCalcu
                 temp.setMaxHealth((monster.getMaxHealth() + monster.getHealthIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.2f + 1));
                 temp.setMeleeDamage((monster.getMeleeDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
                 temp.setRangedDamage((monster.getRangedDamage() + monster.getDamageIncPerWave() * (wave - 1)) * ((difficulty - 1) * 0.1f) + 1);
+                Debug.Log(temp.getMeleeDamage());
                 genMonsterAttr.Add(temp);
             }
         }
